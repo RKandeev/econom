@@ -1,0 +1,37 @@
+.bar{
+  position: relative;
+  width: 232rem;
+  h3{
+    padding-left: 40rem;
+    padding-top: 24rem;
+    margin: 0;
+    font-size: 12rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #ABB0C3;
+  }
+}
+.barblock{
+  margin: 8rem 0;
+  padding-left: 40rem;
+  &:hover{
+    border-radius: 0px 40px 40px 0px;
+    background-color: #FBB726;
+  }
+}
+.lastblock{
+  padding-bottom: 16rem;
+}
+.lastblock:before{
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 5px;
+    width: 192rem;
+    border-bottom: #C9CFE5 1rem solid;
+}
+.activeblock{
+  border-radius: 0px 40px 40px 0px;
+  background-color: #FBB726;
+}

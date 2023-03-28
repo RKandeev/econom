@@ -1,8 +1,12 @@
-import Header from "./components/Header/Header";
+import React from "react";
+import Finplan from "./pages/Finplan/Finplan";
 
 function App() {
   return (
-    <Header/>
+      <>
+          <Finplan/>
+      </>
+
   );
 }
 
