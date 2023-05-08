@@ -1,0 +1,57 @@
+.finlinestatus{
+  background-color: #F0F5FA;
+  border-radius: 50%;
+  padding: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20rem;
+  img{
+    width: 24rem;
+    height: 24rem;
+  }
+}
+.finline, .finlinetitle, .finlineinfo{
+  display: flex;
+  align-items: center;
+}
+.finline{
+  padding: 8rem;
+  margin-top: 8rem;
+  :last-child{
+    margin-left: auto;
+  }
+}
+.titlename{
+  font-size: 16rem;
+  font-weight: 700;
+  color: #464E5F;
+}
+.titleimg img{
+  height: 32rem;
+  width: 32rem;
+  margin-right: 12rem;
+}
+.titleabout{
+  margin-right: 310rem;
+}
+.graph{
+  padding-right: 20rem;
+  border-right: 1rem solid #C9CFE6;
+}
+.notifications{
+  padding-left: 20rem;
+}
+.finlinevalue{
+  color: #0DA46F;
+  font-size: 16rem;
+  font-weight: 700;
+  justify-self: end;
+}
+.tabHeaderBlock{
+  display: flex;
+  gap: 8rem;
+  :last-child{
+    margin-left: auto;
+  }
+}
