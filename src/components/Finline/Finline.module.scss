@@ -7,6 +7,11 @@
   justify-content: center;
   margin-right: 20rem;
   img{
+    font-size: 12rem;
+  }
+
+
+  img{
     width: 24rem;
     height: 24rem;
   }
@@ -35,6 +40,9 @@
 .titleabout{
   margin-right: 310rem;
 }
+.graph, .finlinevalue, .finlinestatus, .titleabout {
+  cursor: pointer;
+}
 .graph{
   padding-right: 20rem;
   border-right: 1rem solid #C9CFE6;
@@ -55,3 +63,4 @@
     margin-left: auto;
   }
 }
+

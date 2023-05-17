@@ -11,6 +11,8 @@ import Chart from "../Chart/Chart";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import Selectblue from "../Selectblue/Selectblue";
 import Checkcustom from "../Checkcustom/Checkcustom";
+import { Link } from "react-router-dom";
+import Tolt from "../Tolt/Tolt";
 
 function Finline(props) {
   const [chartModalActive, SetChartModalActive] = useState(false);
@@ -21,7 +23,9 @@ function Finline(props) {
     <>
       <div className={styles.finline}>
         <div className={styles.finlinestatus}>
-          <img src={check} alt="" />
+          <Tolt tooltipTitle1="1232132">
+            <img src={check} alt="" />
+          </Tolt>
         </div>
         <div className={styles.finlinetitle}>
           <div className={styles.titleimg}>
@@ -29,23 +33,25 @@ function Finline(props) {
           </div>
           <div className={styles.titlename}>{props.titlename}</div>
           <div className={styles.titleabout}>
-            <img src={help} alt="" />
+            <Tolt tooltipTitle1="ddsasd">
+              <img src={help} alt="" />
+            </Tolt>
           </div>
         </div>
         <div className={styles.finlineinfo}>
-          <div className={styles.graph}>
+          <div
+            className={styles.graph}
+            onClick={() => SetChartModalActive(true)}
+          >
             <img src={graph} alt="" />
           </div>
           <div className={styles.notifications}>
             <img src={notification} alt="" />
           </div>
         </div>
-        <div
-          className={styles.finlinevalue}
-          onClick={() => SetChartModalActive(true)}
-        >
-          {props.value}
-        </div>
+        <Link to="/incomes">
+          <div className={styles.finlinevalue}>{props.value}</div>
+        </Link>
       </div>
       <Modal
         active={chartModalActive}
