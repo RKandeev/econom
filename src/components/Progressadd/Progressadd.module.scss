@@ -1,0 +1,20 @@
+.progressTitle{
+  color: #464E5F;
+  font-size: 12rem;
+  font-weight: 500;
+  margin-bottom: 4rem;
+}
+.barLineBlock{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16rem;
+  .barLine{
+    padding: 8rem 12rem;
+    border-radius: 8rem;
+    font-size: 16rem;
+    font-weight: 700;
+    color: #fff;
+    width: 971rem;
+  }
+}

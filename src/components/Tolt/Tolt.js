@@ -19,6 +19,7 @@ function Tolt(props) {
       placement="top"
       TransitionProps={{ timeout: 400 }}
       arrow
+      disableInteractive
     >
       {props.children}
     </MyTooltip>
