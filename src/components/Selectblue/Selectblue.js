@@ -1,13 +1,15 @@
 import React from "react";
-import "./Selectblue.module.scss";
+import styles from "./Selectblue.module.scss";
 
 function Selectblue(props) {
   return (
-    <select>
-      {props.selectArr.map((el) => (
-        <option key={el}>{el}</option>
-      ))}
-    </select>
+    <div className={styles.Selectblue}>
+      <select>
+        {props.selectArr.map((el) => (
+          <option key={el}>{el}</option>
+        ))}
+      </select>
+    </div>
   );
 }
 

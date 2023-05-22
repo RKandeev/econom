@@ -18,3 +18,31 @@
     width: 971rem;
   }
 }
+.submitBtn{
+  background-color: #0DA46F;
+  border: none;
+  font-size: 14rem;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  padding: 16rem 0;
+  width: 100%;
+  border-radius: 12rem;
+  margin-top: auto;
+  cursor: pointer;
+  margin-top: 90rem;
+}
+input{
+  background-color: transparent;
+  border: none;
+  color: #464E5F;
+  font-size: 16rem;
+  font-weight: 400;
+  outline: none;
+  width: 100%;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
