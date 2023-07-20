@@ -3,12 +3,14 @@ import styles from "./Finplanbody.module.scss";
 import Moneyline from "../Moneyline/Moneyline";
 import Finline from "../Finline/Finline";
 import pocket from "../../img/pocket.svg";
+import crediticon from "../../img/crediticon.svg";
 import newcheck from "../../img/Ellipse 1.svg";
 import Selectblue from "../Selectblue/Selectblue";
 
 function Finplanbody(props) {
   const years = ["2022", "2023"];
   let incomes = "Доходы";
+  let credit = "Кредиты";
   return (
     <div className={styles.finalbody}>
       <div className={styles.headblock}>
@@ -28,7 +30,18 @@ function Finplanbody(props) {
         </div>
       </div>
       <Moneyline />
-      <Finline titleimg={pocket} titlename={incomes} value={"+55000.00"} />
+      <Finline
+        linkway={"/incomes"}
+        titleimg={pocket}
+        titlename={incomes}
+        value={"+55000.00"}
+      />
+      <Finline
+        linkway={"/credit"}
+        titleimg={crediticon}
+        titlename={credit}
+        value={"-12446.20"}
+      />
     </div>
   );
 }

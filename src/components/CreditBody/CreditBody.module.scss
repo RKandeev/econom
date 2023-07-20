@@ -1,0 +1,49 @@
+.IncomesBody{
+  margin-left: 40rem;
+  .breadcrumb {
+    font-size: 14rem;
+    color: #ABB0C3;
+    font-weight: 500;
+    ul{
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 22rem;
+      :first-child{
+        list-style-type: none;
+        color: #3156A6;
+      }
+    }
+  }
+  .infoBread{
+    font-size: 24rem;
+    font-weight: 700;
+    color: #464E5F;
+    ul{
+      margin: 4rem 0 16rem;
+      display: flex;
+      padding: 0;
+      gap: 33rem;
+      :first-child{
+        list-style-type: none;
+      }
+    }
+  }
+  .planStatus{
+    display: flex;
+    align-items: center;
+    gap: 16rem;
+    margin-bottom: 24rem;
+    .statusTitle{
+      color: #F2712D;
+      font-size: 12rem;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .statusDate{
+      font-weight: 500;
+      font-size: 12rem;
+      color: #ABB0C3;
+    }
+  }
+}

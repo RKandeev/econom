@@ -7,6 +7,14 @@ import notification from "../../img/icon/icon__notification.svg";
 import dots from "../../img/icon/icon__menu.svg";
 
 function IncomesLine(props) {
+  let color;
+  if (props.incomesValue > 0) {
+    color = "#0DA46F";
+  } else if (props.incomesValue < 0) {
+    color = "#EE2B49";
+  } else {
+    color = "#ABB0C3";
+  }
   return (
     <>
       <div className={styles.IncomesLine}>
@@ -38,10 +46,7 @@ function IncomesLine(props) {
               <img src={notification} alt="notification" />
             </div>
           </div>
-          <div
-            className={styles.incomesValue}
-            style={{ color: `${props.valueColor}` }}
-          >
+          <div className={styles.incomesValue} style={{ color }}>
             {props.incomesValue}
           </div>
           <div className={styles.incomesLineEdit}>

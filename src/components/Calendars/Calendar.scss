@@ -1,0 +1,21 @@
+.react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name{
+  width: 16rem;
+  line-height: 16rem;
+  color: #464E5F;
+}
+#newNotificationForm > div > div > div > form > div:nth-child(2) > div > button {
+  display: none;
+}
+#newNotificationForm > div > div > div > form > div:nth-child(1) > div > div > div > input[type=text]{
+  background-color: #F0F5FA;
+  padding: 16rem;
+  width: 336rem;
+  border-radius: 12rem;
+  color: #464e5f;
+  margin-bottom: 24rem;
+}
+#newNotificationForm > div > div > div > form > div:nth-child(1) > label{
+  color: #ABB0C3;
+  padding-left: 8rem;
+  margin-top: 16rem;
+}

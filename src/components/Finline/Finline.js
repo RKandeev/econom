@@ -16,6 +16,14 @@ import Tolt from "../Tolt/Tolt";
 
 function Finline(props) {
   const [chartModalActive, SetChartModalActive] = useState(false);
+  let color;
+  if (props.value > 0) {
+    color = "#0DA46F";
+  } else if (props.value < 0) {
+    color = "#EE2B49";
+  } else {
+    color = "#ABB0C3";
+  }
   let modalTitle = "Заголовок (попап с диаграммой)";
   let years = ["2022", "2023"];
   let months = ["Январь", "Февраль"];
@@ -49,8 +57,10 @@ function Finline(props) {
             <img src={notification} alt="" />
           </div>
         </div>
-        <Link to="/incomes">
-          <div className={styles.finlinevalue}>{props.value}</div>
+        <Link to={props.linkway}>
+          <div className={styles.finlinevalue} style={{ color }}>
+            {props.value}
+          </div>
         </Link>
       </div>
       <Modal
