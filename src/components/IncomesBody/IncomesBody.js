@@ -34,6 +34,7 @@ function IncomesBody(props) {
           progressTitle="Запланировано"
           progressValue={progressValue}
           btnTitle="Добавить"
+          barwidth="971rem"
         />
       </div>
     </>

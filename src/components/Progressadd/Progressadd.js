@@ -23,7 +23,10 @@ function Progressadd(props) {
       <div className={styles.barLineBlock}>
         <div
           className={styles.barLine}
-          style={{ background: `${props.barcolor}` }}
+          style={{
+            background: `${props.barcolor}`,
+            width: `${props.barwidth}`,
+          }}
         >
           {props.progressValue}
         </div>

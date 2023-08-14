@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Finplanleftnav.module.scss";
+import styles from "./Accountingleftnav.module.scss";
 import Menulink from "../Menulink/Menulink";
 import myresults from "../../img/icon__test.svg";
 import mycourse from "../../img/icon__course.svg";
@@ -9,7 +9,7 @@ import finanalys from "../../img/icon__fin-analiz.svg";
 import finchoice from "../../img/icon__fin-reshenia.svg";
 import profile from "../../img/icon_user.svg";
 
-function Finplanleftnav(props) {
+function Accountingleftnav(props) {
   return (
     <>
       <div className={styles.sitebody}>
@@ -24,14 +24,14 @@ function Finplanleftnav(props) {
           </div>
           <div className={styles.bar}>
             <h3>Мой финансист</h3>
-            <div className={styles.activeblock}>
+            <div className={styles.barblock}>
               <Menulink
                 img={finplan}
                 txt="Финансовое планирование"
-                linksAdress="/finplan"
+                linksAdress="/#"
               />
             </div>
-            <div className={styles.barblock}>
+            <div className={styles.activeblock}>
               <Menulink
                 img={finuchet}
                 txt="Финансовый учёт"
@@ -64,4 +64,4 @@ function Finplanleftnav(props) {
   );
 }
 
-export default Finplanleftnav;
+export default Accountingleftnav;

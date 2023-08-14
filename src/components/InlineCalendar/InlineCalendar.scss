@@ -7,7 +7,7 @@
   display: none;
 }
 #newNotificationForm > div > div > div > form > div:nth-child(1) > div > div > div > input[type=text]{
-  background-color: #F0F5FA;
+  background-color: transparent;
   padding: 16rem;
   width: 336rem;
   border-radius: 12rem;
@@ -21,13 +21,13 @@
 }
 .react-datepicker{
   padding: 24rem;
-  background-color: #F0F5FA;
+  background-color: transparent;
   border-radius: 16rem;
   border: transparent;
   font-size: 14rem;
 }
 .react-datepicker__header{
-  background: #F0F5FA;
+  background: transparent;
 }
 .react-datepicker__navigation{
   top: auto;

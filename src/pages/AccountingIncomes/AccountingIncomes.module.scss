@@ -1,0 +1,41 @@
+.sitebody{
+  display: flex;
+}
+.accountingHead{
+  font-size: 24rem;
+  display: flex;
+  align-items: center;
+  margin-bottom: 16rem;
+  h3{
+    margin: 0;
+    color: #464E5F;
+    font-weight: 700;
+  }
+  .dot{
+    margin: 0 5rem;
+  }
+  .accountingDate{
+    color: #3156A6;
+    font-weight: 700;
+  }
+}
+.breadcrumb {
+  font-size: 14rem;
+  color: #ABB0C3;
+  font-weight: 500;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 22rem;
+
+    :first-child {
+      list-style-type: none;
+      color: #3156A6;
+    }
+  }
+}
+.accountingBody{
+  margin: 0 40rem;
+}

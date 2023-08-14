@@ -36,6 +36,7 @@ function CreditBody(props) {
           progressValue={progressValue}
           availableValue={availableValue}
           btnTitle="Добавить"
+          barwidth="807rem"
         />
       </div>
     </>

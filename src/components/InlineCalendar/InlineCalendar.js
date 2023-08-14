@@ -3,7 +3,7 @@ import { Container } from "react-bootstrap";
 import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "react-datepicker/dist/react-datepicker-cssmodules.css";
-import "./Calendar.scss";
+import "./InlineCalendar.scss";
 import ru from "date-fns/locale/ru";
 registerLocale("ru", ru);
 
@@ -21,7 +21,6 @@ function Reactdatepicker() {
               <div className="row mb-4">
                 <label className="col-sm-2 col-form-label" onclic>
                   {" "}
-                  Дата
                 </label>
                 <div className="col-sm-5">
                   <DatePicker
@@ -30,6 +29,7 @@ function Reactdatepicker() {
                     dateFormat="dd.MM.yyyy"
                     locale="ru"
                     placeholderText="Выберите дату"
+                    inline
                     //minDate={ new Date()}
                     //maxDate={ new Date()}
                     //filterDate={ date=>date.getDay()!=6 && date.getDay()!=0}
@@ -40,11 +40,7 @@ function Reactdatepicker() {
 
               <div className="row mb-4">
                 <label className="col-sm-2 col-form-label"></label>
-                <div className="col-sm-4">
-                  <button type="submit" className="btn btn-success">
-                    Submit
-                  </button>
-                </div>
+                <div className="col-sm-4"></div>
               </div>
             </form>
           </div>

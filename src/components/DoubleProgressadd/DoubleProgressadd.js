@@ -36,7 +36,10 @@ function DoubleProgressadd(props) {
         <div className={styles.availableBar}>{props.availableValue}</div>
         <div
           className={styles.barLine}
-          style={{ background: `${props.barcolor}` }}
+          style={{
+            background: `${props.barcolor}`,
+            width: `${props.barwidth}`,
+          }}
         >
           {props.progressValue}
         </div>
