@@ -6,6 +6,7 @@ import Credit from "./pages/Credit/Credit";
 import Accounting from "./pages/Accounting/Accounting";
 import AccountingIncomes from "./pages/AccountingIncomes/AccountingIncomes";
 import AccountingCredit from "./pages/AccountingCredit/AccountingCredit";
+import Finmodel from "./pages/Finmodel/Finmodel";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="accounting" element={<Accounting />}></Route>
         <Route path="AccountingIncomes" element={<AccountingIncomes />}></Route>
         <Route path="AccountingCredit" element={<AccountingCredit />}></Route>
+        <Route path="finmodeling" element={<Finmodel />}></Route>
       </Routes>
     </>
   );

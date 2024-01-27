@@ -4,7 +4,6 @@ import styles from "../AccountingIncomes/AccountingIncomes.module.scss";
 import Accountingleftnav from "../../components/Accountingleftnav/Accountingleftnav";
 import InlineCalendar from "../../components/InlineCalendar/InlineCalendar";
 import { Link } from "react-router-dom";
-import Progressadd from "../../components/Progressadd/Progressadd";
 import DoubleProgressadd from "../../components/DoubleProgressadd/DoubleProgressadd";
 import credit from "../../img/crediticon.svg";
 import IncomesLine from "../../components/IncomesLine/IncomesLine";

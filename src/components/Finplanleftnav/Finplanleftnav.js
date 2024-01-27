@@ -49,7 +49,7 @@ function Finplanleftnav(props) {
               <Menulink
                 img={finchoice}
                 txt="Финансовые решения"
-                linksAdress="/#"
+                linksAdress="/finmodeling"
               />
             </div>
           </div>
