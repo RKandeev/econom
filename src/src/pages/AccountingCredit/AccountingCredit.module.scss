@@ -1,0 +1,20 @@
+.sitebody{
+  display: flex;
+}
+.accountingHead{
+  font-size: 24rem;
+  display: flex;
+  align-items: center;
+  h3{
+    margin: 0;
+    color: #464E5F;
+    font-weight: 700;
+  }
+  .dot{
+    margin: 0 5rem;
+  }
+  .accountingDate{
+    color: #3156A6;
+    font-weight: 700;
+  }
+}

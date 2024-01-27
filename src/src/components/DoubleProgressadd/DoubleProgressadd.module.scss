@@ -1,0 +1,129 @@
+.progressTitle{
+  color: #464E5F;
+  font-size: 12rem;
+  font-weight: 500;
+  margin-bottom: 4rem;
+}
+.barLineBlock{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4rem;
+  .barLine, .availableBar{
+    padding: 8rem 12rem;
+    border-radius: 0 8rem 8rem 0;
+    font-size: 16rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  .availableBar{
+    background-color: #C9CFE5;
+    color: #464E5F;
+    width: 160rem;
+    border-radius:  8rem 0 0 8rem ;
+  }
+  .mybtn{
+    margin-left: 12rem;
+  }
+}
+.submitBtn{
+  background-color: #0DA46F;
+  border: none;
+  font-size: 14rem;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  padding: 16rem 0;
+  width: 100%;
+  border-radius: 12rem;
+  cursor: pointer;
+  margin-top: 90rem;
+}
+input{
+  background-color: transparent;
+  border: none;
+  color: #464E5F;
+  font-size: 16rem;
+  font-weight: 400;
+  outline: none;
+  width: 100%;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+h4.HeaderDate {
+  font-size: 12rem;
+  text-transform: uppercase;
+  color: #3156A6;
+}
+.availableBlock{
+  padding: 12rem 16rem;
+  width: auto;
+  border-radius: 8rem;
+  background-color: #F0F5FA;
+  .AvBlockTitle{
+    font-size: 14rem;
+    font-weight: 500;
+    color: #ABB0C3;
+  }
+  .AvBlockValue{
+    font-size: 20rem;
+    font-weight: 700;
+    color: #464e5f;
+  }
+}
+.expensesBlock{
+  display: flex;
+  width: 408rem;
+  gap: 13rem;
+  margin-bottom: 12rem;
+  .lastExpenses{
+    padding: 12rem 16rem;
+    border: 1px solid #E1ECF5;
+    border-radius: 12rem;
+    width: 197rem;
+    h5{
+      color: #ABB0C3;
+      font-size: 12rem;
+      overflow: hidden;
+      font-weight: 500;
+      margin: 0;
+      padding: 0;
+    }
+    .expensesValue{
+      font-size: 16rem;
+      font-weight: 700;
+      color: #343D5C;
+      margin-top: 4rem;
+    }
+  }
+}
+Mybtn{
+  margin-bottom: 24rem;
+}
+.notificationBlocks{
+  margin-top: 24rem;
+  .notificationBlock{
+    display: flex;
+    align-items: center;
+    .notificInfoBlock{
+      margin-left: 12rem;
+      margin-right: auto;
+      .notificDate{
+        color: #3156A6;
+        font-size: 12rem;
+        font-weight: 500;
+      }
+      .notificValue{
+        font-size: 16rem;
+        font-weight: 700;
+        color: #343D5C;
+      }
+    }
+    .notificDelete{
+      cursor: pointer;
+    }
+  }
+}

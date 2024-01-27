@@ -1,0 +1,85 @@
+.Header {
+  padding: 36rem 40rem;
+  margin-bottom: 24rem;
+  border-bottom: 1px solid #E1ECF5;
+  display: flex;
+  align-items: center;
+  gap: 121rem;
+}
+.Header a{
+  color: #464E5F;
+}
+.logo img{
+  width: 111rem;
+  height: 80rem;
+}
+.links{
+  font-size: 16rem;
+  display: flex;
+  gap: 48rem;
+}
+.mybonus{
+  font-size: 16rem;
+  padding: 14rem 28rem;
+  border-radius: 24rem;
+  border: #C9CFE5 1px solid;
+  span{
+    font-weight: 700;
+  }
+}
+.profileLinks{
+  display: flex;
+  margin-left: auto;
+  gap: 16rem;
+}
+.profileNav img{
+  border-radius: 24rem;
+  border: #C9CFE5 1px solid;
+  padding: 14rem;
+  height: 20rem;
+  width: 20rem;
+}
+.notificBlocks {
+  .notificTooltip {
+    border-bottom: 1rem solid #ABB0C3;
+    padding-bottom: 16rem;
+    padding-top: 16rem;
+    h4 {
+      font-size: 14rem;
+      margin: 0;
+    }
+
+    .notificBottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 4rem;
+    }
+
+    .notificDate {
+      display: flex;
+      font-size: 12rem;
+      align-items: center;
+
+      img {
+        width: 16rem;
+        height: 16rem;
+        border: none;
+        padding: 0;
+      }
+    }
+
+    .notificValue {
+      font-size: 16rem;
+      font-weight: 700;
+    }
+  }
+  :last-child{
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  :first-child{
+    padding-top: 0;
+  }
+}
+
