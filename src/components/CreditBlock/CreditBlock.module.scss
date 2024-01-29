@@ -1,0 +1,15 @@
+.bubtngroup{
+  border-radius: 8rem;
+}
+.creditNumBtn{
+  background-color: #F0F5FA;
+  border: none;
+  width: 100rem;
+  height: 100rem;
+  font-size: 16rem;
+  cursor: pointer;
+  &:hover {
+    background-color: #e6ebf0;
+
+  }
+}

@@ -1,0 +1,40 @@
+.mysolution{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  flex-grow: inherit;
+  padding: 8rem 8rem 16rem 0;
+  border-bottom: 1px solid #E1ECF5;
+  .solutionBlock{
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    .solutionTitle{
+      font-size: 16rem;
+      font-weight: 700;
+      color: #464E5F;
+    }
+    .solutionType{
+      font-size: 14rem;
+      font-weight: 500;
+      color: #8E9DBF;
+    }
+  }
+}
+.solutionManage{
+  display: flex;
+  flex-direction: column;
+  gap: 16rem;
+  font-size: 14rem;
+  .manageBlock{
+    cursor: pointer;
+    font-size: 14rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 12rem;
+  }
+}
+
+

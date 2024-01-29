@@ -1,3 +1,10 @@
 .sitebody{
   display: flex;
+  gap: 40rem;
+  .mySolutionComponent{
+    flex-grow: 1;
+    padding: 24rem 0 0 40rem;
+    border-left: 1rem solid #E1ECF5;
+    margin-right: 40rem;
+  }
 }
