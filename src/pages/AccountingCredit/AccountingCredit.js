@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import DoubleProgressadd from "../../components/DoubleProgressadd/DoubleProgressadd";
 import credit from "../../img/crediticon.svg";
 import IncomesLine from "../../components/IncomesLine/IncomesLine";
+import MobileNav from "../../components/MobileNav/MobileNav";
 
 function AccountingCredit(props) {
   let accountingDate = "12 сентября 2023";
@@ -18,6 +19,7 @@ function AccountingCredit(props) {
   return (
     <>
       <Header />
+      <MobileNav />
       <div className={styles.sitebody}>
         <Accountingleftnav />
         <div className={styles.accountingBody}>

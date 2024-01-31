@@ -5,6 +5,10 @@
   gap: 8rem;
   align-items: center;
   padding: 8rem 12rem 8rem 0;
+  @media (max-width: 430px) {
+    padding: 8rem 0;
+    width: auto;
+  }
 }
 .image img{
   width: 24rem;
@@ -14,4 +18,5 @@
   font-size: 14rem;
   font-weight: 500;
   color: #464E5F;
+
 }

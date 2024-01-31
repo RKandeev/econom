@@ -4,6 +4,7 @@ import Finplanleftnav from "../../components/Finplanleftnav/Finplanleftnav";
 import styles from "./Finplan.module.scss";
 import Finplanbody from "../../components/Finplanbody/Finplanbody";
 import Finplanright from "../../components/Finplanright/Finplanright";
+import MobileNav from "../../components/MobileNav/MobileNav";
 
 function Finplan() {
   const months = [
@@ -21,6 +22,7 @@ function Finplan() {
   return (
     <>
       <Header />
+      <MobileNav />
       <div className={styles.sitebody}>
         <Finplanleftnav />
         <Finplanbody months={months} />

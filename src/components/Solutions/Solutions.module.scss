@@ -3,6 +3,9 @@
   flex-direction: column;
   gap: 8rem;
   padding-top: 24rem;
+  @media (max-width: 430px) {
+    padding-top: 16rem;
+  }
   h3{
     font-size: 12rem;
     font-weight: 700;

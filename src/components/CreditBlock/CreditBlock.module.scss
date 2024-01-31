@@ -4,12 +4,137 @@
 .creditNumBtn{
   background-color: #F0F5FA;
   border: none;
-  width: 100rem;
-  height: 100rem;
+  width: 81rem;
+  height: 50rem;
   font-size: 16rem;
   cursor: pointer;
+  @media (max-width: 430px) {
+    width: 65rem;
+  }
+  &[active="1"]{
+    background-color: #e6ebf0;
+
+  }
+  &:first-child{
+    border-radius: 12rem 0 0 12rem;
+  }
+  &:last-child{
+    border-radius: 0 12rem 12rem 0;
+  }
   &:hover {
     background-color: #e6ebf0;
 
+  }
+}
+h5.formTitle{
+  font-size: 14rem;
+  color: #ABB0C3;
+  font-weight: 500;
+  margin-top: 0;
+  margin-bottom: 4rem;
+  padding-left: 8rem;
+}
+.creditName{
+  input{
+    padding: 14rem 16rem;
+    max-width: 372rem;
+    border-radius: 12rem;
+    border: 1rem solid #C9CFE5;
+    margin-bottom: 24rem;
+    @media (max-width: 430px) {
+      box-sizing: border-box;
+      width: 100%;
+    }
+  }
+}
+.creditsBlockTitle{
+  font-size: 12rem;
+  font-style: normal;
+  font-weight: 700;
+  color: #464E5F;
+  text-transform: uppercase;
+  padding-left: 8rem;
+  margin: 56rem 0 12rem 0;
+  max-width: fit-content;
+  @media (max-width: 430px) {
+    margin: 12rem 0 12rem 0;
+  }
+}
+.creditsBlocks{
+  display: flex;
+  gap: 24rem;
+  flex-wrap: wrap;
+  @media (max-width: 430px) {
+    gap: 16rem;
+  }
+  .creditBlock{
+    width: 322rem;
+    font-size: 16rem;
+    padding: 24rem;
+    border-radius: 16rem ;
+    border: 1px solid #E1ECF5;
+
+    .editValueForm{
+      padding: 12rem 16rem;
+      background-color: #F0F5FA;
+      border-radius: 12rem;
+      margin-bottom: 24rem;
+    }
+    &:last-child{
+      margin-bottom: 0;
+    }
+    select.creditSelect{
+      font-size: 16rem;
+      font-weight: 400;
+      color: #464E5F;
+      border-color: transparent;
+      outline-color: transparent;
+      appearance: none;
+      background: url(../../img/icon/icon__arrow_down.svg) no-repeat right;
+      background-position-x: 100%;
+      width: 100%;
+      &:focus{
+
+      }
+    }
+  }
+  .creditTitleBlock{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    input{
+      width: 10rem;
+      height: 10rem;
+    }
+  }
+  .creditTitle{
+    font-size: 16rem;
+    font-weight: 700;
+    color: #464E5F;
+    margin-bottom: 24rem;
+  }
+}
+.submitBtnBlock{
+  width: 422rem;
+  @media (max-width: 430px) {
+    width: 100%;
+  }
+  button.submitBtn{
+    cursor: pointer;
+    padding-top: 16rem;
+    padding-bottom: 16rem;
+    border-radius: 12rem;
+    background-color: #0DA46F;
+    width: 100%;
+    border: none;
+    font-size: 14rem;
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+    margin-top: 40rem;
+    margin-bottom: 56rem;
+    @media (max-width: 430px) {
+      margin: 16rem 0;
+    }
   }
 }

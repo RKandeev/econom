@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./CreditBlock.module.scss";
+import Checkcustom from "../Checkcustom/Checkcustom";
 
 function CreditBlock(props) {
   // const [chartModalActive, SetChartModalActive] = useState(false);
@@ -408,10 +409,10 @@ function CreditBlock(props) {
   return (
     <>
       <form>
-        <div style={{ display: "flex", gap: "10rem" }}>
-          <div style={{ width: "50%" }}>
+        <div>
+          <div>
             <h5 className={styles.formTitle}>Название расчёта</h5>
-            <div className={styles.editValueForm2}>
+            <div className={styles.creditName}>
               <input
                 type="text"
                 placeholder="Введите название"
@@ -465,22 +466,18 @@ function CreditBlock(props) {
           </div>
         </div>
 
-        <h4 className={styles.h4t}>Рефинансируемые кредиты</h4>
-        <div style={{ display: "flex", gap: "10rem" }}>
+        <h4 className={styles.creditsBlockTitle}>Рефинансируемые кредиты</h4>
+        <div className={styles.creditsBlocks}>
           {oldCredits.map((el, k) => (
-            <div
-              style={{
-                width: "50%",
-                fontSize: "16rem",
-                padding: "24rem",
-                borderRadius: "16rem",
-                border: "1px solid var(--back-tertiary, #E1ECF5)",
-              }}
-            >
-              <div>{"Кредит №" + (k + 1)}</div>
+            <div className={styles.creditBlock}>
+              <div className={styles.creditTitleBlock}>
+                <div className={styles.creditTitle}>{"Кредит №" + (k + 1)}</div>
+                <Checkcustom label="Учитывать" />
+              </div>
               <h5 className={styles.formTitle}>Название кредита</h5>
               <div className={styles.editValueForm}>
                 <input
+                  placeholder="Введите название"
                   type="text"
                   value={el.name}
                   onChange={(e) => setOldCredit(k, "name", e.target.value)}
@@ -523,6 +520,7 @@ function CreditBlock(props) {
               </h5>
               <div className={styles.editValueForm}>
                 <select
+                  className={styles.creditSelect}
                   value={el.ins_type}
                   onChange={(e) => setOldCredit(k, "ins_type", e.target.value)}
                 >
@@ -547,17 +545,9 @@ function CreditBlock(props) {
             </div>
           ))}
         </div>
-        <h4 className={styles.h4t}>Условия рефинансирования</h4>
-        <div style={{ display: "flex", gap: "10rem" }}>
-          <div
-            style={{
-              width: "50%",
-              fontSize: "16rem",
-              padding: "24rem",
-              borderRadius: "16rem",
-              border: "1px solid var(--back-tertiary, #E1ECF5)",
-            }}
-          >
+        <h4 className={styles.creditsBlockTitle}>Условия рефинансирования</h4>
+        <div className={styles.creditsBlocks}>
+          <div className={styles.creditBlock}>
             <h5 className={styles.formTitle}>Дата рефинансирования</h5>
             <div className={styles.editValueForm}>
               <input
@@ -588,6 +578,7 @@ function CreditBlock(props) {
             </h5>
             <div className={styles.editValueForm}>
               <select
+                className={styles.creditSelect}
                 value={newCredits.ins_type}
                 onChange={(e) => setNewCredit("ins_type", e.target.value)}
               >
@@ -609,15 +600,7 @@ function CreditBlock(props) {
             )}
           </div>
 
-          <div
-            style={{
-              width: "50%",
-              fontSize: "16rem",
-              padding: "24rem",
-              borderRadius: "16rem",
-              border: "1px solid var(--back-tertiary, #E1ECF5)",
-            }}
-          >
+          <div className={styles.creditBlock}>
             <h5 className={styles.formTitle}>Инфляция (%)</h5>
             <div className={styles.editValueForm}>
               <input
@@ -628,9 +611,9 @@ function CreditBlock(props) {
             </div>
           </div>
         </div>
-        <div style={{ display: "flex" }}>
-          <button type="button" className={styles.btn1}>
-            Результат
+        <div className={styles.submitBtnBlock}>
+          <button type="button" className={styles.submitBtn}>
+            Рассчитать
           </button>
         </div>
       </form>

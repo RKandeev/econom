@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Header.module.scss";
 import logo from "../../img/logo.svg";
+import mlogo from "../../img/icon/icon/mobileLogo.svg";
 import icon__notification from "../../img/icon__notification.svg";
 import icon__user from "../../img/icon_user.svg";
 import icon__logout from "../../img/icon__logout.svg";
@@ -43,7 +44,8 @@ function Header() {
     <>
       <div className={styles.Header}>
         <Link to="/#" className={styles.logo}>
-          <img src={logo} alt="логотип" />
+          <img src={logo} alt="логотип" className={styles.desktop} />
+          <img src={mlogo} alt="логотип" className={styles.mobile} />
         </Link>
         <div className={styles.links}>
           <Link href="/#">О проекте</Link>
@@ -113,7 +115,7 @@ function Header() {
           <Link href="/#" className={styles.profileNav}>
             <img src={icon__user} alt="логотип" />
           </Link>
-          <Link href="/#" className={styles.profileNav}>
+          <Link href="/#" className={`${styles.profileNav} ${styles.logout}`}>
             <img src={icon__logout} alt="логотип" />
           </Link>
         </div>
