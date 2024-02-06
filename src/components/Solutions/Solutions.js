@@ -7,40 +7,45 @@ import carico from "../../img/icon/icon__car.svg";
 import homeico from "../../img/icon/icon__home.svg";
 import keyico from "../../img/icon/icon__key.svg";
 import billico from "../../img/icon/icon__card-bill.svg";
-import otherico from "../../img/icon/icon__others.svg";
 
 function Solutions(props) {
   return (
     <>
       <div className={styles.solutionButtons}>
-        <h3>Создать решение</h3>
+        <h3>Создать расчет</h3>
         <SolutionBtn
-          linkAdress="/CreateSolution"
+          linkAdress="/CreateSolutionAim"
           solutionLogo={walletico}
           solutionTitle="Досрочное погашение кредитов: целесообразность"
         />
         <SolutionBtn
-          solutionLogo={paymentico}
+          linkAdress="/CreateSolutionPriority"
+          solutionLogo={walletico}
           solutionTitle="Досрочное погашение кредитов: приоритет"
         />
         <SolutionBtn
-          solutionLogo={homeico}
+          linkAdress="/CreateSolution"
+          solutionLogo={paymentico}
           solutionTitle="Рефинансирование кредитов: целесообразность"
         />
         <SolutionBtn
-          solutionLogo={carico}
+          linkAdress="/CreateSolutionHome"
+          solutionLogo={homeico}
           solutionTitle="Жилищный вопрос: покупка или аренда"
         />
         <SolutionBtn
-          solutionLogo={keyico}
+          linkAdress="/CreateSolutionCar"
+          solutionLogo={carico}
           solutionTitle="Покупка автомобиля: оценка финансовых последствий"
         />
         <SolutionBtn
-          solutionLogo={billico}
+          linkAdress="/CreateSolutionFlat"
+          solutionLogo={keyico}
           solutionTitle="Квартира для сдачи в аренду: оценка выгод"
         />
         <SolutionBtn
-          solutionLogo={otherico}
+          linkAdress="/CreateSolutionIndividual"
+          solutionLogo={billico}
           solutionTitle="Конструктор индивидуальных ситуаций"
         />
       </div>

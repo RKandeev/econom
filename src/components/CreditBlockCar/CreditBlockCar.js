@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import styles from "./CreditBlock.module.scss";
+import styles from "./CreditBlockCar.module.scss";
 import Checkcustom from "../Checkcustom/Checkcustom";
+import help from "../../img/icon/icon__help.svg";
+import Tolt from "../Tolt/Tolt";
 
-function CreditBlock(props) {
+function CreditBlockCar(props) {
   // const [chartModalActive, SetChartModalActive] = useState(false);
   // let color;
   // if (props.value > 0) {
@@ -23,15 +25,6 @@ function CreditBlock(props) {
       period: 60,
       ins_type: "0",
       insurance: 1.0,
-    },
-    {
-      name: "",
-      date: "2020-03-02",
-      sum: 700000,
-      rate: 14.0,
-      period: 60,
-      ins_type: "0",
-      insurance: 4.0,
     },
   ]);
 
@@ -420,199 +413,177 @@ function CreditBlock(props) {
                 onChange={(e) => setCalcName(e.target.value)}
               />
             </div>
-            <h5 className={styles.formTitle}>Количество кредитов</h5>
-            <div className={styles.editValueForm + " " + styles.bubtngroup}>
-              <button
-                className={styles.creditNumBtn}
-                type="button"
-                onClick={() => setCreditCount(1)}
-                active={oldCredits.length === 1 ? "1" : ""}
-              >
-                1
-              </button>
-              <button
-                className={styles.creditNumBtn}
-                type="button"
-                onClick={() => setCreditCount(2)}
-                active={oldCredits.length === 2 ? "1" : ""}
-              >
-                2
-              </button>
-              <button
-                className={styles.creditNumBtn}
-                type="button"
-                onClick={() => setCreditCount(3)}
-                active={oldCredits.length === 3 ? "1" : ""}
-              >
-                3
-              </button>
-              <button
-                className={styles.creditNumBtn}
-                type="button"
-                onClick={() => setCreditCount(4)}
-                active={oldCredits.length === 4 ? "1" : ""}
-              >
-                4
-              </button>
-              <button
-                className={styles.creditNumBtn}
-                type="button"
-                onClick={() => setCreditCount(5)}
-                active={oldCredits.length === 5 ? "1" : ""}
-              >
-                5
-              </button>
-            </div>
           </div>
-        </div>
-
-        <h4 className={styles.creditsBlockTitle}>Рефинансируемые кредиты</h4>
-        <div className={styles.creditsBlocks}>
-          {oldCredits.map((el, k) => (
-            <div className={styles.creditBlock}>
-              <div className={styles.creditTitleBlock}>
-                <div className={styles.creditTitle}>{"Кредит №" + (k + 1)}</div>
-                <Checkcustom label="Учитывать" />
-              </div>
-              <h5 className={styles.formTitle}>Название кредита</h5>
-              <div className={styles.editValueForm}>
-                <input
-                  placeholder="Введите название"
-                  type="text"
-                  value={el.name}
-                  onChange={(e) => setOldCredit(k, "name", e.target.value)}
-                />
-              </div>
-              <h5 className={styles.formTitle}>Дата получения кредита</h5>
-              <div className={styles.editValueForm}>
-                <input
-                  type="date"
-                  value={el.date}
-                  onChange={(e) => setOldCredit(k, "date", e.target.value)}
-                />
-              </div>
-              <h5 className={styles.formTitle}>Срок кредита (в месяцах)</h5>
-              <div className={styles.editValueForm}>
-                <input
-                  type="number"
-                  value={el.period}
-                  onChange={(e) => setOldCredit(k, "period", e.target.value)}
-                />
-              </div>
-              <h5 className={styles.formTitle}>Ставка</h5>
-              <div className={styles.editValueForm}>
-                <input
-                  type="number"
-                  value={el.rate}
-                  onChange={(e) => setOldCredit(k, "rate", e.target.value)}
-                />
-              </div>
-              <h5 className={styles.formTitle}>Сумма</h5>
-              <div className={styles.editValueForm}>
-                <input
-                  type="number"
-                  value={el.sum}
-                  onChange={(e) => setOldCredit(k, "sum", e.target.value)}
-                />
-              </div>
-              <h5 className={styles.formTitle}>
-                Предстоящие расходы на страхование
-              </h5>
-              <div className={styles.editValueForm}>
-                <select
-                  className={styles.creditSelect}
-                  value={el.ins_type}
-                  onChange={(e) => setOldCredit(k, "ins_type", e.target.value)}
-                >
-                  <option value="0">Eжегодно</option>
-                  <option value="1">Не предусмотрены</option>
-                </select>
-              </div>
-              {el.ins_type === "0" && (
-                <>
-                  <h5 className={styles.formTitle}>Страховая премия (%)</h5>
-                  <div className={styles.editValueForm}>
-                    <input
-                      type="number"
-                      value={el.insurance}
-                      onChange={(e) =>
-                        setOldCredit(k, "insurance", e.target.value)
-                      }
-                    />
-                  </div>
-                </>
-              )}
-            </div>
-          ))}
         </div>
         <div className={styles.secondaryblocks}>
           <div className={styles.secondaryblock}>
-            <h4 className={styles.creditsBlockTitle}>
-              Условия рефинансирования
-            </h4>
-            <div className={styles.creditsBlocks}>
-              <div className={styles.creditBlock}>
-                <h5 className={styles.formTitle}>Дата рефинансирования</h5>
-                <div className={styles.editValueForm}>
-                  <input
-                    type="date"
-                    value={newCredits.date}
-                    onChange={(e) => setNewCredit("date", e.target.value)}
-                  />
-                </div>
-                <h5 className={styles.formTitle}>Срок кредита (в месяцах)</h5>
-                <div className={styles.editValueForm}>
-                  <input
-                    type="number"
-                    value={newCredits.period}
-                    onChange={(e) => setNewCredit("period", e.target.value)}
-                  />
-                </div>
-                <h5 className={styles.formTitle}>Ставка</h5>
-                <div className={styles.editValueForm}>
-                  <input
-                    type="number"
-                    step="0.1"
-                    value={newCredits.rate}
-                    onChange={(e) => setNewCredit("rate", e.target.value)}
-                  />
-                </div>
-                <h5 className={styles.formTitle}>
-                  Предстоящие расходы на страхование
-                </h5>
-                <div className={styles.editValueForm}>
-                  <select
-                    className={styles.creditSelect}
-                    value={newCredits.ins_type}
-                    onChange={(e) => setNewCredit("ins_type", e.target.value)}
-                  >
-                    <option value="0">Eжегодно</option>
-                    <option value="1">Не предусмотрены</option>
-                  </select>
-                </div>
-                {newCredits.ins_type === "0" && (
-                  <>
-                    <h5 className={styles.formTitle}>Страховая премия (%)</h5>
-                    <div className={styles.editValueForm}>
-                      <input
-                        type="number"
-                        value={newCredits.insurance}
-                        onChange={(e) =>
-                          setNewCredit("insurance", e.target.value)
-                        }
-                      />
-                    </div>
-                  </>
-                )}
+            <h4 className={styles.creditsBlockTitle}>Автомобиль</h4>
+            <div className={styles.creditBlock}>
+              <h5 className={styles.formTitle}>
+                Стоимость автомобиля &#x20bd;
+                <Tolt tooltipTitle1="В стоимость автомобиля рекомендуется включать не только цену его покупки, но и все затраты на его дополнительное оборудование, тюнинг и пр.">
+                  <img src={help} alt="" />
+                </Tolt>
+              </h5>
+              <div className={styles.editValueForm}>
+                <input
+                  type="number"
+                  value={newCredits.period}
+                  onChange={(e) => setNewCredit("period", e.target.value)}
+                />
+              </div>
+              <h5 className={styles.formTitle}>
+                Ежемесячные расходы на содержание автомобиля &#x20bd;{" "}
+                <Tolt tooltipTitle1="Сюда включаются расходы на топливо, парковку, стоянку, мойку, автомобильные штрафы и другие регулярные расходы, связанные с эксплуатацией автомобиля">
+                  <img src={help} alt="" />
+                </Tolt>
+              </h5>
+              <div className={styles.editValueForm}>
+                <input
+                  type="number"
+                  value={newCredits.period}
+                  onChange={(e) => setNewCredit("period", e.target.value)}
+                />
+              </div>
+              <h5 className={styles.formTitle}>
+                Ежегодные расходы на содержание автомобиля &#x20bd;{" "}
+                <Tolt tooltipTitle1="Сюда включаются расходы на техническое обслуживание, ремонт, шиномонтаж, дополнительное оборудование и другие расходы нерегулярного характера, связанные с эксплуатацией автомобиля">
+                  <img src={help} alt="" />
+                </Tolt>
+              </h5>
+              <div className={styles.editValueForm}>
+                <input
+                  type="number"
+                  value={newCredits.period}
+                  onChange={(e) => setNewCredit("period", e.target.value)}
+                />
+              </div>
+              <h5 className={styles.formTitle}>
+                Обязательное страхование (ОСАГО) &#x20bd;{" "}
+              </h5>
+              <div className={styles.editValueForm}>
+                <input
+                  type="number"
+                  value={newCredits.period}
+                  onChange={(e) => setNewCredit("period", e.target.value)}
+                />
+              </div>
+              <h5 className={styles.formTitle}>
+                Транспортный налог &#x20bd;
+                <Tolt tooltipTitle1="Для определения суммы транспортного налога, который вы будете платить, став владельцем автомобиля, можно воспользоваться налоговым калькулятором">
+                  <img src={help} alt="" />
+                </Tolt>
+              </h5>
+              <div className={styles.editValueForm}>
+                <input
+                  type="number"
+                  value={newCredits.period}
+                  onChange={(e) => setNewCredit("period", e.target.value)}
+                />
+              </div>
+              <h5 className={styles.formTitle}>
+                Ожидаемый среднегодовой прирост стоимости автомобиля %{" "}
+                <Tolt tooltipTitle1="Здесь указывается % ожидаемого ежегодного роста стоимости автомобиля этой марки и комплектации. Для определения этого параметра можно использовать информацию с сайтов автодилеров">
+                  <img src={help} alt="" />
+                </Tolt>
+              </h5>
+              <div className={styles.editValueForm}>
+                <input type="number" />
               </div>
             </div>
           </div>
           <div className={styles.secondaryblock}>
-            <h4 className={styles.creditsBlockTitle}>
-              Дополнительные параметры
-            </h4>
+            <h4 className={styles.creditsBlockTitle}>Условия покупки</h4>
             <div className={styles.creditBlock}>
-              <h5 className={styles.formTitle}>Инфляция (%)</h5>
+              <h5 className={styles.formTitle}>
+                Первоначальный взнос &#x20bd;
+                <Tolt tooltipTitle1="Здесь указывается сумма собственных средств, которую Вы готовы внести в качестве первоначального взноса за приобретаемый автомобиль. Если Вы планируете покупку автомобиля полностью за собственные средства (без привлечения кредита), то указывается сумма полной стоимости автомобиля">
+                  <img src={help} alt="" />
+                </Tolt>
+              </h5>
+              <div className={styles.editValueForm}>
+                <input
+                  type="number"
+                  value={newCredits.period}
+                  onChange={(e) => setNewCredit("period", e.target.value)}
+                />
+              </div>
+              <h5 className={styles.formTitle}>Ставка по кредиту % </h5>
+              <div className={styles.editValueForm}>
+                <input type="number" />
+              </div>
+              <h5 className={styles.formTitle}>Срок кредита</h5>
+              <div className={styles.editValueForm}>
+                <input type="number" />
+              </div>
+
+              <h5 className={styles.formTitle}>
+                Стоимость ежегодного страхования авто (% от остатка долга по
+                кредиту)
+                <Tolt tooltipTitle1="Здесь указывается ставка (в %) страховой премии, которую Вы будете ежегодно уплачивать в рамках обязательств страхования автомобиля, предусмотренных договором кредитования">
+                  <img src={help} alt="" />
+                </Tolt>
+              </h5>
+              <div className={styles.editValueForm}>
+                <input
+                  type="number"
+                  value={newCredits.period}
+                  onChange={(e) => setNewCredit("period", e.target.value)}
+                />
+              </div>
+            </div>
+          </div>
+          <div className={styles.secondaryblock}>
+            <h4 className={styles.creditsBlockTitle}>Альтернатива</h4>
+            <div className={styles.creditBlock}>
+              <h5 className={styles.formTitle}>
+                Ежемесячные транспортные расходы при отказе от покупки
+                автомобиля
+                <Tolt tooltipTitle1="Здесь указывается общая сумма расходов на транспорт, которые мы будем нести в том случае, если откажемся от покупки автомобиля, и от которых нас автомобиль может «избавить». Она включает расходы на общественный транспорт, такси, каршеринг и др.">
+                  <img src={help} alt="" />
+                </Tolt>
+              </h5>
+              <div className={styles.editValueForm}>
+                <input
+                  type="number"
+                  value={newCredits.period}
+                  onChange={(e) => setNewCredit("period", e.target.value)}
+                />
+              </div>
+              <h5 className={styles.formTitle}>
+                Ожидаемая доходность вложений (годовая) %{" "}
+                <Tolt tooltipTitle1="Здесь указывается годовой процент дохода, который Вы можете получать, инвестировав собственные средства вместо того, чтобы направлять их на покупку автомобиля. Рекомендуется указывать доходность вложений с низким или умеренным, приемлемым для Вас риском">
+                  <img src={help} alt="" />
+                </Tolt>
+              </h5>
+              <div className={styles.editValueForm}>
+                <input type="number" />
+              </div>
+            </div>
+          </div>
+          <div className={styles.secondaryblock}>
+            <h4 className={styles.creditsBlockTitle}>Инфляция</h4>
+            <div className={styles.creditBlock}>
+              <h5 className={styles.formTitle}>
+                Ожидаемая годовая инфляция (%)
+                <Tolt tooltipTitle1="Здесь указывается среднегодовое значение инфляции, которую Вы ожидаете в течение заданного Вами периода расчёта. Для более корректной оценки рекомендуется учитывать статистику инфляции за последние 10 лет: в среднем она составляла 7% в год (приводим таблицу инфляции по годам)">
+                  <img src={help} alt="" />
+                </Tolt>
+              </h5>
+
+              <div className={styles.editValueForm}>
+                <input
+                  type="number"
+                  value={newCredits.discont}
+                  onChange={(e) => setNewCredit("discont", e.target.value)}
+                />
+              </div>
+              <h5 className={styles.formTitle}>
+                Период расчёта (месяцы)
+                <Tolt tooltipTitle1="Здесь указывается период, за который Вы хотите рассчитать экономический эффект от покупки автомобиля. Рекомендуется устанавливать его равным сроку кредита">
+                  <img src={help} alt="" />
+                </Tolt>
+              </h5>
               <div className={styles.editValueForm}>
                 <input
                   type="number"
@@ -633,4 +604,4 @@ function CreditBlock(props) {
   );
 }
 
-export default CreditBlock;
+export default CreditBlockCar;

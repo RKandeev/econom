@@ -1,13 +1,12 @@
 import React from "react";
 import Header from "../../components/Header/Header";
-import styles from "./CreateSolution.module.scss";
+import styles from "./CreateSolutionIndividual.module.scss";
 import Modelingleftnav from "../../components/Modelingleftnav/Modelingleftnav";
 import { Link } from "react-router-dom";
-import CreditBlock from "../../components/CreditBlock/CreditBlock";
 import FinModelingRight from "../../components/FinModelingRight/FinModelingRight";
 import MobileNav from "../../components/MobileNav/MobileNav";
-
-function CreateSolution(props) {
+import developimg from "../../img/developing-marketing-outline-svgrepo-com.svg";
+function CreateSolutionIndividual(props) {
   return (
     <>
       <Header />
@@ -22,16 +21,18 @@ function CreateSolution(props) {
               <li>
                 <Link to={"/finmodeling"}>Финансовое моделирование</Link>
               </li>
-              <li>Рефинансирование кредитов: целесообразность</li>
+              <li>Конструктор индивидуальных ситуаций</li>
             </ul>
           </div>
-          <h2>Создание расчета</h2>
-          <CreditBlock />
+          <h2>Данный раздел находится на этапе разработки</h2>
+          <div className={styles.develope}>
+            <img src={developimg} alt="" />
+          </div>
         </div>
-        <FinModelingRight />
+        {/*<FinModelingRight />*/}
       </div>
     </>
   );
 }
 
-export default CreateSolution;
+export default CreateSolutionIndividual;

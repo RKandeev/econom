@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import styles from "./CreditBlock.module.scss";
+import styles from "./CreditBlockPriority.module.scss";
 import Checkcustom from "../Checkcustom/Checkcustom";
+import help from "../../img/icon/icon__help.svg";
+import Tolt from "../Tolt/Tolt";
 
-function CreditBlock(props) {
+function CreditBlockPriority(props) {
   // const [chartModalActive, SetChartModalActive] = useState(false);
   // let color;
   // if (props.value > 0) {
@@ -23,15 +25,6 @@ function CreditBlock(props) {
       period: 60,
       ins_type: "0",
       insurance: 1.0,
-    },
-    {
-      name: "",
-      date: "2020-03-02",
-      sum: 700000,
-      rate: 14.0,
-      period: 60,
-      ins_type: "0",
-      insurance: 4.0,
     },
   ]);
 
@@ -465,8 +458,9 @@ function CreditBlock(props) {
             </div>
           </div>
         </div>
-
-        <h4 className={styles.creditsBlockTitle}>Рефинансируемые кредиты</h4>
+        <h4 className={styles.creditsBlockTitle}>
+          Кредит для досрочного погашения
+        </h4>
         <div className={styles.creditsBlocks}>
           {oldCredits.map((el, k) => (
             <div className={styles.creditBlock}>
@@ -545,65 +539,28 @@ function CreditBlock(props) {
             </div>
           ))}
         </div>
+        <div className={styles.creditsBlocks}></div>
         <div className={styles.secondaryblocks}>
           <div className={styles.secondaryblock}>
             <h4 className={styles.creditsBlockTitle}>
               Условия рефинансирования
             </h4>
-            <div className={styles.creditsBlocks}>
-              <div className={styles.creditBlock}>
-                <h5 className={styles.formTitle}>Дата рефинансирования</h5>
-                <div className={styles.editValueForm}>
-                  <input
-                    type="date"
-                    value={newCredits.date}
-                    onChange={(e) => setNewCredit("date", e.target.value)}
-                  />
-                </div>
-                <h5 className={styles.formTitle}>Срок кредита (в месяцах)</h5>
-                <div className={styles.editValueForm}>
-                  <input
-                    type="number"
-                    value={newCredits.period}
-                    onChange={(e) => setNewCredit("period", e.target.value)}
-                  />
-                </div>
-                <h5 className={styles.formTitle}>Ставка</h5>
-                <div className={styles.editValueForm}>
-                  <input
-                    type="number"
-                    step="0.1"
-                    value={newCredits.rate}
-                    onChange={(e) => setNewCredit("rate", e.target.value)}
-                  />
-                </div>
-                <h5 className={styles.formTitle}>
-                  Предстоящие расходы на страхование
-                </h5>
-                <div className={styles.editValueForm}>
-                  <select
-                    className={styles.creditSelect}
-                    value={newCredits.ins_type}
-                    onChange={(e) => setNewCredit("ins_type", e.target.value)}
-                  >
-                    <option value="0">Eжегодно</option>
-                    <option value="1">Не предусмотрены</option>
-                  </select>
-                </div>
-                {newCredits.ins_type === "0" && (
-                  <>
-                    <h5 className={styles.formTitle}>Страховая премия (%)</h5>
-                    <div className={styles.editValueForm}>
-                      <input
-                        type="number"
-                        value={newCredits.insurance}
-                        onChange={(e) =>
-                          setNewCredit("insurance", e.target.value)
-                        }
-                      />
-                    </div>
-                  </>
-                )}
+            <div className={styles.creditBlock}>
+              <h5 className={styles.formTitle}>Дата погашения</h5>
+              <div className={styles.editValueForm}>
+                <input
+                  type="date"
+                  value={newCredits.date}
+                  onChange={(e) => setNewCredit("date", e.target.value)}
+                />
+              </div>
+              <h5 className={styles.formTitle}>Сумма погашения</h5>
+              <div className={styles.editValueForm}>
+                <input
+                  type="number"
+                  value={newCredits.period}
+                  onChange={(e) => setNewCredit("period", e.target.value)}
+                />
               </div>
             </div>
           </div>
@@ -612,7 +569,26 @@ function CreditBlock(props) {
               Дополнительные параметры
             </h4>
             <div className={styles.creditBlock}>
-              <h5 className={styles.formTitle}>Инфляция (%)</h5>
+              <h5 className={styles.formTitle}>
+                Доходность возможных вложений (годовая) (%)
+                <Tolt tooltipTitle1="Рекомендуется указывать актуальную на момент расчёта ставку вложений с низким или умеренным риском потерь – банковский депозит, облигации и др.">
+                  <img src={help} alt="" />
+                </Tolt>
+              </h5>
+
+              <div className={styles.editValueForm}>
+                <input
+                  type="number"
+                  value={newCredits.discont}
+                  onChange={(e) => setNewCredit("discont", e.target.value)}
+                />
+              </div>
+              <h5 className={styles.formTitle}>
+                Инфляция (%)
+                <Tolt tooltipTitle1="Рекомендуется указывать среднее значение инфляции за последние 5 (6,5%) или 10 лет (7,0%). Если в рамках расчёта Вы не хотите учитывать инфляцию, укажите значение 0">
+                  <img src={help} alt="" />
+                </Tolt>
+              </h5>
               <div className={styles.editValueForm}>
                 <input
                   type="number"
@@ -633,4 +609,4 @@ function CreditBlock(props) {
   );
 }
 
-export default CreditBlock;
+export default CreditBlockPriority;

@@ -48,8 +48,8 @@ function Modelingleftnav(props) {
             <div className={`${styles.activeblock} ${styles.lastblock}`}>
               <Menulink
                 img={finchoice}
-                txt="Финансовые решения"
-                linksAdress="/#"
+                txt="Финансовое моделирование"
+                linksAdress="/finmodeling"
               />
             </div>
           </div>

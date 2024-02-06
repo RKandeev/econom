@@ -1,13 +1,13 @@
 import React from "react";
 import Header from "../../components/Header/Header";
-import styles from "./CreateSolution.module.scss";
+import styles from "./CreateSolutionAim.module.scss";
 import Modelingleftnav from "../../components/Modelingleftnav/Modelingleftnav";
 import { Link } from "react-router-dom";
-import CreditBlock from "../../components/CreditBlock/CreditBlock";
 import FinModelingRight from "../../components/FinModelingRight/FinModelingRight";
 import MobileNav from "../../components/MobileNav/MobileNav";
+import CreditBlockAim from "../../components/CreditBlockAim/CreditBlockAim";
 
-function CreateSolution(props) {
+function CreateSolutionAim(props) {
   return (
     <>
       <Header />
@@ -22,11 +22,11 @@ function CreateSolution(props) {
               <li>
                 <Link to={"/finmodeling"}>Финансовое моделирование</Link>
               </li>
-              <li>Рефинансирование кредитов: целесообразность</li>
+              <li>Досрочное погашение кредитов: целесообразность</li>
             </ul>
           </div>
           <h2>Создание расчета</h2>
-          <CreditBlock />
+          <CreditBlockAim />
         </div>
         <FinModelingRight />
       </div>
@@ -34,4 +34,4 @@ function CreateSolution(props) {
   );
 }
 
-export default CreateSolution;
+export default CreateSolutionAim;

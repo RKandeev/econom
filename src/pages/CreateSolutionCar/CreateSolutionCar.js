@@ -1,13 +1,13 @@
 import React from "react";
 import Header from "../../components/Header/Header";
-import styles from "./CreateSolution.module.scss";
+import styles from "./CreateSolutionCar.module.scss";
 import Modelingleftnav from "../../components/Modelingleftnav/Modelingleftnav";
 import { Link } from "react-router-dom";
-import CreditBlock from "../../components/CreditBlock/CreditBlock";
 import FinModelingRight from "../../components/FinModelingRight/FinModelingRight";
 import MobileNav from "../../components/MobileNav/MobileNav";
+import CreditBlockCar from "../../components/CreditBlockCar/CreditBlockCar";
 
-function CreateSolution(props) {
+function CreateSolutionCar(props) {
   return (
     <>
       <Header />
@@ -22,11 +22,11 @@ function CreateSolution(props) {
               <li>
                 <Link to={"/finmodeling"}>Финансовое моделирование</Link>
               </li>
-              <li>Рефинансирование кредитов: целесообразность</li>
+              <li>Покупка автомобиля: оценка финансовых последствий</li>
             </ul>
           </div>
           <h2>Создание расчета</h2>
-          <CreditBlock />
+          <CreditBlockCar />
         </div>
         <FinModelingRight />
       </div>
@@ -34,4 +34,4 @@ function CreateSolution(props) {
   );
 }
 
-export default CreateSolution;
+export default CreateSolutionCar;
