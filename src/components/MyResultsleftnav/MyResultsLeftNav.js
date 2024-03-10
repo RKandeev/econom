@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Modelingleftnav.module.scss";
+import styles from "./MyResultsLeftNav.module.scss";
 import Menulink from "../Menulink/Menulink";
 import myresults from "../../img/icon__test.svg";
 import mycourse from "../../img/icon__course.svg";
@@ -9,21 +9,17 @@ import finanalys from "../../img/icon__fin-analiz.svg";
 import finchoice from "../../img/icon__fin-reshenia.svg";
 import profile from "../../img/icon_user.svg";
 
-function Modelingleftnav(props) {
+function MyResultsLeftNav(props) {
   return (
     <>
       <div className={styles.sitebody}>
         <div className={styles.leftbody}>
           <div className={styles.bar}>
-            <div className={styles.barblock}>
-              <Menulink
-                img={myresults}
-                txt="Мои результаты"
-                linksAdress="/MyResults"
-              />
+            <div className={styles.activeblock}>
+              <Menulink img={myresults} txt="Мои результаты" linksAdress="/#" />
             </div>
             <div className={`${styles.barblock} ${styles.lastblock}`}>
-              <Menulink img={mycourse} txt="Мои курсы" linksAdress="/#" />
+              <Menulink img={mycourse} txt="Обучение" linksAdress="/Study" />
             </div>
           </div>
           <div className={styles.bar}>
@@ -32,7 +28,7 @@ function Modelingleftnav(props) {
               <Menulink
                 img={finplan}
                 txt="Финансовое планирование"
-                linksAdress="/#"
+                linksAdress="/finplan"
               />
             </div>
             <div className={styles.barblock}>
@@ -49,7 +45,7 @@ function Modelingleftnav(props) {
                 linksAdress="/#"
               />
             </div>
-            <div className={`${styles.activeblock} ${styles.lastblock}`}>
+            <div className={`${styles.barblock} ${styles.lastblock}`}>
               <Menulink
                 img={finchoice}
                 txt="Финансовое моделирование"
@@ -68,4 +64,4 @@ function Modelingleftnav(props) {
   );
 }
 
-export default Modelingleftnav;
+export default MyResultsLeftNav;

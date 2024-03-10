@@ -14,12 +14,14 @@ import CreateSolutionHome from "./pages/CreateSolutionHome/CreateSolutionHome";
 import CreateSolutionCar from "./pages/CreateSolutionCar/CreateSolutionCar";
 import CreateSolutionFlat from "./pages/CreateSolutionFlat/CreateSolutionFlat";
 import CreateSolutionIndividual from "./pages/CreateSolutionIndividual/CreateSolutionIndividual";
+import MyResults from "./pages/MyResults/MyResults";
+import Study from "./pages/Study/Study";
 
 function App() {
   return (
     <>
       <Routes>
-        <Route path="*" element={<Finplan />}></Route>
+        <Route path="*" element={<MyResults />}></Route>
         <Route path="finplan" element={<Finplan />}></Route>
         <Route path="incomes" element={<Incomes />}></Route>
         <Route path="credit" element={<Credit />}></Route>
@@ -46,6 +48,8 @@ function App() {
           path="CreateSolutionIndividual"
           element={<CreateSolutionIndividual />}
         ></Route>
+        <Route path="MyResults" element={<MyResults />}></Route>
+        <Route path="Study" element={<Study />}></Route>
       </Routes>
     </>
   );

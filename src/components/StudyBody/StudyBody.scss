@@ -1,0 +1,48 @@
+.firstTestsTabs{
+  display: flex;
+  gap: 45rem;
+  .firstTestsTabList{
+    flex-direction: column;
+    height: 170rem;
+    width: 286rem;
+    svg{
+      height: 17rem;
+      width: 17rem;
+    }
+    h4{
+
+    }
+    .react-tabs__tab{
+
+      &:hover{
+
+      }
+      &:last-child:hover{
+      }
+    }
+    .react-tabs__tab--selected {
+
+      &:last-child{
+      }
+    }
+    .full_course{
+      font-size: 16rem;
+      color: #3156a6;
+      border: 2rem solid #3156a6;
+      border-radius: 23rem;
+      width: 286rem;
+      padding: 14rem 0;
+      text-align: center;
+      margin-top: 30rem;
+      cursor: pointer;
+    }
+  }
+}
+.study_head{
+  font-weight: 700;
+  font-size: 24rem;
+  color: #464e5f;
+  padding-bottom: 16rem;
+  border-bottom: 1rem solid #c9cfe5;
+  margin: 0;
+}

@@ -3,7 +3,6 @@ import Header from "../../components/Header/Header";
 import styles from "./CreateSolutionIndividual.module.scss";
 import Modelingleftnav from "../../components/Modelingleftnav/Modelingleftnav";
 import { Link } from "react-router-dom";
-import FinModelingRight from "../../components/FinModelingRight/FinModelingRight";
 import MobileNav from "../../components/MobileNav/MobileNav";
 import developimg from "../../img/developing-marketing-outline-svgrepo-com.svg";
 function CreateSolutionIndividual(props) {
@@ -29,7 +28,6 @@ function CreateSolutionIndividual(props) {
             <img src={developimg} alt="" />
           </div>
         </div>
-        {/*<FinModelingRight />*/}
       </div>
     </>
   );

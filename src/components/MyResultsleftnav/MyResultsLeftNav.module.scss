@@ -9,6 +9,7 @@
   width: 232rem;
   h3{
     padding-left: 40rem;
+    padding-top: 24rem;
     margin: 0;
     font-size: 12rem;
     text-transform: uppercase;
@@ -22,11 +23,10 @@
   &:hover{
     border-radius: 0px 40px 40px 0px;
     background-color: #FBB726;
-    background-size: 80%;
   }
 }
 .lastblock{
-  margin-bottom: 16rem;
+  padding-bottom: 16rem;
 }
 .lastblock:before{
   content: "";

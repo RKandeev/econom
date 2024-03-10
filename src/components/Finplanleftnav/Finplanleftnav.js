@@ -23,7 +23,7 @@ function Finplanleftnav(props) {
             </div>
           </div>
           <div className={styles.bar}>
-            <h3>Мой финансист</h3>
+            <h3>Панель управления</h3>
             <div className={styles.activeblock}>
               <Menulink
                 img={finplan}
