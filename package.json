@@ -1,7 +1,7 @@
 {
   "name": "econom",
   "version": "0.1.0",
-  "homepage": "https://github.com/RKandeev/econom.git",
+  "homepage": "https://RKandeev.github.io/econom",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.6",
