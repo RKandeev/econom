@@ -1,10 +1,12 @@
+.study_body{
+  margin-right: 40rem;
+}
 .firstTestsTabs{
   display: flex;
   gap: 45rem;
   .firstTestsTabList{
     flex-direction: column;
-    height: 170rem;
-    width: 286rem;
+    width: 281rem;
     svg{
       height: 17rem;
       width: 17rem;
@@ -25,18 +27,9 @@
       &:last-child{
       }
     }
-    .full_course{
-      font-size: 16rem;
-      color: #3156a6;
-      border: 2rem solid #3156a6;
-      border-radius: 23rem;
-      width: 286rem;
-      padding: 14rem 0;
-      text-align: center;
-      margin-top: 30rem;
-      cursor: pointer;
-    }
+
   }
+
 }
 .study_head{
   font-weight: 700;
@@ -45,4 +38,25 @@
   padding-bottom: 16rem;
   border-bottom: 1rem solid #c9cfe5;
   margin: 0;
+
+}
+.left_tabs{
+  display: flex;
+  flex-direction: column;
+  gap: 30rem;
+  width: 281rem;
+}
+.full_course{
+  font-size: 16rem;
+  color: #3156a6;
+  border: 2rem solid #3156a6;
+  border-radius: 23rem;
+  padding: 14rem 40rem;
+  text-align: center;
+  cursor: pointer;
+  flex-grow: 0!important;
+  &:hover{
+    background-color: #E1ECF5;
+    color: #000;
+  }
 }

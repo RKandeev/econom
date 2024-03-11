@@ -1,0 +1,49 @@
+.Studyfirst{
+  h2{
+    font-weight: 700;
+    font-size: 20rem;
+    text-transform: uppercase;
+    color: #464e5f;
+    margin-bottom: 16rem;
+    margin-top: 16rem;
+  }
+  p{
+    font-size: 16rem;
+    color: #000;
+    margin-bottom: 30rem;
+  }
+  .lesson_blocks{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25rem;
+    margin-bottom: 50rem;
+    .lesson_block{
+      flex-grow: 0;
+      width: 234rem;
+      height: 138rem;
+      border-radius: 13rem;
+      background: #f1f1f1;
+      font-weight: 700;
+      font-size: 14rem;
+      text-transform: uppercase;
+      text-align: center;
+      color: #464e5f;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14rem;
+      box-shadow: 10rem 10rem 0 0 #d2d2d2;
+      cursor: pointer;
+      transition: 0.2s ease-in-out;
+      .lesson_title{
+        flex-grow: 0;
+      }
+      &:hover{
+        box-shadow: 0 0 10rem 10rem #d2d2d2;
+        background-color: #E1ECF5;
+      }
+
+    }
+  }
+}
