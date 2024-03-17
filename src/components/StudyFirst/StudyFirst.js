@@ -1,7 +1,10 @@
 import React from "react";
 import styles from "./StudyFirst.module.scss";
+import { Link } from "react-router-dom";
 
 function StudyFirst(props) {
+  localStorage.removeItem("lessonNum");
+
   return (
     <div className={styles.Studyfirst}>
       <h2>Технология финансовой эффективности</h2>
@@ -13,60 +16,76 @@ function StudyFirst(props) {
         универсальный код речей
       </p>
       <div className={styles.lesson_blocks}>
-        <div className={styles.lesson_block}>
+        <Link
+          className={styles.lesson_block}
+          to="/Studying"
+          onClick={() => localStorage.setItem("lessonNum", "0")}
+        >
           <div className={styles.lesson_number}>Тема 1</div>
           <div className={styles.lesson_title}>
             Введение в управление финансами
           </div>
-        </div>
-        <div className={styles.lesson_block}>
-          <div className={styles.lesson_number}>Тема 1</div>
+        </Link>
+        <Link
+          className={styles.lesson_block}
+          to="/Studying"
+          onClick={() => localStorage.setItem("lessonNum", "1")}
+        >
+          <div className={styles.lesson_number}>Тема 2</div>
           <div className={styles.lesson_title}>
             Введение в управление финансами
           </div>
-        </div>
-        <div className={styles.lesson_block}>
-          <div className={styles.lesson_number}>Тема 1</div>
+        </Link>
+        <Link
+          to="/Studying"
+          onClick={() => localStorage.setItem("lessonNum", "2")}
+          className={styles.lesson_block}
+        >
+          <div className={styles.lesson_number}>Тема 3</div>
           <div className={styles.lesson_title}>
             Введение в управление финансами
           </div>
-        </div>
-        <div className={styles.lesson_block}>
-          <div className={styles.lesson_number}>Тема 1</div>
+        </Link>
+        <Link
+          to="/Studying"
+          onClick={() => localStorage.setItem("lessonNum", "3")}
+          className={styles.lesson_block}
+        >
+          <div className={styles.lesson_number}>Тема 4</div>
           <div className={styles.lesson_title}>
             Введение в управление финансами
           </div>
-        </div>
-        <div className={styles.lesson_block}>
-          <div className={styles.lesson_number}>Тема 1</div>
+        </Link>
+        <Link
+          to="/Studying"
+          onClick={() => localStorage.setItem("lessonNum", "4")}
+          className={styles.lesson_block}
+        >
+          <div className={styles.lesson_number}>Тема 5</div>
           <div className={styles.lesson_title}>
             Введение в управление финансами
           </div>
-        </div>
-        <div className={styles.lesson_block}>
-          <div className={styles.lesson_number}>Тема 1</div>
+        </Link>
+        <Link
+          to="/Studying"
+          onClick={() => localStorage.setItem("lessonNum", "5")}
+          className={styles.lesson_block}
+        >
+          <div className={styles.lesson_number}>Тема 6</div>
           <div className={styles.lesson_title}>
             Введение в управление финансами
           </div>
-        </div>
-        <div className={styles.lesson_block}>
-          <div className={styles.lesson_number}>Тема 1</div>
+        </Link>
+        <Link
+          to="/Studying"
+          onClick={() => localStorage.setItem("lessonNum", "6")}
+          className={styles.lesson_block}
+        >
+          <div className={styles.lesson_number}>Тема 7</div>
           <div className={styles.lesson_title}>
             Введение в управление финансами
           </div>
-        </div>
-        <div className={styles.lesson_block}>
-          <div className={styles.lesson_number}>Тема 1</div>
-          <div className={styles.lesson_title}>
-            Введение в управление финансами
-          </div>
-        </div>
-        <div className={styles.lesson_block}>
-          <div className={styles.lesson_number}>Тема 1</div>
-          <div className={styles.lesson_title}>
-            Введение в управление финансами
-          </div>
-        </div>
+        </Link>
       </div>
     </div>
   );

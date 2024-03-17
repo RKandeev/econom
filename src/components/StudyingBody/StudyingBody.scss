@@ -1,0 +1,16 @@
+.studyingTabs{
+  .firstTestsTabList{
+    justify-content: space-between;
+    width: 281rem;
+    position: relative;
+    .react-tabs__tab{
+      padding: 12rem 16rem;
+      flex-grow: 0;
+      width: calc(100% - 32rem);
+    }
+
+    span{
+    }
+  }
+
+}

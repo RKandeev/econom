@@ -3,7 +3,7 @@ import React from "react";
 import "./TestResultTabs.scss";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import SensorChart from "../SensorChart/SensorChart";
-import MatrixChart from "../MatrixChart/MatrixChart";
+import Matrix from "../Matrix/Matrix";
 
 function TestResultTabs(props) {
   return (
@@ -47,7 +47,7 @@ function TestResultTabs(props) {
           <SensorChart />
         </TabPanel>
         <TabPanel>
-          <MatrixChart />
+          <Matrix />
         </TabPanel>
       </Tabs>
     </>

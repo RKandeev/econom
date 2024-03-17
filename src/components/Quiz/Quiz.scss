@@ -16,9 +16,10 @@
       display: flex;
       width: 100%;
       gap: 20rem;
-      input{
+      input[type=checkbox]{
         width: auto;
         accent-color: #232323;
+        position: initial;
       }
       label{
         width: fit-content;
@@ -36,6 +37,88 @@
       margin-top: 25rem;
       margin-bottom: 25rem;
       cursor: pointer;
+    }
+  }
+}
+.form_check{
+  display: flex;
+  justify-content: flex-start;
+  gap: 20rem;
+  flex-grow: 0;
+  input{
+    width: auto;
+    position: initial;
+    clip-path: none;
+    height: initial;
+  }
+}
+#progress-bar, #secondTest-progress-bar {
+  height: 5rem;
+  background-color: #C9C9C9;
+  margin-top: 55rem;
+}
+#progressBarFull, #secondTest-progressBarFull {
+  height: 4rem;
+  background-color: #3156A6;
+  width: 0;
+}
+.quiz-container{
+  padding: 38rem 118rem;
+  border-radius: 21rem;
+  background: #f9f9f9;
+  h2{
+    font-weight: 500;
+    font-size: 25rem;
+    margin-bottom: 30rem;
+    margin-top: 0;
+    text-align: center;
+    text-transform: none;
+  }
+  .testingBlock{
+    h3{
+      font-size: 24rem;
+      text-transform: none;
+      margin-top: 0;
+      margin-bottom: 30rem;
+      font-weight: 400;
+    }
+    form{
+      display: flex;
+      flex-direction: column;
+      gap: 20rem;
+      .form_check{
+        label{
+          text-transform: none;
+          font-size: 18rem;
+        }
+      }
+    }
+    .answers-info{
+      font-size: 16rem;
+      margin-top: 25rem;
+      text-transform: none;
+      font-weight: 400;
+    }
+    .flex-right button{
+      border-radius: 6rem;
+      width: 228rem;
+      background: #3156a6;
+      padding: 15rem;
+      text-align: center;
+      color: #fff;
+      text-transform: uppercase;
+      cursor: pointer;
+      &:disabled{
+        background-color: #c2bfbf;
+        border: none;
+        cursor: initial;
+      }
+    }
+    .progress-counter{
+      font-weight: 400;
+      font-size: 16rem;
+      text-align: center;
+      margin-top: 10rem;
     }
   }
 }

@@ -1,9 +1,8 @@
 import React from "react";
 import "./Testing.scss";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import TestResultTabs from "../TestResultTabs/TestResultTabs";
 import Chart from "../Chart/Chart";
-import Quiz from "../Quiz/Quiz";
+import Test from "../Quiz/Test";
 function Testing(props) {
   return (
     <div>
@@ -120,9 +119,9 @@ function Testing(props) {
           </Tab>
         </TabList>
         <TabPanel className="">
-          <Quiz />
+          <Test />
         </TabPanel>
-        <TabPanel className="">
+        <TabPanel className="testResultChart">
           <Chart />
         </TabPanel>
       </Tabs>

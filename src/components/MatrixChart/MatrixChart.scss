@@ -1,1 +1,46 @@
-\
+.MatrixChart{
+  position: relative;
+  .myMatrixBlocks{
+    display: grid;
+    grid-template-columns: repeat(2, 150rem);
+    grid-template-rows: repeat(2, 150rem);
+    gap: 1rem;
+    background-color: #112250;
+    padding: 1rem;
+    .matrix_block1{
+      background-color: rgba(231, 183, 63, 0.8);
+    }
+    .matrix_block2{
+      background-color: rgba(25, 227, 133, 0.8);
+    }
+    .matrix_block3{
+      background-color: rgba(229, 23, 72, 0.8);
+
+    }
+    .matrix_block4{
+      background-color: rgba(225, 83, 23, 0.8);
+    }
+  }
+  .resultPoint{
+    overflow: hidden;
+    position: absolute;
+    width: 50%;
+    height: 50%;
+  }
+  .goodRes{
+    top: 100rem;
+    right: 0;
+  }
+  .bestRes{
+    top: 100rem;
+    left: 220rem;
+  }
+  .boredRes{
+    bottom: -50rem;
+    left: 220rem;
+  }
+  .sadRes{
+    bottom: -50rem;
+    right: 0;
+  }
+}

@@ -8,7 +8,7 @@ function StudyBody(props) {
   return (
     <div className="study_body">
       <h2 className="study_head">Обучение</h2>
-      <Tabs className="react-tabs firstTestsTabs">
+      <Tabs defaultIndex={0} className="react-tabs firstTestsTabs">
         <div className="left_tabs">
           <TabList className="react-tabs__tab-list firstTestsTabList">
             <h4>Курсы:</h4>

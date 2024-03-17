@@ -4063,7 +4063,7 @@
   "resolved" "https://registry.npmjs.org/char-regex/-/char-regex-2.0.1.tgz"
   "version" "2.0.1"
 
-"chart.js@^4.1.1", "chart.js@^4.4.2", "chart.js@>=2.6.0", "chart.js@>=3.0.0":
+"chart.js@^4.1.1", "chart.js@^4.4.2", "chart.js@>=2.6.0", "chart.js@>=3.0.0", "chart.js@>=4.0.0":
   "integrity" "sha512-6GD7iKwFpP5kbSD4MeRRRlTnQvxfQREy36uEtm1hzHzcOqwWx0YEHuspuoNlslu+nciLIB7fjjsHkUv/FzFcOg=="
   "resolved" "https://registry.npmjs.org/chart.js/-/chart.js-4.4.2.tgz"
   "version" "4.4.2"
@@ -4074,6 +4074,11 @@
   "integrity" "sha512-BGfeY+/PHnITyDlc7WfnKJ1RyOfgOzIqWp/gxzzl7pUjyoGzHDcw51qd2xJF9gdT9Def7ZwOnOMm8GJUXDxI0w=="
   "resolved" "https://registry.npmjs.org/chartjs-chart-matrix/-/chartjs-chart-matrix-2.0.1.tgz"
   "version" "2.0.1"
+
+"chartjs-plugin-annotation@^3.0.1":
+  "integrity" "sha512-hlIrXXKqSDgb+ZjVYHefmlZUXK8KbkCPiynSVrTb/HjTMkT62cOInaT1NTQCKtxKKOm9oHp958DY3RTAFKtkHg=="
+  "resolved" "https://registry.npmjs.org/chartjs-plugin-annotation/-/chartjs-plugin-annotation-3.0.1.tgz"
+  "version" "3.0.1"
 
 "chartjs-plugin-gradient@^0.6.1":
   "integrity" "sha512-TGHNIh8KqQMLdb+UfY80cBHYRyOC47eeokmgkeajRdKGbFt462lJiyiq4ZJ25fiM7BGsmzoBLhmVyEw4B3gQxw=="
@@ -6679,6 +6684,16 @@
   "version" "0.0.6"
   dependencies:
     "source-map" "^0.7.3"
+
+"highcharts-react-official@^3.2.1":
+  "integrity" "sha512-hyQTX7ezCxl7JqumaWiGsroGWalzh24GedQIgO3vJbkGOZ6ySRAltIYjfxhrq4HszJOySZegotEF7v+haQ75UA=="
+  "resolved" "https://registry.npmjs.org/highcharts-react-official/-/highcharts-react-official-3.2.1.tgz"
+  "version" "3.2.1"
+
+"highcharts@^11.4.0", "highcharts@>=6.0.0":
+  "integrity" "sha512-f5POJz2WdHW6SNT4P2CoMjsgcX5F5sJXtdfWLQCaNP9JG0nG5TSGG7+A6vzHGzcDkTPM72EQbRQofNZHaRTUPg=="
+  "resolved" "https://registry.npmjs.org/highcharts/-/highcharts-11.4.0.tgz"
+  "version" "11.4.0"
 
 "hoist-non-react-statics@^3.0.0", "hoist-non-react-statics@^3.3.1":
   "integrity" "sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw=="

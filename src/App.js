@@ -16,6 +16,8 @@ import CreateSolutionFlat from "./pages/CreateSolutionFlat/CreateSolutionFlat";
 import CreateSolutionIndividual from "./pages/CreateSolutionIndividual/CreateSolutionIndividual";
 import MyResults from "./pages/MyResults/MyResults";
 import Study from "./pages/Study/Study";
+import MyProfile from "./pages/MyProfile/MyProfile";
+import Studying from "./pages/Studying/Studying";
 
 function App() {
   return (
@@ -50,6 +52,8 @@ function App() {
         ></Route>
         <Route path="MyResults" element={<MyResults />}></Route>
         <Route path="Study" element={<Study />}></Route>
+        <Route path="Studying" element={<Studying />}></Route>
+        <Route path="MyProfile" element={<MyProfile />}></Route>
       </Routes>
     </>
   );

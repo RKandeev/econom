@@ -13,7 +13,6 @@ function MyResultsBody(props) {
           <Tab>Стартовое тестирование</Tab>
           <Tab>Контрольное тестирование</Tab>
         </TabList>
-
         <TabPanel className={styles.result_panel}>
           <TestResultTabs />
         </TabPanel>

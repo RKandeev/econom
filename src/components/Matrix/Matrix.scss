@@ -1,0 +1,10 @@
+.MatrixChartBlock{
+  border-left: 1rem solid #e1ecf5;
+  padding-left: 30rem;
+  .MyMatrixChart{
+    canvas{
+      height: 500rem;
+      width: 500rem;
+    }
+  }
+}
