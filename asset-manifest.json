@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/econom/static/css/main.5c6b8aee.css",
-    "main.js": "/econom/static/js/main.cf659536.js",
+    "main.css": "/econom/static/css/main.ff0bb46c.css",
+    "main.js": "/econom/static/js/main.8d90ced7.js",
     "static/js/787.5992ffec.chunk.js": "/econom/static/js/787.5992ffec.chunk.js",
     "static/media/compass.png": "/econom/static/media/compass.839f6e295bf566a5a52f.png",
     "static/media/PTRootUI-Bold.woff": "/econom/static/media/PTRootUI-Bold.5de5b33d93c673ead6d3.woff",
@@ -39,12 +39,12 @@
     "static/media/check.svg": "/econom/static/media/check.f783dc01f0061928deaa18a9377d0dc7.svg",
     "static/media/icon__arrow_down.svg": "/econom/static/media/icon__arrow_down.3d9d9be4598553807077.svg",
     "static/media/Ellipse 1.svg": "/econom/static/media/Ellipse 1.3bbdb9ecf7b11404e194397559e21554.svg",
-    "main.5c6b8aee.css.map": "/econom/static/css/main.5c6b8aee.css.map",
-    "main.cf659536.js.map": "/econom/static/js/main.cf659536.js.map",
+    "main.ff0bb46c.css.map": "/econom/static/css/main.ff0bb46c.css.map",
+    "main.8d90ced7.js.map": "/econom/static/js/main.8d90ced7.js.map",
     "787.5992ffec.chunk.js.map": "/econom/static/js/787.5992ffec.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5c6b8aee.css",
-    "static/js/main.cf659536.js"
+    "static/css/main.ff0bb46c.css",
+    "static/js/main.8d90ced7.js"
   ]
 }
