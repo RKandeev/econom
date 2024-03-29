@@ -1,15 +1,13 @@
 {
   "files": {
-    "main.css": "/econom/static/css/main.8062db13.css",
-    "main.js": "/econom/static/js/main.e5fa448e.js",
+    "main.css": "/econom/static/css/main.87076f7c.css",
+    "main.js": "/econom/static/js/main.a2fc57d4.js",
     "static/js/787.5992ffec.chunk.js": "/econom/static/js/787.5992ffec.chunk.js",
     "static/media/compass.png": "/econom/static/media/compass.839f6e295bf566a5a52f.png",
     "static/media/PTRootUI-Bold.woff": "/econom/static/media/PTRootUI-Bold.5de5b33d93c673ead6d3.woff",
     "static/media/PTRootUI-Medium.woff": "/econom/static/media/PTRootUI-Medium.ff04fc75393756798466.woff",
     "static/media/PTRootUI-Regular.woff": "/econom/static/media/PTRootUI-Regular.59e82dfa9c1603d499e3.woff",
-    "static/media/logo.svg": "/econom/static/media/logo.2d6e0dc6359bf5a6a390dfc3107b29dc.svg",
-    "static/media/mobileLogo.svg": "/econom/static/media/mobileLogo.585aad6e86bccb9c48b1990555623f00.svg",
-    "static/media/icon__calendar.svg": "/econom/static/media/icon__calendar.fadffe52a08ff662503e9e6ee8588a6a.svg",
+    "static/media/logo.svg": "/econom/static/media/logo.2229d9a644715fec193f9506e2df17d1.svg",
     "static/media/icon__fin-reshenia.svg": "/econom/static/media/icon__fin-reshenia.f3e544fa80b337254770223641c81d66.svg",
     "static/media/icon__test.svg": "/econom/static/media/icon__test.e152fd390da0238174ca909e49ec1794.svg",
     "static/media/icon__wallet.svg": "/econom/static/media/icon__wallet.0a1ae32412caa90ff65a3a04ed2ad754.svg",
@@ -29,21 +27,20 @@
     "static/media/icon__home.svg": "/econom/static/media/icon__home.723b049019429437866fa51d70c0b368.svg",
     "static/media/icon__menu.svg": "/econom/static/media/icon__menu.1371ee7317db7b8d61aa7f10cd3cd6e0.svg",
     "static/media/icon__trash.svg": "/econom/static/media/icon__trash.777fbc5bc1012899189164cd41109dc3.svg",
-    "static/media/icon__opportunities.svg": "/econom/static/media/icon__opportunities.c6e7a3a3a1070a62bd773d948149d54a.svg",
     "static/media/icon__help.svg": "/econom/static/media/icon__help.c88700aa9f0df324a241231c1adf8003.svg",
     "index.html": "/econom/index.html",
     "static/media/icon__bars.svg": "/econom/static/media/icon__bars.d57b1122c5f77c9c406440054284db55.svg",
     "static/media/icon_user.svg": "/econom/static/media/icon_user.262faca46d64e095a17bae8db3db025e.svg",
-    "static/media/icon__notification.svg": "/econom/static/media/icon__notification.dfcb8c163119bbea91943e89f497d054.svg",
+    "static/media/icon__notification.svg": "/econom/static/media/icon__notification.8b9f56762b53675059cc485ec8fcf239.svg",
     "static/media/check.svg": "/econom/static/media/check.f783dc01f0061928deaa18a9377d0dc7.svg",
     "static/media/icon__arrow_down.svg": "/econom/static/media/icon__arrow_down.3d9d9be4598553807077.svg",
     "static/media/Ellipse 1.svg": "/econom/static/media/Ellipse 1.3bbdb9ecf7b11404e194397559e21554.svg",
-    "main.8062db13.css.map": "/econom/static/css/main.8062db13.css.map",
-    "main.e5fa448e.js.map": "/econom/static/js/main.e5fa448e.js.map",
+    "main.87076f7c.css.map": "/econom/static/css/main.87076f7c.css.map",
+    "main.a2fc57d4.js.map": "/econom/static/js/main.a2fc57d4.js.map",
     "787.5992ffec.chunk.js.map": "/econom/static/js/787.5992ffec.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.8062db13.css",
-    "static/js/main.e5fa448e.js"
+    "static/css/main.87076f7c.css",
+    "static/js/main.a2fc57d4.js"
   ]
 }
