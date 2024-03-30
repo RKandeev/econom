@@ -8,6 +8,7 @@ import finuchet from "../../img/icon__fin-uchet.svg";
 import finanalys from "../../img/icon__fin-analiz.svg";
 import finchoice from "../../img/icon__fin-reshenia.svg";
 import profile from "../../img/icon_user.svg";
+import compass from "../../img/compass.png";
 
 function Modelingleftnav(props) {
   return (
@@ -22,9 +23,10 @@ function Modelingleftnav(props) {
                 linksAdress="/MyResults"
               />
             </div>
-            <div className={`${styles.barblock} ${styles.lastblock}`}>
-              <Menulink img={mycourse} txt="Мои курсы" linksAdress="/#" />
+            <div className={`${styles.barblock}`}>
+              <Menulink img={mycourse} txt="Мои курсы" linksAdress="/Study" />
             </div>
+            <div className={styles.lineblock2}></div>
           </div>
           <div className={styles.bar}>
             <h3>Панель управления</h3>
@@ -32,7 +34,7 @@ function Modelingleftnav(props) {
               <Menulink
                 img={finplan}
                 txt="Финансовое планирование"
-                linksAdress="/#"
+                linksAdress="/finplan"
               />
             </div>
             <div className={styles.barblock}>
@@ -49,11 +51,21 @@ function Modelingleftnav(props) {
                 linksAdress="/#"
               />
             </div>
-            <div className={`${styles.activeblock} ${styles.lastblock}`}>
+            <div className={`${styles.activeblock}`}>
               <Menulink
                 img={finchoice}
                 txt="Финансовое моделирование"
                 linksAdress="/finmodeling"
+              />
+            </div>
+            <div className={styles.lineblock2}></div>
+          </div>
+          <div className={styles.bar}>
+            <div className={styles.barblock}>
+              <Menulink
+                img={compass}
+                txt="Навигатор возможностей"
+                linksAdress="/Possibilities"
               />
             </div>
           </div>

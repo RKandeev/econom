@@ -1,5 +1,6 @@
 import React from "react";
 import "./Quiz.scss";
+import SensorChart from "../SensorChart/SensorChart";
 const quiz = {
   topic: "Javascript",
   level: "Beginner",
@@ -179,20 +180,7 @@ const Test = () => {
         </div>
       ) : (
         <div className="result">
-          {/*<h3>Result</h3>*/}
-          {/*<p>*/}
-          {/*  Total Question: <span>{questions.length}</span>*/}
-          {/*</p>*/}
-          {/*<p>*/}
-          {/*  Total Score:<span> {result.score}</span>*/}
-          {/*</p>*/}
-          {/*<p>*/}
-          {/*  Correct Answers:<span> {result.correctAnswers}</span>*/}
-          {/*</p>*/}
-          {/*<p>*/}
-          {/*  Wrong Answers:<span> {result.wrongAnswers}</span>*/}
-          {/*</p>*/}
-          Тест пройдет успешно - ваш результат во вкладе история тестирования
+          <SensorChart />
         </div>
       )}
     </div>

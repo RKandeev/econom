@@ -1,5 +1,8 @@
 .MyResultsBody{
   padding-right: 40rem;
+  @media (max-width: 480px) {
+    padding-right: 0;
+  }
 }
 .result_head{
   font-size: 24rem;

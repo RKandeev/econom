@@ -4,9 +4,14 @@
 .firstTestsTabs{
   display: flex;
   gap: 45rem;
+  @media (max-width: 480px) {
+    flex-direction: column;
+    gap: 0;
+  }
   .firstTestsTabList{
     flex-direction: column;
     width: 281rem;
+
     svg{
       height: 17rem;
       width: 17rem;

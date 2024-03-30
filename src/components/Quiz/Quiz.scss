@@ -45,6 +45,9 @@
   justify-content: flex-start;
   gap: 20rem;
   flex-grow: 0;
+  @media (max-width: 480px) {
+    gap: 10rem;
+  }
   input{
     width: auto;
     position: initial;
@@ -56,6 +59,9 @@
   height: 5rem;
   background-color: #C9C9C9;
   margin-top: 55rem;
+  @media (max-width: 480px) {
+    margin-top: 20rem;
+  }
 }
 #progressBarFull, #secondTest-progressBarFull {
   height: 4rem;
@@ -66,6 +72,9 @@
   padding: 38rem 118rem;
   border-radius: 21rem;
   background: #f9f9f9;
+  @media (max-width: 480px) {
+    padding: 25rem 16rem;
+  }
   h2{
     font-weight: 500;
     font-size: 25rem;
@@ -73,6 +82,10 @@
     margin-top: 0;
     text-align: center;
     text-transform: none;
+    @media (max-width: 480px) {
+      font-size: 18rem;
+      font-weight: 700;
+    }
   }
   .testingBlock{
     h3{
@@ -81,15 +94,26 @@
       margin-top: 0;
       margin-bottom: 30rem;
       font-weight: 400;
+      @media (max-width: 480px) {
+        font-size: 18rem;
+      }
     }
     form{
       display: flex;
       flex-direction: column;
       gap: 20rem;
       .form_check{
+        input[type=checkbox]{
+          @media (max-width: 480px) {
+            overflow: initial;
+          }
+        }
         label{
           text-transform: none;
           font-size: 18rem;
+          @media (max-width: 480px) {
+            font-size: 16rem;
+          }
         }
       }
     }
@@ -108,6 +132,9 @@
       color: #fff;
       text-transform: uppercase;
       cursor: pointer;
+      @media (max-width: 480px) {
+        width: 210rem;
+      }
       &:disabled{
         background-color: #c2bfbf;
         border: none;

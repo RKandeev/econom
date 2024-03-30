@@ -14,3 +14,20 @@
   }
 
 }
+.returnLink{
+  display: flex;
+  align-items: center;
+  gap: 10rem;
+  font-size: 14rem;
+  padding: 12rem 16rem;
+  border-radius: 16rem;
+
+
+  &:hover{
+    background-color: #E1ECF5;
+    box-shadow: 0 4rem 4rem 0 rgba(0, 0, 0, 0.25);
+  }
+  &:active{
+    box-shadow: none;
+  }
+}

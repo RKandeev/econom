@@ -8,7 +8,16 @@ HighchartsMore(Highcharts);
 
 function SensorChart(props) {
   const [ser3, setSer3] = useState(10);
-
+  let thick = 40;
+  let yFont = "18rem";
+  let tickPixelInter = 72;
+  let chartCenter = "50%";
+  if (window.outerWidth < 450) {
+    thick = 20;
+    yFont = "10rem";
+    tickPixelInter = 32;
+    chartCenter = "30%";
+  }
   const options = {
     chart: {
       type: "gauge",
@@ -16,16 +25,15 @@ function SensorChart(props) {
       plotBackgroundImage: null,
       plotBorderWidth: 0,
       plotShadow: false,
-      height: "60%",
+      height: "50%",
     },
 
     title: {
-      text: "Оценка навыков управления финансами  ",
+      text: "",
+      margin: -10,
       style: {
         fontSize: "21rem",
         color: "#464e5f",
-        marginBottom: "0rem",
-        marginTop: "16rem",
         padding: 0,
         textTransform: "none",
         fontWeight: 700,
@@ -36,15 +44,15 @@ function SensorChart(props) {
       startAngle: -90,
       endAngle: 90,
       background: null,
-      center: ["50%", "75%"],
-      size: "110%",
+      center: [chartCenter, "60%"],
+      size: "100%",
     },
 
     // the value axis
     yAxis: {
       min: 0,
       max: 100,
-      tickPixelInterval: 72,
+      tickPixelInterval: tickPixelInter,
       tickPosition: "inside",
       tickColor: Highcharts.defaultOptions.chart.backgroundColor || "#FFFFFF",
       tickLength: 20,
@@ -53,7 +61,7 @@ function SensorChart(props) {
       labels: {
         distance: 20,
         style: {
-          fontSize: "18rem",
+          fontSize: yFont,
         },
       },
       lineWidth: 0,
@@ -62,13 +70,13 @@ function SensorChart(props) {
           from: 0,
           to: 50,
           color: "#EE2B49", // green
-          thickness: 40,
+          thickness: thick,
         },
         {
           from: 50,
           to: 100,
           color: "#0DA46F", // red
-          thickness: 40,
+          thickness: thick,
         },
       ],
     },
@@ -88,10 +96,6 @@ function SensorChart(props) {
               Highcharts.defaultOptions.title.style &&
               Highcharts.defaultOptions.title.style.color) ||
             "#333333",
-          // color: function (x) {
-          //     console.log(x)
-          //     return '#f00'
-          // },
           style: {
             fontSize: "20rem",
           },
@@ -112,7 +116,10 @@ function SensorChart(props) {
   };
   return (
     <div className="sensorChartBlock">
-      <HighchartsReact highcharts={Highcharts} options={options} />
+      <h3 className="chartTitle">Оценка навыков управления финансами</h3>
+      <div className="sensorChart">
+        <HighchartsReact highcharts={Highcharts} options={options} />
+      </div>
       <div className="full_study">
         Для улучшения своего уровня Вы можете пройти
         <Link to="/Study" className="fullStudyLink">

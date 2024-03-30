@@ -1,6 +1,8 @@
 nav{
   width: 100%;
   background-color: #fff;
+
+
 }
 .mobileNav{
   display: none;
@@ -11,10 +13,10 @@ nav{
   position: fixed;
   bottom: 16rem;
   right: 16rem;
-  z-index: 50;
+  z-index: 500;
   background-color: #fff;
   align-items: center;
-  @media (max-width: 430px) {
+  @media (max-width: 480px) {
     display: flex;
   }
   .burgerBtn{
@@ -79,7 +81,10 @@ nav{
   background-color: #fff;
   width: 82%;
   height: 100vh;
-  z-index: 30;
+  z-index: 300;
+  .activeLink{
+    background-color: #FBB726;
+  }
   h4{
     padding-top: 24rem;
     margin-bottom: 0;
@@ -91,7 +96,6 @@ nav{
   }
   .myProfile{
     border-top: 1px solid #C9CFE5;
-    border-bottom: 1px solid #C9CFE5;
   }
 }
 .mobileNavLinks[disabled]{

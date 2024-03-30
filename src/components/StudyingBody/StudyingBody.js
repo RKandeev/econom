@@ -1,11 +1,11 @@
 import React from "react";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import StudyFirst from "../StudyFirst/StudyFirst";
 import StudySecond from "../StudySecond/StudySecond";
 import "../StudyBody/StudyBody.scss";
 import "../TestResultTabs/TestResultTabs.scss";
 import "./StudyingBody.scss";
-import CourseBlock from "../CourseBlock/CourseBlock";
+import mycourse from "../../img/icon__course.svg";
+import { Link } from "react-router-dom";
 
 function StudyingBody(props) {
   const videos = [
@@ -160,6 +160,12 @@ function StudyingBody(props) {
               </svg>
             </Tab>
           </TabList>
+          <Link to="/Study">
+            <div className="returnLink">
+              <img src={mycourse} alt="" />
+              Вернуться к списку курсов
+            </div>
+          </Link>
         </div>
 
         <TabPanel>
@@ -171,25 +177,25 @@ function StudyingBody(props) {
           {/*  videoTitle={videos.title}*/}
           {/*  videoLink={videos.iframeLink}*/}
           {/*/>*/}
-          <StudySecond />
+          <StudySecond courseText="В рамках данной темы рассматриваются базовые понятия управления финансами и закладывается основа для изучения следующих тем курса" />
         </TabPanel>
         <TabPanel>
-          <StudySecond />
+          <StudySecond courseText="В рамках данной темы рассматриваются финансовые показатели, помогающие понимать, насколько эффективно мы управляем своими финансами " />
         </TabPanel>
         <TabPanel>
-          <StudySecond />
+          <StudySecond courseText="В рамках данной темы рассматриваются виды и структура денежных потоков, а также разбирается личный финансовый баланс, его содержание и структура" />
         </TabPanel>
         <TabPanel>
-          <StudySecond />
+          <StudySecond courseText="В рамках данной темы рассматривается пошаговый процесс построения финансового плана с помощью модуля «Финансовое планирование» в ПАНЕЛИ УПРАВЛЕНИЯ " />
         </TabPanel>
         <TabPanel>
-          <StudySecond />
+          <StudySecond courseText="В рамках данной темы рассматривается порядок учёта денежных потоков и построения личного финансового баланса с помощью модуля «Финансовый учёт» в ПАНЕЛИ УПРАВЛЕНИЯ" />
         </TabPanel>
         <TabPanel>
-          <StudySecond />
+          <StudySecond courseText="В рамках данной темы рассматривается технология проведения анализа показателей финансовой эффективности с помощью модуля «Финансовый анализ» в ПАНЕЛИ УПРАВЛЕНИЯ" />
         </TabPanel>
         <TabPanel>
-          <StudySecond />
+          <StudySecond courseText="В рамках данной темы рассматриваются основные типы финансовых решений, которые нам приходится принимать, и их влияние на показатели нашего финансового состояния" />
         </TabPanel>
       </Tabs>
     </div>

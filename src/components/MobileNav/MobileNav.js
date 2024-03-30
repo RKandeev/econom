@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styles from "./MobileNav.module.scss";
-import Menulink from "../Menulink/Menulink";
 import myresults from "../../img/icon__test.svg";
 import mycourse from "../../img/icon__course.svg";
 import finplan from "../../img/icon__fin-plan.svg";
@@ -8,8 +7,8 @@ import finuchet from "../../img/icon__fin-uchet.svg";
 import finanalys from "../../img/icon__fin-analiz.svg";
 import finchoice from "../../img/icon__fin-reshenia.svg";
 import profile from "../../img/icon_user.svg";
-import course from "../../img/icon__course.svg";
-import opportunities from "../../img/icon/icon__opportunities.svg";
+import compass from "../../img/compass.png";
+import Mobilelink from "../Mobilelink/Mobilelink";
 
 function MobileNav(props) {
   const [menuActive, setMenuActive] = useState(false);
@@ -29,31 +28,41 @@ function MobileNav(props) {
           </div>
         </div>
         <div disabled={menuActive} className={styles.mobileNavLinks}>
-          <Menulink img={myresults} txt="Мои результаты" linksAdress="/#" />
-          <Menulink img={mycourse} txt="Мои курсы" linksAdress="/#" />
-          <h4>Мой финансист</h4>
-          <Menulink
+          <Mobilelink
+            img={myresults}
+            txt="Мои результаты"
+            linksAdress="/MyResults"
+          />
+          <Mobilelink img={mycourse} txt="Мои курсы" linksAdress="/Study" />
+          <h4>Панель управления</h4>
+          <Mobilelink
             img={finplan}
             txt="Финансовое планирование"
             linksAdress="/finplan"
           />
-          <Menulink
+          <Mobilelink
             img={finuchet}
             txt="Финансовый учёт"
             linksAdress="/accounting"
           />
-          <Menulink img={finanalys} txt="Финансовый анализ" linksAdress="/#" />
-          <Menulink
+          <Mobilelink
+            img={finanalys}
+            txt="Финансовый анализ"
+            linksAdress="/#"
+          />
+          <Mobilelink
             img={finchoice}
-            txt="Финансовые решения"
+            txt="Финансовое моделирование"
             linksAdress="/finmodeling"
           />
           <div className={styles.myProfile}>
-            <Menulink img={profile} txt="Мой профиль" linksAdress="/#" />
+            <Mobilelink
+              img={compass}
+              txt="Навигатор возможностей"
+              linksAdress="/Possibilities"
+            />
           </div>
-          <Menulink img={course} txt="Курсы" linksAdress="/#" />
-          <Menulink img={myresults} txt="Проверь себя" linksAdress="/#" />
-          <Menulink img={opportunities} txt="Возможности" linksAdress="/#" />
+          <Mobilelink img={profile} txt="Мой профиль" linksAdress="/#" />
         </div>
       </nav>
     </>

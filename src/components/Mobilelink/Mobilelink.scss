@@ -1,0 +1,26 @@
+.blockImg{
+  width: 148rem;
+  height: 32rem;
+  display: flex;
+  gap: 8rem;
+  align-items: center;
+  padding: 8rem 12rem 8rem 0;
+  @media (max-width: 480px) {
+    padding: 8rem;
+    width: auto;
+  }
+}
+.activeLink{
+  border-radius: 10rem;
+  background-color: #FBB726;
+}
+.image img{
+  width: 24rem;
+  height: 24rem;
+}
+.category{
+  font-size: 14rem;
+  font-weight: 500;
+  color: #464E5F;
+
+}

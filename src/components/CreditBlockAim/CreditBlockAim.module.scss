@@ -9,7 +9,7 @@
   height: 50rem;
   font-size: 16rem;
   cursor: pointer;
-  @media (max-width: 430px) {
+  @media (max-width: 480px) {
     width: 65rem;
   }
   &[active="1"]{
@@ -45,7 +45,7 @@ h5.formTitle{
     border-radius: 12rem;
     border: 1rem solid #C9CFE5;
     margin-bottom: 24rem;
-    @media (max-width: 430px) {
+    @media (max-width: 480px) {
       box-sizing: border-box;
       width: 100%;
     }
@@ -60,7 +60,7 @@ h5.formTitle{
   padding-left: 8rem;
   margin: 56rem 0 12rem 0;
   max-width: fit-content;
-  @media (max-width: 430px) {
+  @media (max-width: 480px) {
     margin: 12rem 0 12rem 0;
   }
 }
@@ -69,7 +69,7 @@ h5.formTitle{
   gap: 24rem;
   max-width: 780rem;
   flex-wrap: wrap;
-  @media (max-width: 430px) {
+  @media (max-width: 480px) {
     gap: 16rem;
   }
   .creditBlock{
@@ -121,7 +121,7 @@ h5.formTitle{
 }
 .submitBtnBlock{
   width: 422rem;
-  @media (max-width: 430px) {
+  @media (max-width: 480px) {
     width: 100%;
   }
   button.submitBtn{
@@ -138,7 +138,7 @@ h5.formTitle{
     text-transform: uppercase;
     margin-top: 40rem;
     margin-bottom: 56rem;
-    @media (max-width: 430px) {
+    @media (max-width: 480px) {
       margin: 16rem 0;
     }
   }
@@ -146,7 +146,7 @@ h5.formTitle{
 .secondaryblocks{
   display: flex;
   .creditBlock{
-    @media (max-width: 430px) {
+    @media (max-width: 480px) {
       width: 280rem;
     }
   }

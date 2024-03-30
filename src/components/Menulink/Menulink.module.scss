@@ -5,10 +5,13 @@
   gap: 8rem;
   align-items: center;
   padding: 8rem 12rem 8rem 0;
-  @media (max-width: 430px) {
+  @media (max-width: 480px) {
     padding: 8rem 0;
     width: auto;
   }
+}
+.activeLink{
+  background-color: #FBB726;
 }
 .image img{
   width: 24rem;

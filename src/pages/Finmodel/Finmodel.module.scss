@@ -1,7 +1,7 @@
 .sitebody{
   display: flex;
   gap: 40rem;
-  @media (max-width: 430px) {
+  @media (max-width: 480px) {
     flex-direction: column;
     padding: 0 32rem;
     gap: 0;
@@ -11,7 +11,7 @@
     padding: 24rem 0 0 40rem;
     border-left: 1rem solid #E1ECF5;
     margin-right: 40rem;
-    @media (max-width: 430px) {
+    @media (max-width: 480px) {
       margin: 0;
       padding: 12rem 16rem;
       border-color: transparent;

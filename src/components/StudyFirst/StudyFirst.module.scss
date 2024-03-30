@@ -1,4 +1,7 @@
 .Studyfirst{
+  @media (max-width: 480px) {
+    width: 281rem;
+  }
   h2{
     font-weight: 700;
     font-size: 20rem;
@@ -17,6 +20,9 @@
     flex-wrap: wrap;
     gap: 25rem;
     margin-bottom: 50rem;
+    @media (max-width: 480px) {
+      width: 100%;
+    }
     .lesson_block{
       flex-grow: 0;
       width: 234rem;
@@ -36,6 +42,15 @@
       box-shadow: 10rem 10rem 0 0 #d2d2d2;
       cursor: pointer;
       transition: 0.2s ease-in-out;
+      img{
+        height: 40rem;
+        width: 40rem;
+      }
+
+      @media (max-width: 480px) {
+        width: 100%;
+        padding: 0 50rem;
+      }
       .lesson_title{
         flex-grow: 0;
       }

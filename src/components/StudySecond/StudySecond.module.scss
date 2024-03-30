@@ -1,4 +1,7 @@
 .StudyFirst{
+  @media (max-width: 480px) {
+    width: 281rem;
+  }
   h2{
     font-weight: 700;
     font-size: 20rem;
@@ -17,6 +20,10 @@
     flex-wrap: wrap;
     gap: 25rem;
     margin-bottom: 50rem;
+    @media (max-width: 480px) {
+      width: 100%;
+      justify-content: center;
+    }
     .lesson_block{
       width: 234rem;
       height: 138rem;
@@ -24,10 +31,15 @@
       transition: 0.2s ease-in-out;
       flex-grow: 0;
       position: relative;
+      @media (max-width: 480px) {
+        width: 100%;
+      }
       iframe{
         width: 100%;
         height: 100%;
         border-radius: 13rem;
+        @media (max-width: 480px) {
+        }
       }
       .iframe_cover{
         background-color: #3156A6;

@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import Finplan from "./pages/Finplan/Finplan";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Incomes from "./pages/Incomes/Incomes";
 import Credit from "./pages/Credit/Credit";
 import Accounting from "./pages/Accounting/Accounting";
@@ -18,43 +18,63 @@ import MyResults from "./pages/MyResults/MyResults";
 import Study from "./pages/Study/Study";
 import MyProfile from "./pages/MyProfile/MyProfile";
 import Studying from "./pages/Studying/Studying";
+import Possibilities from "./pages/Possibilities/Possibilities";
 
 function App() {
+  const Wrapper = ({ children }) => {
+    const location = useLocation();
+    useLayoutEffect(() => {
+      document.documentElement.scrollTo(0, 0);
+    }, [location.pathname]);
+    return children;
+  };
   return (
     <>
-      <Routes>
-        <Route path="*" element={<MyResults />}></Route>
-        <Route path="finplan" element={<Finplan />}></Route>
-        <Route path="incomes" element={<Incomes />}></Route>
-        <Route path="credit" element={<Credit />}></Route>
-        <Route path="accounting" element={<Accounting />}></Route>
-        <Route path="AccountingIncomes" element={<AccountingIncomes />}></Route>
-        <Route path="AccountingCredit" element={<AccountingCredit />}></Route>
-        <Route path="finmodeling" element={<Finmodel />}></Route>
-        <Route path="CreateSolution" element={<CreateSolution />}></Route>
-        <Route path="CreateSolutionAim" element={<CreateSolutionAim />}></Route>
-        <Route
-          path="CreateSolutionPriority"
-          element={<CreateSolutionPriority />}
-        ></Route>
-        <Route
-          path="CreateSolutionHome"
-          element={<CreateSolutionHome />}
-        ></Route>
-        <Route path="CreateSolutionCar" element={<CreateSolutionCar />}></Route>
-        <Route
-          path="CreateSolutionFlat"
-          element={<CreateSolutionFlat />}
-        ></Route>
-        <Route
-          path="CreateSolutionIndividual"
-          element={<CreateSolutionIndividual />}
-        ></Route>
-        <Route path="MyResults" element={<MyResults />}></Route>
-        <Route path="Study" element={<Study />}></Route>
-        <Route path="Studying" element={<Studying />}></Route>
-        <Route path="MyProfile" element={<MyProfile />}></Route>
-      </Routes>
+      <Wrapper>
+        <Routes>
+          <Route path="*" element={<MyResults />}></Route>
+          <Route path="finplan" element={<Finplan />}></Route>
+          <Route path="incomes" element={<Incomes />}></Route>
+          <Route path="credit" element={<Credit />}></Route>
+          <Route path="accounting" element={<Accounting />}></Route>
+          <Route
+            path="AccountingIncomes"
+            element={<AccountingIncomes />}
+          ></Route>
+          <Route path="AccountingCredit" element={<AccountingCredit />}></Route>
+          <Route path="finmodeling" element={<Finmodel />}></Route>
+          <Route path="CreateSolution" element={<CreateSolution />}></Route>
+          <Route
+            path="CreateSolutionAim"
+            element={<CreateSolutionAim />}
+          ></Route>
+          <Route
+            path="CreateSolutionPriority"
+            element={<CreateSolutionPriority />}
+          ></Route>
+          <Route
+            path="CreateSolutionHome"
+            element={<CreateSolutionHome />}
+          ></Route>
+          <Route
+            path="CreateSolutionCar"
+            element={<CreateSolutionCar />}
+          ></Route>
+          <Route
+            path="CreateSolutionFlat"
+            element={<CreateSolutionFlat />}
+          ></Route>
+          <Route
+            path="CreateSolutionIndividual"
+            element={<CreateSolutionIndividual />}
+          ></Route>
+          <Route path="MyResults" element={<MyResults />}></Route>
+          <Route path="Study" element={<Study />}></Route>
+          <Route path="Studying" element={<Studying />}></Route>
+          <Route path="MyProfile" element={<MyProfile />}></Route>
+          <Route path="Possibilities" element={<Possibilities />}></Route>
+        </Routes>
+      </Wrapper>
     </>
   );
 }

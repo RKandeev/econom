@@ -1,7 +1,7 @@
 .sitebody{
   display: flex;
   gap: 20rem;
-  @media (max-width: 430px) {
+  @media (max-width: 480px) {
     flex-direction: column;
     gap: 0;
   }
@@ -17,7 +17,7 @@
       color: #ABB0C3;
       font-weight: 500;
       margin-top: 24rem;
-      @media (max-width: 430px) {
+      @media (max-width: 480px) {
         margin-top: 0;
         overflow-x: scroll;
         position: sticky;
@@ -30,7 +30,7 @@
         padding: 0;
         display: flex;
         gap: 22rem;
-        @media (max-width: 430px) {
+        @media (max-width: 480px) {
           gap: 5rem;
         }
         :first-child{
@@ -45,14 +45,14 @@
       font-weight: 700;
       margin-top: 4rem;
       margin-bottom: 24rem;
-      @media (max-width: 430px) {
+      @media (max-width: 480px) {
         margin-top: 0;
       }
     }
     form{
       height: 80vh;
       overflow-y: scroll;
-      @media (max-width: 430px) {
+      @media (max-width: 480px) {
         overflow-y: visible;
         height: auto;
       }

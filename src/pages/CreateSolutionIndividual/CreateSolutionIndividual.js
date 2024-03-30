@@ -4,8 +4,15 @@ import styles from "./CreateSolutionIndividual.module.scss";
 import Modelingleftnav from "../../components/Modelingleftnav/Modelingleftnav";
 import { Link } from "react-router-dom";
 import MobileNav from "../../components/MobileNav/MobileNav";
-import developimg from "../../img/developing-marketing-outline-svgrepo-com.svg";
+import Lottie from "react-lottie";
+import animationData from "../../img/json/screw.json";
 function CreateSolutionIndividual(props) {
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    renderer: "svg",
+  };
   return (
     <>
       <Header />
@@ -25,7 +32,7 @@ function CreateSolutionIndividual(props) {
           </div>
           <h2>Данный раздел находится на этапе разработки</h2>
           <div className={styles.develope}>
-            <img src={developimg} alt="" />
+            <Lottie options={defaultOptions} />
           </div>
         </div>
       </div>

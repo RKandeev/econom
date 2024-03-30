@@ -4,6 +4,10 @@
     width: fit-content;
     gap: 16rem;
     border: none;
+    @media (max-width: 480px) {
+      display: flex;
+      flex-direction: column;
+    }
     .react-tabs__tab{
       padding: 10rem 16rem;
       display: flex;
