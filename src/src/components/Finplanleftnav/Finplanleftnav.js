@@ -42,7 +42,7 @@ function Finplanleftnav(props) {
               <Menulink
                 img={finanalys}
                 txt="Финансовый анализ"
-                linksAdress="/#"
+                linksAdress="/FinAnalys"
               />
             </div>
             <div className={`${styles.barblock} ${styles.lastblock}`}>

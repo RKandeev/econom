@@ -45,6 +45,9 @@ function Matrix(props) {
     responsive: true,
     transitions: {},
     plugins: {
+      datalabels: {
+        display: false,
+      },
       title: {
         display: false,
         text: "Матрица финансовой эффективности",

@@ -21,10 +21,16 @@
   padding: 24rem 32rem 50rem 40rem;
   border-radius: 16rem;
   background-color: #fff;
+  @media (max-width: 480px) {
+
+  }
 }
 .modal_header{
   display: flex;
   justify-content: space-between;
+  @media (max-width: 480px) {
+    align-items: center;
+  }
 }
 .closeModal{
   font-size: 24rem;
@@ -34,4 +40,9 @@
 .modal_title{
   font-size: 24rem;
   font-weight: 700;
+  @media (max-width: 480px) {
+    font-size: 14rem;
+    text-align: center;
+    color: #858585;
+  }
 }

@@ -19,6 +19,13 @@ import Study from "./pages/Study/Study";
 import MyProfile from "./pages/MyProfile/MyProfile";
 import Studying from "./pages/Studying/Studying";
 import Possibilities from "./pages/Possibilities/Possibilities";
+import AnalysisCashFlow from "./pages/AnalysisCashFlow/AnalysisCashFlow";
+import StructureAnalysis from "./pages/StructureAnalysis/StructureAnalysis";
+import AnalysisEfficiency from "./pages/AnalysisEfficiency/AnalysisEfficiency";
+import ActualAnalysis from "./pages/ActualAnalysis/ActualAnalysis";
+import FinResults from "./pages/FinResults/FinResults";
+import FinConditions from "./pages/FinConditions/FinConditions";
+import NoMatterAnalysis from "./pages/NoMatterAnalysis/NoMatterAnalysis";
 
 function App() {
   const Wrapper = ({ children }) => {
@@ -36,6 +43,19 @@ function App() {
           <Route path="finplan" element={<Finplan />}></Route>
           <Route path="incomes" element={<Incomes />}></Route>
           <Route path="credit" element={<Credit />}></Route>
+          <Route path="FinAnalys" element={<AnalysisCashFlow />}></Route>
+          <Route path="FinResults" element={<FinResults />}></Route>
+          <Route path="NoMatterAnalysis" element={<NoMatterAnalysis />}></Route>
+          <Route path="FinConditions" element={<FinConditions />}></Route>
+          <Route
+            path="AnalysisEfficiency"
+            element={<AnalysisEfficiency />}
+          ></Route>
+          <Route path="ActualAnalysis" element={<ActualAnalysis />}></Route>
+          <Route
+            path="StructureAnalysis"
+            element={<StructureAnalysis />}
+          ></Route>
           <Route path="accounting" element={<Accounting />}></Route>
           <Route
             path="AccountingIncomes"

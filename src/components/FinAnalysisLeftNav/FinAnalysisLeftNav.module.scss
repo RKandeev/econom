@@ -1,0 +1,47 @@
+.leftbody{
+  display: block;
+  @media (max-width: 480px) {
+    display: none;
+  }
+}
+.bar{
+  position: relative;
+  width: 232rem;
+  h3{
+    padding-left: 40rem;
+    padding-top: 10rem;
+    margin: 0;
+    font-size: 12rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #ABB0C3;
+  }
+}
+.barblock{
+  margin: 8rem 0;
+  padding-left: 40rem;
+  &:hover{
+    border-radius: 0px 40px 40px 0px;
+    background-color: #FBB726;
+  }
+}
+.lineblock, .lineblock2{
+  margin-left: 40rem;
+  background-color: #C9CFE5;
+  height: 1rem;
+  margin-top: 8rem;
+  margin-bottom: 8rem;
+}
+.lineblock2{
+  margin-top: 0;
+}
+.activeblock{
+  margin: 8rem 0;
+  padding-left: 40rem;
+  &:hover{
+    border-radius: 0px 40px 40px 0px;
+    background-color: #FBB726;
+  }
+  border-radius: 0px 40px 40px 0px;
+  background-color: #FBB726;
+}

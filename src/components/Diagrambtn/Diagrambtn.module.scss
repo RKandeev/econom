@@ -8,6 +8,9 @@ a.diagramBtn{
   margin-bottom: 8rem;
   cursor: pointer;
   width: 100%;
+  @media (max-width: 480px) {
+    width: auto;
+  }
   .diagramImg{
     img{
       height: 24rem;

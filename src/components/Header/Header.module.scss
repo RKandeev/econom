@@ -4,7 +4,7 @@
   border-bottom: 1px solid #E1ECF5;
   display: flex;
   align-items: center;
-  gap: 121rem;
+  gap: 48rem;
   @media (max-width: 480px) {
     position: sticky;
     top: 0;
@@ -31,6 +31,8 @@
   font-size: 16rem;
   display: flex;
   gap: 48rem;
+  margin-left: auto;
+
   @media (max-width: 480px) {
     display: none;
   }
@@ -49,7 +51,6 @@
 }
 .profileLinks{
   display: flex;
-  margin-left: auto;
   gap: 16rem;
 }
 .profileNav img{

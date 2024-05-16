@@ -4,13 +4,23 @@ import HighchartsReact from "highcharts-react-official";
 import "./SensorModeling.scss";
 import AnimatedNumbers from "react-animated-numbers";
 function SensorHome(props) {
-  const [ser3, setSer3] = useState(35);
+  const [ser3, setSer3] = useState(-40);
+  let chartValue = 0;
+  if (ser3 >= 50) {
+    chartValue = 50;
+  } else if (ser3 <= -50) {
+    chartValue = -50;
+  } else {
+    chartValue = ser3;
+  }
   let num1 = 0;
   let num2 = 0;
   let diffNum = 53233;
   if (ser3 >= 0) {
+    localStorage.setItem("LinesColor", "1");
     num1 = ser3;
   } else {
+    localStorage.setItem("LinesColor", "2");
     num2 = ser3;
   }
 
@@ -18,11 +28,13 @@ function SensorHome(props) {
   let yFont = "18rem";
   let tickPixelInter = 72;
   let chartCenter = "50%";
+  let verticalChartCenter = "57%";
   if (window.outerWidth < 450) {
     thick = 20;
     yFont = "10rem";
     tickPixelInter = 32;
     chartCenter = "30%";
+    verticalChartCenter = "70%";
   }
   const options = {
     chart: {
@@ -38,7 +50,7 @@ function SensorHome(props) {
       startAngle: -90,
       endAngle: 90,
       background: null,
-      center: [chartCenter, "50%"],
+      center: [chartCenter, verticalChartCenter],
       size: "100%",
     },
 
@@ -61,7 +73,7 @@ function SensorHome(props) {
           }
           return label;
         },
-        distance: 20,
+        distance: 30,
         style: {
           fontSize: yFont,
         },
@@ -93,10 +105,15 @@ function SensorHome(props) {
         animation: false,
       },
     },
+    title: {
+      text: null,
+    },
     series: [
       {
         name: "Speed",
-        data: [Math.min(ser3, Math.max(parseInt(ser3), ser3))],
+        data: [
+          Math.min(chartValue, Math.max(parseInt(chartValue), chartValue)),
+        ],
         tooltip: {
           valueSuffix: " km/h",
         },
@@ -143,7 +160,7 @@ function SensorHome(props) {
           },
         },
         dial: {
-          radius: "95%",
+          radius: "90%",
           backgroundColor: "#858585",
           baseWidth: 2,
           baseLength: "0%",
@@ -152,6 +169,7 @@ function SensorHome(props) {
       },
     ],
   };
+
   return (
     <div className="sensorChartBlockHome">
       <h3 className="chartTitle">
@@ -160,7 +178,7 @@ function SensorHome(props) {
       <div className="sensorChart">
         <HighchartsReact highcharts={Highcharts} options={options} />
       </div>
-      <div className="differenceNumber">
+      <div className={ser3 < 0 ? "differenceNumber" : "differenceNumberleft"}>
         +
         <AnimatedNumbers
           animateToNumber={diffNum}
@@ -171,9 +189,13 @@ function SensorHome(props) {
         />
         &#8381;
       </div>
-      <div className="bottomLegends">
-        <div className="leftLegend">Покупка жилья</div>
-        <div className="rightLegend">Аренда жилья</div>
+      <div className="bottomLegends sensorHomeLegends">
+        <div className={ser3 >= 0 ? "leftLegend" : "leftLegend green"}>
+          Покупка жилья
+        </div>
+        <div className={ser3 < 0 ? "rightLegend" : "rightLegend green"}>
+          Аренда жилья
+        </div>
       </div>
     </div>
   );

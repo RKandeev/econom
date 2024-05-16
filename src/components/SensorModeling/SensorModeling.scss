@@ -1,11 +1,24 @@
 .sensorChartBlockHome{
+  width: 70vw;
+  @media (max-width: 480px) {
+  }
+  .chartTitle{
+    @media (max-width: 480px) {
+      font-size: 16rem;
+      text-align: center;
+    }
+  }
+
   h3{
     margin-top: 40rem;
+    @media (max-width: 480px) {
+      margin-top: 20rem;
+    }
   }
   min-width: 100%;
   position: relative;
   border-left: none;
-  .differenceNumber{
+  .differenceNumber, .differenceNumberleft{
     font-size: 20rem;
     font-weight: 700;
     color: #0da46f;
@@ -20,6 +33,57 @@
     display: flex;
     gap: 2rem;
   }
+  .differenceNumber{
+    @media (max-width: 480px) {
+      font-size: 12rem;
+      bottom: 30%;
+      left: 25%;
+    }
+  }
+  .diffNumRed{
+    border: 1rem solid #EE2B49;
+    color: #EE2B49;
+    @media (max-width: 480px) {
+      font-size: 12rem;
+      bottom: 30%;
+      left: 25%;
+    }
+  }
+  .differenceNumberleft{
+    right: 35%;
+    left: initial;
+    @media (max-width: 480px) {
+      font-size: 12rem;
+      bottom: 30%;
+      right: 25%;
+    }
+  }
+}
+.sensorChart {
+  @media (max-width: 480px) {
+    width: 140vw;
+  }
+  @media (max-width: 375px) {
+    width: 130vw;
+  }
+}
+.sensorChartBlockHome{
+  .differenceNumber{
+    @media (max-width: 480px) {
+      font-size: 12rem;
+      bottom: 30%;
+      left: 25%;
+    }
+  }
+  .differenceNumberleft{
+    right: 35%;
+    left: initial;
+    @media (max-width: 480px) {
+      font-size: 12rem;
+      bottom: 30%;
+      right: 17%;
+    }
+  }
 }
 .bottomLegends{
   font-size: 20rem;
@@ -29,4 +93,54 @@
   position: absolute;
   bottom: 30%;
   left: 26%;
+  color: #EE2B49;
+  @media (max-width: 480px) {
+    bottom: 15%;
+    left: 5%;
+  }
+}
+.sensorHomeLegends{
+  gap: 250rem;
+  left: 24%;
+  @media (max-width: 480px) {
+    left: 8%;
+    font-size: 16rem;
+    gap: 140rem ;
+    bottom: 10%;
+  }
+}
+.carLegends{
+  gap: 350rem;
+  @media (max-width: 480px) {
+    font-size: 16rem;
+    gap: 155rem ;
+  }
+}
+.flatLegends{
+  text-align: center;
+  gap: 300rem;
+  bottom: 27%;
+  left: 20%;
+  @media (max-width: 480px) {
+    bottom: 10%;
+    left: 5%;
+    font-size: 14rem;
+    gap: 70rem;
+  }
+  div{
+    max-width: 150rem;
+  }
+}
+.priorityLegends{
+  gap: 280rem;
+  left: 28%;
+  @media (max-width: 480px) {
+    bottom: 15%;
+    left: 5%;
+    font-size: 16rem;
+    gap: 140rem;
+  }
+}
+.green{
+  color: #0da46f;
 }

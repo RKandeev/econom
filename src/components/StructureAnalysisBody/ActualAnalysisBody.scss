@@ -1,0 +1,14 @@
+.CashFlowTabs{
+  .CashFlowTabList{
+    height: fit-content;
+    .react-tabs__tab{
+      justify-content: flex-start;
+    }
+  }
+}
+.AnalysisTabs{
+  gap: 0;
+  .AnalysisTabPanel.react-tabs__tab-panel--selected{
+    flex-grow: 1;
+  }
+}

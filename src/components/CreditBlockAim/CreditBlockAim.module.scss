@@ -151,3 +151,21 @@ h5.formTitle{
     }
   }
 }
+.result_tabs{
+  .modalTablist{
+    padding: 0;
+    display: flex;
+    border-bottom: 1rem solid #ABB0C3;
+    justify-content: center;
+    li{
+      padding-left: 10rem;
+      padding-right: 10rem;
+    }
+  }
+  .result_panel{
+    min-width: 800rem;
+    @media (max-width: 480px) {
+      min-width: 80vw;
+    }
+  }
+}

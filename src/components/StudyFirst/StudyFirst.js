@@ -1,6 +1,12 @@
 import React from "react";
 import styles from "./StudyFirst.module.scss";
-import mycourse from "../../img/icon__course.svg";
+import studyIn from "../../img/studyIcons/1.svg";
+import finEfficient from "../../img/studyIcons/2.svg";
+import dollar from "../../img/studyIcons/3.svg";
+import finplan from "../../img/icon__fin-plan.svg";
+import finuchet from "../../img/icon__fin-uchet.svg";
+import finchoice from "../../img/studyIcons/7.svg";
+import finanalys from "../../img/icon__fin-analiz.svg";
 import { Link } from "react-router-dom";
 
 function StudyFirst(props) {
@@ -20,7 +26,7 @@ function StudyFirst(props) {
           to="/Studying"
           onClick={() => localStorage.setItem("lessonNum", "0")}
         >
-          <img src={mycourse} alt="" />
+          <img src={studyIn} alt="" />
           <div className={styles.lesson_title}>
             1. Введение в управление финансами
           </div>
@@ -30,7 +36,7 @@ function StudyFirst(props) {
           to="/Studying"
           onClick={() => localStorage.setItem("lessonNum", "1")}
         >
-          <img src={mycourse} alt="" />
+          <img src={finEfficient} alt="" />
           <div className={styles.lesson_title}>2. Финансовая эффективность</div>
         </Link>
         <Link
@@ -38,7 +44,7 @@ function StudyFirst(props) {
           onClick={() => localStorage.setItem("lessonNum", "2")}
           className={styles.lesson_block}
         >
-          <img src={mycourse} alt="" />
+          <img src={dollar} alt="" />
           <div className={styles.lesson_title}>
             3. Денежные потоки и финансовый баланс
           </div>
@@ -48,7 +54,7 @@ function StudyFirst(props) {
           onClick={() => localStorage.setItem("lessonNum", "3")}
           className={styles.lesson_block}
         >
-          <img src={mycourse} alt="" />
+          <img src={finplan} alt="" />
           <div className={styles.lesson_title}>
             4. Финансовое <br /> планирование
           </div>
@@ -58,7 +64,7 @@ function StudyFirst(props) {
           onClick={() => localStorage.setItem("lessonNum", "4")}
           className={styles.lesson_block}
         >
-          <img src={mycourse} alt="" />
+          <img src={finuchet} alt="" />
           <div className={styles.lesson_title}>5. Финансовый учёт</div>
         </Link>
         <Link
@@ -66,7 +72,7 @@ function StudyFirst(props) {
           onClick={() => localStorage.setItem("lessonNum", "5")}
           className={styles.lesson_block}
         >
-          <img src={mycourse} alt="" />
+          <img src={finanalys} alt="" />
           <div className={styles.lesson_title}>6. Финансовый анализ</div>
         </Link>
         <Link
@@ -74,7 +80,7 @@ function StudyFirst(props) {
           onClick={() => localStorage.setItem("lessonNum", "6")}
           className={styles.lesson_block}
         >
-          <img src={mycourse} alt="" />
+          <img src={finchoice} alt="" />
           <div className={styles.lesson_title}>7. Финансовые решения</div>
         </Link>
       </div>

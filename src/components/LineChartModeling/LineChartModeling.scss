@@ -1,0 +1,11 @@
+.lineChartModeling{
+  width: 70vw;
+  @media (max-width: 480px) {
+    width: 80vw;
+  }
+  .chartTitle{
+    @media (max-width: 480px) {
+      font-size: 16rem;
+    }
+  }
+}

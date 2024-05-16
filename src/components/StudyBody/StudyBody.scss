@@ -43,7 +43,9 @@
   padding-bottom: 16rem;
   border-bottom: 1rem solid #c9cfe5;
   margin: 0;
-
+  @media (max-width: 480px) {
+    margin-top: 16rem;
+  }
 }
 .left_tabs{
   display: flex;
@@ -52,6 +54,7 @@
   width: 281rem;
 }
 .full_course{
+  display: none;
   font-size: 16rem;
   color: #3156a6;
   border: 2rem solid #3156a6;

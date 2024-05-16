@@ -43,10 +43,10 @@ function TestResultTabs(props) {
           </Tab>
         </TabList>
 
-        <TabPanel>
+        <TabPanel className="myResultsChartBlock">
           <SensorChart />
         </TabPanel>
-        <TabPanel>
+        <TabPanel className="myResultsChartBlock">
           <Matrix />
         </TabPanel>
       </Tabs>

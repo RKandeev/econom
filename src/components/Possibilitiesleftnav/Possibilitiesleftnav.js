@@ -8,7 +8,7 @@ import finuchet from "../../img/icon__fin-uchet.svg";
 import finanalys from "../../img/icon__fin-analiz.svg";
 import finchoice from "../../img/icon__fin-reshenia.svg";
 import profile from "../../img/icon_user.svg";
-import compass from "../../img/compass.png";
+import compass from "../../img/studyIcons/8.svg";
 
 function Possibilitiesleftnav(props) {
   return (
@@ -44,7 +44,7 @@ function Possibilitiesleftnav(props) {
               <Menulink
                 img={finanalys}
                 txt="Финансовый анализ"
-                linksAdress="/#"
+                linksAdress="/FinAnalys"
               />
             </div>
             <div className={`${styles.barblock}`}>

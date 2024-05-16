@@ -1,0 +1,29 @@
+.barChartBlock{
+  width: 70vw;
+  @media (max-width: 480px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: initial;
+  }
+  canvas{
+    @media (max-width: 480px) {
+      width: 100%!important;
+      height: 170rem!important;
+    }
+
+  }
+  .chartTitle{
+    margin-bottom: 10rem;
+    @media (max-width: 480px) {
+      font-size: 16rem;
+      text-align: center;
+    }
+  }
+}
+.barFlat{
+  width: 70vw;
+  @media (max-width: 480px) {
+    width: auto;
+  }
+}

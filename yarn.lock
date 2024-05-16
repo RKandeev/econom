@@ -4100,6 +4100,11 @@
   "resolved" "https://registry.npmjs.org/chartjs-plugin-annotation/-/chartjs-plugin-annotation-3.0.1.tgz"
   "version" "3.0.1"
 
+"chartjs-plugin-datalabels@^2.2.0":
+  "integrity" "sha512-14ZU30lH7n89oq+A4bWaJPnAG8a7ZTk7dKf48YAzMvJjQtjrgg5Dpk9f+LbjCF6bpx3RAGTeL13IXpKQYyRvlw=="
+  "resolved" "https://registry.npmjs.org/chartjs-plugin-datalabels/-/chartjs-plugin-datalabels-2.2.0.tgz"
+  "version" "2.2.0"
+
 "chartjs-plugin-gradient@^0.6.1":
   "integrity" "sha512-TGHNIh8KqQMLdb+UfY80cBHYRyOC47eeokmgkeajRdKGbFt462lJiyiq4ZJ25fiM7BGsmzoBLhmVyEw4B3gQxw=="
   "resolved" "https://registry.npmjs.org/chartjs-plugin-gradient/-/chartjs-plugin-gradient-0.6.1.tgz"

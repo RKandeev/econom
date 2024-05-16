@@ -1,0 +1,21 @@
+.analysisCategoryLinks{
+  display: flex;
+  font-size: 12rem;
+  justify-content: space-between;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-top: 8rem;
+  border-bottom: 1rem solid #C9CFE5;
+  .analysisLink, .analysisLinkActive{
+    flex-grow: 1;
+    padding: 12rem 8rem;
+    &:hover{
+      border-bottom: 2rem solid #464E5F;
+    }
+  }
+  .analysisLinkActive{
+    border-bottom: 2rem solid #464E5F;
+
+  }
+}

@@ -7,7 +7,7 @@ import finuchet from "../../img/icon__fin-uchet.svg";
 import finanalys from "../../img/icon__fin-analiz.svg";
 import finchoice from "../../img/icon__fin-reshenia.svg";
 import profile from "../../img/icon_user.svg";
-import compass from "../../img/compass.png";
+import compass from "../../img/studyIcons/8.svg";
 import Mobilelink from "../Mobilelink/Mobilelink";
 
 function MobileNav(props) {
@@ -33,7 +33,7 @@ function MobileNav(props) {
             txt="Мои результаты"
             linksAdress="/MyResults"
           />
-          <Mobilelink img={mycourse} txt="Мои курсы" linksAdress="/Study" />
+          <Mobilelink img={mycourse} txt="Обучение" linksAdress="/Study" />
           <h4>Панель управления</h4>
           <Mobilelink
             img={finplan}
@@ -48,7 +48,7 @@ function MobileNav(props) {
           <Mobilelink
             img={finanalys}
             txt="Финансовый анализ"
-            linksAdress="/#"
+            linksAdress="/FinAnalys"
           />
           <Mobilelink
             img={finchoice}

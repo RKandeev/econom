@@ -29,7 +29,7 @@ const videos = [
 function StudySecond(props) {
   return (
     <div className={styles.StudyFirst}>
-      <h2>Технология выработки эффективных финансовых решений и стратегий</h2>
+      <h2>{props.courseTitle}</h2>
       <p>{props.courseText}</p>
       <div className={styles.lesson_blocks}>
         {videos.map((video) => (

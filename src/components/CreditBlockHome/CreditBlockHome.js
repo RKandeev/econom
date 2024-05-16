@@ -5,6 +5,7 @@ import Tolt from "../Tolt/Tolt";
 import Modal from "../Modal/Modal";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import SensorHome from "../SensorModeling/SensorHome";
+import LineHome from "../LineChartModeling/LineHome";
 
 function CreditBlockHome(props) {
   const [addModalActive, SetAddModalActive] = useState(false);
@@ -19,7 +20,10 @@ function CreditBlockHome(props) {
       insurance: 1.0,
     },
   ]);
-
+  let chartsNames = ["СРАВНИТЕЛЬНАЯ ВЫГОДА", "ДИНАМИКА КАПИТАЛА"];
+  if (window.outerWidth < 450) {
+    chartsNames = ["1", "2"];
+  }
   function setOldCredit(k, param, value) {
     let credits = [...oldCredits];
     credits[k][param] = value;
@@ -85,10 +89,6 @@ function CreditBlockHome(props) {
               />
             </div>
           </div>
-          <div className={styles.creditName}>
-            <h5 className={styles.formTitle}>Дата принятия решения</h5>
-            <input type="date" />
-          </div>
         </div>
 
         <h4 className={styles.creditsBlockTitle}>Покупка жилья</h4>
@@ -96,7 +96,7 @@ function CreditBlockHome(props) {
           {oldCredits.map((el, k) => (
             <div className={styles.creditBlock}>
               <h5 className={styles.formTitle}>
-                Стоимость жилья
+                Стоимость жилья (&#8381;)
                 <Tolt tooltipTitle1="В стоимость жилья рекомендуется включать не только цену его покупки, но и расходы на ремонт, обустройство и доведение жилья до состояния, пригодного для Вашего проживания">
                   <img src={help} alt="" />
                 </Tolt>
@@ -109,7 +109,7 @@ function CreditBlockHome(props) {
                 />
               </div>
               <h5 className={styles.formTitle}>
-                Первоначальный взнос
+                Первоначальный взнос (&#8381;)
                 <Tolt tooltipTitle1="Здесь указывается сумма собственных средств, которую Вы готовы внести в качестве первоначального взноса за приобретаемое жилье. Если Вы планируете покупку жилья полностью за собственные средства (без привлечения кредита), то указывается сумма полной стоимости жилья">
                   <img src={help} alt="" />
                 </Tolt>
@@ -122,7 +122,7 @@ function CreditBlockHome(props) {
                 />
               </div>
               <h5 className={styles.formTitle}>
-                Ставка ипотечного кредита %{" "}
+                Ставка ипотечного кредита (%){" "}
                 <Tolt tooltipTitle1="Здесь указывается ставка (в %) страховой премии, которую Вы будете ежегодно уплачивать в рамках обязательств страхования жилья, предусмотренных договором ипотечного кредитования">
                   <img src={help} alt="" />
                 </Tolt>
@@ -135,7 +135,7 @@ function CreditBlockHome(props) {
                 />
               </div>
               <h5 className={styles.formTitle}>
-                Ожидаемый ежегодный прирост стоимости покупаемого жилья %{" "}
+                Ожидаемый ежегодный прирост стоимости покупаемого жилья (%){" "}
                 <Tolt tooltipTitle1="Здесь указывается % ожидаемого ежегодного роста стоимости аналогов покупаемого Вами жилья. Для определения этого параметра рекомендуется использовать информацию специализированных сайтов-агрегаторов или имеющиеся в открытом доступе статистические данные">
                   <img src={help} alt="" />
                 </Tolt>
@@ -156,7 +156,7 @@ function CreditBlockHome(props) {
             <h4 className={styles.creditsBlockTitle}>Аренда жилья</h4>
             <div className={styles.creditBlock}>
               <h5 className={styles.formTitle}>
-                Стоимость ежемесячной аренды жилья
+                Стоимость ежемесячной аренды жилья (&#8381;)
                 <Tolt tooltipTitle1="Здесь указывается стоимость аренды жилья, являющегося аналогом того, покупку которого Вы рассматриваете. Для определения этого параметра рекомендуется использовать информацию специализированных сайтов-агрегаторов">
                   <img src={help} alt="" />
                 </Tolt>
@@ -169,7 +169,7 @@ function CreditBlockHome(props) {
                 />
               </div>
               <h5 className={styles.formTitle}>
-                Ожидаемый ежегодный прирост стоимости аренды жилья %{" "}
+                Ожидаемый ежегодный прирост стоимости аренды жилья (%){" "}
                 <Tolt tooltipTitle1="Здесь указывается % ожидаемого ежегодного роста стоимости аренды жилья, аналогичного тому, покупку которого Вы рассматриваете. Для определения этого параметра рекомендуется использовать информацию специализированных сайтов-агрегаторов">
                   <img src={help} alt="" />
                 </Tolt>
@@ -225,19 +225,21 @@ function CreditBlockHome(props) {
         </div>
       </form>
       <Modal
-        modalTitle="Платежи по кредитам"
+        modalTitle="Жилищный вопрос: покупка или аренда"
         active={addModalActive}
         SetActive={SetAddModalActive}
       >
         <Tabs className={styles.result_tabs}>
           <TabList className={styles.modalTablist}>
-            <Tab>Сравнительная выгода</Tab>
-            <Tab>Динамика капитала</Tab>
+            <Tab>{chartsNames[0]}</Tab>
+            <Tab>{chartsNames[1]}</Tab>
           </TabList>
           <TabPanel className={styles.result_panel}>
             <SensorHome />
           </TabPanel>
-          <TabPanel className={styles.result_panel}></TabPanel>
+          <TabPanel className={styles.result_panel}>
+            <LineHome />
+          </TabPanel>
         </Tabs>
       </Modal>
     </>

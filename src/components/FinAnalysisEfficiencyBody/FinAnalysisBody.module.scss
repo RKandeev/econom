@@ -1,0 +1,89 @@
+.MyResultsBody{
+  padding-right: 40rem;
+  @media (max-width: 480px) {
+    padding-right: 0;
+  }
+  .breadcrumb {
+    font-size: 14rem;
+    color: #ABB0C3;
+    font-weight: 500;
+    margin-top: 24rem;
+    margin-bottom: 10rem;
+    ul{
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 22rem;
+      :first-child{
+        list-style-type: none;
+        color: #3156A6;
+      }
+    }
+  }
+  .cashFlowBody{
+    display: flex;
+    gap: 40rem;
+    .borderRight{
+      width: 1rem;
+      background-color: #E1ECF5;
+      margin-top: 32rem;
+    }
+    .cashFlowChart{
+      flex-grow: 1;
+    }
+    .cashFlowNav{
+
+      height: fit-content;
+      font-size: 14rem;
+      display: flex;
+      flex-direction: column;
+      width: 256rem;
+      margin-top: 32rem;
+      border: 1rem solid #E1ECF5;
+      border-radius: 16rem;
+      :last-child:hover{
+        border-radius: 0 0 16rem 16rem;
+      }
+      .cashFlowLink, .cashFlowChartLink{
+        padding: 12rem 16rem;
+        color: #464E5F;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8rem;
+        svg{
+          width: 24rem;
+          height: 24rem;
+        }
+        &:hover{
+          background-color: #E1ECF5;
+        }
+      }
+      .cashFlowChartLink{
+        justify-content: flex-start;
+        border-radius: 16rem 16rem 0 0;
+        background-color: #E1ECF5;
+      }
+    }
+  }
+
+}
+.result_head{
+  font-size: 24rem;
+  color: #464E5F;
+  font-weight: 700;
+  margin: 0 0 8rem 0;
+}
+.result_tabs{
+  width: 100%;
+  color: #464E5F;
+  font-size: 12rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  flex-grow: 1;
+  h2{
+    font-size: 20rem;
+  }
+
+}

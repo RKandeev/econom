@@ -1,8 +1,25 @@
 .studyingTabs{
+  .myResultLeftTabs{
+    height: fit-content;
+    gap: 5rem;
+    h4.mobileHeader4{
+      display: none;
+      @media (max-width: 480px) {
+        display: block;
+        padding: 12rem 16rem;
+        margin: 0;
+        font-size: 14rem;
+      }
+    }
+  }
+
   .firstTestsTabList{
     justify-content: space-between;
     width: 281rem;
     position: relative;
+    @media (max-width: 480px) {
+      display: none;
+    }
     .react-tabs__tab{
       padding: 12rem 16rem;
       flex-grow: 0;
