@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/econom/static/css/main.068a9426.css",
+    "main.css": "/econom/static/css/main.6c341ac3.css",
     "main.js": "/econom/static/js/main.b7e8fc3c.js",
     "static/js/787.5992ffec.chunk.js": "/econom/static/js/787.5992ffec.chunk.js",
     "static/media/PTRootUI-Bold.woff": "/econom/static/media/PTRootUI-Bold.5de5b33d93c673ead6d3.woff",
@@ -46,12 +46,12 @@
     "static/media/check.svg": "/econom/static/media/check.f783dc01f0061928deaa18a9377d0dc7.svg",
     "static/media/icon__arrow_down.svg": "/econom/static/media/icon__arrow_down.3d9d9be4598553807077.svg",
     "static/media/Ellipse 1.svg": "/econom/static/media/Ellipse 1.3bbdb9ecf7b11404e194397559e21554.svg",
-    "main.068a9426.css.map": "/econom/static/css/main.068a9426.css.map",
+    "main.6c341ac3.css.map": "/econom/static/css/main.6c341ac3.css.map",
     "main.b7e8fc3c.js.map": "/econom/static/js/main.b7e8fc3c.js.map",
     "787.5992ffec.chunk.js.map": "/econom/static/js/787.5992ffec.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.068a9426.css",
+    "static/css/main.6c341ac3.css",
     "static/js/main.b7e8fc3c.js"
   ]
 }
