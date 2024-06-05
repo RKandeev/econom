@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/econom/static/css/main.c1570092.css",
-    "main.js": "/econom/static/js/main.0e386bce.js",
+    "main.css": "/econom/static/css/main.068a9426.css",
+    "main.js": "/econom/static/js/main.b7e8fc3c.js",
     "static/js/787.5992ffec.chunk.js": "/econom/static/js/787.5992ffec.chunk.js",
     "static/media/PTRootUI-Bold.woff": "/econom/static/media/PTRootUI-Bold.5de5b33d93c673ead6d3.woff",
     "static/media/PTRootUI-Medium.woff": "/econom/static/media/PTRootUI-Medium.ff04fc75393756798466.woff",
@@ -14,20 +14,27 @@
     "static/media/2.svg": "/econom/static/media/2.f94e2919e69fd5ad581127cc1423b746.svg",
     "static/media/icon__fin-reshenia.svg": "/econom/static/media/icon__fin-reshenia.f3e544fa80b337254770223641c81d66.svg",
     "static/media/icon__test.svg": "/econom/static/media/icon__test.e152fd390da0238174ca909e49ec1794.svg",
+    "static/media/moneyback.svg": "/econom/static/media/moneyback.4ba758ea80599fdaa81f7a6d55e1f947.svg",
     "static/media/icon__wallet.svg": "/econom/static/media/icon__wallet.0a1ae32412caa90ff65a3a04ed2ad754.svg",
     "static/media/icon__comment.svg": "/econom/static/media/icon__comment.c4966fd1ce4aff20b7396dc25ea4e8b7.svg",
+    "static/media/lifestyle.svg": "/econom/static/media/lifestyle.9ca43b567c0ea9bca6711e756ff3b94a.svg",
     "static/media/icon__course.svg": "/econom/static/media/icon__course.a755bb78fd8b12fa82b4a9cb2d23c5b2.svg",
     "static/media/icon__car.svg": "/econom/static/media/icon__car.f1615984ee9b8a5dfccaff362d401549.svg",
+    "static/media/borrowings.svg": "/econom/static/media/borrowings.fe06bdac27f293fb8cd3784f88e50426.svg",
     "static/media/icon__key.svg": "/econom/static/media/icon__key.ad5603d754826a2c6fa9b501429bb588.svg",
     "static/media/icon__fin-plan.svg": "/econom/static/media/icon__fin-plan.853165c367b368a50aa5e4ed4a758fc3.svg",
     "static/media/crediticon.svg": "/econom/static/media/crediticon.d1295c3dfb929eba1deb289761de2e6e.svg",
     "static/media/icon__chart.svg": "/econom/static/media/icon__chart.9e8a020658f5cb0299a65343aa94245c.svg",
+    "static/media/debts.svg": "/econom/static/media/debts.390aefb6b5448d59d5905ea64b9013fd.svg",
     "static/media/pocket.svg": "/econom/static/media/pocket.8ab29afe875d9685a2446753b602e2a8.svg",
+    "static/media/fincashout.svg": "/econom/static/media/fincashout.96f82cab48ee82bf4b28d7ee92c26bd1.svg",
+    "static/media/attachment.svg": "/econom/static/media/attachment.98a4f9a7ef790dcd23ad394e7331cb6e.svg",
     "static/media/icon__payment.svg": "/econom/static/media/icon__payment.5339d6469fda71ac4f494f59ab353acd.svg",
     "static/media/icon__fin-analiz.svg": "/econom/static/media/icon__fin-analiz.3ac2093a708f5a7b28ba836d9b17ebaa.svg",
     "static/media/icon__card-bill.svg": "/econom/static/media/icon__card-bill.6a2ce08118605df8580d01725aaa16b0.svg",
     "static/media/icon__logout.svg": "/econom/static/media/icon__logout.c7dd2947aeefbcc8b4e6ea41fb67b202.svg",
     "static/media/icon__fin-uchet.svg": "/econom/static/media/icon__fin-uchet.ba1b0300bda4b9ebf7cf78ee8ca1c752.svg",
+    "static/media/back.svg": "/econom/static/media/back.537a9f73d2d0145ac90b79fdcd473e2a.svg",
     "static/media/icon__home.svg": "/econom/static/media/icon__home.723b049019429437866fa51d70c0b368.svg",
     "static/media/icon__menu.svg": "/econom/static/media/icon__menu.1371ee7317db7b8d61aa7f10cd3cd6e0.svg",
     "static/media/icon__trash.svg": "/econom/static/media/icon__trash.777fbc5bc1012899189164cd41109dc3.svg",
@@ -39,12 +46,12 @@
     "static/media/check.svg": "/econom/static/media/check.f783dc01f0061928deaa18a9377d0dc7.svg",
     "static/media/icon__arrow_down.svg": "/econom/static/media/icon__arrow_down.3d9d9be4598553807077.svg",
     "static/media/Ellipse 1.svg": "/econom/static/media/Ellipse 1.3bbdb9ecf7b11404e194397559e21554.svg",
-    "main.c1570092.css.map": "/econom/static/css/main.c1570092.css.map",
-    "main.0e386bce.js.map": "/econom/static/js/main.0e386bce.js.map",
+    "main.068a9426.css.map": "/econom/static/css/main.068a9426.css.map",
+    "main.b7e8fc3c.js.map": "/econom/static/js/main.b7e8fc3c.js.map",
     "787.5992ffec.chunk.js.map": "/econom/static/js/787.5992ffec.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c1570092.css",
-    "static/js/main.0e386bce.js"
+    "static/css/main.068a9426.css",
+    "static/js/main.b7e8fc3c.js"
   ]
 }
