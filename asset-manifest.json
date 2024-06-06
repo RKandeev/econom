@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/econom/static/css/main.0e0ca6ff.css",
-    "main.js": "/econom/static/js/main.f7991bbe.js",
+    "main.css": "/econom/static/css/main.dc61b211.css",
+    "main.js": "/econom/static/js/main.7794fcf9.js",
     "static/js/787.5992ffec.chunk.js": "/econom/static/js/787.5992ffec.chunk.js",
     "static/media/PTRootUI-Bold.woff": "/econom/static/media/PTRootUI-Bold.5de5b33d93c673ead6d3.woff",
     "static/media/PTRootUI-Medium.woff": "/econom/static/media/PTRootUI-Medium.ff04fc75393756798466.woff",
@@ -40,7 +40,7 @@
     "static/media/back.svg": "/econom/static/media/back.537a9f73d2d0145ac90b79fdcd473e2a.svg",
     "static/media/mdpico.svg": "/econom/static/media/mdpico.04f3c39c0633605ac911ef83313cdbbd.svg",
     "static/media/icon__home.svg": "/econom/static/media/icon__home.723b049019429437866fa51d70c0b368.svg",
-    "static/media/rdpico.svg": "/econom/static/media/rdpico.8cf9405e1e4f343556d8b91793530866.svg",
+    "static/media/rdpico.svg": "/econom/static/media/rdpico.fc4cbbf4536522a0379bf0a03922a945.svg",
     "static/media/icon__menu.svg": "/econom/static/media/icon__menu.1371ee7317db7b8d61aa7f10cd3cd6e0.svg",
     "static/media/icon__trash.svg": "/econom/static/media/icon__trash.777fbc5bc1012899189164cd41109dc3.svg",
     "static/media/icon__help.svg": "/econom/static/media/icon__help.c88700aa9f0df324a241231c1adf8003.svg",
@@ -54,12 +54,12 @@
     "static/media/check.svg": "/econom/static/media/check.f783dc01f0061928deaa18a9377d0dc7.svg",
     "static/media/icon__arrow_down.svg": "/econom/static/media/icon__arrow_down.3d9d9be4598553807077.svg",
     "static/media/Ellipse 1.svg": "/econom/static/media/Ellipse 1.3bbdb9ecf7b11404e194397559e21554.svg",
-    "main.0e0ca6ff.css.map": "/econom/static/css/main.0e0ca6ff.css.map",
-    "main.f7991bbe.js.map": "/econom/static/js/main.f7991bbe.js.map",
+    "main.dc61b211.css.map": "/econom/static/css/main.dc61b211.css.map",
+    "main.7794fcf9.js.map": "/econom/static/js/main.7794fcf9.js.map",
     "787.5992ffec.chunk.js.map": "/econom/static/js/787.5992ffec.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0e0ca6ff.css",
-    "static/js/main.f7991bbe.js"
+    "static/css/main.dc61b211.css",
+    "static/js/main.7794fcf9.js"
   ]
 }
