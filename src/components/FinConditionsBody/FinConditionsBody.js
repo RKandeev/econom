@@ -10,30 +10,51 @@ import Fso from "../AnalysisCharts/PieCharts/FSO";
 import Fsd from "../AnalysisCharts/LineCharts/FSD";
 import Fsf from "../AnalysisCharts/PieCharts/FSF";
 import Lao from "../AnalysisCharts/SensorCharts/LAO";
-import Rad from "../AnalysisCharts/LineCharts/RAD";
+import LAD from "../AnalysisCharts/LineCharts/LAD";
 import Dva from "../AnalysisCharts/PieCharts/DVA";
 import Fuo from "../AnalysisCharts/SensorCharts/FUO";
 import Fud from "../AnalysisCharts/LineCharts/FUD";
 import Fba from "../AnalysisCharts/BarCharts/FBA";
+import Dk from "../AnalysisCharts/LineCharts/DK";
+import Iao from "../AnalysisCharts/SensorCharts/IAO";
+import Iad from "../AnalysisCharts/LineCharts/IAD";
+import Dia from "../AnalysisCharts/PieCharts/DIA";
+import Dno from "../AnalysisCharts/SensorCharts/DNO";
+import Dnd from "../AnalysisCharts/LineCharts/DND";
+import Spk from "../AnalysisCharts/PieCharts/SPK";
+import Szk from "../AnalysisCharts/PieCharts/SZK";
+import Fpo from "../AnalysisCharts/SensorCharts/FPO";
+import Fpd from "../AnalysisCharts/LineCharts/FPD";
+import Prd from "../AnalysisCharts/PieCharts/PRD";
+import fincondition from "../../img/analysisicons/fincondition.png";
+import point from "../../img/analysisicons/point.png";
+import dynamic from "../../img/analysisicons/dynamic.png";
+import analysis from "../../img/analysisicons/analysis.png";
 
 function FinResultsBody(props) {
   return (
     <div className={styles.MyResultsBody}>
-      <h2 className={styles.result_head}>Финансовый анализ</h2>
+      <h2 className={styles.result_head}>
+        Финансовый анализ
+        <div className={styles.breadcrumb}>
+          <ul>
+            <li>
+              <Link to={"/AnalysisEfficiency"}>Финансовая эффективность</Link>
+            </li>
+            <li>Финансовое состояние</li>
+          </ul>
+        </div>
+      </h2>
       <AnalysisHeader activeLink="" />
-      <div className={styles.breadcrumb}>
-        <ul>
-          <li>
-            <Link to={"/AnalysisEfficiency"}>Финансовая эффективность</Link>
-          </li>
-          <li>Финансовое состояние</li>
-        </ul>
-      </div>
+
       <Tabs className="react-tabs firstTestsTabs studyingTabs CashFlowTabs AnalysisTabs">
         <div className="left_tabs myResultLeftTabs">
           <h4 className="mobileHeader4">Финансовое состояние</h4>
           <TabList className="react-tabs__tab-list firstTestsTabList CashFlowTabList">
-            <h4>Финансовое состояние</h4>
+            <h4>
+              Финансовое состояние
+              <img src={fincondition} alt="" />
+            </h4>
             <Tab>
               <span>Комплексная Оценка</span>
             </Tab>
@@ -58,11 +79,24 @@ function FinResultsBody(props) {
         <TabPanel className="AnalysisTabPanel">
           <Tabs>
             <TabList>
-              <Tab>Оценка</Tab>
-              <Tab className=" react-tabs__tab analysisDynamicTab">
-                Динамика
+              <Tab>
+                <div className="img_tab">
+                  <img src={point} alt="" />
+                  <div className="tabTitle">Оценка</div>
+                </div>
               </Tab>
-              <Tab>Аналитика</Tab>
+              <Tab className=" react-tabs__tab analysisDynamicTab">
+                <div className="img_tab">
+                  <img src={dynamic} alt="" />
+                  <div className="tabTitle">Динамика</div>
+                </div>
+              </Tab>
+              <Tab>
+                <div className="img_tab">
+                  <img src={analysis} alt="" />
+                  <div className="tabTitle">Аналитика</div>
+                </div>
+              </Tab>
             </TabList>
             <TabPanel>
               <Fso />
@@ -78,17 +112,30 @@ function FinResultsBody(props) {
         <TabPanel className="AnalysisTabPanel">
           <Tabs>
             <TabList>
-              <Tab>Оценка</Tab>
-              <Tab className=" react-tabs__tab analysisDynamicTab">
-                Динамика
+              <Tab>
+                <div className="img_tab">
+                  <img src={point} alt="" />
+                  <div className="tabTitle">Оценка</div>
+                </div>
               </Tab>
-              <Tab>Аналитика</Tab>
+              <Tab className=" react-tabs__tab analysisDynamicTab">
+                <div className="img_tab">
+                  <img src={dynamic} alt="" />
+                  <div className="tabTitle">Динамика</div>
+                </div>
+              </Tab>
+              <Tab>
+                <div className="img_tab">
+                  <img src={analysis} alt="" />
+                  <div className="tabTitle">Аналитика</div>
+                </div>
+              </Tab>
             </TabList>
             <TabPanel>
               <Lao />
             </TabPanel>
             <TabPanel>
-              <Rad />
+              <LAD />
             </TabPanel>
             <TabPanel>
               <Dva />
@@ -98,11 +145,24 @@ function FinResultsBody(props) {
         <TabPanel className="AnalysisTabPanel">
           <Tabs>
             <TabList>
-              <Tab>Оценка</Tab>
-              <Tab className=" react-tabs__tab analysisDynamicTab">
-                Динамика
+              <Tab>
+                <div className="img_tab">
+                  <img src={point} alt="" />
+                  <div className="tabTitle">Оценка</div>
+                </div>
               </Tab>
-              <Tab>Аналитика</Tab>
+              <Tab className=" react-tabs__tab analysisDynamicTab">
+                <div className="img_tab">
+                  <img src={dynamic} alt="" />
+                  <div className="tabTitle">Динамика</div>
+                </div>
+              </Tab>
+              <Tab>
+                <div className="img_tab">
+                  <img src={analysis} alt="" />
+                  <div className="tabTitle">Аналитика</div>
+                </div>
+              </Tab>
             </TabList>
             <TabPanel>
               <Fuo />
@@ -132,7 +192,7 @@ function FinResultsBody(props) {
                   <Fba />
                 </TabPanel>
                 <TabPanel>
-                  <Chart />
+                  <Dk />
                 </TabPanel>
               </Tabs>
             </TabPanel>
@@ -141,50 +201,63 @@ function FinResultsBody(props) {
         <TabPanel className="AnalysisTabPanel">
           <Tabs>
             <TabList>
-              <Tab>Оценка</Tab>
-              <Tab className=" react-tabs__tab analysisDynamicTab">
-                Динамика
+              <Tab>
+                <div className="img_tab">
+                  <img src={point} alt="" />
+                  <div className="tabTitle">Оценка</div>
+                </div>
               </Tab>
-              <Tab>Аналитика</Tab>
+              <Tab className=" react-tabs__tab analysisDynamicTab">
+                <div className="img_tab">
+                  <img src={dynamic} alt="" />
+                  <div className="tabTitle">Динамика</div>
+                </div>
+              </Tab>
+              <Tab>
+                <div className="img_tab">
+                  <img src={analysis} alt="" />
+                  <div className="tabTitle">Аналитика</div>
+                </div>
+              </Tab>
             </TabList>
             <TabPanel>
-              <Chart />
+              <Iao />
             </TabPanel>
             <TabPanel>
-              <Chart />
+              <Iad />
             </TabPanel>
             <TabPanel>
-              <Tabs>
-                <TabList className="analysTabs">
-                  <Tab className="myTab">
-                    <div>
-                      <NumberTolt tooltipTitle="Доля Инвестиционных активов">
-                        1
-                      </NumberTolt>
-                    </div>
-                  </Tab>
-                </TabList>
-                <TabPanel>
-                  <Chart />
-                </TabPanel>
-              </Tabs>
+              <Dia />
             </TabPanel>
           </Tabs>
         </TabPanel>
         <TabPanel className="AnalysisTabPanel">
           <Tabs>
             <TabList>
-              <Tab>Оценка</Tab>
-              <Tab className=" react-tabs__tab analysisDynamicTab">
-                Динамика
+              <Tab>
+                <div className="img_tab">
+                  <img src={point} alt="" />
+                  <div className="tabTitle">Оценка</div>
+                </div>
               </Tab>
-              <Tab>Аналитика</Tab>
+              <Tab className=" react-tabs__tab analysisDynamicTab">
+                <div className="img_tab">
+                  <img src={dynamic} alt="" />
+                  <div className="tabTitle">Динамика</div>
+                </div>
+              </Tab>
+              <Tab>
+                <div className="img_tab">
+                  <img src={analysis} alt="" />
+                  <div className="tabTitle">Аналитика</div>
+                </div>
+              </Tab>
             </TabList>
             <TabPanel>
-              <Chart />
+              <Dno />
             </TabPanel>
             <TabPanel>
-              <Chart />
+              <Dnd />
             </TabPanel>
             <TabPanel>
               <Tabs>
@@ -205,10 +278,10 @@ function FinResultsBody(props) {
                   </Tab>
                 </TabList>
                 <TabPanel>
-                  <Chart />
+                  <Spk />
                 </TabPanel>
                 <TabPanel>
-                  <Chart />
+                  <Szk />
                 </TabPanel>
               </Tabs>
             </TabPanel>
@@ -217,33 +290,33 @@ function FinResultsBody(props) {
         <TabPanel className="AnalysisTabPanel">
           <Tabs>
             <TabList>
-              <Tab>Оценка</Tab>
-              <Tab className=" react-tabs__tab analysisDynamicTab">
-                Динамика
+              <Tab>
+                <div className="img_tab">
+                  <img src={point} alt="" />
+                  <div className="tabTitle">Оценка</div>
+                </div>
               </Tab>
-              <Tab>Аналитика</Tab>
+              <Tab className=" react-tabs__tab analysisDynamicTab">
+                <div className="img_tab">
+                  <img src={dynamic} alt="" />
+                  <div className="tabTitle">Динамика</div>
+                </div>
+              </Tab>
+              <Tab>
+                <div className="img_tab">
+                  <img src={analysis} alt="" />
+                  <div className="tabTitle">Аналитика</div>
+                </div>
+              </Tab>
             </TabList>
             <TabPanel>
-              <Chart />
+              <Fpo />
             </TabPanel>
             <TabPanel>
-              <Chart />
+              <Fpd />
             </TabPanel>
             <TabPanel>
-              <Tabs>
-                <TabList className="analysTabs">
-                  <Tab className="myTab">
-                    <div>
-                      <NumberTolt tooltipTitle="Покрытие Расходов и выплат по кредитам Доходами от Активов">
-                        1
-                      </NumberTolt>
-                    </div>
-                  </Tab>
-                </TabList>
-                <TabPanel>
-                  <Chart />
-                </TabPanel>
-              </Tabs>
+              <Prd />
             </TabPanel>
           </Tabs>
         </TabPanel>

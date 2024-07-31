@@ -14,6 +14,8 @@ import {
   PointElement,
   Filler,
 } from "chart.js";
+import Selectblue from "../../Selectblue/Selectblue";
+import Checkcustom from "../../Checkcustom/Checkcustom";
 
 ChartJS.register(
   Title,
@@ -29,6 +31,21 @@ ChartJS.register(
 );
 
 function Ind(props) {
+  let years = [2022, 2023];
+  let months = [
+    "Январь",
+    "Февраль",
+    "Март",
+    "Апрель",
+    "Май",
+    "Июнь",
+    "Июль",
+    "Август",
+    "Сентябрь",
+    "Октябрь",
+    "Ноябрь",
+    "Декабрь",
+  ];
   let LinesColor = localStorage.getItem("LinesColorFlat");
   let topArr = [];
   let bottomArr = [];
@@ -105,8 +122,8 @@ function Ind(props) {
         stacked: true,
         display: true,
         title: {
-          display: false,
-          text: "млн. ₽",
+          display: true,
+          text: "%",
           font: {
             size: 12,
             weight: 700,
@@ -150,7 +167,16 @@ function Ind(props) {
 
   return (
     <div className="chart lineChartModeling AnalysisLineChartBlock">
-      <h3 className="chartTitle">Инвестирование Накоплений (Динамика)</h3>
+      <div className="analysisHeader">
+        <h3 className="chartTitle">Инвестирование накоплений</h3>
+        <div className="chartSettingsBlock">
+          <div className="dateSelectBlock">
+            <Selectblue selectArr={years} />
+            <Selectblue selectArr={months} />
+          </div>
+          <Checkcustom label="С начала года" checked={true} />
+        </div>
+      </div>
       <Line options={lineHomeOptions} data={lineHomeData} />
     </div>
   );

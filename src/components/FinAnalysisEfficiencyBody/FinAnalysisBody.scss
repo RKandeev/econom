@@ -1,4 +1,11 @@
-.AnalysisTabPanel{
+.AnalysisTabPanel.react-tabs__tab--selected{
+  color: #464E5F;
   flex-grow: 1;
   margin: 0 auto;
+}
+.img_tab{
+  display: flex;
+  align-items: center;
+  gap: 30rem;
+  justify-content: center;
 }

@@ -1,10 +1,41 @@
 .analysisBarChartBlock{
   width: 55vw;
+  margin: 0 auto;
+  color: #464E5F;
   @media (max-width: 480px) {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: initial;
+  }
+  .chartSettingsBlock{
+    display: flex;
+    margin-bottom: 0;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20rem;
+    :nth-child(2){
+      flex-grow: 0!important;
+    }
+
+  }
+  .analysisHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16rem;
+    h3{
+      color: #464E5F;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    .customCheckbox{
+      min-width: fit-content;
+      flex-grow: 0;
+    }
+    .checkbox{
+      width: 16rem;
+    }
   }
   canvas{
     @media (max-width: 480px) {
@@ -15,6 +46,7 @@
   }
   .chartTitle{
     margin-bottom: 10rem;
+    text-align: left;
     @media (max-width: 480px) {
       font-size: 16rem;
       text-align: center;
@@ -28,5 +60,9 @@
   }
 }
 .smallChart{
-  width: 50vw;
+  width: 51vw;
+}
+.categorySelect{
+  margin-top: 16rem;
+  margin-bottom: 16rem;
 }

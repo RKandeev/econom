@@ -13,6 +13,8 @@ import {
   PointElement,
   Filler,
 } from "chart.js";
+import Selectblue from "../../Selectblue/Selectblue";
+import Checkcustom from "../../Checkcustom/Checkcustom";
 
 ChartJS.register(
   Title,
@@ -27,6 +29,21 @@ ChartJS.register(
 );
 
 function Fsd(props) {
+  let years = [2022, 2023];
+  let months = [
+    "Январь",
+    "Февраль",
+    "Март",
+    "Апрель",
+    "Май",
+    "Июнь",
+    "Июль",
+    "Август",
+    "Сентябрь",
+    "Октябрь",
+    "Ноябрь",
+    "Декабрь",
+  ];
   let LinesColor = localStorage.getItem("LinesColorFlat");
   let topArr = [];
   let bottomArr = [];
@@ -76,8 +93,8 @@ function Fsd(props) {
         stacked: true,
         display: true,
         title: {
-          display: false,
-          text: "млн. ₽",
+          display: true,
+          text: "%",
           font: {
             size: 12,
             weight: 700,
@@ -110,25 +127,37 @@ function Fsd(props) {
       {
         fill: true,
         data: arr,
-        label: "Покупка квартиры для сдачи в аренду",
+        label: "Выполнено",
         lineTension: 0,
         borderColor: "#0DA46F",
-        backgroundColor: "rgba(25, 227, 133, 0.7)",
+        backgroundColor: "#13efa3",
       },
       {
         fill: true,
         data: arr2,
-        label: "Инвестирование в иные активы",
+        label: "Не выполнено",
         lineTension: 0,
-        borderColor: "#EE2B4960",
-        backgroundColor: "#EE2B4985",
+        borderColor: "#EE2B49",
+        backgroundColor: "#EE2B4995",
       },
     ],
   };
 
   return (
-    <div className="chart lineChartModeling">
-      <h3 className="chartTitle">Собственный капитал</h3>
+    <div className="chart lineChartModeling AnalysisLineChartBlock">
+      <div className="analysisHeader">
+        <h3 className="chartTitle">
+          Комплексная оценка <br />
+          «Финансовое состояние»
+        </h3>
+        <div className="chartSettingsBlock">
+          <div className="dateSelectBlock">
+            <Selectblue selectArr={years} />
+            <Selectblue selectArr={months} />
+          </div>
+          <Checkcustom label="С начала года" checked={true} />
+        </div>
+      </div>
       <Line options={lineHomeOptions} data={lineHomeData} />
     </div>
   );

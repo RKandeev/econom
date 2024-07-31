@@ -3,7 +3,10 @@ import styles from "./SelectModal.module.scss";
 
 function SelectModal(props) {
   return (
-    <div className={styles.SelectModal}>
+    <div
+      className={styles.SelectModal}
+      style={{ visibility: `${props.selectModalVis}` }}
+    >
       <h5>{props.SelectHeader}</h5>
       <select>
         {props.selectArr.map((el) => (

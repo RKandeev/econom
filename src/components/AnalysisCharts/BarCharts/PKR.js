@@ -12,6 +12,8 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import Selectblue from "../../Selectblue/Selectblue";
+import Checkcustom from "../../Checkcustom/Checkcustom";
 
 ChartJS.register(
   Title,
@@ -25,6 +27,22 @@ ChartJS.register(
 );
 
 function Pkr(props) {
+  let years = [2022, 2023];
+  let months = [
+    "Январь",
+    "Февраль",
+    "Март",
+    "Апрель",
+    "Май",
+    "Июнь",
+    "Июль",
+    "Август",
+    "Сентябрь",
+    "Октябрь",
+    "Ноябрь",
+    "Декабрь",
+  ];
+  let category = ["Категория1", "Категория2", "Категория3"];
   let planArr = [10900, 35000, 0, 0, 700, 10300];
   let factArr = [11450, 36759, 0, 1970, 700, 13550];
   let diffArr = [
@@ -46,9 +64,9 @@ function Pkr(props) {
   let barColor = [];
   diffArr.forEach((e) => {
     if (e >= 0) {
-      barColor.push("#0DA46F");
+      barColor.push("#13efa3");
     } else {
-      barColor.push("#EE2B4995");
+      barColor.push("#EE2B49");
     }
   });
 
@@ -68,7 +86,7 @@ function Pkr(props) {
           maxRotation: 0,
           display: true,
         },
-        stacked: true,
+        stacked: false,
       },
       y: {
         stacked: true,
@@ -84,8 +102,20 @@ function Pkr(props) {
     },
     responsive: true,
     plugins: {
+      annotation: {
+        annotations: {
+          line1: {
+            drawTime: "afterDraw",
+            type: "line",
+            xMin: 0,
+            xMax: 0,
+            borderColor: "#858585",
+            borderWidth: 2,
+          },
+        },
+      },
       datalabels: {
-        display: mobile,
+        display: false,
         color: mobileColor,
         anchor: "center",
         align: "left",
@@ -102,7 +132,7 @@ function Pkr(props) {
         },
       },
       legend: {
-        display: mobile,
+        display: false,
         position: "bottom",
       },
     },
@@ -119,20 +149,35 @@ function Pkr(props) {
     labels,
     datasets: [
       {
-        label: "Разница с фактом",
+        label: "Экономия (+), перерасход (-)",
         data: diffArr,
+        barPercentage: 0.7,
         backgroundColor: barColor,
       },
       {
         label: "План",
         data: planArr,
-        backgroundColor: "#13efa3",
+        backgroundColor: "#85858590",
       },
     ],
   };
   return (
     <div className="analysisBarChartBlock smallChart">
-      <h3 className="chartTitle">Перерасход по направлениям</h3>
+      <div className="analysisHeader">
+        <h3 className="chartTitle">
+          Анализ соблюдения плана по Категориям расходов
+        </h3>
+        <div className="chartSettingsBlock">
+          <div className="dateSelectBlock">
+            <Selectblue selectArr={years} />
+            <Selectblue selectArr={months} />
+          </div>
+          <Checkcustom label="С начала года" checked={false} />
+        </div>
+      </div>
+      <div className="categorySelect">
+        <Selectblue selectArr={category} />
+      </div>
       <Bar options={options} data={data} />
     </div>
   );

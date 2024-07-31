@@ -6,12 +6,11 @@ import Editsum from "../Editsum/Editsum";
 
 function Moneyline(props) {
   const [editModalActive, SetEditModalActive] = useState(false);
-  let modalTitle = "Остаток на начало месяца";
   let sumValue = "20 150,20";
   return (
     <div className={styles.moneyline}>
       <div className={styles.moneylineblock}>
-        <h5>Остаток на начало месяца</h5>
+        <h5>Остаток на начало {props.interval}</h5>
         <div className={`${styles.moneyblock} ${styles.grey}`}>
           <div className={styles.sum}>
             {sumValue}
@@ -38,7 +37,7 @@ function Moneyline(props) {
         </div>
       </div>
       <div className={styles.moneylineblock}>
-        <h5>Остаток на конец месяца</h5>
+        <h5>Остаток на конец {props.interval}</h5>
         <div className={`${styles.moneyblock} ${styles.black}`}>
           <div className={styles.sum}>
             20 150,20<span>&#8381;</span>
@@ -48,7 +47,7 @@ function Moneyline(props) {
       <Modal
         active={editModalActive}
         SetActive={SetEditModalActive}
-        modalTitle={modalTitle}
+        modalTitle={props.modalTitle}
       >
         <div className={styles.modalBody}>
           <h4>Сентябрь 2022</h4>

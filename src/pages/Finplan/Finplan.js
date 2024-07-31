@@ -5,6 +5,9 @@ import styles from "./Finplan.module.scss";
 import Finplanbody from "../../components/Finplanbody/Finplanbody";
 import Finplanright from "../../components/Finplanright/Finplanright";
 import MobileNav from "../../components/MobileNav/MobileNav";
+import newcheck from "../../img/Ellipse 1.svg";
+import checkedIco from "../../img/icon/icon__check.svg";
+import lockedIco from "../../img/icon/icon__lock.svg";
 
 function Finplan() {
   const months = [
@@ -12,11 +15,73 @@ function Finplan() {
       id: 1,
       title: "ЯНВ",
       img: "../../img/Ellipse 1.svg",
+      checkStatus: lockedIco,
     },
     {
       id: 2,
       title: "ФЕВ",
       img: "../../img/Ellipse 1.svg",
+      checkStatus: lockedIco,
+    },
+    {
+      id: 3,
+      title: "МАР",
+      img: "../../img/Ellipse 1.svg",
+      checkStatus: checkedIco,
+    },
+    {
+      id: 4,
+      title: "АПР",
+      img: "../../img/Ellipse 1.svg",
+      checkStatus: checkedIco,
+    },
+    {
+      id: 5,
+      title: "МАЙ",
+      img: "../../img/Ellipse 1.svg",
+      checkStatus: newcheck,
+    },
+    {
+      id: 6,
+      title: "ИЮН",
+      img: "../../img/Ellipse 1.svg",
+      checkStatus: newcheck,
+    },
+    {
+      id: 7,
+      title: "ИЮЛ",
+      img: "../../img/Ellipse 1.svg",
+      checkStatus: newcheck,
+    },
+    {
+      id: 8,
+      title: "АВГ",
+      img: "../../img/Ellipse 1.svg",
+      checkStatus: newcheck,
+    },
+    {
+      id: 9,
+      title: "СЕН",
+      img: "../../img/Ellipse 1.svg",
+      checkStatus: newcheck,
+    },
+    {
+      id: 10,
+      title: "ОКТ",
+      img: "../../img/Ellipse 1.svg",
+      checkStatus: newcheck,
+    },
+    {
+      id: 11,
+      title: "НОЯ",
+      img: "../../img/Ellipse 1.svg",
+      checkStatus: newcheck,
+    },
+    {
+      id: 12,
+      title: "ДЕК",
+      img: "../../img/Ellipse 1.svg",
+      checkStatus: newcheck,
     },
   ];
   return (

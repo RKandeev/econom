@@ -26,6 +26,23 @@ import ActualAnalysis from "./pages/ActualAnalysis/ActualAnalysis";
 import FinResults from "./pages/FinResults/FinResults";
 import FinConditions from "./pages/FinConditions/FinConditions";
 import NoMatterAnalysis from "./pages/NoMatterAnalysis/NoMatterAnalysis";
+import Refund from "./pages/Refund/Refund";
+import Borrow from "./pages/Borrow/Borrow";
+import BasicNeeds from "./pages/BasicNeeds/BasicNeeds";
+import Lifestyle from "./pages/Lifestyle/Lifestyle";
+import Fincashout from "./pages/Fincashout/Fincashout";
+import Attachment from "./pages/Attachment/Attachment";
+import Debts from "./pages/Debts/Debts";
+import AccountingBalance from "./pages/AccountingBalance/AccountingBalance";
+import AccountingCashReturn from "./pages/AccountingIncomes/AccountingCashReturn";
+import AccountingBorrowings from "./pages/AccountingIncomes/AccountingBorrowings";
+import AccountingAttachment from "./pages/AccountingCredit/AccountingAttachment";
+import AccountingDebts from "./pages/AccountingCredit/AccountingDebts";
+import AccountingBalanceIncomes from "./pages/AccountingIncomes/AccountingBalanceIncomes";
+import AccountingBasicNeeds from "./pages/AccountingCredit/AccountingBasicNeeds";
+import AccountingLifestyle from "./pages/AccountingCredit/AccountingLifestyle";
+import AccountingCachout from "./pages/AccountingCredit/AccountingCachout";
+import AccountingBalanceDebts from "./pages/AccountingCredit/AccountingBalanceDebts";
 
 function App() {
   const Wrapper = ({ children }) => {
@@ -89,10 +106,54 @@ function App() {
             element={<CreateSolutionIndividual />}
           ></Route>
           <Route path="MyResults" element={<MyResults />}></Route>
+          <Route path="Refund" element={<Refund />}></Route>
+          <Route path="Borrow" element={<Borrow />}></Route>
+          <Route path="BasicNeeds" element={<BasicNeeds />}></Route>
+          <Route path="Lifestyle" element={<Lifestyle />}></Route>
+          <Route path="Fincashout" element={<Fincashout />}></Route>
+          <Route path="Attachment" element={<Attachment />}></Route>
+          <Route path="Debts" element={<Debts />}></Route>
           <Route path="Study" element={<Study />}></Route>
           <Route path="Studying" element={<Studying />}></Route>
           <Route path="MyProfile" element={<MyProfile />}></Route>
           <Route path="Possibilities" element={<Possibilities />}></Route>
+          <Route path="AccountingDebts" element={<AccountingDebts />}></Route>
+          <Route
+            path="AccountingBalanceDebts"
+            element={<AccountingBalanceDebts />}
+          ></Route>
+          <Route
+            path="AccountingCachout"
+            element={<AccountingCachout />}
+          ></Route>
+          <Route
+            path="AccountingLifestyle"
+            element={<AccountingLifestyle />}
+          ></Route>
+          <Route
+            path="AccountingBasicNeeds"
+            element={<AccountingBasicNeeds />}
+          ></Route>
+          <Route
+            path="AccountingBalanceIncomes"
+            element={<AccountingBalanceIncomes />}
+          ></Route>
+          <Route
+            path="AccountingAttachment"
+            element={<AccountingAttachment />}
+          ></Route>
+          <Route
+            path="AccountingBorrowings"
+            element={<AccountingBorrowings />}
+          ></Route>
+          <Route
+            path="AccountingCashReturn"
+            element={<AccountingCashReturn />}
+          ></Route>
+          <Route
+            path="AccountingBalance"
+            element={<AccountingBalance />}
+          ></Route>
         </Routes>
       </Wrapper>
     </>

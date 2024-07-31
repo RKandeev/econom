@@ -15,6 +15,8 @@ import {
   BarController,
 } from "chart.js";
 import { Link } from "react-router-dom";
+import Selectblue from "../../Selectblue/Selectblue";
+import Checkcustom from "../../Checkcustom/Checkcustom";
 ChartJS.register(
   LinearScale,
   CategoryScale,
@@ -29,6 +31,21 @@ ChartJS.register(
 );
 
 function Me(props) {
+  let years = [2022, 2023];
+  let months = [
+    "Январь",
+    "Февраль",
+    "Март",
+    "Апрель",
+    "Май",
+    "Июнь",
+    "Июль",
+    "Август",
+    "Сентябрь",
+    "Октябрь",
+    "Ноябрь",
+    "Декабрь",
+  ];
   let radius = 25;
   let labelText = 30;
   let radiusHigh = 15;
@@ -45,6 +62,9 @@ function Me(props) {
     responsive: true,
     transitions: {},
     plugins: {
+      legend: {
+        display: false,
+      },
       datalabels: {
         display: false,
       },
@@ -165,7 +185,7 @@ function Me(props) {
       x: {
         title: {
           display: true,
-          text: "Финансовый результат, %",
+          text: "Финансовые результаты, %",
           font: {
             size: 14,
             weight: 700,
@@ -205,7 +225,16 @@ function Me(props) {
   return (
     <div className="MatrixChartBlock AnalysisMatrixChartBlock">
       <div className="MyMatrixChart">
-        <h3 className="chartTitle">Финансовая эффективность</h3>
+        <div className="analysisHeader">
+          <h3 className="chartTitle">Финансовая эффективность</h3>
+          <div className="chartSettingsBlock">
+            <div className="dateSelectBlock">
+              <Selectblue selectArr={years} />
+              <Selectblue selectArr={months} />
+            </div>
+            <Checkcustom label="С начала года" checked={true} />
+          </div>
+        </div>
         <Bubble options={options} data={data} />
       </div>
     </div>

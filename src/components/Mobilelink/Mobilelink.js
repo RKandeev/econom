@@ -1,6 +1,5 @@
 import React from "react";
-import styles from "./Mobilelink.scss";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Mobilelink(props) {
   return (

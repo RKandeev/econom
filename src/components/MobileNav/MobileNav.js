@@ -12,7 +12,7 @@ import Mobilelink from "../Mobilelink/Mobilelink";
 
 function MobileNav(props) {
   const [menuActive, setMenuActive] = useState(false);
-  console.log(menuActive);
+
   return (
     <>
       <nav>

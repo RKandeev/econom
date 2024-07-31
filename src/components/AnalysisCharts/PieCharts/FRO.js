@@ -12,6 +12,8 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import Selectblue from "../../Selectblue/Selectblue";
+import Checkcustom from "../../Checkcustom/Checkcustom";
 
 ChartJS.register(
   Title,
@@ -25,6 +27,21 @@ ChartJS.register(
 );
 
 function Fro(props) {
+  let years = [2022, 2023];
+  let months = [
+    "Январь",
+    "Февраль",
+    "Март",
+    "Апрель",
+    "Май",
+    "Июнь",
+    "Июль",
+    "Август",
+    "Сентябрь",
+    "Октябрь",
+    "Ноябрь",
+    "Декабрь",
+  ];
   let planArr = [83, 17];
   let mobile = true;
   let mobileFont = 16;
@@ -62,22 +79,38 @@ function Fro(props) {
       },
     },
   };
-  const labels = [["Резерв для экономии"], ["Кандидаты на сокращение"]];
+  const labels = [["Выполнено"], ["Не выполнено"]];
   const data = {
     labels,
     datasets: [
       {
-        label: "Норма",
+        label: "Факт",
         data: planArr,
         backgroundColor: ["#13efa3", "#EE2B4995"],
       },
     ],
   };
   return (
-    <div className="analysisPieChartBlock ">
-      <h3 className="chartTitle">Комплексная оценка "Финансовые Результаты"</h3>
-      <Pie options={options} data={data} />
-    </div>
+    <>
+      <div className="analysisBlock">
+        <div className="analysisHeader">
+          <h3 className="chartTitle">
+            Комплексная оценка <br />
+            «Финансовые результаты»
+          </h3>
+          <div className="chartSettingsBlock">
+            <div className="dateSelectBlock">
+              <Selectblue selectArr={years} />
+              <Selectblue selectArr={months} />
+            </div>
+            <Checkcustom label="С начала года" checked={true} />
+          </div>
+        </div>
+        <div className="analysisPieChartBlock ">
+          <Pie options={options} data={data} />
+        </div>
+      </div>
+    </>
   );
 }
 

@@ -12,6 +12,8 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import Selectblue from "../../Selectblue/Selectblue";
+import Checkcustom from "../../Checkcustom/Checkcustom";
 
 ChartJS.register(
   Title,
@@ -25,14 +27,52 @@ ChartJS.register(
 );
 
 function Pda(props) {
-  let planArr = [413038, null];
-  let factArr = [null, 524084];
+  let years = [2022, 2023];
+  let months = [
+    "Январь",
+    "Февраль",
+    "Март",
+    "Апрель",
+    "Май",
+    "Июнь",
+    "Июль",
+    "Август",
+    "Сентябрь",
+    "Октябрь",
+    "Ноябрь",
+    "Декабрь",
+  ];
+  let planArr = [30000];
+  let factArr = [20000];
+  let diffArr = [];
+  let invisibleArr = [];
+  let barColor = [];
+  if (planArr[0] >= factArr[0]) {
+    invisibleArr = [null, null, factArr[0]];
+    diffArr = [planArr[0] - factArr[0]];
+    barColor.push("#EE2B49");
+  } else {
+    invisibleArr = [null, null, planArr[0]];
+    diffArr = [factArr[0] - planArr[0]];
+    barColor.push("#0DA46F");
+  }
+  planArr = [planArr[0], null, null];
+  factArr = [null, factArr[0], null];
+  diffArr = [null, null, diffArr[0]];
+
+  diffArr = diffArr.map(function (val, i) {
+    return val === 0 ? null : val;
+  });
+  planArr = planArr.map(function (val, i) {
+    return val === 0 ? null : val;
+  });
+
   let mobile = true;
   let mobileFont = 16;
   let mobileColor = "#fff";
   if (window.outerWidth < 450) {
     mobile = false;
-    mobileColor = "#000";
+    mobileColor = "#fff";
     mobileFont = 12;
   }
   const options = {
@@ -59,19 +99,16 @@ function Pda(props) {
     responsive: true,
     plugins: {
       datalabels: {
-        display: mobile,
+        display: false,
         color: mobileColor,
+
         font: {
           size: mobileFont,
           weight: 700,
         },
       },
       tooltip: {
-        callbacks: {
-          title: (context) => {
-            return context[0].label.replaceAll(",", " ");
-          },
-        },
+        filter: (tooltipItem) => tooltipItem.datasetIndex != 0,
       },
       legend: {
         display: false,
@@ -79,27 +116,50 @@ function Pda(props) {
       },
     },
   };
-  const labels = ["Проценты по кредитам", "Доходы от Активов / Непокрытие"];
+  const labels = [
+    ["Проценты по кредитам"],
+    ["Доходы от активов"],
+    ["Отклонение"],
+  ];
   const data = {
     labels,
     datasets: [
       {
         label: "",
-        data: planArr,
-        backgroundColor: ["rgba(231, 183, 63, 0.8)", "#85858590"],
+        data: invisibleArr,
+        backgroundColor: "transparent",
       },
       {
-        label: "",
+        label: "Отклонение",
+        data: diffArr,
+        backgroundColor: barColor,
+      },
+      {
+        label: "Проценты по кредитам",
+        data: planArr,
+        backgroundColor: "#EE2B4995",
+      },
+      {
+        label: "Доходы от активов",
         data: factArr,
-        backgroundColor: ["#0DA46F"],
+        backgroundColor: "#13efa3",
       },
     ],
   };
   return (
     <div className="analysisBarChartBlock smallChart">
-      <h3 className="chartTitle">
-        Покрытие Процентов по кредитам Доходами от Активов
-      </h3>
+      <div className="analysisHeader">
+        <h3 className="chartTitle">
+          Покрытие Процентов по кредитам Доходами от Активов
+        </h3>
+        <div className="chartSettingsBlock">
+          <div className="dateSelectBlock">
+            <Selectblue selectArr={years} />
+            <Selectblue selectArr={months} />
+          </div>
+          <Checkcustom label="С начала года" checked={false} />
+        </div>
+      </div>
       <Bar options={options} data={data} />
     </div>
   );

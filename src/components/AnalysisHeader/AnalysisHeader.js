@@ -6,20 +6,20 @@ function AnalysisHeader(props) {
   return (
     <div className={styles.analysisCategoryLinks}>
       <Link
-        to={"/FinAnalys"}
+        to={props.firstlink}
         className={
           props.activeLink ? styles.analysisLinkActive : styles.analysisLink
         }
       >
-        Денежные потоки
+        {props.firsttitle}
       </Link>
       <Link
-        to={"/AnalysisEfficiency"}
+        to={props.secondlink}
         className={
           props.activeLink ? styles.analysisLink : styles.analysisLinkActive
         }
       >
-        Финансовая эффективность
+        {props.secondtitle}
       </Link>
     </div>
   );

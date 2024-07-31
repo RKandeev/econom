@@ -8,7 +8,7 @@ import Matrix from "../Matrix/Matrix";
 function TestResultTabs(props) {
   return (
     <>
-      <Tabs className="react-tabs firstTestsTabs">
+      <Tabs className="react-tabs firstTestsTabs tabsInIndex">
         <TabList className="react-tabs__tab-list firstTestsTabList">
           <h4>Результаты тестирования:</h4>
           <Tab>

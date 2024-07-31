@@ -9,7 +9,7 @@ import {
 } from "react-spring";
 
 function Checkbox(props) {
-  const [isChecked, setIsChecked] = useState(true);
+  const [isChecked, setIsChecked] = useState(props.checked);
   const checkboxAnimationRef = useSpringRef();
   const checkboxAnimationStyle = useSpring({
     backgroundColor: isChecked ? "#3156A6" : "#fff",
@@ -35,7 +35,7 @@ function Checkbox(props) {
   );
 
   return (
-    <label>
+    <label className="customCheckbox">
       <input
         type="checkbox"
         onChange={() => {

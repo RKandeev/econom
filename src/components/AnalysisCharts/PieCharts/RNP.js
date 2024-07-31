@@ -12,6 +12,8 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import Selectblue from "../../Selectblue/Selectblue";
+import Checkcustom from "../../Checkcustom/Checkcustom";
 
 ChartJS.register(
   Title,
@@ -25,6 +27,21 @@ ChartJS.register(
 );
 
 function Rnp(props) {
+  let years = [2022, 2023];
+  let months = [
+    "Январь",
+    "Февраль",
+    "Март",
+    "Апрель",
+    "Май",
+    "Июнь",
+    "Июль",
+    "Август",
+    "Сентябрь",
+    "Октябрь",
+    "Ноябрь",
+    "Декабрь",
+  ];
   let planArr = [633552, 240778, 1915684];
   let mobile = true;
   let mobileFont = 16;
@@ -44,8 +61,7 @@ function Rnp(props) {
           dataArr.map((data) => {
             sum += data;
           });
-          let percentage =
-            value + "\n" + ((value * 100) / sum).toFixed(1) + "%";
+          let percentage = ((value * 100) / sum).toFixed(1) + "%";
           return percentage;
         },
         display: mobile,
@@ -58,7 +74,7 @@ function Rnp(props) {
         },
       },
       legend: {
-        display: true,
+        display: mobile,
         position: "bottom",
       },
     },
@@ -68,19 +84,33 @@ function Rnp(props) {
     labels,
     datasets: [
       {
-        label: "Норма",
+        label: "",
         data: planArr,
         backgroundColor: ["#13efa3", "#ecc565", "#EE2B4995"],
       },
     ],
   };
   return (
-    <div className="analysisPieChartBlock ">
-      <h3 className="chartTitle">
-        Распределение Доходов между Расходами, Накоплениями и Погашением долгов
-      </h3>
-      <Pie options={options} data={data} />
-    </div>
+    <>
+      <div className="analysisBlock">
+        <div className="analysisHeader">
+          <h3 className="chartTitle">
+            Распределение Доходов между Расходами, Накоплениями и Погашением
+            долгов
+          </h3>
+          <div className="chartSettingsBlock">
+            <div className="dateSelectBlock">
+              <Selectblue selectArr={years} />
+              <Selectblue selectArr={months} />
+            </div>
+            <Checkcustom label="С начала года" checked={false} />
+          </div>
+        </div>
+        <div className="analysisPieChartBlock ">
+          <Pie options={options} data={data} />
+        </div>
+      </div>
+    </>
   );
 }
 

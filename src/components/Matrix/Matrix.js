@@ -165,7 +165,7 @@ function Matrix(props) {
       x: {
         title: {
           display: true,
-          text: "Финансовый результат, %",
+          text: "Финансовые результаты, %",
           font: {
             size: 14,
             weight: 700,

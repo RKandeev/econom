@@ -4,13 +4,12 @@ import Header from "../../components/Header/Header";
 import Accountingleftnav from "../../components/Accountingleftnav/Accountingleftnav";
 import InlineCalendar from "../../components/InlineCalendar/InlineCalendar";
 import { Link } from "react-router-dom";
-import Progressadd from "../../components/Progressadd/Progressadd";
 import pocket from "../../img/pocket.svg";
 import IncomesLine from "../../components/IncomesLine/IncomesLine";
 import MobileNav from "../../components/MobileNav/MobileNav";
+import AccountingProgressadd from "../../components/Progressadd/AccountingProgressadd";
 
 function AccountingIncomes(props) {
-  let accountingDate = "12 сентября 2023";
   let progressValue = "77 276,12";
   let titleName = "Заработная плата";
   let titleNameType = "Фиксированная";
@@ -22,25 +21,29 @@ function AccountingIncomes(props) {
       <div className={styles.sitebody}>
         <Accountingleftnav />
         <div className={styles.accountingBody}>
-          <div className={styles.breadcrumb}>
-            <ul>
-              <li>
-                <Link to={"/accounting"}>Финансовый учет</Link>
-              </li>
-              <li>Доходы</li>
-            </ul>
-          </div>
-          <div className={styles.accountingHead}>
-            <h3>Доходы</h3>
-            <div className={styles.dot}>•</div>
-            <div className={styles.accountingDate}>{accountingDate}</div>
-          </div>
-          <Progressadd
+          <h2 className={styles.result_head}>
+            Финансовый учет
+            <div className={styles.breadcrumb}>
+              <ul>
+                <li>
+                  <Link to={"/accounting"}>Денежные потоки</Link>
+                </li>
+                <li>Доходы</li>
+              </ul>
+            </div>
+          </h2>
+
+          <AccountingProgressadd
             barcolor="#0DA46F"
             progressTitle="Учтено"
             progressValue={progressValue}
             btnTitle="Добавить"
             barwidth="627rem"
+            SelectHeader1="Категория дохода"
+            SelectHeader2="Статья дохода"
+            SelectHeader3="Тип дохода"
+            modalTitle="Доходы"
+            // selectModalVis="hidden"
           />
           <IncomesLine
             ttTitle="Это подсказка"
@@ -49,7 +52,7 @@ function AccountingIncomes(props) {
             titleNameType={titleNameType}
             incomesValue={incomesValue}
             valueColor="#0DA46F"
-            commentToltTitle="Это комментарий - бла бла"
+            commentToltTitle="Это комментарий - бла бла привет"
             notificDisplay="none"
           />
         </div>

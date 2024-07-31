@@ -12,6 +12,8 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import Selectblue from "../../Selectblue/Selectblue";
+import Checkcustom from "../../Checkcustom/Checkcustom";
 
 ChartJS.register(
   Title,
@@ -25,14 +27,52 @@ ChartJS.register(
 );
 
 function Sds(props) {
-  let planArr = [10.47, 9.44];
-  let factArr = [null, 1.03];
+  let years = [2022, 2023];
+  let months = [
+    "Январь",
+    "Февраль",
+    "Март",
+    "Апрель",
+    "Май",
+    "Июнь",
+    "Июль",
+    "Август",
+    "Сентябрь",
+    "Октябрь",
+    "Ноябрь",
+    "Декабрь",
+  ];
+  let planArr = [30];
+  let factArr = [40];
+  let diffArr = [];
+  let invisibleArr = [];
+  let barColor = [];
+  if (planArr[0] >= factArr[0]) {
+    invisibleArr = [null, null, factArr[0]];
+    diffArr = [planArr[0] - factArr[0]];
+    barColor.push("#EE2B49");
+  } else {
+    invisibleArr = [null, null, planArr[0]];
+    diffArr = [factArr[0] - planArr[0]];
+    barColor.push("#0DA46F");
+  }
+  planArr = [planArr[0], null, null];
+  factArr = [null, factArr[0], null];
+  diffArr = [null, null, diffArr[0]];
+
+  diffArr = diffArr.map(function (val, i) {
+    return val === 0 ? null : val;
+  });
+  planArr = planArr.map(function (val, i) {
+    return val === 0 ? null : val;
+  });
+
   let mobile = true;
   let mobileFont = 16;
   let mobileColor = "#fff";
   if (window.outerWidth < 450) {
     mobile = false;
-    mobileColor = "#000";
+    mobileColor = "#fff";
     mobileFont = 12;
   }
   const options = {
@@ -47,8 +87,8 @@ function Sds(props) {
       y: {
         stacked: true,
         title: {
-          display: false,
-          text: "тыс. ₽",
+          display: true,
+          text: "%",
           font: {
             size: 14,
             weight: 700,
@@ -59,28 +99,16 @@ function Sds(props) {
     responsive: true,
     plugins: {
       datalabels: {
-        formatter: (value, ctx) => {
-          let sum = 0;
-          let dataArr = ctx.chart.data.datasets[0].data;
-          dataArr.map((data) => {
-            sum += data;
-          });
-          let percentage = value + "%";
-          return percentage;
-        },
-        display: mobile,
+        display: false,
         color: mobileColor,
+
         font: {
           size: mobileFont,
           weight: 700,
         },
       },
       tooltip: {
-        callbacks: {
-          title: (context) => {
-            return context[0].label.replaceAll(",", " ");
-          },
-        },
+        filter: (tooltipItem) => tooltipItem.datasetIndex != 0,
       },
       legend: {
         display: false,
@@ -88,25 +116,50 @@ function Sds(props) {
       },
     },
   };
-  const labels = ["Стоимость Заемного капитала", "Доходность капитала"];
+  const labels = [
+    ["Стоимость долгов"],
+    ["Доходность собственного капитала"],
+    ["Отклонение"],
+  ];
   const data = {
     labels,
     datasets: [
       {
         label: "",
-        data: planArr,
-        backgroundColor: ["rgba(231, 183, 63, 0.8)", "#0DA46F"],
+        data: invisibleArr,
+        backgroundColor: "transparent",
       },
       {
-        label: "",
+        label: "Отклонение",
+        data: diffArr,
+        backgroundColor: barColor,
+      },
+      {
+        label: "Стоимость долгов",
+        data: planArr,
+        backgroundColor: "#EE2B4995",
+      },
+      {
+        label: "Доходность собственного капитала",
         data: factArr,
-        backgroundColor: ["#EE2B4995"],
+        backgroundColor: "#13efa3",
       },
     ],
   };
   return (
     <div className="analysisBarChartBlock smallChart">
-      <h3 className="chartTitle">Чистый Собственный доход</h3>
+      <div className="analysisHeader">
+        <h3 className="chartTitle">
+          Сравнение доходности собственного капитала и стоимости долгов
+        </h3>
+        <div className="chartSettingsBlock">
+          <div className="dateSelectBlock">
+            <Selectblue selectArr={years} />
+            <Selectblue selectArr={months} />
+          </div>
+          <Checkcustom label="С начала года" checked={false} />
+        </div>
+      </div>
       <Bar options={options} data={data} />
     </div>
   );

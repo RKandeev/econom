@@ -135,7 +135,7 @@ function BarChartAim(props) {
       {
         label: "",
         data: positiveArr,
-        backgroundColor: "#0DA46F95",
+        backgroundColor: "#13efa3",
       },
       {
         label: "",

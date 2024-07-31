@@ -3,12 +3,29 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import "./AnalysisSensorCharts.scss";
 import AnimatedNumbers from "react-animated-numbers";
+import Selectblue from "../../Selectblue/Selectblue";
+import Checkcustom from "../../Checkcustom/Checkcustom";
 function Lao(props) {
+  let years = [2022, 2023];
+  let months = [
+    "Январь",
+    "Февраль",
+    "Март",
+    "Апрель",
+    "Май",
+    "Июнь",
+    "Июль",
+    "Август",
+    "Сентябрь",
+    "Октябрь",
+    "Ноябрь",
+    "Декабрь",
+  ];
   const [ser3, setSer3] = useState(23);
   let chartValue = 0;
   let standartValue = 8.5;
-  if (ser3 >= 100) {
-    chartValue = 100;
+  if (ser3 >= 50) {
+    chartValue = 50;
   } else if (ser3 <= 0) {
     chartValue = 0;
   } else {
@@ -58,7 +75,7 @@ function Lao(props) {
     // the value axis
     yAxis: {
       min: 0,
-      max: 100,
+      max: 50,
       tickPixelInterval: tickPixelInter,
       tickPosition: "inside",
       tickColor: Highcharts.defaultOptions.chart.backgroundColor || "#FFFFFF",
@@ -75,7 +92,7 @@ function Lao(props) {
       plotBands: [
         {
           from: 20,
-          to: 100,
+          to: 50,
           color: "#0DA46F",
           thickness: thick,
         },
@@ -144,7 +161,16 @@ function Lao(props) {
   }
   return (
     <div className="sensorChartBlockHome AnalysisSensorChartBlock ">
-      <h3 className="chartTitle">Ликвидность Активов</h3>
+      <div className="analysisHeader">
+        <h3 className="chartTitle">Ликвидность активов</h3>
+        <div className="chartSettingsBlock">
+          <div className="dateSelectBlock">
+            <Selectblue selectArr={years} />
+            <Selectblue selectArr={months} />
+          </div>
+          <Checkcustom label="С начала года" checked={true} />
+        </div>
+      </div>
       <div className="sensorChart">
         <HighchartsReact highcharts={Highcharts} options={options} />
       </div>

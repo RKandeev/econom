@@ -17,7 +17,7 @@
   align-items: center;
 }
 .finline{
-  padding: 8rem;
+  padding: 8rem 0 8rem 8rem;
   margin-top: 8rem;
   :last-child{
     margin-left: auto;
@@ -56,12 +56,62 @@
   font-weight: 700;
   justify-self: flex-end;
   margin-left: auto;
+  border: 1rem solid #C9CFE6;
+  padding: 8rem 16rem;
+  border-radius: 8rem;
+  min-width: 125rem;
+  text-align: right;
+  &:hover{
+    background-color: #C9CFE690;}
 }
 .tabHeaderBlock{
   display: flex;
   gap: 8rem;
   :last-child{
     margin-left: auto;
+  }
+}
+.notificBlocks {
+  .notificTooltip {
+    border-bottom: 1rem solid #ABB0C3;
+    padding-bottom: 16rem;
+    padding-top: 16rem;
+    h4 {
+      font-size: 14rem;
+      margin: 0;
+    }
+
+    .notificBottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 4rem;
+    }
+
+    .notificDate {
+      display: flex;
+      font-size: 12rem;
+      align-items: center;
+      gap: 4rem;
+      img {
+        width: 16rem;
+        height: 16rem;
+        border: none;
+        padding: 0;
+      }
+    }
+
+    .notificValue {
+      font-size: 16rem;
+      font-weight: 700;
+    }
+  }
+  :last-child{
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  :first-child{
+    padding-top: 0;
   }
 }
 

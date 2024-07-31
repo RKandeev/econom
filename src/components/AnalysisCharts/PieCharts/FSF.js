@@ -13,6 +13,8 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import Selectblue from "../../Selectblue/Selectblue";
+import Checkcustom from "../../Checkcustom/Checkcustom";
 
 ChartJS.register(
   Title,
@@ -27,6 +29,21 @@ ChartJS.register(
 );
 
 function Fsf(props) {
+  let years = [2022, 2023];
+  let months = [
+    "Январь",
+    "Февраль",
+    "Март",
+    "Апрель",
+    "Май",
+    "Июнь",
+    "Июль",
+    "Август",
+    "Сентябрь",
+    "Октябрь",
+    "Ноябрь",
+    "Декабрь",
+  ];
   let planArr = [73, 60, 80, 82, 84];
   let factArr = [100, 100, 100, 100, 100];
   let mobile = true;
@@ -40,16 +57,21 @@ function Fsf(props) {
 
   const options = {
     scales: {
-      y: {
-        display: false,
-      },
-      x: {
-        display: false,
+      r: {
+        ticks: {
+          display: false, // Remove vertical numbers
+        },
+        grid: {
+          display: false, // Removes the circulair lines
+        },
       },
     },
     borderWidth: 1,
     responsive: true,
     plugins: {
+      tooltip: {
+        enabled: false,
+      },
       datalabels: {
         formatter: (value, ctx) => {
           let labels = ctx.chart.data.labels[ctx.dataIndex];
@@ -60,11 +82,11 @@ function Fsf(props) {
         },
         color: mobileColor,
         textAlign: "center",
-        anchor: "top",
+        anchor: "bottom",
         align: "end",
-        offset: -20,
+        offset: -35,
         font: {
-          size: mobileFont,
+          size: 12,
           weight: 700,
         },
       },
@@ -99,22 +121,36 @@ function Fsf(props) {
         label: "",
         data: factArr,
         backgroundColor: [
-          "#EE2B4990",
-          "#EE2B4990",
-          "#EE2B4990",
-          "#EE2B4990",
+          "#EE2B4995",
+          "#EE2B4995",
+          "#EE2B4995",
+          "#EE2B4995",
           "#EE2B49",
         ],
       },
     ],
   };
   return (
-    <div className="analysisPieChartBlock ">
-      <h3 className="chartTitle">
-        Финансовые Результаты (степень выполнения показателей)
-      </h3>
-      <PolarArea options={options} data={data} />
-    </div>
+    <>
+      <div className="analysisBlock">
+        <div className="analysisHeader">
+          <h3 className="chartTitle">
+            Финансовое состояние <br />
+            (степень выполнения показателей)
+          </h3>
+          <div className="chartSettingsBlock">
+            <div className="dateSelectBlock">
+              <Selectblue selectArr={years} />
+              <Selectblue selectArr={months} />
+            </div>
+            <Checkcustom label="С начала года" checked={true} />
+          </div>
+        </div>
+        <div className="analysisPieChartBlock ">
+          <PolarArea options={options} data={data} />
+        </div>
+      </div>
+    </>
   );
 }
 

@@ -24,7 +24,7 @@ function Modelingleftnav(props) {
               />
             </div>
             <div className={`${styles.barblock}`}>
-              <Menulink img={mycourse} txt="Мои курсы" linksAdress="/Study" />
+              <Menulink img={mycourse} txt="Обучение" linksAdress="/Study" />
             </div>
             <div className={styles.lineblock2}></div>
           </div>

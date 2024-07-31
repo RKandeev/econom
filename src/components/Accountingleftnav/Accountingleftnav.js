@@ -20,17 +20,17 @@ function Accountingleftnav(props) {
               <Menulink img={myresults} txt="Мои результаты" linksAdress="/#" />
             </div>
             <div className={`${styles.barblock}`}>
-              <Menulink img={mycourse} txt="Мои курсы" linksAdress="/#" />
+              <Menulink img={mycourse} txt="Обучение" linksAdress="/#" />
             </div>
             <div className={styles.lineblock2}></div>
           </div>
           <div className={styles.bar}>
-            <h3>Мой финансист</h3>
+            <h3>Панель управления</h3>
             <div className={styles.barblock}>
               <Menulink
                 img={finplan}
                 txt="Финансовое планирование"
-                linksAdress="/#"
+                linksAdress="/finplan"
               />
             </div>
             <div className={styles.activeblock}>

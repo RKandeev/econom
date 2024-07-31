@@ -12,6 +12,8 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import Selectblue from "../../Selectblue/Selectblue";
+import Checkcustom from "../../Checkcustom/Checkcustom";
 
 ChartJS.register(
   Title,
@@ -25,6 +27,23 @@ ChartJS.register(
 );
 
 function Res(props) {
+  let years = [2022, 2023];
+  let months = [
+    "Январь",
+    "Февраль",
+    "Март",
+    "Апрель",
+    "Май",
+    "Июнь",
+    "Июль",
+    "Август",
+    "Сентябрь",
+    "Октябрь",
+    "Ноябрь",
+    "Декабрь",
+  ];
+  let category = ["Категория1", "Категория2", "Категория3"];
+
   let planArr = [0, 1100, 2320, 3800, 800, 1760, 0];
   planArr = planArr.map(function (val, i) {
     return val === 0 ? null : val;
@@ -72,7 +91,7 @@ function Res(props) {
     responsive: true,
     plugins: {
       datalabels: {
-        display: mobile,
+        display: false,
         color: mobileColor,
         anchor: "center",
         font: {
@@ -106,7 +125,7 @@ function Res(props) {
     labels,
     datasets: [
       {
-        label: "План",
+        label: "Факт",
         data: planArr,
         backgroundColor: ["#EE2B4995"],
       },
@@ -114,7 +133,22 @@ function Res(props) {
   };
   return (
     <div className="analysisBarChartBlock smallChart">
-      <h3 className="chartTitle">Резерв для Экономии (Развлечения и досуг)</h3>
+      <div className="analysisHeader">
+        <h3 className="chartTitle">
+          Резерв для экономии <br />
+          (по статьям расходов)
+        </h3>
+        <div className="chartSettingsBlock">
+          <div className="dateSelectBlock">
+            <Selectblue selectArr={years} />
+            <Selectblue selectArr={months} />
+          </div>
+          <Checkcustom label="С начала года" checked={false} />
+        </div>
+      </div>
+      <div className="categorySelect">
+        <Selectblue selectArr={category} />
+      </div>
       <Bar options={options} data={data} />
     </div>
   );

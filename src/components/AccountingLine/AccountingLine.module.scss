@@ -1,0 +1,120 @@
+.finlinestatus{
+  background-color: #F0F5FA;
+  border-radius: 50%;
+  padding: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20rem;
+  img{
+    width: 24rem;
+    font-size: 12rem;
+    height: 24rem;
+  }
+}
+.finline, .finlinetitle, .finlineinfo{
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  font-size: 14px;
+  color: #8e9dbf;
+}
+.finline{
+  padding: 8rem 0 8rem 8rem;
+  margin-top: 8rem;
+  :last-child{
+    margin-left: auto;
+  }
+}
+.finlinetitle{
+  width: 420rem;
+  justify-content: flex-start;
+  :last-child{
+    margin-left: 0;
+  }
+}
+.titlename{
+  font-size: 16rem;
+  font-weight: 700;
+  color: #464E5F;
+}
+.titleimg img{
+  height: 32rem;
+  width: 32rem;
+  margin-right: 12rem;
+}
+.graph, .finlinevalue, .finlinestatus, .titleabout {
+  cursor: pointer;
+}
+.graph{
+  padding-right: 20rem;
+  border-right: 1rem solid #C9CFE6;
+}
+.notifications{
+  padding-left: 20rem;
+}
+.finlinevalue{
+  color: #ABB0C3;
+  font-size: 16rem;
+  font-weight: 700;
+  justify-self: flex-end;
+  margin-left: auto;
+  border: 1rem solid #C9CFE6;
+  padding: 8rem 16rem;
+  border-radius: 8rem;
+  min-width: 125rem;
+  text-align: right;
+  &:hover{
+    background-color: #C9CFE690;}
+}
+.tabHeaderBlock{
+  display: flex;
+  gap: 8rem;
+  :last-child{
+    margin-left: auto;
+  }
+}
+.notificBlocks {
+  .notificTooltip {
+    border-bottom: 1rem solid #ABB0C3;
+    padding-bottom: 16rem;
+    padding-top: 16rem;
+    h4 {
+      font-size: 14rem;
+      margin: 0;
+    }
+
+    .notificBottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 4rem;
+    }
+
+    .notificDate {
+      display: flex;
+      font-size: 12rem;
+      align-items: center;
+      gap: 4rem;
+      img {
+        width: 16rem;
+        height: 16rem;
+        border: none;
+        padding: 0;
+      }
+    }
+
+    .notificValue {
+      font-size: 16rem;
+      font-weight: 700;
+    }
+  }
+  :last-child{
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  :first-child{
+    padding-top: 0;
+  }
+}
+

@@ -12,6 +12,8 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import Selectblue from "../../Selectblue/Selectblue";
+import Checkcustom from "../../Checkcustom/Checkcustom";
 
 ChartJS.register(
   Title,
@@ -25,8 +27,22 @@ ChartJS.register(
 );
 
 function Ssd(props) {
+  let years = [2022, 2023];
+  let months = [
+    "Январь",
+    "Февраль",
+    "Март",
+    "Апрель",
+    "Май",
+    "Июнь",
+    "Июль",
+    "Август",
+    "Сентябрь",
+    "Октябрь",
+    "Ноябрь",
+    "Декабрь",
+  ];
   let planArr = [1495530, 0, 770400, 0, 0, 0];
-
   let mobile = true;
   let mobileFont = 16;
   let mobileColor = "#fff";
@@ -45,8 +61,7 @@ function Ssd(props) {
           dataArr.map((data) => {
             sum += data;
           });
-          let percentage =
-            value + "\n" + ((value * 100) / sum).toFixed(1) + "%";
+          let percentage = ((value * 100) / sum).toFixed(0) + "%";
           return percentage;
         },
         display: mobile,
@@ -59,7 +74,7 @@ function Ssd(props) {
         },
       },
       legend: {
-        display: true,
+        display: false,
         position: "bottom",
       },
     },
@@ -78,15 +93,31 @@ function Ssd(props) {
       {
         label: "",
         data: planArr,
-        backgroundColor: ["#85858590"],
+        backgroundColor: ["#13efa3"],
       },
     ],
   };
   return (
-    <div className="analysisPieChartBlock ">
-      <h3 className="chartTitle">Структура Расходов: по приоритетности</h3>
-      <Pie options={options} data={data} />
-    </div>
+    <>
+      <div className="analysisBlock">
+        <div className="analysisHeader">
+          <h3 className="chartTitle">
+            Структура собственных доходов <br />
+            (по категориям)
+          </h3>
+          <div className="chartSettingsBlock">
+            <div className="dateSelectBlock">
+              <Selectblue selectArr={years} />
+              <Selectblue selectArr={months} />
+            </div>
+            <Checkcustom label="С начала года" checked={false} />
+          </div>
+        </div>
+        <div className="analysisPieChartBlock ">
+          <Pie options={options} data={data} />
+        </div>
+      </div>
+    </>
   );
 }
 

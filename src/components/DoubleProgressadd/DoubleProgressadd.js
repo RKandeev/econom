@@ -52,16 +52,6 @@ function DoubleProgressadd(props) {
           <Mybtn btnTitle="Добавить" />
         </div>
       </div>
-      <IncomesLine
-        ttTitle="Это подсказка"
-        titleImg={credit}
-        titleName={titleName}
-        titleNameType={titleNameType}
-        incomesValue={incomesValue}
-        valueColor="#0DA46F"
-        commentToltTitle="Это комментарий - бла бла"
-        notificDisplay="block"
-      />
       <Modal
         modalTitle="Платежи по кредитам"
         active={addModalActive}
@@ -83,7 +73,12 @@ function DoubleProgressadd(props) {
               <form id="newIncomeForm">
                 <SelectModal selectArr={selectArr1} SelectHeader="Категория" />
                 <SelectModal selectArr={selectArr2} SelectHeader="Статья" />
-                <div className={styles.expensesBlock}>
+                <div
+                  className={styles.expensesBlock}
+                  style={{
+                    display: `${props.expensesBlock}`,
+                  }}
+                >
                   <div className={styles.lastExpenses}>
                     <h5>Фактические расходы за&nbsp;предыдущий месяц</h5>
                     <div className={styles.expensesValue}>

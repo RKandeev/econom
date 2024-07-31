@@ -1,0 +1,77 @@
+.analysisPieChartBlock{
+  margin: 0 auto;
+  width: 20vw;
+  @media (max-width: 480px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: initial;
+  }
+  canvas{
+    @media (max-width: 480px) {
+      width: 100%!important;
+      height: 170rem!important;
+    }
+
+  }
+
+
+  .chartTitle{
+    margin-bottom: 0;
+    text-align: center;
+    width: fit-content;
+    @media (max-width: 480px) {
+      font-size: 16rem;
+      text-align: center;
+    }
+  }
+}
+.analysisPieChartBlock.FinplanPieChart{
+  width: 30vw;
+}
+.chartSettingsBlock {
+  display: flex;
+  justify-content: center;
+  gap: 10rem;
+  margin-bottom: 20rem;
+  :nth-child(2) {
+    flex-grow: 0;
+  }
+
+  .dateSelectBlock {
+    display: flex;
+    gap: 20rem;
+  }
+}
+.smallAnalysisChart{
+  width: 25vw;
+}
+.smallAnalysisChart2{
+  width: 22vw;
+}
+.analysisBlock{
+  .analysisHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16rem;
+    margin-bottom: 20rem;
+    .chartSettingsBlock{
+      margin-bottom: 0;
+    }
+    h3{
+      color: #464E5F;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    .customCheckbox{
+      min-width: fit-content;
+      flex-grow: 0;
+    }
+
+  }
+  .chartTitle{
+    margin-bottom: 10rem;
+    text-align: left;
+  }
+}

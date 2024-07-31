@@ -1,6 +1,7 @@
 .finalbody{
   margin: 0 40rem;
   width: 768rem;
+  margin-bottom: 50rem;
 }
 .headblock{
   display: flex;
@@ -21,13 +22,9 @@
   font-weight: 700;
   display: flex;
   color: #464E5F;
-  .month{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 12rem 8rem;
-    gap: 8rem;
-  }
+  justify-content: space-between;
+
+
 }
 img{
   width: 16rem;

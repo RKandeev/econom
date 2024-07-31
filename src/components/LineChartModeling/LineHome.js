@@ -31,12 +31,11 @@ function LineHome(props) {
   let topArr = [];
   let bottomArr = [];
   let mobile = true;
-  let mobileFont = 16;
-  let mobileColor = "#fff";
+
   if (window.outerWidth < 450) {
     mobile = false;
-    mobileColor = "#000";
-    mobileFont = 12;
+    // mobileColor = "#000";
+    // mobileFont = 12;
   }
   let arr = [
     1, 1.4, 1.8, 2.2, 2.6, 3.1, 3.5, 3.9, 4.3, 4.8, 5.2, 5.6, 6, 6.5, 6.9, 7.3,

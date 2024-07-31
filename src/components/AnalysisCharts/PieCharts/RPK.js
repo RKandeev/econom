@@ -12,6 +12,8 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import Selectblue from "../../Selectblue/Selectblue";
+import Checkcustom from "../../Checkcustom/Checkcustom";
 
 ChartJS.register(
   Title,
@@ -25,6 +27,21 @@ ChartJS.register(
 );
 
 function Rpk(props) {
+  let years = [2022, 2023];
+  let months = [
+    "Январь",
+    "Февраль",
+    "Март",
+    "Апрель",
+    "Май",
+    "Июнь",
+    "Июль",
+    "Август",
+    "Сентябрь",
+    "Октябрь",
+    "Ноябрь",
+    "Декабрь",
+  ];
   let planArr = [38800, 13074, 8560, 51355];
   let mobile = true;
   let mobileFont = 16;
@@ -44,8 +61,7 @@ function Rpk(props) {
           dataArr.map((data) => {
             sum += data;
           });
-          let percentage =
-            value + "\n" + ((value * 100) / sum).toFixed(1) + "%";
+          let percentage = ((value * 100) / sum).toFixed(1) + "%";
           return percentage;
         },
         display: mobile,
@@ -73,17 +89,33 @@ function Rpk(props) {
     labels,
     datasets: [
       {
-        label: "Норма",
+        label: "Факт",
         data: planArr,
         backgroundColor: ["#EE2B49", "#EE2B4995", "#ecc565", "#13efa3"],
       },
     ],
   };
   return (
-    <div className="analysisPieChartBlock ">
-      <h3 className="chartTitle">Структура Расходов: по критичности</h3>
-      <Pie options={options} data={data} />
-    </div>
+    <>
+      <div className="analysisBlock">
+        <div className="analysisHeader">
+          <h3 className="chartTitle">
+            Ранжирование расходов по <br />
+            возможности их сокращения
+          </h3>
+          <div className="chartSettingsBlock">
+            <div className="dateSelectBlock">
+              <Selectblue selectArr={years} />
+              <Selectblue selectArr={months} />
+            </div>
+            <Checkcustom label="С начала года" checked={false} />
+          </div>
+        </div>
+        <div className="analysisPieChartBlock smallAnalysisChart">
+          <Pie options={options} data={data} />
+        </div>
+      </div>
+    </>
   );
 }
 

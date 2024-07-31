@@ -3,14 +3,31 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import "./AnalysisSensorCharts.scss";
 import AnimatedNumbers from "react-animated-numbers";
+import Selectblue from "../../Selectblue/Selectblue";
+import Checkcustom from "../../Checkcustom/Checkcustom";
 function Nao(props) {
+  let years = [2022, 2023];
+  let months = [
+    "Январь",
+    "Февраль",
+    "Март",
+    "Апрель",
+    "Май",
+    "Июнь",
+    "Июль",
+    "Август",
+    "Сентябрь",
+    "Октябрь",
+    "Ноябрь",
+    "Декабрь",
+  ];
   const [ser3, setSer3] = useState(23);
   let chartValue = 0;
   let standartValue = 8.5;
-  if (ser3 >= 50) {
-    chartValue = 50;
-  } else if (ser3 <= -50) {
-    chartValue = -50;
+  if (ser3 >= 30) {
+    chartValue = 30;
+  } else if (ser3 <= -30) {
+    chartValue = -30;
   } else {
     chartValue = ser3;
   }
@@ -57,8 +74,8 @@ function Nao(props) {
 
     // the value axis
     yAxis: {
-      min: -50,
-      max: 50,
+      min: -30,
+      max: 30,
       tickPixelInterval: tickPixelInter,
       tickPosition: "inside",
       tickColor: Highcharts.defaultOptions.chart.backgroundColor || "#FFFFFF",
@@ -75,7 +92,7 @@ function Nao(props) {
       plotBands: [
         {
           from: 10,
-          to: 50,
+          to: 30,
           color: "#0DA46F",
           thickness: thick,
         },
@@ -86,7 +103,7 @@ function Nao(props) {
           thickness: thick,
         },
         {
-          from: -50,
+          from: -30,
           to: 0,
           color: "#EE2B49",
           thickness: thick,
@@ -170,9 +187,16 @@ function Nao(props) {
   }
   return (
     <div className="sensorChartBlockHome AnalysisSensorChartBlock ">
-      <h3 className="chartTitle">
-        Доходность Собственного Капитала (выполнение норматива)
-      </h3>
+      <div className="analysisHeader">
+        <h3 className="chartTitle">Накопление активов</h3>
+        <div className="chartSettingsBlock">
+          <div className="dateSelectBlock">
+            <Selectblue selectArr={years} />
+            <Selectblue selectArr={months} />
+          </div>
+          <Checkcustom label="С начала года" checked={true} />
+        </div>
+      </div>
       <div className="sensorChart">
         <HighchartsReact highcharts={Highcharts} options={options} />
       </div>

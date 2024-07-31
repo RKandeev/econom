@@ -12,6 +12,8 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import Selectblue from "../../Selectblue/Selectblue";
+import Checkcustom from "../../Checkcustom/Checkcustom";
 
 ChartJS.register(
   Title,
@@ -25,15 +27,38 @@ ChartJS.register(
 );
 
 function Fba(props) {
+  let years = [2022, 2023];
+  let months = [
+    "Январь",
+    "Февраль",
+    "Март",
+    "Апрель",
+    "Май",
+    "Июнь",
+    "Июль",
+    "Август",
+    "Сентябрь",
+    "Октябрь",
+    "Ноябрь",
+    "Декабрь",
+  ];
   let otherArr = [null, null];
   let factArr = [null, null];
   let finActiveArr = [2582051, null];
   let carArr = [1700000, null];
   let flatArr = [5000000, 3811552];
-  let moneyArr = [81879, 5552378];
+  let moneyArr = [null, null, 5552378];
   let mobile = true;
   let mobileFont = 16;
   let mobileColor = "#fff";
+  let invisibleArr = [];
+  let diffArr = [81879, null, null];
+  let debt = [flatArr[1]];
+  if (debt[0] >= moneyArr[2]) {
+    invisibleArr = [null, null, moneyArr[2]];
+  } else {
+    invisibleArr = [null, null, debt[0]];
+  }
   if (window.outerWidth < 450) {
     mobile = false;
     mobileColor = "#000";
@@ -63,7 +88,7 @@ function Fba(props) {
     responsive: true,
     plugins: {
       datalabels: {
-        display: mobile,
+        display: false,
         color: mobileColor,
         font: {
           size: mobileFont,
@@ -83,45 +108,80 @@ function Fba(props) {
       },
     },
   };
-  const labels = ["Активы", "Собственный капитал / долги"];
+  const labels = ["Активы", "долги", "Собственный капитал"];
   const data = {
     labels,
     datasets: [
       {
+        label: "",
+        data: invisibleArr,
+        backgroundColor: "transparent",
+      },
+
+      {
+        label: "Деньги",
+        data: moneyArr,
+        backgroundColor: ["#0DA46F"],
+        borderColor: "#fff",
+        borderWidth: 2,
+      },
+      {
         label: "Прочее имущество",
         data: otherArr,
-        backgroundColor: ["#85858590"],
+        borderColor: "#fff",
+        backgroundColor: ["#13efa3"],
+        borderWidth: 2,
       },
       {
         label: "Незавершенное строительство",
         data: factArr,
-        backgroundColor: ["#85858590"],
+        borderColor: ["#fff"],
+        backgroundColor: ["#13efa3"],
+        borderWidth: 2,
       },
       {
         label: "Финансовые активы",
         data: finActiveArr,
-        backgroundColor: ["#85858590"],
+        backgroundColor: ["#13efa3"],
+        borderWidth: 2,
+        borderColor: ["#fff"],
       },
       {
         label: "Транспорт",
         data: carArr,
-        backgroundColor: ["#85858590"],
+        backgroundColor: ["#13efa3"],
+        borderWidth: 2,
+        borderColor: ["#fff"],
       },
       {
         label: "Недвижимость",
         data: flatArr,
-        backgroundColor: ["#85858590"],
+        backgroundColor: ["#13efa3", "#EE2B4995"],
+        borderWidth: 2,
+        borderColor: ["#fff"],
       },
+
       {
         label: "Деньги",
-        data: moneyArr,
-        backgroundColor: ["#85858590", "#0DA46F"],
+        data: diffArr,
+        backgroundColor: ["#13efa3"],
+        borderWidth: 2,
+        borderColor: ["#fff"],
       },
     ],
   };
   return (
     <div className="analysisBarChartBlock smallChart">
-      <h3 className="chartTitle">Чистый Собственный доход</h3>
+      <div className="analysisHeader">
+        <h3 className="chartTitle">Финансовый баланс</h3>
+        <div className="chartSettingsBlock">
+          <div className="dateSelectBlock">
+            <Selectblue selectArr={years} />
+            <Selectblue selectArr={months} />
+          </div>
+          <Checkcustom label="С начала года" checked={false} />
+        </div>
+      </div>
       <Bar options={options} data={data} />
     </div>
   );

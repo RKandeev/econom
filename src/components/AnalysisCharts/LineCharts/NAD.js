@@ -14,6 +14,8 @@ import {
   PointElement,
   Filler,
 } from "chart.js";
+import Selectblue from "../../Selectblue/Selectblue";
+import Checkcustom from "../../Checkcustom/Checkcustom";
 
 ChartJS.register(
   Title,
@@ -29,6 +31,21 @@ ChartJS.register(
 );
 
 function Nad(props) {
+  let years = [2022, 2023];
+  let months = [
+    "Январь",
+    "Февраль",
+    "Март",
+    "Апрель",
+    "Май",
+    "Июнь",
+    "Июль",
+    "Август",
+    "Сентябрь",
+    "Октябрь",
+    "Ноябрь",
+    "Декабрь",
+  ];
   let LinesColor = localStorage.getItem("LinesColorFlat");
   let topArr = [];
   let bottomArr = [];
@@ -44,6 +61,7 @@ function Nad(props) {
   let arr = [16, -30, 29, 28, 27, 25, 22, 15, 16, 15, 16, 15];
   let maxValue = Math.max(...arr);
   let minValue = Math.min(...arr);
+  let boxValue = (parseInt(maxValue / 10, 10) + 1) * 10;
   console.log(minValue);
 
   const lineHomeOptions = {
@@ -57,7 +75,7 @@ function Nad(props) {
             xMin: 0,
             xMax: 12,
             yMin: 10,
-            yMax: maxValue,
+            yMax: boxValue,
             backgroundColor: "#13efa3",
           },
           box2: {
@@ -105,8 +123,8 @@ function Nad(props) {
         stacked: true,
         display: true,
         title: {
-          display: false,
-          text: "млн. ₽",
+          display: true,
+          text: "%",
           font: {
             size: 12,
             weight: 700,
@@ -150,7 +168,16 @@ function Nad(props) {
 
   return (
     <div className="chart lineChartModeling AnalysisLineChartBlock">
-      <h3 className="chartTitle">Моя доходность (Динамика)</h3>
+      <div className="analysisHeader">
+        <h3 className="chartTitle">Накопление активов</h3>
+        <div className="chartSettingsBlock">
+          <div className="dateSelectBlock">
+            <Selectblue selectArr={years} />
+            <Selectblue selectArr={months} />
+          </div>
+          <Checkcustom label="С начала года" checked={true} />
+        </div>
+      </div>
       <Line options={lineHomeOptions} data={lineHomeData} />
     </div>
   );

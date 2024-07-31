@@ -87,7 +87,7 @@ const Test = () => {
     }
   };
 
-  let checking = [];
+  // let checking = [];
   const onAnswerSelected = (answer, index) => {
     setSelectedAnswerIndex(selectedAnswer.push(answer));
     console.log(selectedAnswer);
@@ -113,7 +113,7 @@ const Test = () => {
     // }
   };
 
-  const addLeadingZero = (number) => (number > 9 ? number : `0${number}`);
+  // const addLeadingZero = (number) => (number > 9 ? number : `0${number}`);
   let activeNum = activeQuestion + 1;
   let dynamicWidth = "calc(100% * " + activeNum + "/" + questions.length + ")";
 

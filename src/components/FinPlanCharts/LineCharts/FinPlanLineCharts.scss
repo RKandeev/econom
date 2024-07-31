@@ -1,0 +1,26 @@
+.AnalysisLineChartBlock{
+  width: 55vw;
+  .chartSettingsBlock{
+    margin-bottom: 0;
+  }
+  .analysisHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16rem;
+    h3{
+      color: #464E5F;
+      margin-top: 0;
+      margin-bottom: 0;
+      text-align: left;
+      font-size: 21rem;
+    }
+    .customCheckbox{
+      min-width: fit-content;
+      flex-grow: 0;
+    }
+    .checkbox{
+      width: 16rem;
+    }
+  }
+}

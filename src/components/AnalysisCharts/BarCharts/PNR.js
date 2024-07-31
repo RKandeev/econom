@@ -3,6 +3,8 @@ import "./AnalysisBarCharts.scss";
 import { Bar } from "react-chartjs-2";
 import gradient from "chartjs-plugin-gradient";
 import ChartDataLabels from "chartjs-plugin-datalabels";
+import annotationPlugin from "chartjs-plugin-annotation";
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -11,7 +13,10 @@ import {
   Title,
   Tooltip,
   Legend,
+  LineController,
 } from "chart.js";
+import Selectblue from "../../Selectblue/Selectblue";
+import Checkcustom from "../../Checkcustom/Checkcustom";
 
 ChartJS.register(
   Title,
@@ -21,11 +26,28 @@ ChartJS.register(
   CategoryScale,
   LinearScale,
   gradient,
-  ChartDataLabels
+  ChartDataLabels,
+  LineController,
+  annotationPlugin
 );
 
 function Pnr(props) {
-  let planArr = [56900, 37000, 38549];
+  let years = [2022, 2023];
+  let months = [
+    "Январь",
+    "Февраль",
+    "Март",
+    "Апрель",
+    "Май",
+    "Июнь",
+    "Июль",
+    "Август",
+    "Сентябрь",
+    "Октябрь",
+    "Ноябрь",
+    "Декабрь",
+  ];
+  let planArr = [56900, 57000, 38549];
   let factArr = [64429, 44360, 38549];
   let diffArr = [
     planArr[0] - factArr[0],
@@ -35,9 +57,9 @@ function Pnr(props) {
   let barColor = [];
   diffArr.forEach((e) => {
     if (e >= 0) {
-      barColor.push("#0DA46F");
+      barColor.push("#13efa3");
     } else {
-      barColor.push("#EE2B4995");
+      barColor.push("#EE2B49");
     }
   });
 
@@ -57,7 +79,7 @@ function Pnr(props) {
           maxRotation: 0,
           display: true,
         },
-        stacked: true,
+        stacked: false,
       },
       y: {
         stacked: true,
@@ -73,8 +95,20 @@ function Pnr(props) {
     },
     responsive: true,
     plugins: {
+      annotation: {
+        annotations: {
+          line1: {
+            drawTime: "afterDraw",
+            type: "line",
+            xMin: 0,
+            xMax: 0,
+            borderColor: "#858585",
+            borderWidth: 2,
+          },
+        },
+      },
       datalabels: {
-        display: mobile,
+        display: false,
         color: mobileColor,
         font: {
           size: mobileFont,
@@ -89,7 +123,7 @@ function Pnr(props) {
         },
       },
       legend: {
-        display: mobile,
+        display: false,
         position: "bottom",
       },
     },
@@ -103,20 +137,32 @@ function Pnr(props) {
     labels,
     datasets: [
       {
-        label: "Разница с фактом",
+        label: "Экономия (+), перерасход (-)",
         data: diffArr,
         backgroundColor: barColor,
+        barPercentage: 0.7,
       },
       {
         label: "План",
         data: planArr,
-        backgroundColor: "#13efa3",
+        backgroundColor: "#85858590",
       },
     ],
   };
   return (
     <div className="analysisBarChartBlock smallChart">
-      <h3 className="chartTitle">Перерасход по направлениям</h3>
+      <div className="analysisHeader">
+        <h3 className="chartTitle">
+          Анализ соблюдения плана по Направлениям расходов
+        </h3>
+        <div className="chartSettingsBlock">
+          <div className="dateSelectBlock">
+            <Selectblue selectArr={years} />
+            <Selectblue selectArr={months} />
+          </div>
+          <Checkcustom label="С начала года" checked={false} />
+        </div>
+      </div>
       <Bar options={options} data={data} />
     </div>
   );

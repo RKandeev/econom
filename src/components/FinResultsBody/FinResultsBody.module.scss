@@ -7,15 +7,17 @@
     font-size: 14rem;
     color: #ABB0C3;
     font-weight: 500;
-    margin-top: 24rem;
-    margin-bottom: 10rem;
+
     ul{
+      li{
+        flex-grow: 0;
+        margin-top: 4rem;
+      }
       margin: 0;
       padding: 0;
       display: flex;
       gap: 22rem;
       :first-child{
-        list-style-type: none;
         color: #3156A6;
       }
     }
@@ -72,7 +74,10 @@
   font-size: 24rem;
   color: #464E5F;
   font-weight: 700;
-  margin: 0 0 8rem 0;
+  display: flex;
+  align-items: center;
+  gap: 20rem;
+  margin-top: 0;
 }
 .result_tabs{
   width: 100%;

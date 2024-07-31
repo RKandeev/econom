@@ -1,6 +1,7 @@
 .sitebody{
   display: flex;
   gap: 40rem;
+  color: #464E5F;
   @media (max-width: 480px) {
     flex-direction: column;
     padding: 0 32rem;

@@ -3,6 +3,14 @@
   @media (max-width: 480px) {
     width: 80vw;
   }
+  .chartSettingsBlock{
+    display: flex;
+    justify-content: space-between;
+    .dateSelectBlock{
+      display: flex;
+      gap: 20rem;
+    }
+  }
   .chartTitle{
     @media (max-width: 480px) {
       font-size: 16rem;

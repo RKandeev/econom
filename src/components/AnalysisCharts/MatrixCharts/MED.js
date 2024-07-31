@@ -15,6 +15,8 @@ import {
   BarController,
 } from "chart.js";
 import { Link } from "react-router-dom";
+import Selectblue from "../../Selectblue/Selectblue";
+import Checkcustom from "../../Checkcustom/Checkcustom";
 ChartJS.register(
   LinearScale,
   CategoryScale,
@@ -29,6 +31,21 @@ ChartJS.register(
 );
 
 function Med(props) {
+  let years = [2022, 2023];
+  let months = [
+    "Январь",
+    "Февраль",
+    "Март",
+    "Апрель",
+    "Май",
+    "Июнь",
+    "Июль",
+    "Август",
+    "Сентябрь",
+    "Октябрь",
+    "Ноябрь",
+    "Декабрь",
+  ];
   let radius = 25;
   let labelText = 30;
   let radiusHigh = 15;
@@ -43,8 +60,20 @@ function Med(props) {
   }
   const options = {
     responsive: true,
+
     transitions: {},
     plugins: {
+      tooltip: {
+        callbacks: {
+          label: function (tooltipItems) {
+            console.log(tooltipItems);
+            return " " + tooltipItems.dataset.label;
+          },
+        },
+      },
+      legend: {
+        display: false,
+      },
       datalabels: {
         display: false,
       },
@@ -165,7 +194,7 @@ function Med(props) {
       x: {
         title: {
           display: true,
-          text: "Финансовый результат, %",
+          text: "Финансовые результаты, %",
           font: {
             size: 14,
             weight: 700,
@@ -187,13 +216,25 @@ function Med(props) {
     datasets: [
       {
         type: "bubble",
-        label: "Ваш результат",
+        label: ["Январь"],
         data: [
           {
             x: 40,
             y: 35,
             r: radius,
           },
+        ],
+
+        // data: [yourResult],
+        backgroundColor: "#3156A6",
+        animation: {
+          delay: 200,
+        },
+      },
+      {
+        type: "bubble",
+        label: ["Февраль"],
+        data: [
           {
             x: 43,
             y: 75,
@@ -227,7 +268,16 @@ function Med(props) {
   return (
     <div className="MatrixChartBlock AnalysisMatrixChartBlock">
       <div className="MyMatrixChart">
-        <h3 className="chartTitle">Финансовая эффективность</h3>
+        <div className="analysisHeader">
+          <h3 className="chartTitle">Финансовая эффективность</h3>
+          <div className="chartSettingsBlock">
+            <div className="dateSelectBlock">
+              <Selectblue selectArr={years} />
+              <Selectblue selectArr={months} />
+            </div>
+            <Checkcustom label="С начала года" checked={true} />
+          </div>
+        </div>
         <Bubble options={options} data={data} />
       </div>
     </div>

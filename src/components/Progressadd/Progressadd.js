@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Progressadd.module.scss";
 import Mybtn from "../Mybtn/Mybtn";
-import IncomesLine from "../IncomesLine/IncomesLine";
-import pocket from "../../img/pocket.svg";
 import Modal from "../Modal/Modal";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import SelectModal from "../SelectModal/SelectModal";
@@ -10,9 +8,9 @@ import Editsum from "../Editsum/Editsum";
 import CommentArea from "../CommentArea/CommentArea";
 
 function Progressadd(props) {
-  let titleName = "Заработная плата";
-  let titleNameType = "Фиксированная";
-  let incomesValue = "+55000.00";
+  // let titleName = "Заработная плата";
+  // let titleNameType = "Фиксированная";
+  // let incomesValue = "+55000.00";
   let selectArr1 = ["Заработная плата", "Шабашка", "Лотерея"];
   let selectArr2 = ["Заработная плата", "Шабашка", "Лотерея"];
   let sumValue = "25 159,15";
@@ -38,16 +36,6 @@ function Progressadd(props) {
           <Mybtn btnTitle="Добавить" />
         </div>
       </div>
-      <IncomesLine
-        ttTitle="Это подсказка"
-        titleImg={pocket}
-        titleName={titleName}
-        titleNameType={titleNameType}
-        incomesValue={incomesValue}
-        valueColor="#0DA46F"
-        commentToltTitle="Это комментарий - бла бла"
-        notificDisplay="none"
-      />
       <Modal
         modalTitle="Доходы"
         active={addModalActive}

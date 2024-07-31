@@ -9,6 +9,7 @@
   .MyMatrixChart{
 
     canvas{
+      margin: 0 auto;
       height: 500rem!important;
       width: 500rem!important;
       @media (max-width: 480px) {

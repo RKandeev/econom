@@ -7,16 +7,20 @@
     font-size: 14rem;
     color: #ABB0C3;
     font-weight: 500;
-    margin-top: 24rem;
-    margin-bottom: 10rem;
+
     ul{
       margin: 0;
       padding: 0;
       display: flex;
       gap: 22rem;
       :first-child{
-        list-style-type: none;
         color: #3156A6;
+      }
+      li{
+        margin-top: 4rem;
+      }
+      .onlyOneBreadcrumb{
+        color: #ABB0C3;
       }
     }
   }
@@ -50,8 +54,8 @@
         justify-content: space-between;
         gap: 8rem;
         svg{
-          width: 24rem;
-          height: 24rem;
+          width: 20rem;
+          height: 20rem;
         }
         &:hover{
           background-color: #E1ECF5;
@@ -59,7 +63,7 @@
         }
       }
       .cashFlowChartLink{
-        justify-content: flex-start;
+        justify-content: space-between;
         border-radius: 16rem 16rem 0 0;
         background-color: #E1ECF5;
       }
@@ -68,10 +72,13 @@
 
 }
 .result_head{
+  display: flex;
+  gap: 20rem;
   font-size: 24rem;
   color: #464E5F;
   font-weight: 700;
-  margin: 0 0 8rem 0;
+  align-items: center;
+  margin-top: 0;
 }
 .result_tabs{
   width: 100%;

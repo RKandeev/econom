@@ -1,5 +1,12 @@
 .CashFlowTabs{
+  color: #464E5F;
   .CashFlowTabList{
+    h4{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 90%;
+    }
     height: fit-content;
     .react-tabs__tab{
       justify-content: flex-start;

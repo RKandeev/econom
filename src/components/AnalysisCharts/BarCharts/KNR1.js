@@ -12,6 +12,8 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import Selectblue from "../../Selectblue/Selectblue";
+import Checkcustom from "../../Checkcustom/Checkcustom";
 
 ChartJS.register(
   Title,
@@ -25,6 +27,21 @@ ChartJS.register(
 );
 
 function Knr1(props) {
+  let years = [2022, 2023];
+  let months = [
+    "Январь",
+    "Февраль",
+    "Март",
+    "Апрель",
+    "Май",
+    "Июнь",
+    "Июль",
+    "Август",
+    "Сентябрь",
+    "Октябрь",
+    "Ноябрь",
+    "Декабрь",
+  ];
   let planArr = [30000];
   let factArr = [20000];
   let diffArr = [];
@@ -37,7 +54,7 @@ function Knr1(props) {
   } else {
     invisibleArr = [null, null, planArr[0]];
     diffArr = [factArr[0] - planArr[0]];
-    barColor.push("#EE2B4995");
+    barColor.push("#EE2B49");
   }
   planArr = [planArr[0], null, null];
   factArr = [null, factArr[0], null];
@@ -127,9 +144,19 @@ function Knr1(props) {
   };
   return (
     <div className="analysisBarChartBlock smallChart">
-      <h3 className="chartTitle">
-        Необязательные расходы (отклонение от нормы)
-      </h3>
+      <div className="analysisHeader">
+        <h3 className="chartTitle">
+          Необязательные расходы <br />
+          (отклонение от нормы)
+        </h3>
+        <div className="chartSettingsBlock">
+          <div className="dateSelectBlock">
+            <Selectblue selectArr={years} />
+            <Selectblue selectArr={months} />
+          </div>
+          <Checkcustom label="С начала года" checked={false} />
+        </div>
+      </div>
       <Bar options={options} data={data} />
     </div>
   );

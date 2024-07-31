@@ -1,8 +1,6 @@
 import React from "react";
 import styles from "./MySolution.module.scss";
 import dots from "../../img/icon/icon__menu.svg";
-import edit from "../../img/icon__edit.png";
-import trash from "../../img/icon/icon__trash.svg";
 
 import {
   ClickAwayListener,

@@ -12,6 +12,8 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import Selectblue from "../../Selectblue/Selectblue";
+import Checkcustom from "../../Checkcustom/Checkcustom";
 
 ChartJS.register(
   Title,
@@ -25,6 +27,21 @@ ChartJS.register(
 );
 
 function Sfr(props) {
+  let years = [2022, 2023];
+  let months = [
+    "Январь",
+    "Февраль",
+    "Март",
+    "Апрель",
+    "Май",
+    "Июнь",
+    "Июль",
+    "Август",
+    "Сентябрь",
+    "Октябрь",
+    "Ноябрь",
+    "Декабрь",
+  ];
   let planArr = [68, 32];
   let mobile = true;
   let mobileFont = 16;
@@ -37,6 +54,9 @@ function Sfr(props) {
   const options = {
     responsive: true,
     plugins: {
+      tooltip: {
+        enabled: false,
+      },
       datalabels: {
         formatter: (value, ctx) => {
           let sum = 0;
@@ -47,7 +67,7 @@ function Sfr(props) {
           let percentage = ((value * 100) / sum).toFixed(1) + "%";
           return percentage;
         },
-        display: mobile,
+        display: [mobile, false],
         color: mobileColor,
         textAlign: "center",
 
@@ -62,22 +82,35 @@ function Sfr(props) {
       },
     },
   };
-  const labels = [[""], [""]];
+  const labels = [["Сила финансового рычага"], [""]];
   const data = {
     labels,
     datasets: [
       {
         label: "",
         data: planArr,
-        backgroundColor: ["#EE2B4995", "#13efa3"],
+        backgroundColor: ["#13efa3", "#85858590"],
       },
     ],
   };
   return (
-    <div className="analysisPieChartBlock ">
-      <h3 className="chartTitle">Сила Финансового рычага</h3>
-      <Pie options={options} data={data} />
-    </div>
+    <>
+      <div className="analysisBlock">
+        <div className="analysisHeader">
+          <h3 className="chartTitle">Сила Финансового рычага</h3>
+          <div className="chartSettingsBlock">
+            <div className="dateSelectBlock">
+              <Selectblue selectArr={years} />
+              <Selectblue selectArr={months} />
+            </div>
+            <Checkcustom label="С начала года" checked={false} />
+          </div>
+        </div>
+        <div className="analysisPieChartBlock ">
+          <Pie options={options} data={data} />
+        </div>
+      </div>
+    </>
   );
 }
 

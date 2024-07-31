@@ -1,0 +1,20 @@
+.month{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12rem 8rem;
+  gap: 8rem;
+  &:hover{
+    border-bottom: 2rem solid #464e5f;
+    padding-bottom: 7rem;
+    cursor: pointer;
+  }
+}
+.select{
+  border-bottom: 2rem solid #464e5f;
+  padding-bottom: 7rem;
+}
+.finPlanTabs{
+  min-width: 55vw;
+  height: 70vh;
+}

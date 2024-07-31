@@ -16,13 +16,9 @@ function Reactdatepicker() {
         <div className="row">
           <div className="col-sm-10">
             <h5 className="mt-3 mb-4 text-white"> React Date picker</h5>
-
             <form className="row">
               <div className="row mb-4">
-                <label className="col-sm-2 col-form-label" onclic>
-                  {" "}
-                  Дата
-                </label>
+                <label className="col-sm-2 col-form-label"> Дата</label>
                 <div className="col-sm-5">
                   <DatePicker
                     selected={selectesDate}
@@ -30,6 +26,7 @@ function Reactdatepicker() {
                     dateFormat="dd.MM.yyyy"
                     locale="ru"
                     placeholderText="Выберите дату"
+
                     //minDate={ new Date()}
                     //maxDate={ new Date()}
                     //filterDate={ date=>date.getDay()!=6 && date.getDay()!=0}

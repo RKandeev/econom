@@ -1,6 +1,30 @@
 .AnalysisMatrixChartBlock{
   border: none;
   padding-left: 0;
+  .chartSettingsBlock{
+    margin-bottom: 0;
+  }
+  .analysisHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    h3{
+      color: #464E5F;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    .customCheckbox{
+      min-width: fit-content;
+      flex-grow: 0;
+    }
+    .checkbox{
+      width: 16rem;
+    }
+  }
+  .chartTitle{
+    margin-bottom: 0;
+    text-align: left;
+  }
   canvas{
     margin: 0 auto;
   }

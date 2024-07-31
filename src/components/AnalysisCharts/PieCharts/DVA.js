@@ -12,6 +12,8 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import Selectblue from "../../Selectblue/Selectblue";
+import Checkcustom from "../../Checkcustom/Checkcustom";
 
 ChartJS.register(
   Title,
@@ -25,6 +27,21 @@ ChartJS.register(
 );
 
 function Dva(props) {
+  let years = [2022, 2023];
+  let months = [
+    "Январь",
+    "Февраль",
+    "Март",
+    "Апрель",
+    "Май",
+    "Июнь",
+    "Июль",
+    "Август",
+    "Сентябрь",
+    "Октябрь",
+    "Ноябрь",
+    "Декабрь",
+  ];
   let planArr = [75, 25];
   let mobile = true;
   let mobileFont = 16;
@@ -37,6 +54,9 @@ function Dva(props) {
   const options = {
     responsive: true,
     plugins: {
+      tooltip: {
+        enabled: false,
+      },
       datalabels: {
         formatter: (value, ctx) => {
           let sum = 0;
@@ -47,7 +67,7 @@ function Dva(props) {
           let percentage = value + "%";
           return percentage;
         },
-        display: mobile,
+        display: [mobile, false],
         color: mobileColor,
         textAlign: "center",
 
@@ -62,22 +82,35 @@ function Dva(props) {
       },
     },
   };
-  const labels = [["Резерв для экономии"], ["Кандидаты на сокращение"]];
+  const labels = [["Высоколиквидные активы"], ["Прочие активы"]];
   const data = {
     labels,
     datasets: [
       {
-        label: "Норма",
+        label: "Факт",
         data: planArr,
         backgroundColor: ["#13efa3", "#85858590"],
       },
     ],
   };
   return (
-    <div className="analysisPieChartBlock ">
-      <h3 className="chartTitle">Комплексная оценка "Финансовое Состояние</h3>
-      <Pie options={options} data={data} />
-    </div>
+    <>
+      <div className="analysisBlock">
+        <div className="analysisHeader">
+          <h3 className="chartTitle">Доля высоколиквидных активов</h3>
+          <div className="chartSettingsBlock">
+            <div className="dateSelectBlock">
+              <Selectblue selectArr={years} />
+              <Selectblue selectArr={months} />
+            </div>
+            <Checkcustom label="С начала года" checked={false} />
+          </div>
+        </div>
+        <div className="analysisPieChartBlock ">
+          <Pie options={options} data={data} />
+        </div>
+      </div>
+    </>
   );
 }
 

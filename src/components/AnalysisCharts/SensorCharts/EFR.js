@@ -3,7 +3,24 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import "./AnalysisSensorCharts.scss";
 import AnimatedNumbers from "react-animated-numbers";
+import Selectblue from "../../Selectblue/Selectblue";
+import Checkcustom from "../../Checkcustom/Checkcustom";
 function Efr(props) {
+  let years = [2022, 2023];
+  let months = [
+    "Январь",
+    "Февраль",
+    "Март",
+    "Апрель",
+    "Май",
+    "Июнь",
+    "Июль",
+    "Август",
+    "Сентябрь",
+    "Октябрь",
+    "Ноябрь",
+    "Декабрь",
+  ];
   const [ser3, setSer3] = useState(7);
   let chartValue = 0;
   if (ser3 >= 10) {
@@ -163,7 +180,16 @@ function Efr(props) {
   }
   return (
     <div className="sensorChartBlockHome AnalysisSensorChartBlock ">
-      <h3 className="chartTitle">Эффект Финансового Рычага</h3>
+      <div className="analysisHeader">
+        <h3 className="chartTitle">Эффект Финансового Рычага</h3>
+        <div className="chartSettingsBlock">
+          <div className="dateSelectBlock">
+            <Selectblue selectArr={years} />
+            <Selectblue selectArr={months} />
+          </div>
+          <Checkcustom label="С начала года" checked={false} />
+        </div>
+      </div>
       <div className="sensorChart">
         <HighchartsReact highcharts={Highcharts} options={options} />
       </div>

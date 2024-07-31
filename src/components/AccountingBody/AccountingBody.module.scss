@@ -15,3 +15,37 @@
     font-weight: 700;
   }
 }
+.result_head{
+  display: flex;
+  gap: 20rem;
+  font-size: 24rem;
+  color: #464E5F;
+  font-weight: 700;
+  align-items: center;
+  margin-top: 0;
+
+  .breadcrumb {
+    font-size: 14rem;
+    color: #ABB0C3;
+    font-weight: 500;
+
+    ul{
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 22rem;
+      :first-child{
+        color: #3156A6;
+      }
+      li{
+        margin-top: 4rem;
+      }
+      .onlyOneBreadcrumb{
+        color: #ABB0C3;
+      }
+    }
+  }
+}
+.accountingBody{
+  width: 100%;
+}

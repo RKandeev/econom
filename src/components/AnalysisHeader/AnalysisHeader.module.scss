@@ -7,9 +7,11 @@
   font-weight: 700;
   margin-top: 8rem;
   border-bottom: 1rem solid #C9CFE5;
+
   .analysisLink, .analysisLinkActive{
     flex-grow: 1;
     padding: 12rem 8rem;
+    color: #464e5f;
     &:hover{
       border-bottom: 2rem solid #464E5F;
     }

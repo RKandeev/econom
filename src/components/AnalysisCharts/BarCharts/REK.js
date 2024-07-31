@@ -12,6 +12,8 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import Selectblue from "../../Selectblue/Selectblue";
+import Checkcustom from "../../Checkcustom/Checkcustom";
 
 ChartJS.register(
   Title,
@@ -25,6 +27,21 @@ ChartJS.register(
 );
 
 function Rek(props) {
+  let years = [2022, 2023];
+  let months = [
+    "Январь",
+    "Февраль",
+    "Март",
+    "Апрель",
+    "Май",
+    "Июнь",
+    "Июль",
+    "Август",
+    "Сентябрь",
+    "Октябрь",
+    "Ноябрь",
+    "Декабрь",
+  ];
   let planArr = [10000, 15200, 3100, 0, 0, 1100, 9400, 0, 0];
   planArr = planArr.map(function (val, i) {
     return val === 0 ? null : val;
@@ -72,7 +89,7 @@ function Rek(props) {
     responsive: true,
     plugins: {
       datalabels: {
-        display: mobile,
+        display: false,
         color: mobileColor,
         anchor: "center",
         font: {
@@ -108,25 +125,27 @@ function Rek(props) {
     labels,
     datasets: [
       {
-        label: "План",
+        label: "Факт",
         data: planArr,
-        backgroundColor: [
-          "#13efa3",
-          "#EE2B4995",
-          "#EE2B4995",
-          "#EE2B4995",
-          "#EE2B4995",
-          "#13efa3",
-          "#EE2B49",
-          "#EE2B4995",
-          "#EE2B4995",
-        ],
+        backgroundColor: ["#EE2B4995"],
       },
     ],
   };
   return (
     <div className="analysisBarChartBlock smallChart">
-      <h3 className="chartTitle">Резерв для Экономии (по категориям)</h3>
+      <div className="analysisHeader">
+        <h3 className="chartTitle">
+          Резерв для экономии <br />
+          (по категориям расходов)
+        </h3>
+        <div className="chartSettingsBlock">
+          <div className="dateSelectBlock">
+            <Selectblue selectArr={years} />
+            <Selectblue selectArr={months} />
+          </div>
+          <Checkcustom label="С начала года" checked={false} />
+        </div>
+      </div>
       <Bar options={options} data={data} />
     </div>
   );

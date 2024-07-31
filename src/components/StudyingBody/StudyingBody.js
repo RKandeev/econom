@@ -8,38 +8,6 @@ import mycourse from "../../img/icon__course.svg";
 import { Link } from "react-router-dom";
 
 function StudyingBody(props) {
-  const videos = [
-    {
-      iframeLink:
-        "https://www.youtube.com/embed/LbOve_UZZ54?si=BS29VmHEDVik_zMT",
-      title: "Урок 1",
-    },
-    {
-      iframeLink:
-        "https://www.youtube.com/embed/LbOve_UZZ54?si=BS29VmHEDVik_zMT",
-      title: "Урок 2",
-    },
-    {
-      iframeLink:
-        "https://www.youtube.com/embed/LbOve_UZZ54?si=BS29VmHEDVik_zMT",
-      title: "Урок 3",
-    },
-    {
-      iframeLink:
-        "https://www.youtube.com/embed/LbOve_UZZ54?si=BS29VmHEDVik_zMT",
-      title: "Урок 4",
-    },
-    {
-      iframeLink:
-        "https://www.youtube.com/embed/LbOve_UZZ54?si=BS29VmHEDVik_zMT",
-      title: "Урок 5",
-    },
-    {
-      iframeLink:
-        "https://www.youtube.com/embed/LbOve_UZZ54?si=BS29VmHEDVik_zMT",
-      title: "Урок 6",
-    },
-  ];
   let num = localStorage.getItem("lessonNum");
   console.log();
   return (

@@ -20,7 +20,7 @@ function Finplanleftnav(props) {
               <Menulink img={myresults} txt="Мои результаты" linksAdress="/#" />
             </div>
             <div className={`${styles.barblock}`}>
-              <Menulink img={mycourse} txt="Мои курсы" linksAdress="/#" />
+              <Menulink img={mycourse} txt="Обучение" linksAdress="/#" />
             </div>
             <div className={styles.lineblock2}></div>
           </div>
