@@ -44,6 +44,7 @@ function AccountingCredit(props) {
             SelectHeader2="Вид кредита"
             // SelectHeader3="Тип дохода"
             modalTitle="Платежи по кредитам"
+            commentHeight="346rem"
             selectModalVis="hidden"
           />
           <IncomesLine

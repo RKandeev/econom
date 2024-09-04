@@ -45,6 +45,7 @@ function AccountingAttachment(props) {
             // SelectHeader3="Тип расходов"
             modalTitle="Вложения"
             selectModalVis="hidden"
+            commentHeight="346rem"
           />
           <IncomesLine
             ttTitle="Это подсказка"

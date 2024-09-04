@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from "react";
+import React, { useLayoutEffect, useEffect, useState } from "react";
 import Finplan from "./pages/Finplan/Finplan";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Incomes from "./pages/Incomes/Incomes";
@@ -43,6 +43,8 @@ import AccountingBasicNeeds from "./pages/AccountingCredit/AccountingBasicNeeds"
 import AccountingLifestyle from "./pages/AccountingCredit/AccountingLifestyle";
 import AccountingCachout from "./pages/AccountingCredit/AccountingCachout";
 import AccountingBalanceDebts from "./pages/AccountingCredit/AccountingBalanceDebts";
+import axios from "axios";
+import SignUp from "./pages/Auth/SignUp/SignUp";
 
 function App() {
   const Wrapper = ({ children }) => {
@@ -52,11 +54,18 @@ function App() {
     }, [location.pathname]);
     return children;
   };
+  fetch("http://efficlub.ru/api/v1/test")
+    .then((response) => response.text())
+    .then((text) => {
+      console.log(text);
+    });
+
   return (
     <>
       <Wrapper>
         <Routes>
           <Route path="*" element={<MyResults />}></Route>
+          <Route path="SignUp" element={<SignUp />}></Route>
           <Route path="finplan" element={<Finplan />}></Route>
           <Route path="incomes" element={<Incomes />}></Route>
           <Route path="credit" element={<Credit />}></Route>

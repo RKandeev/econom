@@ -46,17 +46,17 @@ function LAD(props) {
     "Ноябрь",
     "Декабрь",
   ];
-  let LinesColor = localStorage.getItem("LinesColorFlat");
-  let topArr = [];
-  let bottomArr = [];
-  let mobile = true;
-  let mobileFont = 16;
-  let mobileColor = "#fff";
-  let labelText = 30;
+  // let LinesColor = localStorage.getItem("LinesColorFlat");
+  // let topArr = [];
+  // let bottomArr = [];
+  // let mobile = true;
+  // let mobileFont = 16;
+  // let mobileColor = "#fff";
+  // let labelText = 30;
   if (window.outerWidth < 450) {
-    mobile = false;
-    mobileColor = "#000";
-    mobileFont = 12;
+    // mobile = false;
+    // mobileColor = "#000";
+    // mobileFont = 12;
   }
   let arr = [4, 5, 6, 25, 25, 26, 26, 26, 26, 27, 28, 28];
   let maxValue = Math.max(...arr);

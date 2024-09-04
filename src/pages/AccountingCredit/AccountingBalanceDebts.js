@@ -11,6 +11,7 @@ import AccountingBalanceRight from "../../components/AccountingBalanceRight/Acco
 import lockedIco from "../../img/icon/icon__lock.svg";
 import checkedIco from "../../img/icon/icon__check.svg";
 import newcheck from "../../img/Ellipse 1.svg";
+import Selectblue from "../../components/Selectblue/Selectblue";
 
 function AccountingBalanceDebts(props) {
   let progressValue = "-77 276,12";
@@ -94,6 +95,7 @@ function AccountingBalanceDebts(props) {
       checkStatus: newcheck,
     },
   ];
+  const years = ["2022", "2023"];
 
   return (
     <>
@@ -102,17 +104,20 @@ function AccountingBalanceDebts(props) {
       <div className={styles.sitebody}>
         <Accountingleftnav />
         <div className={styles.accountingBody}>
-          <h2 className={styles.result_head}>
-            Финансовый учет
-            <div className={styles.breadcrumb}>
-              <ul>
-                <li>
-                  <Link to={"/AccountingBalance"}>Финансовый баланс</Link>
-                </li>
-                <li>Долги</li>
-              </ul>
-            </div>
-          </h2>
+          <div className={styles.accountingHead}>
+            <h2 className={styles.result_head}>
+              Финансовый учет
+              <div className={styles.breadcrumb}>
+                <ul>
+                  <li>
+                    <Link to={"/AccountingBalance"}>Финансовый баланс</Link>
+                  </li>
+                  <li>Долги</li>
+                </ul>
+              </div>
+            </h2>
+            <Selectblue selectArr={years} />
+          </div>
           <div className={styles.monthslist}>
             <div className={styles.monthblock}>
               {months.map((elem, index) => (
@@ -138,7 +143,7 @@ function AccountingBalanceDebts(props) {
             SelectHeader1="Категория заимствований"
             SelectHeader2="Статья заимствований"
             SelectHeader3="Характер задолженности"
-            modalTitle="Погашение долгов"
+            modalTitle="Долги"
             // selectModalVis="hidden"
           />
           <IncomesLine

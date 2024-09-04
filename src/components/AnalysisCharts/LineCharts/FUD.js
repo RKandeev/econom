@@ -46,20 +46,20 @@ function Fud(props) {
     "Ноябрь",
     "Декабрь",
   ];
-  let LinesColor = localStorage.getItem("LinesColorFlat");
-  let topArr = [];
-  let bottomArr = [];
-  let mobile = true;
-  let mobileFont = 16;
-  let mobileColor = "#fff";
-  let labelText = 30;
-  if (window.outerWidth < 450) {
-    mobile = false;
-    mobileColor = "#000";
-    mobileFont = 12;
-  }
+  // let LinesColor = localStorage.getItem("LinesColorFlat");
+  // let topArr = [];
+  // let bottomArr = [];
+  // let mobile = true;
+  // let mobileFont = 16;
+  // let mobileColor = "#fff";
+  // let labelText = 30;
+  // if (window.outerWidth < 450) {
+  //   mobile = false;
+  //   mobileColor = "#000";
+  //   mobileFont = 12;
+  // }
   let arr = [54, 55, 55, 56, 56, 56, 57, 57, 57, 58, 59, 59];
-  let maxValue = Math.max(...arr);
+  // let maxValue = Math.max(...arr);
   let minValue = Math.min(...arr);
   console.log(minValue);
 

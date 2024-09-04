@@ -44,6 +44,7 @@ function AccountingDebts(props) {
             SelectHeader2="Статья заимствований"
             // SelectHeader3="Тип расходов"
             modalTitle="Погашение долгов"
+            commentHeight="346rem"
             selectModalVis="hidden"
           />
           <IncomesLine

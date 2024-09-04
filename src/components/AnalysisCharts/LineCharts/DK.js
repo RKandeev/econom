@@ -46,16 +46,16 @@ function Dk(props) {
     "Ноябрь",
     "Декабрь",
   ];
-  let LinesColor = localStorage.getItem("LinesColorFlat");
-  let topArr = [];
-  let bottomArr = [];
+  // let LinesColor = localStorage.getItem("LinesColorFlat");
+  // let topArr = [];
+  // let bottomArr = [];
   let mobile = true;
-  let mobileFont = 16;
-  let mobileColor = "#fff";
+  // let mobileFont = 16;
+  // let mobileColor = "#fff";
   if (window.outerWidth < 450) {
     mobile = false;
-    mobileColor = "#000";
-    mobileFont = 12;
+    // mobileColor = "#000";
+    // mobileFont = 12;
   }
   let arr = [
     4726036, 4857931, 4952099, 5014894, 5022653, 5063085, 5178185, 5190588,
@@ -65,13 +65,13 @@ function Dk(props) {
     4033394, 4014261, 3994927, 3975391, 3955650, 3935703, 3915546, 3895179,
     3874598, 3853801, 3832787, 3811552,
   ];
-  if (LinesColor === "1") {
-    topArr = arr;
-    bottomArr = arr2;
-  } else {
-    topArr = arr2;
-    bottomArr = arr;
-  }
+  // if (LinesColor === "1") {
+  //   topArr = arr;
+  //   bottomArr = arr2;
+  // } else {
+  //   topArr = arr2;
+  //   bottomArr = arr;
+  // }
   const lineHomeOptions = {
     plugins: {
       datalabels: {

@@ -19,7 +19,7 @@ function Header() {
         </div>
         <div className={styles.profileLinks}>
           <Link href="/#" className={styles.profileNav}></Link>
-          <Link href="/#" className={styles.profileNav}>
+          <Link to="/SignUp" className={styles.profileNav}>
             <img src={icon__user} alt="логотип" />
           </Link>
           <Link href="/#" className={`${styles.profileNav} ${styles.logout}`}>

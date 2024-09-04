@@ -1,0 +1,42 @@
+import React from "react";
+import logo1 from "../../../img/logo1.svg";
+import "../OpenPart.scss";
+
+function OpenHeader(props) {
+  return (
+    <>
+      <header className="wrapper">
+        <div className="header_logo">
+          <img src={logo1} alt="" />
+        </div>
+        <div className="mobile_nav mobile">
+          <input
+            type="checkbox"
+            id="burger_checkbox"
+            className="burger_checkbox"
+          />
+          <label className="burger" htmlFor="burger_checkbox"></label>
+          <ul className="menu_list">
+            <li>
+              <a href="./index.html" className="menu_item">
+                О проекте
+              </a>
+            </li>
+            <li>
+              <a href="./check.html" className="menu_item ">
+                Проверь себя
+              </a>
+            </li>
+            <li>
+              <a href="./sign-up.html" className="menu_item">
+                Личный кабинет
+              </a>
+            </li>
+          </ul>
+        </div>
+      </header>
+    </>
+  );
+}
+
+export default OpenHeader;

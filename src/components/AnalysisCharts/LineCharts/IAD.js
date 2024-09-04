@@ -46,20 +46,20 @@ function Iad(props) {
     "Ноябрь",
     "Декабрь",
   ];
-  let LinesColor = localStorage.getItem("LinesColorFlat");
-  let topArr = [];
-  let bottomArr = [];
-  let mobile = true;
-  let mobileFont = 16;
-  let mobileColor = "#fff";
-  let labelText = 30;
-  if (window.outerWidth < 450) {
-    mobile = false;
-    mobileColor = "#000";
-    mobileFont = 12;
-  }
+  // let LinesColor = localStorage.getItem("LinesColorFlat");
+  // let topArr = [];
+  // let bottomArr = [];
+  // let mobile = true;
+  // let mobileFont = 16;
+  // let mobileColor = "#fff";
+  // let labelText = 30;
+  // if (window.outerWidth < 450) {
+  //   mobile = false;
+  //   mobileColor = "#000";
+  //   mobileFont = 12;
+  // }
   let arr = [23, 24, 25, 25, 25, 25, 26, 25, 25, 26, 27, 28];
-  let maxValue = Math.max(...arr);
+  // let maxValue = Math.max(...arr);
   let minValue = Math.min(...arr);
   console.log(minValue);
 

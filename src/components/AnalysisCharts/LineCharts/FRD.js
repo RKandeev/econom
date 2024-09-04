@@ -47,14 +47,14 @@ function Frd(props) {
   let LinesColor = localStorage.getItem("LinesColorFlat");
   let topArr = [];
   let bottomArr = [];
-  let mobile = true;
-  let mobileFont = 16;
-  let mobileColor = "#fff";
-  if (window.outerWidth < 450) {
-    mobile = false;
-    mobileColor = "#000";
-    mobileFont = 12;
-  }
+  // let mobile = true;
+  // let mobileFont = 16;
+  // let mobileColor = "#fff";
+  // if (window.outerWidth < 450) {
+  //   mobile = false;
+  //   mobileColor = "#000";
+  //   mobileFont = 12;
+  // }
   let arr = [67, 83, 83, 83, 75, 92, 75, 83, 75, 83, 83, 83];
   let arr2 = [33, 17, 17, 17, 25, 8, 25, 17, 25, 17, 17, 17];
   if (LinesColor === "1") {

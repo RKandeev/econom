@@ -46,9 +46,9 @@ function Mdd(props) {
     "Ноябрь",
     "Декабрь",
   ];
-  let LinesColor = localStorage.getItem("LinesColorFlat");
-  let topArr = [];
-  let bottomArr = [];
+  // let LinesColor = localStorage.getItem("LinesColorFlat");
+  // let topArr = [];
+  // let bottomArr = [];
   let mobile = true;
   let mobileFont = 16;
   let mobileColor = "#fff";

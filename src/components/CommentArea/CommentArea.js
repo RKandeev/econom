@@ -11,7 +11,10 @@ function CommentArea(props) {
     }
   }
   return (
-    <div className={styles.CommentArea}>
+    <div
+      className={styles.CommentArea}
+      style={{ height: `${props.commentHeight}` }}
+    >
       <h4>Комментарий</h4>
       <textarea
         onChange={handleTextAreaChange}

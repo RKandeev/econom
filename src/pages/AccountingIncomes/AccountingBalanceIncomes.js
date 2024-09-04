@@ -11,6 +11,7 @@ import lockedIco from "../../img/icon/icon__lock.svg";
 import checkedIco from "../../img/icon/icon__check.svg";
 import newcheck from "../../img/Ellipse 1.svg";
 import AccountingBalanceRight from "../../components/AccountingBalanceRight/AccountingBalanceRight";
+import Selectblue from "../../components/Selectblue/Selectblue";
 
 function AccountingBalanceIncomes(props) {
   let progressValue = "77 276,12";
@@ -92,6 +93,8 @@ function AccountingBalanceIncomes(props) {
       checkStatus: newcheck,
     },
   ];
+  const years = ["2022", "2023"];
+
   return (
     <>
       <Header />
@@ -99,17 +102,20 @@ function AccountingBalanceIncomes(props) {
       <div className={styles.sitebody}>
         <Accountingleftnav />
         <div className={styles.accountingBody}>
-          <h2 className={styles.result_head}>
-            Финансовый учет
-            <div className={styles.breadcrumb}>
-              <ul>
-                <li>
-                  <Link to={"/AccountingBalance"}>Финансовый баланс</Link>
-                </li>
-                <li>Активы</li>
-              </ul>
-            </div>
-          </h2>
+          <div className={styles.accountingHead}>
+            <h2 className={styles.result_head}>
+              Финансовый учет
+              <div className={styles.breadcrumb}>
+                <ul>
+                  <li>
+                    <Link to={"/AccountingBalance"}>Финансовый баланс</Link>
+                  </li>
+                  <li>Активы</li>
+                </ul>
+              </div>
+            </h2>
+            <Selectblue selectArr={years} />
+          </div>
           <div className={styles.monthslist}>
             <div className={styles.monthblock}>
               {months.map((elem, index) => (
@@ -127,7 +133,7 @@ function AccountingBalanceIncomes(props) {
           </div>
           <AccountingProgressadd
             barcolor="#0DA46F"
-            progressTitle="Сумма активов"
+            progressTitle="Учтено"
             progressValue={progressValue}
             btnTitle="Добавить"
             barwidth="627rem"

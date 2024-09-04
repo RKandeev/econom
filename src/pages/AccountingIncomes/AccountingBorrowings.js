@@ -42,6 +42,7 @@ function AccountingBorrowings(props) {
             SelectHeader1="Категория заимствований"
             SelectHeader2="Статья заимствований"
             modalTitle="Заимствования"
+            commentHeight="346rem"
             selectModalVis="hidden"
           />
           <IncomesLine

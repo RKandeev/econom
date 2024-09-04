@@ -77,13 +77,13 @@ function Sdp(props) {
   } else {
     resultColor = "#EE2B49";
   }
-  let mobile = true;
-  let mobileFont = 16;
+  // let mobile = true;
+  // let mobileFont = 16;
   let mobileColor = "#fff";
   if (window.outerWidth < 450) {
-    mobile = false;
+    // mobile = false;
     mobileColor = "#000";
-    mobileFont = 12;
+    // mobileFont = 12;
   }
   let triangleArr = [
     invisibleArr[2] + arr[2],
@@ -204,7 +204,7 @@ function Sdp(props) {
         },
       },
       tooltip: {
-        filter: (tooltipItem) => tooltipItem.datasetIndex != 0,
+        filter: (tooltipItem) => tooltipItem.datasetIndex !== 0,
       },
       legend: {
         display: false,

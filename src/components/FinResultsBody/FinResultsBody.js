@@ -272,15 +272,8 @@ function FinResultsBody(props) {
                   </Tab>
                   <Tab className="myTab">
                     <div>
-                      <NumberTolt tooltipTitle="Покрытие Процентов по кредитам Доходами от Активов">
-                        3
-                      </NumberTolt>
-                    </div>
-                  </Tab>
-                  <Tab className="myTab">
-                    <div>
                       <NumberTolt tooltipTitle="Сравнение доходности собственного капитала и стоимости долгов">
-                        4
+                        3
                       </NumberTolt>
                     </div>
                   </Tab>
@@ -290,9 +283,6 @@ function FinResultsBody(props) {
                 </TabPanel>
                 <TabPanel>
                   <Efr />
-                </TabPanel>
-                <TabPanel>
-                  <Pda />
                 </TabPanel>
                 <TabPanel>
                   <Sds />

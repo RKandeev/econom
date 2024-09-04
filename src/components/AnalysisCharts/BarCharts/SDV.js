@@ -108,7 +108,7 @@ function Sdv(props) {
         },
       },
       tooltip: {
-        filter: (tooltipItem) => tooltipItem.datasetIndex != 0,
+        filter: (tooltipItem) => tooltipItem.datasetIndex !== 0,
       },
       legend: {
         display: false,

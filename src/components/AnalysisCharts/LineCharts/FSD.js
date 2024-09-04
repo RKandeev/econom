@@ -44,26 +44,26 @@ function Fsd(props) {
     "Ноябрь",
     "Декабрь",
   ];
-  let LinesColor = localStorage.getItem("LinesColorFlat");
-  let topArr = [];
-  let bottomArr = [];
-  let mobile = true;
-  let mobileFont = 16;
-  let mobileColor = "#fff";
-  if (window.outerWidth < 450) {
-    mobile = false;
-    mobileColor = "#000";
-    mobileFont = 12;
-  }
+  // let LinesColor = localStorage.getItem("LinesColorFlat");
+  // let topArr = [];
+  // let bottomArr = [];
+  // let mobile = true;
+  // let mobileFont = 16;
+  // let mobileColor = "#fff";
+  // if (window.outerWidth < 450) {
+  //   mobile = false;
+  //   mobileColor = "#000";
+  //   mobileFont = 12;
+  // }
   let arr = [33, 33, 42, 75, 75, 75, 75, 75, 75, 75, 75, 75];
   let arr2 = [67, 67, 58, 25, 25, 25, 25, 25, 25, 25, 25, 25];
-  if (LinesColor === "1") {
-    topArr = arr;
-    bottomArr = arr2;
-  } else {
-    topArr = arr2;
-    bottomArr = arr;
-  }
+  // if (LinesColor === "1") {
+  //   topArr = arr;
+  //   bottomArr = arr2;
+  // } else {
+  //   topArr = arr2;
+  //   bottomArr = arr;
+  // }
   const lineHomeOptions = {
     plugins: {
       datalabels: {

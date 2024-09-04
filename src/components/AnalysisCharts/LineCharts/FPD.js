@@ -46,18 +46,18 @@ function Fpd(props) {
     "Ноябрь",
     "Декабрь",
   ];
-  let LinesColor = localStorage.getItem("LinesColorFlat");
-  let topArr = [];
-  let bottomArr = [];
-  let mobile = true;
-  let mobileFont = 16;
-  let mobileColor = "#fff";
-  let labelText = 30;
-  if (window.outerWidth < 450) {
-    mobile = false;
-    mobileColor = "#000";
-    mobileFont = 12;
-  }
+  // let LinesColor = localStorage.getItem("LinesColorFlat");
+  // let topArr = [];
+  // let bottomArr = [];
+  // let mobile = true;
+  // let mobileFont = 16;
+  // let mobileColor = "#fff";
+  // let labelText = 30;
+  // if (window.outerWidth < 450) {
+  //   mobile = false;
+  //   mobileColor = "#000";
+  //   mobileFont = 12;
+  // }
   let arr = [2, 3, 4, 16, 15, 15, 16, 16, 14, 17, 20, 20];
   let maxValue = Math.max(...arr);
   let minValue = Math.min(...arr);

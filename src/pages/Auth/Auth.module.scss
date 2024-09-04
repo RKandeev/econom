@@ -1,0 +1,55 @@
+.log_form_sect{
+  margin: 90rem auto;
+  padding: 75rem 150rem;
+  background-color: #F8F8F8;
+  border-radius: 52rem;
+  max-width: fit-content;
+  font-family: "PT Root UI";
+}
+.login_form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  gap: 17rem;
+}
+.login_form input{
+  padding: 16rem;
+  background-color: #fff;
+  border: 1rem solid #3156A6;
+  border-radius: 12rem;
+}
+.login_form input[type=submit]{
+  text-transform: uppercase;
+  background-color: #3156A6;
+  color: white;
+}
+.log_form_block{
+  max-width: 360rem;
+  text-align: center;
+}
+.log_form_block h2{
+  margin: 0;
+  font-size: 35rem;
+  font-weight: 700;
+}
+.log_form_block h3{
+  margin-top: 10rem;
+  margin-bottom: 35rem;
+  font-size: 16rem;
+  font-weight: 500;
+}
+.log_form_block h3 a{
+  color: #3156A6;
+}
+a.forgot_password{
+  align-self: start;
+  color: #3156A6;
+}
+.forgot_pass h2{
+  font_size: 30rem;
+  margin-bottom: 22rem;
+}
+.forgot_block{
+  min-height: 66vh;
+}

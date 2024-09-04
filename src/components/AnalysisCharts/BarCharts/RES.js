@@ -49,7 +49,7 @@ function Res(props) {
     return val === 0 ? null : val;
   });
 
-  let barColor = [];
+  // let barColor = [];
   // diffArr.forEach((e) => {
   //   if (e >= 0) {
   //     barColor.push("#0DA46F");
@@ -58,11 +58,11 @@ function Res(props) {
   //   }
   // });
 
-  let mobile = true;
+  // let mobile = true;
   let mobileFont = 16;
   let mobileColor = "#000";
   if (window.outerWidth < 450) {
-    mobile = false;
+    // mobile = false;
     mobileColor = "#000";
     mobileFont = 12;
   }

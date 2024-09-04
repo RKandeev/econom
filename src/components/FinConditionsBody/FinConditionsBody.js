@@ -22,7 +22,6 @@ import Dia from "../AnalysisCharts/PieCharts/DIA";
 import Dno from "../AnalysisCharts/SensorCharts/DNO";
 import Dnd from "../AnalysisCharts/LineCharts/DND";
 import Spk from "../AnalysisCharts/PieCharts/SPK";
-import Szk from "../AnalysisCharts/PieCharts/SZK";
 import Fpo from "../AnalysisCharts/SensorCharts/FPO";
 import Fpd from "../AnalysisCharts/LineCharts/FPD";
 import Prd from "../AnalysisCharts/PieCharts/PRD";
@@ -30,6 +29,7 @@ import fincondition from "../../img/analysisicons/fincondition.png";
 import point from "../../img/analysisicons/point.png";
 import dynamic from "../../img/analysisicons/dynamic.png";
 import analysis from "../../img/analysisicons/analysis.png";
+import Szk from "../AnalysisCharts/SensorCharts/SZK";
 
 function FinResultsBody(props) {
   return (
@@ -264,24 +264,24 @@ function FinResultsBody(props) {
                 <TabList className="analysTabs">
                   <Tab className="myTab">
                     <div>
-                      <NumberTolt tooltipTitle="Структура Платежей по кредитам">
+                      <NumberTolt tooltipTitle="Стоимость Заёмного капитала">
                         1
                       </NumberTolt>
                     </div>
                   </Tab>
                   <Tab className="myTab">
                     <div>
-                      <NumberTolt tooltipTitle="Стоимость Заёмного капитала">
+                      <NumberTolt tooltipTitle="Структура Платежей по кредитам">
                         2
                       </NumberTolt>
                     </div>
                   </Tab>
                 </TabList>
                 <TabPanel>
-                  <Spk />
+                  <Szk />
                 </TabPanel>
                 <TabPanel>
-                  <Szk />
+                  <Spk />
                 </TabPanel>
               </Tabs>
             </TabPanel>

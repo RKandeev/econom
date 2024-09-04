@@ -76,7 +76,10 @@ function AccountingProgressadd(props) {
             </div>
           </TabPanel>
           <TabPanel>
-            <CommentArea placeHolderTitle="Текст комментария" />
+            <CommentArea
+              placeHolderTitle="Текст комментария"
+              commentHeight={props.commentHeight}
+            />
             <input
               className={styles.submitBtn}
               type="submit"

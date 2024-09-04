@@ -71,11 +71,11 @@ function Psr(props) {
     }
   });
 
-  let mobile = true;
+  // let mobile = true;
   let mobileFont = 16;
   let mobileColor = "#000";
   if (window.outerWidth < 450) {
-    mobile = false;
+    // mobile = false;
     mobileColor = "#000";
     mobileFont = 12;
   }

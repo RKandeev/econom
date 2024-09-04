@@ -27,15 +27,10 @@ ChartJS.register(
 );
 
 function LineHome(props) {
-  let LinesColor = localStorage.getItem("LinesColor");
-  let topArr = [];
-  let bottomArr = [];
   let mobile = true;
 
   if (window.outerWidth < 450) {
     mobile = false;
-    // mobileColor = "#000";
-    // mobileFont = 12;
   }
   let arr = [
     1, 1.4, 1.8, 2.2, 2.6, 3.1, 3.5, 3.9, 4.3, 4.8, 5.2, 5.6, 6, 6.5, 6.9, 7.3,
@@ -43,13 +38,7 @@ function LineHome(props) {
   let arr2 = [
     1, 1.5, 2, 2.5, 3, 3.6, 4.2, 4.7, 5.3, 5.8, 6.5, 7, 7.7, 8.3, 9, 9.6,
   ];
-  if (LinesColor === "1") {
-    topArr = arr;
-    bottomArr = arr2;
-  } else {
-    topArr = arr2;
-    bottomArr = arr;
-  }
+
   const lineHomeOptions = {
     scales: {
       x: {

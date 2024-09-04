@@ -42,6 +42,7 @@ function AccountingCashReturn(props) {
             SelectHeader1="Категория вложений"
             SelectHeader2="Статья вложений"
             modalTitle="Возврат вложений"
+            commentHeight="346rem"
             selectModalVis="hidden"
           />
           <IncomesLine

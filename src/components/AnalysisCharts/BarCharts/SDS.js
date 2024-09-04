@@ -67,11 +67,11 @@ function Sds(props) {
     return val === 0 ? null : val;
   });
 
-  let mobile = true;
+  // let mobile = true;
   let mobileFont = 16;
   let mobileColor = "#fff";
   if (window.outerWidth < 450) {
-    mobile = false;
+    // mobile = false;
     mobileColor = "#fff";
     mobileFont = 12;
   }
@@ -108,7 +108,7 @@ function Sds(props) {
         },
       },
       tooltip: {
-        filter: (tooltipItem) => tooltipItem.datasetIndex != 0,
+        filter: (tooltipItem) => tooltipItem.datasetIndex !== 0,
       },
       legend: {
         display: false,
