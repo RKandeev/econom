@@ -34,6 +34,17 @@ function OpenHeader(props) {
             </li>
           </ul>
         </div>
+        <nav className="desktop">
+          <a href="./index.html" className="nav-link active">
+            О проекте
+          </a>
+          <a href="./check.html" className="nav-link ">
+            Проверь себя
+          </a>
+          <a href="./sign-up.html" className="nav-link link-personal">
+            Личный кабинет
+          </a>
+        </nav>
       </header>
     </>
   );

@@ -1,0 +1,12 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="icon / icon__car">
+<path id="Path" d="M21 16.5V20C21 20.5523 20.5523 21 20 21H18C17.4477 21 17 20.5523 17 20V18.5" stroke="#6B59A5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Path_2" d="M7 18.5V20C7 20.5523 6.55228 21 6 21H4C3.44772 21 3 20.5523 3 20V16.5" stroke="#6B59A5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Path_3" fill-rule="evenodd" clip-rule="evenodd" d="M3 16.5V13.7454C3 12.9491 3.31616 12.1853 3.879 11.622L5 10.5H19L20.121 11.621C20.6838 12.1838 21 12.9472 21 13.7431V16.5C21 17.6046 20.1046 18.5 19 18.5H5C3.89543 18.5 3 17.6046 3 16.5Z" stroke="#6B59A5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Path_4" d="M21 9.5L19 10" stroke="#6B59A5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Path_5" d="M5 10L3 9.5" stroke="#6B59A5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Path_6" d="M5 10.5V9.994L5.836 6.857C6.12781 5.76196 7.11945 4.99998 8.2527 5H15.8353C16.9926 5 17.9986 5.7943 18.267 6.92L19 9.994V10.5" stroke="#6B59A5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Path_7" d="M6 14.5H8" stroke="#6B59A5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Path_8" d="M16 14.5H18" stroke="#6B59A5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</svg>

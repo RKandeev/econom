@@ -45,6 +45,8 @@ import AccountingCachout from "./pages/AccountingCredit/AccountingCachout";
 import AccountingBalanceDebts from "./pages/AccountingCredit/AccountingBalanceDebts";
 import axios from "axios";
 import SignUp from "./pages/Auth/SignUp/SignUp";
+import SignIn from "./pages/Auth/SignIn/SignIn";
+import ForgotPass from "./pages/Auth/ForgotPass/ForgotPass";
 
 function App() {
   const Wrapper = ({ children }) => {
@@ -66,6 +68,8 @@ function App() {
         <Routes>
           <Route path="*" element={<MyResults />}></Route>
           <Route path="SignUp" element={<SignUp />}></Route>
+          <Route path="SignIn" element={<SignIn />}></Route>
+          <Route path="ForgotPass" element={<ForgotPass />}></Route>
           <Route path="finplan" element={<Finplan />}></Route>
           <Route path="incomes" element={<Incomes />}></Route>
           <Route path="credit" element={<Credit />}></Route>

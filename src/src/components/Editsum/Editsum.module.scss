@@ -1,0 +1,31 @@
+form{
+  h5.formTitle{
+      font-size: 14rem;
+      font-weight: 500;
+      color: #ABB0C3;
+      margin: 0 0 4rem 8rem;
+  }
+  .editValueForm{
+    display: flex;
+    justify-content: space-between;
+    padding: 12rem 20rem 12rem 16rem;
+    background: #F0F5FA;
+    border-radius: 12rem;
+    font-size: 16rem;
+    font-weight: 400;
+  }
+}
+input{
+  background-color: transparent;
+  border: none;
+  color: #464E5F;
+  font-size: 16rem;
+  font-weight: 400;
+  outline: none;
+  width: 100%;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

@@ -5,6 +5,14 @@
   border-radius: 52rem;
   max-width: fit-content;
   font-family: "PT Root UI";
+  @media (max-width: 480px){
+    padding: 26rem 9rem;
+    margin: 0 auto;
+    max-width: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 .login_form{
   display: flex;
@@ -12,6 +20,7 @@
   justify-content: center;
   text-align: center;
   gap: 17rem;
+
 }
 .login_form input{
   padding: 16rem;
@@ -32,6 +41,9 @@
   margin: 0;
   font-size: 35rem;
   font-weight: 700;
+  @media (max-width: 480px){
+    font-size: 25rem;
+  }
 }
 .log_form_block h3{
   margin-top: 10rem;
@@ -44,6 +56,7 @@
 }
 a.forgot_password{
   align-self: start;
+  font-size: 16rem;
   color: #3156A6;
 }
 .forgot_pass h2{
@@ -52,4 +65,7 @@ a.forgot_password{
 }
 .forgot_block{
   min-height: 66vh;
+}
+p{
+  font-size: 16rem;
 }

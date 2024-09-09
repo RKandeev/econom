@@ -1,0 +1,35 @@
+.finalbody{
+  margin: 0 40rem;
+  width: 768rem;
+}
+.headblock{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  h3{
+    font-size: 24rem;
+    font-weight: 700;
+    margin: 0;
+    color: #464E5F;
+  }
+}
+.monthslist{
+  border-bottom: #C9CFE5 1px solid ;
+}
+.monthblock{
+  font-size: 12rem;
+  font-weight: 700;
+  display: flex;
+  color: #464E5F;
+  .month{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12rem 8rem;
+    gap: 8rem;
+  }
+}
+img{
+  width: 16rem;
+  height: 16rem;
+}
