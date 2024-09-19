@@ -43,10 +43,11 @@ import AccountingBasicNeeds from "./pages/AccountingCredit/AccountingBasicNeeds"
 import AccountingLifestyle from "./pages/AccountingCredit/AccountingLifestyle";
 import AccountingCachout from "./pages/AccountingCredit/AccountingCachout";
 import AccountingBalanceDebts from "./pages/AccountingCredit/AccountingBalanceDebts";
-import axios from "axios";
 import SignUp from "./pages/Auth/SignUp/SignUp";
 import SignIn from "./pages/Auth/SignIn/SignIn";
 import ForgotPass from "./pages/Auth/ForgotPass/ForgotPass";
+import toast, {Toaster} from "react-hot-toast";
+import {apiRequest} from "./api";
 
 function App() {
   const Wrapper = ({ children }) => {
@@ -56,11 +57,16 @@ function App() {
     }, [location.pathname]);
     return children;
   };
-  fetch("http://efficlub.ru/api/v1/test")
-    .then((response) => response.text())
-    .then((text) => {
-      console.log(text);
-    });
+
+
+  async function testRequest() {
+    const response = await apiRequest({url: "/test"})
+    toast.success(response);
+  }
+
+  useEffect (() => {
+    // testRequest()
+  },[])
 
   return (
     <>
@@ -168,6 +174,15 @@ function App() {
             element={<AccountingBalance />}
           ></Route>
         </Routes>
+        <Toaster
+            position="top-right"
+            reverseOrder={false}
+            toastOptions={{
+              style: {
+                fontSize: '14px',
+              },
+            }}
+        />
       </Wrapper>
     </>
   );

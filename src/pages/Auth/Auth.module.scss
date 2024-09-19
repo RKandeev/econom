@@ -32,6 +32,7 @@
   text-transform: uppercase;
   background-color: #3156A6;
   color: white;
+  cursor: pointer;
 }
 .log_form_block{
   max-width: 360rem;
@@ -68,4 +69,13 @@ a.forgot_password{
 }
 p{
   font-size: 16rem;
+}
+
+
+.error_message {
+  font-size: 12px;
+  margin-top: -14px;
+  text-align: start;
+  color: #EE2B49;
+  padding-left: 4px;
 }
