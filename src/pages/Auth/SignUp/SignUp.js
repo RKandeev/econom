@@ -35,7 +35,6 @@ function SignUp(props) {
       url: '/user-register',
     });
 
-    console.log(response);
 
     if (response.code === 0 && response.http_status === 200) {
       toast.success(response.mes);

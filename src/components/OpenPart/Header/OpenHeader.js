@@ -3,8 +3,21 @@ import React from 'react';
 import logo1 from '../../../img/logo1.svg';
 
 import '../OpenPart.scss';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 function OpenHeader(props) {
+  const navigate = useNavigate();
+
+  const authHandler = () => {
+    const token = localStorage.getItem('token');
+    if (token){
+      navigate('/')
+    } else {
+      toast('Для начала необходимо авторизоваться');
+    }
+  }
+
   return (
     <>
       <header className="wrapper">
@@ -43,7 +56,7 @@ function OpenHeader(props) {
           <a className="nav-link " href="./check.html">
             Проверь себя
           </a>
-          <a className="nav-link link-personal" href="./sign-up.html">
+          <a className="nav-link link-personal cursor-pointer" onClick={authHandler}>
             Личный кабинет
           </a>
         </nav>

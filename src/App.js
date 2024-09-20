@@ -1,9 +1,8 @@
 import React, { useEffect, useLayoutEffect } from 'react';
 
-import toast, {Toaster} from 'react-hot-toast';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import {Toaster} from 'react-hot-toast';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 
-import {apiRequest} from './api';
 import Accounting from './pages/Accounting/Accounting';
 import AccountingBalance from './pages/AccountingBalance/AccountingBalance';
 import AccountingAttachment from './pages/AccountingCredit/AccountingAttachment';
@@ -52,6 +51,8 @@ import Study from './pages/Study/Study';
 import Studying from './pages/Studying/Studying';
 
 function App() {
+  const navigate = useNavigate();
+
   const Wrapper = ({ children }) => {
     const location = useLocation();
 
@@ -62,14 +63,12 @@ function App() {
     return children;
   };
 
-  async function testRequest() {
-    const response = await apiRequest({url: '/test'});
-
-    toast.success(response);
-  }
 
   useEffect (() => {
-    // testRequest()
+    const token = localStorage.getItem('token');
+    if (!token){
+      navigate('/SignUp')
+    }
   },[]);
 
   return (

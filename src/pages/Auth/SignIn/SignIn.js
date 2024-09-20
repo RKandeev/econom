@@ -30,10 +30,9 @@ function SignIn(props) {
       url: '/login',
     });
 
-    console.log(response);
-
     if (response.code === 0 && response.http_status === 200) {
       toast.success(response.mes);
+      localStorage.setItem('token', response.data.token)
     } else {
       if (response.data.email) {
         setError('email', { message: response.data.email[0], type: 'server' });
