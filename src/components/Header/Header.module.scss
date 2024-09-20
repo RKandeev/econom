@@ -53,6 +53,12 @@
   display: flex;
   gap: 16rem;
 }
+.profileNav{
+  list-style: none;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
 .profileNav img{
   border-radius: 50%;
   border: #C9CFE5 1px solid;

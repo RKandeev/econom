@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import icon__logout from '../../img/icon__logout.svg';
 import icon__user from '../../img/icon_user.svg';
@@ -9,6 +9,13 @@ import logo from '../../img/logo.svg';
 import styles from './Header.module.scss';
 
 function Header() {
+  const navigate = useNavigate();
+
+  const logoutHandler = () => {
+    localStorage.removeItem('token');
+    navigate('/SignIn');
+  }
+
   return (
     <>
       <div className={styles.Header}>
@@ -25,9 +32,9 @@ function Header() {
           <Link className={styles.profileNav} to="/SignUp">
             <img alt="логотип" src={icon__user} />
           </Link>
-          <Link className={`${styles.profileNav} ${styles.logout}`} href="/#">
+          <button className={`${styles.profileNav} ${styles.logout}`} onClick={logoutHandler}>
             <img alt="логотип" src={icon__logout} />
-          </Link>
+          </button>
         </div>
       </div>
     </>

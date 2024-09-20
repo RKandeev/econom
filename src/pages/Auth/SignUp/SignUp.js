@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useForm} from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import {apiRequest} from '../../../api';
 import OpenHeader from '../../../components/OpenPart/Header/OpenHeader';
@@ -10,6 +10,8 @@ import OpenHeader from '../../../components/OpenPart/Header/OpenHeader';
 import styles from '../Auth.module.scss';
 
 function SignUp(props) {
+
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -38,6 +40,7 @@ function SignUp(props) {
 
     if (response.code === 0 && response.http_status === 200) {
       toast.success(response.mes);
+      navigate('/SignIn');
     } else {
       if (response.data.email) {
         setError('email', { message: response.data.email[0], type: 'server' });
