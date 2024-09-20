@@ -1,9 +1,11 @@
-import React from "react";
-import Header from "../../components/Header/Header";
-import MobileNav from "../../components/MobileNav/MobileNav";
-import styles from "../MyResults/MyResults.module.scss";
-import Possibilitiesleftnav from "../../components/Possibilitiesleftnav/Possibilitiesleftnav";
-import PossibilitiesBody from "../../components/PossibilitiesBody/PossibilitiesBody";
+import React from 'react';
+
+import Header from '../../components/Header/Header';
+import MobileNav from '../../components/MobileNav/MobileNav';
+import PossibilitiesBody from '../../components/PossibilitiesBody/PossibilitiesBody';
+import Possibilitiesleftnav from '../../components/Possibilitiesleftnav/Possibilitiesleftnav';
+
+import styles from '../MyResults/MyResults.module.scss';
 
 function Possibilities(props) {
   return (

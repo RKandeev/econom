@@ -1,9 +1,11 @@
-import React from "react";
-import Header from "../../components/Header/Header";
-import MobileNav from "../../components/MobileNav/MobileNav";
-import styles from "./ActualAnalysis.module.scss";
-import FinAnalysisLeftNav from "../../components/FinAnalysisLeftNav/FinAnalysisLeftNav";
-import ActualAnalysisBody from "../../components/ActualAnalysisBody/ActualAnalysisBody";
+import React from 'react';
+
+import ActualAnalysisBody from '../../components/ActualAnalysisBody/ActualAnalysisBody';
+import FinAnalysisLeftNav from '../../components/FinAnalysisLeftNav/FinAnalysisLeftNav';
+import Header from '../../components/Header/Header';
+import MobileNav from '../../components/MobileNav/MobileNav';
+
+import styles from './ActualAnalysis.module.scss';
 
 function ActualAnalysis(props) {
   return (

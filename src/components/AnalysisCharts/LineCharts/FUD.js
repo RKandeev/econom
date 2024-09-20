@@ -1,21 +1,24 @@
-import React from "react";
-import { Line } from "react-chartjs-2";
-import gradient from "chartjs-plugin-gradient";
-import annotationPlugin from "chartjs-plugin-annotation";
-import "./AnalysisLineCharts.scss";
+import React from 'react';
+
 import {
+  CategoryScale,
   Chart as ChartJS,
+  Filler,
+  Legend,
+  LinearScale,
+  LineElement,
+  PointElement,
   Title,
   Tooltip,
-  LineElement,
-  Legend,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  Filler,
-} from "chart.js";
-import Selectblue from "../../Selectblue/Selectblue";
-import Checkcustom from "../../Checkcustom/Checkcustom";
+} from 'chart.js';
+import annotationPlugin from 'chartjs-plugin-annotation';
+import gradient from 'chartjs-plugin-gradient';
+import { Line } from 'react-chartjs-2';
+
+import Checkcustom from '../../Checkcustom/Checkcustom';
+import Selectblue from '../../Selectblue/Selectblue';
+
+import './AnalysisLineCharts.scss';
 
 ChartJS.register(
   Title,
@@ -33,18 +36,18 @@ ChartJS.register(
 function Fud(props) {
   let years = [2022, 2023];
   let months = [
-    "Январь",
-    "Февраль",
-    "Март",
-    "Апрель",
-    "Май",
-    "Июнь",
-    "Июль",
-    "Август",
-    "Сентябрь",
-    "Октябрь",
-    "Ноябрь",
-    "Декабрь",
+    'Январь',
+    'Февраль',
+    'Март',
+    'Апрель',
+    'Май',
+    'Июнь',
+    'Июль',
+    'Август',
+    'Сентябрь',
+    'Октябрь',
+    'Ноябрь',
+    'Декабрь',
   ];
   // let LinesColor = localStorage.getItem("LinesColorFlat");
   // let topArr = [];
@@ -61,6 +64,7 @@ function Fud(props) {
   let arr = [54, 55, 55, 56, 56, 56, 57, 57, 57, 58, 59, 59];
   // let maxValue = Math.max(...arr);
   let minValue = Math.min(...arr);
+
   console.log(minValue);
 
   const lineHomeOptions = {
@@ -68,24 +72,24 @@ function Fud(props) {
       annotation: {
         annotations: {
           box1: {
-            drawTime: "beforeDraw",
+            backgroundColor: '#13efa3',
+            drawTime: 'beforeDraw',
             init: true,
-            type: "box",
-            xMin: 0,
+            type: 'box',
             xMax: 12,
-            yMin: 50,
+            xMin: 0,
             yMax: 100,
-            backgroundColor: "#13efa3",
+            yMin: 50,
           },
           box2: {
-            drawTime: "beforeDraw",
+            backgroundColor: '#EE2B4990',
+            drawTime: 'beforeDraw',
             init: true,
-            type: "box",
-            xMin: 0,
+            type: 'box',
             xMax: 12,
-            yMin: 0,
+            xMin: 0,
             yMax: 50,
-            backgroundColor: "#EE2B4990",
+            yMin: 0,
           },
         },
       },
@@ -94,64 +98,64 @@ function Fud(props) {
       },
       legend: {
         display: false,
-        position: "bottom",
+        position: 'bottom',
       },
     },
     scales: {
       x: {
         title: {
           display: false,
-          text: "Годы",
           font: {
             size: 12,
             weight: 700,
           },
+          text: 'Годы',
         },
       },
       y: {
-        stacked: true,
         display: true,
+        stacked: true,
         title: {
           display: true,
-          text: "%",
           font: {
             size: 12,
             weight: 700,
           },
+          text: '%',
         },
       },
     },
     title: {
       display: false,
-      text: "COVID-19 Cases of Last 6 Months",
       fontSize: 20,
+      text: 'COVID-19 Cases of Last 6 Months',
     },
   };
   const lineHomeData = {
-    labels: [
-      "Январь",
-      "Февраль",
-      "Март",
-      "Апрель",
-      "Май",
-      "Июнь",
-      "Июль",
-      "Август",
-      "Сентябрь",
-      "Октябрь",
-      "Ноябрь",
-      "Декабрь",
-    ],
     datasets: [
       {
-        fill: false,
-        data: arr,
-        label: "",
-        lineTension: 0,
-        borderColor: "#1d5d90",
-        backgroundColor: "#1d5d90",
+        backgroundColor: '#1d5d90',
+        borderColor: '#1d5d90',
         borderWidth: 5,
+        data: arr,
+        fill: false,
+        label: '',
+        lineTension: 0,
       },
+    ],
+    labels: [
+      'Январь',
+      'Февраль',
+      'Март',
+      'Апрель',
+      'Май',
+      'Июнь',
+      'Июль',
+      'Август',
+      'Сентябрь',
+      'Октябрь',
+      'Ноябрь',
+      'Декабрь',
     ],
   };
 
@@ -164,10 +168,10 @@ function Fud(props) {
             <Selectblue selectArr={years} />
             <Selectblue selectArr={months} />
           </div>
-          <Checkcustom label="С начала года" checked={true} />
+          <Checkcustom checked label="С начала года" />
         </div>
       </div>
-      <Line options={lineHomeOptions} data={lineHomeData} />
+      <Line data={lineHomeData} options={lineHomeOptions} />
     </div>
   );
 }

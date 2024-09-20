@@ -1,20 +1,22 @@
-import React from "react";
-import "./Matrix.scss";
-import { Bubble } from "react-chartjs-2";
-import annotationPlugin from "chartjs-plugin-annotation";
+import React from 'react';
+
 import {
-  Chart as ChartJS,
-  Tooltip,
-  LineElement,
-  Legend,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  BarElement,
-  LineController,
   BarController,
-} from "chart.js";
-import { Link } from "react-router-dom";
+  BarElement,
+  CategoryScale,
+  Chart as ChartJS,
+  Legend,
+  LinearScale,
+  LineController,
+  LineElement,
+  PointElement,
+  Tooltip,
+} from 'chart.js';
+import annotationPlugin from 'chartjs-plugin-annotation';
+import { Bubble } from 'react-chartjs-2';
+import { Link } from 'react-router-dom';
+
+import './Matrix.scss';
 ChartJS.register(
   LinearScale,
   CategoryScale,
@@ -32,6 +34,7 @@ function Matrix(props) {
   let radius = 25;
   let labelText = 30;
   let radiusHigh = 15;
+
   if (window.outerWidth < 450) {
     radius = 10;
     labelText = 25;
@@ -42,203 +45,207 @@ function Matrix(props) {
     labelText = 20;
   }
   const options = {
-    responsive: true,
-    transitions: {},
+    maintainAspectRatio: false,
     plugins: {
+      annotation: {
+        annotations: {
+          box1: {
+            backgroundColor: 'rgba(25, 227, 133, 0.8)',
+            drawTime: 'beforeDraw',
+            init: true,
+            type: 'box',
+            xMax: 100,
+            xMin: 50,
+            yMax: 100,
+            yMin: 50,
+          },
+          box2: {
+            backgroundColor: 'rgba(225, 83, 23, 0.8)',
+            drawTime: 'beforeDraw',
+            init: true,
+            type: 'box',
+            xMax: 100,
+            xMin: 50,
+            yMax: 0,
+            yMin: 50,
+          },
+          box3: {
+            backgroundColor: 'rgba(231, 183, 63, 0.8)',
+            drawTime: 'beforeDraw',
+            init: true,
+            type: 'box',
+            xMax: 0,
+            xMin: 50,
+            yMax: 100,
+            yMin: 50,
+          },
+          box4: {
+            backgroundColor: 'rgba(229, 23, 72, 0.8)',
+            drawTime: 'beforeDraw',
+            init: true,
+            type: 'box',
+            xMax: 0,
+            xMin: 50,
+            yMax: 0,
+            yMin: 50,
+          },
+          label1: {
+            color: '#ffffff',
+            content: ['ПЛОХО'],
+            font: {
+              size: labelText,
+            },
+            responsive: true,
+            type: 'label',
+            xValue: 25,
+            yValue: 25,
+          },
+          label2: {
+            color: '#ffffff',
+            content: ['СЛАБО'],
+            font: {
+              size: labelText,
+            },
+            type: 'label',
+            xValue: 75,
+            yValue: 25,
+          },
+          label3: {
+            color: '#ffffff',
+            content: ['ХОРОШО'],
+            font: {
+              size: labelText,
+            },
+            type: 'label',
+            xValue: 25,
+            yValue: 75,
+          },
+          label4: {
+            color: '#ffffff',
+            content: ['ОТЛИЧНО'],
+            font: {
+              size: labelText,
+            },
+            type: 'label',
+            xValue: 75,
+            yValue: 75,
+          },
+        },
+      },
       datalabels: {
         display: false,
       },
       title: {
         display: false,
-        text: "Матрица финансовой эффективности",
         font: {
           size: 21,
           weight: 700,
         },
-      },
-      annotation: {
-        annotations: {
-          label1: {
-            type: "label",
-            responsive: true,
-            xValue: 25,
-            yValue: 25,
-            content: ["ПЛОХО"],
-            color: "#ffffff",
-            font: {
-              size: labelText,
-            },
-          },
-          label2: {
-            type: "label",
-            xValue: 75,
-            yValue: 25,
-            content: ["СЛАБО"],
-            color: "#ffffff",
-            font: {
-              size: labelText,
-            },
-          },
-          label3: {
-            type: "label",
-            xValue: 25,
-            yValue: 75,
-            content: ["ХОРОШО"],
-            color: "#ffffff",
-            font: {
-              size: labelText,
-            },
-          },
-          label4: {
-            type: "label",
-            xValue: 75,
-            yValue: 75,
-            content: ["ОТЛИЧНО"],
-            color: "#ffffff",
-            font: {
-              size: labelText,
-            },
-          },
-          box1: {
-            drawTime: "beforeDraw",
-            init: true,
-            type: "box",
-            xMin: 50,
-            xMax: 100,
-            yMin: 50,
-            yMax: 100,
-            backgroundColor: "rgba(25, 227, 133, 0.8)",
-          },
-          box2: {
-            drawTime: "beforeDraw",
-            init: true,
-            type: "box",
-            xMin: 50,
-            xMax: 100,
-            yMin: 50,
-            yMax: 0,
-            backgroundColor: "rgba(225, 83, 23, 0.8)",
-          },
-          box3: {
-            drawTime: "beforeDraw",
-            init: true,
-            type: "box",
-            xMin: 50,
-            xMax: 0,
-            yMin: 50,
-            yMax: 100,
-            backgroundColor: "rgba(231, 183, 63, 0.8)",
-          },
-          box4: {
-            drawTime: "beforeDraw",
-            init: true,
-            type: "box",
-            xMin: 50,
-            xMax: 0,
-            yMin: 50,
-            yMax: 0,
-            backgroundColor: "rgba(229, 23, 72, 0.8)",
-          },
-        },
+        text: 'Матрица финансовой эффективности',
       },
     },
+    responsive: true,
     scales: {
-      y: {
+      x: {
+        beginAtZero: true,
+        grid: {
+          color: ['transparent'],
+        },
+        max: 100,
+        min: 0,
         title: {
           display: true,
-          text: "Финансовое состояние, %",
           font: {
             size: 14,
             weight: 700,
           },
-        },
-        ticks: {
-          index: "%",
-        },
-        beginAtZero: true,
-        min: 0,
-        max: 100,
-        grid: {
-          color: ["transparent"],
+          text: 'Финансовые результаты, %',
         },
       },
-      x: {
+      y: {
+        beginAtZero: true,
+        grid: {
+          color: ['transparent'],
+        },
+        max: 100,
+        min: 0,
+        ticks: {
+          index: '%',
+        },
         title: {
           display: true,
-          text: "Финансовые результаты, %",
           font: {
             size: 14,
             weight: 700,
           },
-        },
-        beginAtZero: true,
-        min: 0,
-        max: 100,
-        grid: {
-          color: ["transparent"],
+          text: 'Финансовое состояние, %',
         },
       },
     },
-    maintainAspectRatio: false,
+    transitions: {},
   };
 
   const data = {
-    labels: [40, 100],
     datasets: [
       {
-        type: "bubble",
-        label: "Ваш результат",
-        data: Array.from({ length: 1 }, () => ({
-          x: 40,
-          y: 35,
-          r: radius,
-        })),
-        // data: [yourResult],
-        backgroundColor: "#3156A6",
+        
         animation: {
           delay: 800,
         },
+        
+        // data: [yourResult],
+        backgroundColor: '#3156A6',
+        
+        data: Array.from({ length: 1 }, () => ({
+          r: radius,
+          x: 40,
+          y: 35,
+        })),
+        
+        label: 'Ваш результат',
+        type: 'bubble',
       },
       {
-        type: "bubble",
-        label: "Эталон",
-        data: Array.from({ length: 1 }, () => ({
-          x: 99,
-          y: 99,
-          r: radiusHigh,
-        })),
-        backgroundColor: "#065707",
         animation: {
           delay: 500,
         },
+        backgroundColor: '#065707',
+        data: Array.from({ length: 1 }, () => ({
+          r: radiusHigh,
+          x: 99,
+          y: 99,
+        })),
+        label: 'Эталон',
+        type: 'bubble',
       },
       {
-        type: "line",
-        showInLegend: false,
-        label: "Потенциал",
-        data: [35, 100],
-        animationSteps: 60,
-        borderColor: "#3156A6",
-        borderDash: [10, 3],
-        backgroundColor: "#ffffff",
-        tension: 0.1,
         animation: {
           delay: 1000,
         },
+        animationSteps: 60,
+        backgroundColor: '#ffffff',
+        borderColor: '#3156A6',
+        borderDash: [10, 3],
+        data: [35, 100],
+        label: 'Потенциал',
+        showInLegend: false,
+        tension: 0.1,
+        type: 'line',
       },
     ],
+    labels: [40, 100],
   };
 
   return (
     <div className="MatrixChartBlock">
       <div className="MyMatrixChart">
         <h3 className="chartTitle">Матрица финансовой эффективности</h3>
-        <Bubble options={options} data={data} />
+        <Bubble data={data} options={options} />
       </div>
       <div className="full_study_matrix">
         Для улучшения своего уровня Вы можете пройти
-        <Link to="/Study" className="fullStudyLink">
-          {"  "}Обучение
+        <Link className="fullStudyLink" to="/Study">
+          {'  '}Обучение
         </Link>
       </div>
     </div>

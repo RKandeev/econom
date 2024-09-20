@@ -1,5 +1,6 @@
-import React from "react";
-import styles from "./SelectModal.module.scss";
+import React from 'react';
+
+import styles from './SelectModal.module.scss';
 
 function SelectModal(props) {
   return (

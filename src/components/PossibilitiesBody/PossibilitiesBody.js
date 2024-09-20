@@ -1,14 +1,18 @@
-import React from "react";
-import styles from "./PossibilitiesBody.module.scss";
-import animationData from "../../img/json/screw.json";
-import Lottie from "react-lottie";
+import React from 'react';
+
+import Lottie from 'react-lottie';
+
+import animationData from '../../img/json/screw.json';
+
+import styles from './PossibilitiesBody.module.scss';
 function PossibilitiesBody(props) {
   const defaultOptions = {
-    loop: true,
-    autoplay: true,
     animationData: animationData,
-    renderer: "svg",
+    autoplay: true,
+    loop: true,
+    renderer: 'svg',
   };
+
   return (
     <div className={styles.possibilitiesBlock}>
       <h2>Навигатор возможностей</h2>

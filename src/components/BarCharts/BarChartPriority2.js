@@ -1,17 +1,19 @@
-import React from "react";
-import "./BarCharts.scss";
-import { Bar } from "react-chartjs-2";
-import gradient from "chartjs-plugin-gradient";
-import ChartDataLabels from "chartjs-plugin-datalabels";
+import React from 'react';
+
 import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
   BarElement,
+  CategoryScale,
+  Chart as ChartJS,
+  Legend,
+  LinearScale,
   Title,
   Tooltip,
-  Legend,
-} from "chart.js";
+} from 'chart.js';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+import gradient from 'chartjs-plugin-gradient';
+import { Bar } from 'react-chartjs-2';
+
+import './BarCharts.scss';
 
 ChartJS.register(
   Title,
@@ -30,80 +32,80 @@ function BarChartPriority2(props) {
   let incomeArr = [9, 207];
   let mobile = true;
   let mobileFont = 16;
-  let mobileColor = "#fff";
+  let mobileColor = '#fff';
+
   if (window.outerWidth < 450) {
     mobile = false;
-    mobileColor = "#000";
-    mobileFont = "12";
+    mobileColor = '#000';
+    mobileFont = '12';
   }
   const options = {
-    scales: {
-      x: {
-        ticks: {
-          maxRotation: 0,
-        },
-        stacked: true,
-      },
-      y: {
-        stacked: true,
-        title: {
-          display: true,
-          text: "тыс. ₽",
-          font: {
-            size: 14,
-            weight: 700,
-          },
-        },
-      },
-    },
-    responsive: true,
     plugins: {
       datalabels: {
+        color: '#fff',
         display: mobile,
-        color: "#fff",
         font: {
           size: mobileFont,
           weight: 700,
         },
       },
-      tooltip: {
-        callbacks: {
-          title: (context) => {
-            return context[0].label.replaceAll(",", " ");
-          },
-        },
-      },
       legend: {
         display: mobile,
-        position: "bottom",
+        position: 'bottom',
+      },
+      tooltip: {
+        callbacks: {
+          title: (context) => context[0].label.replaceAll(',', ' '),
+        },
+      },
+    },
+    responsive: true,
+    scales: {
+      x: {
+        stacked: true,
+        ticks: {
+          maxRotation: 0,
+        },
+      },
+      y: {
+        stacked: true,
+        title: {
+          display: true,
+          font: {
+            size: 14,
+            weight: 700,
+          },
+          text: 'тыс. ₽',
+        },
       },
     },
   };
-  const labels = [["Кредит-1"], ["Кредит-2"]];
+  const labels = [['Кредит-1'], ['Кредит-2']];
   const data = {
-    labels,
     datasets: [
       {
-        label: "Возможный доход от инвестирования",
+        backgroundColor: '#85858590',
         data: percentArr,
-        backgroundColor: "#85858590",
+        label: 'Возможный доход от инвестирования',
       },
       {
-        label: "Экономия расходов на страховку",
+        backgroundColor: '#0DA46F90',
         data: insuranceArr,
-        backgroundColor: "#0DA46F90",
+        label: 'Экономия расходов на страховку',
       },
       {
-        label: "Экономия расходов на проценты",
+        backgroundColor: '#0DA46F',
         data: incomeArr,
-        backgroundColor: "#0DA46F",
+        label: 'Экономия расходов на проценты',
       },
     ],
+    labels,
   };
+
   return (
     <div className="barChartBlock barFlat">
       <h3 className="chartTitle">Структура экономического эффекта </h3>
-      <Bar options={options} data={data} />
+      <Bar data={data} options={options} />
     </div>
   );
 }

@@ -1,12 +1,15 @@
-import React from "react";
-import styles from "./FinAnalysisBody.module.scss";
-import { Link } from "react-router-dom";
-import Chart from "../Chart/Chart";
-import AnalysisHeader from "../AnalysisHeader/AnalysisHeader";
-import Sdp from "../AnalysisCharts/BarCharts/SDP";
-import factimg from "../../img/analysisicons/fact.png";
-import dollar from "../../img/studyIcons/3.svg";
-import hrcontrol from "../../img/analysisicons/HRcontrol.png";
+import React from 'react';
+
+import { Link } from 'react-router-dom';
+
+import Sdp from '../AnalysisCharts/BarCharts/SDP';
+import AnalysisHeader from '../AnalysisHeader/AnalysisHeader';
+
+import factimg from '../../img/analysisicons/fact.png';
+import hrcontrol from '../../img/analysisicons/HRcontrol.png';
+import dollar from '../../img/studyIcons/3.svg';
+
+import styles from './FinAnalysisBody.module.scss';
 
 function FinAnalysisBody(props) {
   return (
@@ -23,50 +26,50 @@ function FinAnalysisBody(props) {
       <AnalysisHeader
         activeLink="true"
         firstlink="/FinAnalys"
-        secondlink="/AnalysisEfficiency"
         firsttitle="Денежные потоки"
+        secondlink="/AnalysisEfficiency"
         secondtitle="Финансовая эффективность"
       />
       <div className={styles.cashFlowBody}>
         <div className={styles.cashFlowNav}>
           <div className={styles.cashFlowChartLink}>
             Свод денежных потоков
-            <img src={dollar} alt="" />
+            <img alt="" src={dollar} />
           </div>
-          <Link to="/ActualAnalysis" className={styles.cashFlowLink}>
+          <Link className={styles.cashFlowLink} to="/ActualAnalysis">
             План-факт анализ
-            <img src={factimg} alt="" />
+            <img alt="" src={factimg} />
           </Link>
-          <Link to="/NoMatterAnalysis" className={styles.cashFlowLink}>
+          <Link className={styles.cashFlowLink} to="/NoMatterAnalysis">
             Контроль необязательных расходов
-            <img src={hrcontrol} alt="" />
+            <img alt="" src={hrcontrol} />
           </Link>
-          <Link to="/StructureAnalysis" className={styles.cashFlowLink}>
+          <Link className={styles.cashFlowLink} to="/StructureAnalysis">
             Структурный анализ
             <svg
-              width="24"
+              fill="none"
               height="24"
               viewBox="0 0 24 24"
-              fill="none"
+              width="24"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                clipRule="evenodd"
                 d="M10.5 6C6.358 6 3 9.358 3 13.5C3 17.642 6.358 21 10.5 21C14.642 21 18 17.642 18 13.5H10.5V6Z"
+                fillRule="evenodd"
                 stroke="#464e5f"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="1.5"
               />
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                clipRule="evenodd"
                 d="M21 10C21 6.134 17.866 3 14 3V10H21Z"
+                fillRule="evenodd"
                 stroke="#464e5f"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="1.5"
               />
             </svg>
           </Link>

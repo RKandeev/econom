@@ -1,22 +1,25 @@
-import React from "react";
-import { Bar } from "react-chartjs-2";
-import gradient from "chartjs-plugin-gradient";
-import "./AnalysisBarCharts.scss";
-import annotationPlugin from "chartjs-plugin-annotation";
+import React from 'react';
+
 import {
-  Chart as ChartJS,
-  Title,
-  Tooltip,
-  LineElement,
-  Legend,
   BarElement,
   CategoryScale,
-  LinearScale,
-  PointElement,
+  Chart as ChartJS,
   Filler,
-} from "chart.js";
-import Checkcustom from "../../Checkcustom/Checkcustom";
-import Selectblue from "../../Selectblue/Selectblue";
+  Legend,
+  LinearScale,
+  LineElement,
+  PointElement,
+  Title,
+  Tooltip,
+} from 'chart.js';
+import annotationPlugin from 'chartjs-plugin-annotation';
+import gradient from 'chartjs-plugin-gradient';
+import { Bar } from 'react-chartjs-2';
+
+import Checkcustom from '../../Checkcustom/Checkcustom';
+import Selectblue from '../../Selectblue/Selectblue';
+
+import './AnalysisBarCharts.scss';
 
 ChartJS.register(
   Title,
@@ -35,28 +38,29 @@ ChartJS.register(
 function Prv2(props) {
   let years = [2022, 2023];
   let months = [
-    "Январь",
-    "Февраль",
-    "Март",
-    "Апрель",
-    "Май",
-    "Июнь",
-    "Июль",
-    "Август",
-    "Сентябрь",
-    "Октябрь",
-    "Ноябрь",
-    "Декабрь",
+    'Январь',
+    'Февраль',
+    'Март',
+    'Апрель',
+    'Май',
+    'Июнь',
+    'Июль',
+    'Август',
+    'Сентябрь',
+    'Октябрь',
+    'Ноябрь',
+    'Декабрь',
   ];
-  let LinesColor = localStorage.getItem("LinesColorFlat");
+  let LinesColor = localStorage.getItem('LinesColorFlat');
   let topArr = [];
   let bottomArr = [];
   let mobile = true;
   let mobileFont = 16;
-  let mobileColor = "#fff";
+  let mobileColor = '#fff';
+
   if (window.outerWidth < 450) {
     mobile = false;
-    mobileColor = "#000";
+    mobileColor = '#000';
     mobileFont = 12;
   }
   let arr = [
@@ -70,7 +74,8 @@ function Prv2(props) {
     60148, 59818, 59488, 42898, 41798, 41468, 41088, 40038, 39708, 39378, 0, 0,
   ];
   let planMoney = 157428;
-  if (LinesColor === "1") {
+
+  if (LinesColor === '1') {
     topArr = arr;
     bottomArr = arr2;
   } else {
@@ -78,16 +83,18 @@ function Prv2(props) {
     bottomArr = arr;
   }
   const lineHomeOptions = {
+    barPercentage: 1.0,
+    categoryPercentage: 1.0,
     plugins: {
       annotation: {
         annotations: {
           line1: {
-            drawTime: "afterDraw",
-            type: "line",
-            yMin: planMoney,
-            yMax: planMoney,
-            borderColor: "#EE2B49",
+            borderColor: '#EE2B49',
             borderWidth: 2,
+            drawTime: 'afterDraw',
+            type: 'line',
+            yMax: planMoney,
+            yMin: planMoney,
           },
         },
       },
@@ -96,76 +103,74 @@ function Prv2(props) {
       },
       legend: {
         display: mobile,
-        position: "bottom",
+        position: 'bottom',
       },
     },
-    barPercentage: 1.0,
-    categoryPercentage: 1.0,
     scales: {
       x: {
         stacked: true,
         title: {
           display: true,
-          text: "Дни месяца",
           font: {
             size: 12,
             weight: 700,
           },
+          text: 'Дни месяца',
         },
       },
       y: {
+        display: true,
+        min: 0,
+        stacked: true,
         ticks: {
           beginAtZero: true,
         },
-        min: 0,
-        stacked: true,
-        display: true,
         title: {
           display: false,
-          text: "млн. ₽",
           font: {
             size: 12,
             weight: 700,
           },
+          text: 'млн. ₽',
         },
       },
     },
     title: {
       display: false,
-      text: "COVID-19 Cases of Last 6 Months",
       fontSize: 20,
+      text: 'COVID-19 Cases of Last 6 Months',
     },
   };
   const lineHomeData = {
+    datasets: [
+      {
+        backgroundColor: '#3156A690',
+        borderColor: '#3156A6',
+        data: arr,
+        fill: true,
+        label: 'Расходы с начала месяца',
+        lineTension: 0,
+      },
+      {
+        backgroundColor: 'rgba(25, 227, 133, 0.7)',
+        borderColor: '#0DA46F',
+        data: arr2,
+        fill: true,
+        label: 'Остаток лимита',
+        lineTension: 0,
+      },
+      {
+        backgroundColor: '#EE2B49',
+        borderColor: '#EE2B49',
+        data: [0],
+        fill: false,
+        label: 'План на месяц',
+        lineTension: 0,
+      },
+    ],
     labels: [
       1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
       22, 23, 24, 25, 26, 27, 28, 29, 30, 31,
-    ],
-    datasets: [
-      {
-        fill: true,
-        data: arr,
-        label: "Расходы с начала месяца",
-        lineTension: 0,
-        borderColor: "#3156A6",
-        backgroundColor: "#3156A690",
-      },
-      {
-        fill: true,
-        data: arr2,
-        label: "Остаток лимита",
-        lineTension: 0,
-        borderColor: "#0DA46F",
-        backgroundColor: "rgba(25, 227, 133, 0.7)",
-      },
-      {
-        fill: false,
-        data: [0],
-        label: "План на месяц",
-        lineTension: 0,
-        borderColor: "#EE2B49",
-        backgroundColor: "#EE2B49",
-      },
     ],
   };
 
@@ -181,10 +186,10 @@ function Prv2(props) {
             <Selectblue selectArr={years} />
             <Selectblue selectArr={months} />
           </div>
-          <Checkcustom label="С начала года" checked={false} />
+          <Checkcustom checked={false} label="С начала года" />
         </div>
       </div>
-      <Bar options={lineHomeOptions} data={lineHomeData} />
+      <Bar data={lineHomeData} options={lineHomeOptions} />
     </div>
   );
 }

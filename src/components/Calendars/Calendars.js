@@ -1,14 +1,16 @@
-import React, { useState } from "react";
-import { Container } from "react-bootstrap";
-import DatePicker, { registerLocale } from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import "react-datepicker/dist/react-datepicker-cssmodules.css";
-import "./Calendar.scss";
-import ru from "date-fns/locale/ru";
-registerLocale("ru", ru);
+import React, { useState } from 'react';
+
+import ru from 'date-fns/locale/ru';
+import { Container } from 'react-bootstrap';
+import DatePicker, { registerLocale } from 'react-datepicker';
+
+import 'react-datepicker/dist/react-datepicker.css';
+import 'react-datepicker/dist/react-datepicker-cssmodules.css';
+import './Calendar.scss';
+registerLocale('ru', ru);
 
 function Reactdatepicker() {
-  const [selectesDate, setSelectedDate] = useState("");
+  const [selectesDate, setSelectedDate] = useState('');
 
   return (
     <React.Fragment>
@@ -21,10 +23,10 @@ function Reactdatepicker() {
                 <label className="col-sm-2 col-form-label"> Дата</label>
                 <div className="col-sm-5">
                   <DatePicker
-                    selected={selectesDate}
-                    onChange={(date) => setSelectedDate(date)}
                     dateFormat="dd.MM.yyyy"
                     locale="ru"
+                    selected={selectesDate}
+                    onChange={(date) => setSelectedDate(date)}
                     placeholderText="Выберите дату"
 
                     //minDate={ new Date()}
@@ -38,7 +40,7 @@ function Reactdatepicker() {
               <div className="row mb-4">
                 <label className="col-sm-2 col-form-label"></label>
                 <div className="col-sm-4">
-                  <button type="submit" className="btn btn-success">
+                  <button className="btn btn-success" type="submit">
                     Submit
                   </button>
                 </div>

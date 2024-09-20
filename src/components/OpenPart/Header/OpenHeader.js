@@ -1,47 +1,49 @@
-import React from "react";
-import logo1 from "../../../img/logo1.svg";
-import "../OpenPart.scss";
+import React from 'react';
+
+import logo1 from '../../../img/logo1.svg';
+
+import '../OpenPart.scss';
 
 function OpenHeader(props) {
   return (
     <>
       <header className="wrapper">
         <div className="header_logo">
-          <img src={logo1} alt="" />
+          <img alt="" src={logo1} />
         </div>
         <div className="mobile_nav mobile">
           <input
-            type="checkbox"
-            id="burger_checkbox"
             className="burger_checkbox"
+            id="burger_checkbox"
+            type="checkbox"
           />
           <label className="burger" htmlFor="burger_checkbox"></label>
           <ul className="menu_list">
             <li>
-              <a href="./index.html" className="menu_item">
+              <a className="menu_item" href="./index.html">
                 О проекте
               </a>
             </li>
             <li>
-              <a href="./check.html" className="menu_item ">
+              <a className="menu_item " href="./check.html">
                 Проверь себя
               </a>
             </li>
             <li>
-              <a href="./sign-up.html" className="menu_item">
+              <a className="menu_item" href="./sign-up.html">
                 Личный кабинет
               </a>
             </li>
           </ul>
         </div>
         <nav className="desktop">
-          <a href="./index.html" className="nav-link active">
+          <a className="nav-link active" href="./index.html">
             О проекте
           </a>
-          <a href="./check.html" className="nav-link ">
+          <a className="nav-link " href="./check.html">
             Проверь себя
           </a>
-          <a href="./sign-up.html" className="nav-link link-personal">
+          <a className="nav-link link-personal" href="./sign-up.html">
             Личный кабинет
           </a>
         </nav>

@@ -1,12 +1,14 @@
-import React from "react";
-import styles from "./Menulink.module.scss";
-import { Link } from "react-router-dom";
+import React from 'react';
+
+import { Link } from 'react-router-dom';
+
+import styles from './Menulink.module.scss';
 
 function Menulink(props) {
   return (
-    <Link to={props.linksAdress} className={styles.blockImg}>
+    <Link className={styles.blockImg} to={props.linksAdress}>
       <div className={styles.image}>
-        <img src={props.img} alt="" />
+        <img alt="" src={props.img} />
       </div>
       <div className={styles.category}>{props.txt}</div>
     </Link>

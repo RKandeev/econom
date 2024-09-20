@@ -1,20 +1,23 @@
-import React from "react";
-import { Line } from "react-chartjs-2";
-import gradient from "chartjs-plugin-gradient";
-import "./AnalysisLineCharts.scss";
+import React from 'react';
+
 import {
+  CategoryScale,
   Chart as ChartJS,
+  Filler,
+  Legend,
+  LinearScale,
+  LineElement,
+  PointElement,
   Title,
   Tooltip,
-  LineElement,
-  Legend,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  Filler,
-} from "chart.js";
-import Selectblue from "../../Selectblue/Selectblue";
-import Checkcustom from "../../Checkcustom/Checkcustom";
+} from 'chart.js';
+import gradient from 'chartjs-plugin-gradient';
+import { Line } from 'react-chartjs-2';
+
+import Checkcustom from '../../Checkcustom/Checkcustom';
+import Selectblue from '../../Selectblue/Selectblue';
+
+import './AnalysisLineCharts.scss';
 
 ChartJS.register(
   Title,
@@ -31,18 +34,18 @@ ChartJS.register(
 function Dkd(props) {
   let years = [2022, 2023];
   let months = [
-    "Январь",
-    "Февраль",
-    "Март",
-    "Апрель",
-    "Май",
-    "Июнь",
-    "Июль",
-    "Август",
-    "Сентябрь",
-    "Октябрь",
-    "Ноябрь",
-    "Декабрь",
+    'Январь',
+    'Февраль',
+    'Март',
+    'Апрель',
+    'Май',
+    'Июнь',
+    'Июль',
+    'Август',
+    'Сентябрь',
+    'Октябрь',
+    'Ноябрь',
+    'Декабрь',
   ];
   // let LinesColor = localStorage.getItem("LinesColorFlat");
   // let topArr = [];
@@ -71,68 +74,68 @@ function Dkd(props) {
       },
       legend: {
         display: false,
-        position: "bottom",
+        position: 'bottom',
       },
     },
     scales: {
       x: {
         title: {
           display: false,
-          text: "Годы",
           font: {
             size: 12,
             weight: 700,
           },
+          text: 'Годы',
         },
       },
       y: {
         display: true,
         title: {
           display: true,
-          text: "%",
           font: {
             size: 12,
             weight: 700,
           },
+          text: '%',
         },
       },
     },
     title: {
       display: false,
-      text: "COVID-19 Cases of Last 6 Months",
       fontSize: 20,
+      text: 'COVID-19 Cases of Last 6 Months',
     },
   };
   const lineHomeData = {
-    labels: [
-      "Январь",
-      "Февраль",
-      "Март",
-      "Апрель",
-      "Май",
-      "Июнь",
-      "Июль",
-      "Август",
-      "Сентябрь",
-      "Октябрь",
-      "Ноябрь",
-      "Декабрь",
-    ],
     datasets: [
       {
+        backgroundColor: '#0DA46F',
+        borderColor: '#0DA46F',
         data: arr,
-        label: "Доходность собственного капитала",
+        label: 'Доходность собственного капитала',
         lineTension: 0,
-        borderColor: "#0DA46F",
-        backgroundColor: "#0DA46F",
       },
       {
+        backgroundColor: '#ecc565',
+        borderColor: '#ecc565',
         data: arr2,
-        label: "Ключевая ставка ЦБ",
+        label: 'Ключевая ставка ЦБ',
         lineTension: 0,
-        borderColor: "#ecc565",
-        backgroundColor: "#ecc565",
       },
+    ],
+    labels: [
+      'Январь',
+      'Февраль',
+      'Март',
+      'Апрель',
+      'Май',
+      'Июнь',
+      'Июль',
+      'Август',
+      'Сентябрь',
+      'Октябрь',
+      'Ноябрь',
+      'Декабрь',
     ],
   };
 
@@ -145,10 +148,10 @@ function Dkd(props) {
             <Selectblue selectArr={years} />
             <Selectblue selectArr={months} />
           </div>
-          <Checkcustom label="С начала года" checked={true} />
+          <Checkcustom checked label="С начала года" />
         </div>
       </div>
-      <Line options={lineHomeOptions} data={lineHomeData} />
+      <Line data={lineHomeData} options={lineHomeOptions} />
     </div>
   );
 }

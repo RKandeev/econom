@@ -1,5 +1,6 @@
-import React from "react";
-import styles from "./CourseBlock.module.scss";
+import React from 'react';
+
+import styles from './CourseBlock.module.scss';
 function CourseBlock(props) {
   return (
     <div className={styles.StudyFirst}>
@@ -10,15 +11,15 @@ function CourseBlock(props) {
           <div
             className={styles.lesson_block}
             onClick={(e) => {
-              e.target.style.display = "none";
+              e.target.style.display = 'none';
             }}
           >
             <div className={styles.iframe_cover}>{props.videoTitle}</div>
             <iframe
+              allowFullScreen
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               src={props.videoLink}
               title="YouTube video player"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
             ></iframe>
           </div>
         ))}

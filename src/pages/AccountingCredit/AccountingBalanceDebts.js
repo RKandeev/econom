@@ -1,101 +1,105 @@
-import React from "react";
-import Header from "../../components/Header/Header";
-import styles from "../AccountingIncomes/AccountingIncomes.module.scss";
-import Accountingleftnav from "../../components/Accountingleftnav/Accountingleftnav";
-import { Link } from "react-router-dom";
-import credit from "../../img/crediticon.svg";
-import IncomesLine from "../../components/IncomesLine/IncomesLine";
-import MobileNav from "../../components/MobileNav/MobileNav";
-import AccountingProgressadd from "../../components/Progressadd/AccountingProgressadd";
-import AccountingBalanceRight from "../../components/AccountingBalanceRight/AccountingBalanceRight";
-import lockedIco from "../../img/icon/icon__lock.svg";
-import checkedIco from "../../img/icon/icon__check.svg";
-import newcheck from "../../img/Ellipse 1.svg";
-import Selectblue from "../../components/Selectblue/Selectblue";
+import React from 'react';
+
+import { Link } from 'react-router-dom';
+
+import AccountingBalanceRight from '../../components/AccountingBalanceRight/AccountingBalanceRight';
+import Accountingleftnav from '../../components/Accountingleftnav/Accountingleftnav';
+import Header from '../../components/Header/Header';
+import IncomesLine from '../../components/IncomesLine/IncomesLine';
+import MobileNav from '../../components/MobileNav/MobileNav';
+import AccountingProgressadd from '../../components/Progressadd/AccountingProgressadd';
+import Selectblue from '../../components/Selectblue/Selectblue';
+
+import credit from '../../img/crediticon.svg';
+import newcheck from '../../img/Ellipse 1.svg';
+import checkedIco from '../../img/icon/icon__check.svg';
+import lockedIco from '../../img/icon/icon__lock.svg';
+
+import styles from '../AccountingIncomes/AccountingIncomes.module.scss';
 
 function AccountingBalanceDebts(props) {
-  let progressValue = "-77 276,12";
-  let availableValue = "112 385,20";
-  let titleName = "Задолжал хомяку";
-  let titleNameType = "Скин в кредит";
+  let progressValue = '-77 276,12';
+  let availableValue = '112 385,20';
+  let titleName = 'Задолжал хомяку';
+  let titleNameType = 'Скин в кредит';
   let selectedMonth = 4;
 
-  let incomesValue = "-8500.00";
+  let incomesValue = '-8500.00';
   const months = [
     {
+      checkStatus: lockedIco,
       id: 1,
-      title: "ЯНВ",
-      img: "../../img/Ellipse 1.svg",
-      checkStatus: lockedIco,
+      img: '../../img/Ellipse 1.svg',
+      title: 'ЯНВ',
     },
     {
+      checkStatus: lockedIco,
       id: 2,
-      title: "ФЕВ",
-      img: "../../img/Ellipse 1.svg",
-      checkStatus: lockedIco,
+      img: '../../img/Ellipse 1.svg',
+      title: 'ФЕВ',
     },
     {
+      checkStatus: checkedIco,
       id: 3,
-      title: "МАР",
-      img: "../../img/Ellipse 1.svg",
-      checkStatus: checkedIco,
+      img: '../../img/Ellipse 1.svg',
+      title: 'МАР',
     },
     {
+      checkStatus: checkedIco,
       id: 4,
-      title: "АПР",
-      img: "../../img/Ellipse 1.svg",
-      checkStatus: checkedIco,
+      img: '../../img/Ellipse 1.svg',
+      title: 'АПР',
     },
     {
+      checkStatus: newcheck,
       id: 5,
-      title: "МАЙ",
-      img: "../../img/Ellipse 1.svg",
-      checkStatus: newcheck,
+      img: '../../img/Ellipse 1.svg',
+      title: 'МАЙ',
     },
     {
+      checkStatus: newcheck,
       id: 6,
-      title: "ИЮН",
-      img: "../../img/Ellipse 1.svg",
-      checkStatus: newcheck,
+      img: '../../img/Ellipse 1.svg',
+      title: 'ИЮН',
     },
     {
+      checkStatus: newcheck,
       id: 7,
-      title: "ИЮЛ",
-      img: "../../img/Ellipse 1.svg",
-      checkStatus: newcheck,
+      img: '../../img/Ellipse 1.svg',
+      title: 'ИЮЛ',
     },
     {
+      checkStatus: newcheck,
       id: 8,
-      title: "АВГ",
-      img: "../../img/Ellipse 1.svg",
-      checkStatus: newcheck,
+      img: '../../img/Ellipse 1.svg',
+      title: 'АВГ',
     },
     {
+      checkStatus: newcheck,
       id: 9,
-      title: "СЕН",
-      img: "../../img/Ellipse 1.svg",
-      checkStatus: newcheck,
+      img: '../../img/Ellipse 1.svg',
+      title: 'СЕН',
     },
     {
+      checkStatus: newcheck,
       id: 10,
-      title: "ОКТ",
-      img: "../../img/Ellipse 1.svg",
-      checkStatus: newcheck,
+      img: '../../img/Ellipse 1.svg',
+      title: 'ОКТ',
     },
     {
+      checkStatus: newcheck,
       id: 11,
-      title: "НОЯ",
-      img: "../../img/Ellipse 1.svg",
-      checkStatus: newcheck,
+      img: '../../img/Ellipse 1.svg',
+      title: 'НОЯ',
     },
     {
-      id: 12,
-      title: "ДЕК",
-      img: "../../img/Ellipse 1.svg",
       checkStatus: newcheck,
+      id: 12,
+      img: '../../img/Ellipse 1.svg',
+      title: 'ДЕК',
     },
   ];
-  const years = ["2022", "2023"];
+  const years = ['2022', '2023'];
 
   return (
     <>
@@ -110,7 +114,7 @@ function AccountingBalanceDebts(props) {
               <div className={styles.breadcrumb}>
                 <ul>
                   <li>
-                    <Link to={"/AccountingBalance"}>Финансовый баланс</Link>
+                    <Link to="/AccountingBalance">Финансовый баланс</Link>
                   </li>
                   <li>Долги</li>
                 </ul>
@@ -122,11 +126,11 @@ function AccountingBalanceDebts(props) {
             <div className={styles.monthblock}>
               {months.map((elem, index) => (
                 <div
-                  className={index === selectedMonth ? "month select" : "month"}
                   key={elem.id}
+                  className={index === selectedMonth ? 'month select' : 'month'}
                 >
                   <div className="monthimg">
-                    <img src={elem.checkStatus} alt="" />
+                    <img alt="" src={elem.checkStatus} />
                   </div>
                   <div className="monthtitle">{elem.title}</div>
                 </div>
@@ -134,12 +138,12 @@ function AccountingBalanceDebts(props) {
             </div>
           </div>
           <AccountingProgressadd
+            availableValue={availableValue}
             barcolor="#EE2B49"
+            barwidth="627rem"
+            btnTitle="Добавить"
             progressTitle="Учтено"
             progressValue={progressValue}
-            availableValue={availableValue}
-            btnTitle="Добавить"
-            barwidth="627rem"
             SelectHeader1="Категория заимствований"
             SelectHeader2="Статья заимствований"
             SelectHeader3="Характер задолженности"
@@ -147,14 +151,14 @@ function AccountingBalanceDebts(props) {
             // selectModalVis="hidden"
           />
           <IncomesLine
-            ttTitle="Это подсказка"
+            commentToltTitle="Это комментарий - бла бла"
+            incomesValue={incomesValue}
+            notificDisplay="none"
             titleImg={credit}
             titleName={titleName}
             titleNameType={titleNameType}
-            incomesValue={incomesValue}
+            ttTitle="Это подсказка"
             valueColor="#0DA46F"
-            commentToltTitle="Это комментарий - бла бла"
-            notificDisplay="none"
           />
         </div>
         <AccountingBalanceRight />

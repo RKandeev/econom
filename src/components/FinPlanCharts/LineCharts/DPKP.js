@@ -1,21 +1,24 @@
-import React from "react";
-import { Line } from "react-chartjs-2";
-import gradient from "chartjs-plugin-gradient";
-import "./FinPlanLineCharts.scss";
-import annotationPlugin from "chartjs-plugin-annotation";
+import React from 'react';
+
 import {
+  CategoryScale,
   Chart as ChartJS,
+  Filler,
+  Legend,
+  LinearScale,
+  LineElement,
+  PointElement,
   Title,
   Tooltip,
-  LineElement,
-  Legend,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  Filler,
-} from "chart.js";
-import Selectblue from "../../Selectblue/Selectblue";
-import Checkcustom from "../../Checkcustom/Checkcustom";
+} from 'chart.js';
+import annotationPlugin from 'chartjs-plugin-annotation';
+import gradient from 'chartjs-plugin-gradient';
+import { Line } from 'react-chartjs-2';
+
+import Checkcustom from '../../Checkcustom/Checkcustom';
+import Selectblue from '../../Selectblue/Selectblue';
+
+import './FinPlanLineCharts.scss';
 
 ChartJS.register(
   Title,
@@ -33,28 +36,29 @@ ChartJS.register(
 function Dpkp(props) {
   let years = [2022, 2023];
   let months = [
-    "Январь",
-    "Февраль",
-    "Март",
-    "Апрель",
-    "Май",
-    "Июнь",
-    "Июль",
-    "Август",
-    "Сентябрь",
-    "Октябрь",
-    "Ноябрь",
-    "Декабрь",
+    'Январь',
+    'Февраль',
+    'Март',
+    'Апрель',
+    'Май',
+    'Июнь',
+    'Июль',
+    'Август',
+    'Сентябрь',
+    'Октябрь',
+    'Ноябрь',
+    'Декабрь',
   ];
-  let LinesColor = localStorage.getItem("LinesColorFlat");
+  let LinesColor = localStorage.getItem('LinesColorFlat');
   let topArr = [];
   let bottomArr = [];
   let mobile = true;
   let mobileFont = 16;
-  let mobileColor = "#fff";
+  let mobileColor = '#fff';
+
   if (window.outerWidth < 450) {
     mobile = false;
-    mobileColor = "#000";
+    mobileColor = '#000';
     mobileFont = 12;
   }
   let arr = [
@@ -66,7 +70,7 @@ function Dpkp(props) {
     21235,
   ];
 
-  if (LinesColor === "1") {
+  if (LinesColor === '1') {
     topArr = arr;
     bottomArr = arr2;
   } else {
@@ -80,77 +84,77 @@ function Dpkp(props) {
       },
       legend: {
         display: mobile,
-        position: "bottom",
+        position: 'bottom',
       },
     },
     scales: {
       x: {
         title: {
           display: false,
-          text: "Годы",
           font: {
             size: 12,
             weight: 700,
           },
+          text: 'Годы',
         },
       },
       y: {
+        display: true,
+        min: 0,
+        stacked: true,
         ticks: {
           beginAtZero: true,
         },
-        min: 0,
-        stacked: true,
-        display: true,
         title: {
           display: false,
-          text: "млн. ₽",
           font: {
             size: 12,
             weight: 700,
           },
+          text: 'млн. ₽',
         },
       },
     },
     title: {
       display: false,
-      text: "COVID-19 Cases of Last 6 Months",
       fontSize: 20,
+      text: 'COVID-19 Cases of Last 6 Months',
     },
   };
   const lineHomeData = {
-    labels: [
-      "Январь",
-      "Февраль",
-      "Март",
-      "Апрель",
-      "Май",
-      "Июнь",
-      "Июль",
-      "Август",
-      "Сентябрь",
-      "Октябрь",
-      "Ноябрь",
-      "Декабрь",
-    ],
     datasets: [
       {
-        order: 1,
-        fill: true,
+        backgroundColor: '#EE2B4990',
+        borderColor: '#EE2B49',
         data: arr,
-        label: "Проценты",
+        fill: true,
+        label: 'Проценты',
         lineTension: 0,
-        borderColor: "#EE2B49",
-        backgroundColor: "#EE2B4990",
+        order: 1,
       },
       {
-        order: 2,
-        fill: 0,
+        backgroundColor: '#13efa3',
+        borderColor: '#0DA46F',
         data: arr2,
-        label: "Основной долг",
+        fill: 0,
+        label: 'Основной долг',
         lineTension: 0,
-        borderColor: "#0DA46F",
-        backgroundColor: "#13efa3",
+        order: 2,
       },
+    ],
+    labels: [
+      'Январь',
+      'Февраль',
+      'Март',
+      'Апрель',
+      'Май',
+      'Июнь',
+      'Июль',
+      'Август',
+      'Сентябрь',
+      'Октябрь',
+      'Ноябрь',
+      'Декабрь',
     ],
   };
 
@@ -162,10 +166,10 @@ function Dpkp(props) {
             <Selectblue selectArr={years} />
             <Selectblue selectArr={months} />
           </div>
-          <Checkcustom label="С начала года" checked={true} />
+          <Checkcustom checked label="С начала года" />
         </div>
       </div>
-      <Line options={lineHomeOptions} data={lineHomeData} />
+      <Line data={lineHomeData} options={lineHomeOptions} />
     </div>
   );
 }

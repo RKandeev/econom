@@ -1,16 +1,19 @@
-import React from "react";
-import styles from "./StudyFirst.module.scss";
-import studyIn from "../../img/studyIcons/1.svg";
-import finEfficient from "../../img/studyIcons/2.svg";
-import dollar from "../../img/studyIcons/3.svg";
-import finplan from "../../img/icon__fin-plan.svg";
-import finuchet from "../../img/icon__fin-uchet.svg";
-import finchoice from "../../img/studyIcons/7.svg";
-import finanalys from "../../img/icon__fin-analiz.svg";
-import { Link } from "react-router-dom";
+import React from 'react';
+
+import { Link } from 'react-router-dom';
+
+import finanalys from '../../img/icon__fin-analiz.svg';
+import finplan from '../../img/icon__fin-plan.svg';
+import finuchet from '../../img/icon__fin-uchet.svg';
+import studyIn from '../../img/studyIcons/1.svg';
+import finEfficient from '../../img/studyIcons/2.svg';
+import dollar from '../../img/studyIcons/3.svg';
+import finchoice from '../../img/studyIcons/7.svg';
+
+import styles from './StudyFirst.module.scss';
 
 function StudyFirst(props) {
-  localStorage.removeItem("lessonNum");
+  localStorage.removeItem('lessonNum');
 
   return (
     <div className={styles.Studyfirst}>
@@ -24,9 +27,9 @@ function StudyFirst(props) {
         <Link
           className={styles.lesson_block}
           to="/Studying"
-          onClick={() => localStorage.setItem("lessonNum", "0")}
+          onClick={() => localStorage.setItem('lessonNum', '0')}
         >
-          <img src={studyIn} alt="" />
+          <img alt="" src={studyIn} />
           <div className={styles.lesson_title}>
             1. Введение в управление финансами
           </div>
@@ -34,53 +37,53 @@ function StudyFirst(props) {
         <Link
           className={styles.lesson_block}
           to="/Studying"
-          onClick={() => localStorage.setItem("lessonNum", "1")}
+          onClick={() => localStorage.setItem('lessonNum', '1')}
         >
-          <img src={finEfficient} alt="" />
+          <img alt="" src={finEfficient} />
           <div className={styles.lesson_title}>2. Финансовая эффективность</div>
         </Link>
         <Link
-          to="/Studying"
-          onClick={() => localStorage.setItem("lessonNum", "2")}
           className={styles.lesson_block}
+          to="/Studying"
+          onClick={() => localStorage.setItem('lessonNum', '2')}
         >
-          <img src={dollar} alt="" />
+          <img alt="" src={dollar} />
           <div className={styles.lesson_title}>
             3. Денежные потоки и финансовый баланс
           </div>
         </Link>
         <Link
-          to="/Studying"
-          onClick={() => localStorage.setItem("lessonNum", "3")}
           className={styles.lesson_block}
+          to="/Studying"
+          onClick={() => localStorage.setItem('lessonNum', '3')}
         >
-          <img src={finplan} alt="" />
+          <img alt="" src={finplan} />
           <div className={styles.lesson_title}>
             4. Финансовое <br /> планирование
           </div>
         </Link>
         <Link
-          to="/Studying"
-          onClick={() => localStorage.setItem("lessonNum", "4")}
           className={styles.lesson_block}
+          to="/Studying"
+          onClick={() => localStorage.setItem('lessonNum', '4')}
         >
-          <img src={finuchet} alt="" />
+          <img alt="" src={finuchet} />
           <div className={styles.lesson_title}>5. Финансовый учёт</div>
         </Link>
         <Link
-          to="/Studying"
-          onClick={() => localStorage.setItem("lessonNum", "5")}
           className={styles.lesson_block}
+          to="/Studying"
+          onClick={() => localStorage.setItem('lessonNum', '5')}
         >
-          <img src={finanalys} alt="" />
+          <img alt="" src={finanalys} />
           <div className={styles.lesson_title}>6. Финансовый анализ</div>
         </Link>
         <Link
-          to="/Studying"
-          onClick={() => localStorage.setItem("lessonNum", "6")}
           className={styles.lesson_block}
+          to="/Studying"
+          onClick={() => localStorage.setItem('lessonNum', '6')}
         >
-          <img src={finchoice} alt="" />
+          <img alt="" src={finchoice} />
           <div className={styles.lesson_title}>7. Финансовые решения</div>
         </Link>
       </div>

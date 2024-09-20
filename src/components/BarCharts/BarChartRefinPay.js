@@ -1,17 +1,19 @@
-import React from "react";
-import "./BarCharts.scss";
-import { Bar } from "react-chartjs-2";
-import gradient from "chartjs-plugin-gradient";
-import ChartDataLabels from "chartjs-plugin-datalabels";
+import React from 'react';
+
 import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
   BarElement,
+  CategoryScale,
+  Chart as ChartJS,
+  Legend,
+  LinearScale,
   Title,
   Tooltip,
-  Legend,
-} from "chart.js";
+} from 'chart.js';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+import gradient from 'chartjs-plugin-gradient';
+import { Bar } from 'react-chartjs-2';
+
+import './BarCharts.scss';
 
 ChartJS.register(
   Title,
@@ -29,71 +31,71 @@ function BarChartRefinPay(props) {
   let insuranceArr = [23, 23];
   let mobile = true;
   let mobileFont = 16;
-  let mobileColor = "#fff";
+  let mobileColor = '#fff';
+
   if (window.outerWidth < 450) {
     mobile = false;
-    mobileColor = "#000";
-    mobileFont = "12";
+    mobileColor = '#000';
+    mobileFont = '12';
   }
   const options = {
-    scales: {
-      x: {
-        ticks: {
-          maxRotation: 0,
-          display: true,
-        },
-        stacked: true,
-      },
-      y: {
-        stacked: true,
-        title: {
-          display: true,
-          text: "тыс. ₽",
-          font: {
-            size: 12,
-            weight: 700,
-          },
-        },
-      },
-    },
-    responsive: true,
     plugins: {
       datalabels: {
+        color: '#fff',
         display: mobile,
-        color: "#fff",
         font: {
           size: 16,
           weight: 700,
         },
       },
-      tooltip: {
-        callbacks: {
-          title: (context) => {
-            return context[0].label.replaceAll(",", " ");
-          },
-        },
-      },
       legend: {
         display: false,
-        position: "bottom",
+        position: 'bottom',
+      },
+      tooltip: {
+        callbacks: {
+          title: (context) => context[0].label.replaceAll(',', ' '),
+        },
+      },
+    },
+    responsive: true,
+    scales: {
+      x: {
+        stacked: true,
+        ticks: {
+          display: true,
+          maxRotation: 0,
+        },
+      },
+      y: {
+        stacked: true,
+        title: {
+          display: true,
+          font: {
+            size: 12,
+            weight: 700,
+          },
+          text: 'тыс. ₽',
+        },
       },
     },
   };
-  const labels = [["Без рефинанс-ия"], ["С рефинанс-ем"]];
+  const labels = [['Без рефинанс-ия'], ['С рефинанс-ем']];
   const data = {
-    labels,
     datasets: [
       {
-        label: "",
+        backgroundColor: '#858585',
         data: insuranceArr,
-        backgroundColor: "#858585",
+        label: '',
       },
     ],
+    labels,
   };
+
   return (
     <div className="barChartBlock barFlat">
       <h3 className="chartTitle">Ежемесячные платежи по кредитам</h3>
-      <Bar options={options} data={data} />
+      <Bar data={data} options={options} />
     </div>
   );
 }

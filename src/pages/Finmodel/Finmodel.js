@@ -1,10 +1,12 @@
-import React from "react";
-import Header from "../../components/Header/Header";
-import styles from "./Finmodel.module.scss";
-import Modelingleftnav from "../../components/Modelingleftnav/Modelingleftnav";
-import Solutions from "../../components/Solutions/Solutions";
-import MySolutions from "../../components/MySolutions/MySolutions";
-import MobileNav from "../../components/MobileNav/MobileNav";
+import React from 'react';
+
+import Header from '../../components/Header/Header';
+import MobileNav from '../../components/MobileNav/MobileNav';
+import Modelingleftnav from '../../components/Modelingleftnav/Modelingleftnav';
+import MySolutions from '../../components/MySolutions/MySolutions';
+import Solutions from '../../components/Solutions/Solutions';
+
+import styles from './Finmodel.module.scss';
 
 function Finmodel(props) {
   return (

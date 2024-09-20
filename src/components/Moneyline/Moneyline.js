@@ -1,12 +1,16 @@
-import React, { useState } from "react";
-import styles from "./Moneyline.module.scss";
-import editicon from "../../img/icon__edit.png";
-import Modal from "../Modal/Modal";
-import Editsum from "../Editsum/Editsum";
+import React, { useState } from 'react';
+
+import Editsum from '../Editsum/Editsum';
+import Modal from '../Modal/Modal';
+
+import editicon from '../../img/icon__edit.png';
+
+import styles from './Moneyline.module.scss';
 
 function Moneyline(props) {
   const [editModalActive, SetEditModalActive] = useState(false);
-  let sumValue = "20 150,20";
+  let sumValue = '20 150,20';
+
   return (
     <div className={styles.moneyline}>
       <div className={styles.moneylineblock}>
@@ -16,7 +20,7 @@ function Moneyline(props) {
             {sumValue}
             <span>&#8381;</span>
           </div>
-          <img src={editicon} alt="" onClick={() => SetEditModalActive(true)} />
+          <img alt="" src={editicon} onClick={() => SetEditModalActive(true)} />
         </div>
       </div>
       <div className={styles.moneylineblock}>
@@ -46,8 +50,8 @@ function Moneyline(props) {
       </div>
       <Modal
         active={editModalActive}
-        SetActive={SetEditModalActive}
         modalTitle={props.modalTitle}
+        SetActive={SetEditModalActive}
       >
         <div className={styles.modalBody}>
           <h4>Сентябрь 2022</h4>
@@ -69,9 +73,9 @@ function Moneyline(props) {
           />
           <input
             className={styles.submitBtn}
+            form="editModalForm"
             type="submit"
             value="Сохранить"
-            form="editModalForm"
           />
         </div>
       </Modal>

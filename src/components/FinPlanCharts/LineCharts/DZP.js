@@ -1,21 +1,24 @@
-import React from "react";
-import { Line } from "react-chartjs-2";
-import gradient from "chartjs-plugin-gradient";
-import "./FinPlanLineCharts.scss";
-import annotationPlugin from "chartjs-plugin-annotation";
+import React from 'react';
+
 import {
+  CategoryScale,
   Chart as ChartJS,
+  Filler,
+  Legend,
+  LinearScale,
+  LineElement,
+  PointElement,
   Title,
   Tooltip,
-  LineElement,
-  Legend,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  Filler,
-} from "chart.js";
-import Selectblue from "../../Selectblue/Selectblue";
-import Checkcustom from "../../Checkcustom/Checkcustom";
+} from 'chart.js';
+import annotationPlugin from 'chartjs-plugin-annotation';
+import gradient from 'chartjs-plugin-gradient';
+import { Line } from 'react-chartjs-2';
+
+import Checkcustom from '../../Checkcustom/Checkcustom';
+import Selectblue from '../../Selectblue/Selectblue';
+
+import './FinPlanLineCharts.scss';
 
 ChartJS.register(
   Title,
@@ -33,28 +36,29 @@ ChartJS.register(
 function Dzp(props) {
   let years = [2022, 2023];
   let months = [
-    "Январь",
-    "Февраль",
-    "Март",
-    "Апрель",
-    "Май",
-    "Июнь",
-    "Июль",
-    "Август",
-    "Сентябрь",
-    "Октябрь",
-    "Ноябрь",
-    "Декабрь",
+    'Январь',
+    'Февраль',
+    'Март',
+    'Апрель',
+    'Май',
+    'Июнь',
+    'Июль',
+    'Август',
+    'Сентябрь',
+    'Октябрь',
+    'Ноябрь',
+    'Декабрь',
   ];
-  let LinesColor = localStorage.getItem("LinesColorFlat");
+  let LinesColor = localStorage.getItem('LinesColorFlat');
   let topArr = [];
   let bottomArr = [];
   let mobile = true;
   let mobileFont = 16;
-  let mobileColor = "#fff";
+  let mobileColor = '#fff';
+
   if (window.outerWidth < 450) {
     mobile = false;
-    mobileColor = "#000";
+    mobileColor = '#000';
     mobileFont = 12;
   }
   let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -66,7 +70,7 @@ function Dzp(props) {
   ];
   let arr5 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
-  if (LinesColor === "1") {
+  if (LinesColor === '1') {
     topArr = arr;
     bottomArr = arr2;
   } else {
@@ -80,104 +84,104 @@ function Dzp(props) {
       },
       legend: {
         display: mobile,
-        position: "bottom",
+        position: 'bottom',
       },
     },
     scales: {
       x: {
         title: {
           display: false,
-          text: "Годы",
           font: {
             size: 12,
             weight: 700,
           },
+          text: 'Годы',
         },
       },
       y: {
+        display: true,
+        min: 0,
+        stacked: true,
         ticks: {
           beginAtZero: true,
         },
-        min: 0,
-        stacked: true,
-        display: true,
         title: {
           display: false,
-          text: "млн. ₽",
           font: {
             size: 12,
             weight: 700,
           },
+          text: 'млн. ₽',
         },
       },
     },
     title: {
       display: false,
-      text: "COVID-19 Cases of Last 6 Months",
       fontSize: 20,
+      text: 'COVID-19 Cases of Last 6 Months',
     },
   };
   const lineHomeData = {
-    labels: [
-      "Январь",
-      "Февраль",
-      "Март",
-      "Апрель",
-      "Май",
-      "Июнь",
-      "Июль",
-      "Август",
-      "Сентябрь",
-      "Октябрь",
-      "Ноябрь",
-      "Декабрь",
-    ],
     datasets: [
       {
-        order: 1,
-        fill: true,
+        backgroundColor: '#102E6A',
+        borderColor: '#102E6A',
         data: arr,
-        label: "Ипотека",
+        fill: true,
+        label: 'Ипотека',
         lineTension: 0,
-        borderColor: "#102E6A",
-        backgroundColor: "#102E6A",
+        order: 1,
       },
       {
-        order: 2,
-        fill: 0,
+        backgroundColor: '#F2712D',
+        borderColor: '#F2712D',
         data: arr2,
-        label: "Авто-кредит",
+        fill: 0,
+        label: 'Авто-кредит',
         lineTension: 0,
-        borderColor: "#F2712D",
-        backgroundColor: "#F2712D",
+        order: 2,
       },
       {
-        order: 3,
-        fill: 1,
+        backgroundColor: '#102E6A85',
+        borderColor: '#102E6A85',
         data: arr3,
-        label: "Потребительский",
+        fill: 1,
+        label: 'Потребительский',
         lineTension: 0,
-        borderColor: "#102E6A85",
-        backgroundColor: "#102E6A85",
+        order: 3,
       },
       {
-        order: 4,
-        fill: 2,
+        backgroundColor: '#F2712D85',
+        borderColor: '#F2712D85',
         data: arr4,
-        label: "Кредитные карты",
+        fill: 2,
+        label: 'Кредитные карты',
         lineTension: 0,
-        borderColor: "#F2712D85",
-        backgroundColor: "#F2712D85",
+        order: 4,
       },
       {
-        order: 5,
-        fill: 3,
+        backgroundColor: '#102E6A70',
+        borderColor: '#102E6A70',
         data: arr5,
-        label: "Прочие кредиты",
+        fill: 3,
+        label: 'Прочие кредиты',
         lineTension: 0,
-        borderColor: "#102E6A70",
-        backgroundColor: "#102E6A70",
+        order: 5,
       },
+    ],
+    labels: [
+      'Январь',
+      'Февраль',
+      'Март',
+      'Апрель',
+      'Май',
+      'Июнь',
+      'Июль',
+      'Август',
+      'Сентябрь',
+      'Октябрь',
+      'Ноябрь',
+      'Декабрь',
     ],
   };
 
@@ -189,10 +193,10 @@ function Dzp(props) {
             <Selectblue selectArr={years} />
             <Selectblue selectArr={months} />
           </div>
-          <Checkcustom label="С начала года" checked={true} />
+          <Checkcustom checked label="С начала года" />
         </div>
       </div>
-      <Line options={lineHomeOptions} data={lineHomeData} />
+      <Line data={lineHomeData} options={lineHomeOptions} />
     </div>
   );
 }

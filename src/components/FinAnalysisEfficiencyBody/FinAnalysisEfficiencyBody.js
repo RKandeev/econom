@@ -1,17 +1,20 @@
-import React from "react";
-import styles from "./FinAnalysisBody.module.scss";
-import { Link } from "react-router-dom";
-import AnalysisHeader from "../AnalysisHeader/AnalysisHeader";
-import finEfficient from "../../img/studyIcons/2.svg";
-import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import Me from "../AnalysisCharts/MatrixCharts/ME";
-import Med from "../AnalysisCharts/MatrixCharts/MED";
-import finresult from "../../img/analysisicons/finresult.png";
-import fincondition from "../../img/analysisicons/fincondition.png";
-import point from "../../img/analysisicons/point.png";
-import analysis from "../../img/analysisicons/analysis.png";
-import dynamic from "../../img/analysisicons/dynamic.png";
-import "./FinAnalysisBody.scss";
+import React from 'react';
+
+import { Link } from 'react-router-dom';
+import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
+
+import Me from '../AnalysisCharts/MatrixCharts/ME';
+import Med from '../AnalysisCharts/MatrixCharts/MED';
+import AnalysisHeader from '../AnalysisHeader/AnalysisHeader';
+
+import dynamic from '../../img/analysisicons/dynamic.png';
+import fincondition from '../../img/analysisicons/fincondition.png';
+import finresult from '../../img/analysisicons/finresult.png';
+import point from '../../img/analysisicons/point.png';
+import finEfficient from '../../img/studyIcons/2.svg';
+
+import './FinAnalysisBody.scss';
+import styles from './FinAnalysisBody.module.scss';
 function FinAnalysisEfficiencyBody(props) {
   return (
     <div className={styles.MyResultsBody}>
@@ -28,23 +31,23 @@ function FinAnalysisEfficiencyBody(props) {
       <AnalysisHeader
         activeLink=""
         firstlink="/FinAnalys"
-        secondlink="/AnalysisEfficiency"
         firsttitle="Денежные потоки"
+        secondlink="/AnalysisEfficiency"
         secondtitle="Финансовая эффективность"
       />
       <div className={styles.cashFlowBody}>
         <div className={styles.cashFlowNav}>
           <div className={styles.cashFlowChartLink}>
             Финансовая эффективность (комплексная оценка)
-            <img src={finEfficient} alt="" />
+            <img alt="" src={finEfficient} />
           </div>
-          <Link to="/FinResults" className={styles.cashFlowLink}>
+          <Link className={styles.cashFlowLink} to="/FinResults">
             Финансовые результаты
-            <img src={finresult} alt="" />
+            <img alt="" src={finresult} />
           </Link>
-          <Link to="/FinConditions" className={styles.cashFlowLink}>
+          <Link className={styles.cashFlowLink} to="/FinConditions">
             Финансовое состояние
-            <img src={fincondition} alt="" />
+            <img alt="" src={fincondition} />
           </Link>
         </div>
         <div className={styles.borderRight}></div>
@@ -53,13 +56,13 @@ function FinAnalysisEfficiencyBody(props) {
             <TabList>
               <Tab>
                 <div className="img_tab">
-                  <img src={point} alt="" />
+                  <img alt="" src={point} />
                   <div className="tabTitle">Оценка</div>
                 </div>
               </Tab>
               <Tab>
                 <div className="img_tab">
-                  <img src={dynamic} alt="" />
+                  <img alt="" src={dynamic} />
                   <div className="tabTitle">Динамика</div>
                 </div>
               </Tab>

@@ -1,11 +1,14 @@
-import React from "react";
-import Header from "../../components/Header/Header";
-import styles from "./CreateSolution.module.scss";
-import Modelingleftnav from "../../components/Modelingleftnav/Modelingleftnav";
-import { Link } from "react-router-dom";
-import CreditBlock from "../../components/CreditBlock/CreditBlock";
-import FinModelingRight from "../../components/FinModelingRight/FinModelingRight";
-import MobileNav from "../../components/MobileNav/MobileNav";
+import React from 'react';
+
+import { Link } from 'react-router-dom';
+
+import CreditBlock from '../../components/CreditBlock/CreditBlock';
+import FinModelingRight from '../../components/FinModelingRight/FinModelingRight';
+import Header from '../../components/Header/Header';
+import MobileNav from '../../components/MobileNav/MobileNav';
+import Modelingleftnav from '../../components/Modelingleftnav/Modelingleftnav';
+
+import styles from './CreateSolution.module.scss';
 
 function CreateSolution(props) {
   return (
@@ -20,7 +23,7 @@ function CreateSolution(props) {
           <div className={styles.breadcrumb}>
             <ul>
               <li>
-                <Link to={"/finmodeling"}>Финансовое моделирование</Link>
+                <Link to="/finmodeling">Финансовое моделирование</Link>
               </li>
               <li>Рефинансирование кредитов: целесообразность</li>
             </ul>

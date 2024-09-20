@@ -1,34 +1,37 @@
-import React, { useState } from "react";
-import styles from "./DoubleProgressadd.module.scss";
-import Mybtn from "../Mybtn/Mybtn";
-import IncomesLine from "../IncomesLine/IncomesLine";
-import credit from "../../img/crediticon.svg";
-import notification from "../../img/icon/icon__notification.svg";
-import trash from "../../img/icon/icon__trash.svg";
-import Modal from "../Modal/Modal";
-import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import SelectModal from "../SelectModal/SelectModal";
-import Editsum from "../Editsum/Editsum";
-import CommentArea from "../CommentArea/CommentArea";
-import Calendars from "../Calendars/Calendars";
+import React, { useState } from 'react';
+
+import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
+
+import Calendars from '../Calendars/Calendars';
+import CommentArea from '../CommentArea/CommentArea';
+import Editsum from '../Editsum/Editsum';
+import Modal from '../Modal/Modal';
+import Mybtn from '../Mybtn/Mybtn';
+import SelectModal from '../SelectModal/SelectModal';
+
+import notification from '../../img/icon/icon__notification.svg';
+import trash from '../../img/icon/icon__trash.svg';
+
+import styles from './DoubleProgressadd.module.scss';
 
 function DoubleProgressadd(props) {
-  let titleName = "Основной долг";
-  let titleNameType = "Подраздел";
-  let incomesValue = "-8500.00";
-  let selectArr1 = ["Проценты", "Ипотека", "Лотерея"];
-  let selectArr2 = ["Ипотека", "Проценты", "Лотерея"];
-  let sumValue = "25 159,15";
-  let availableBalance = "15000.00";
-  let lastMonthExpensesValue = "15000.00";
-  let latYearExpensesValue = "15000.00";
-  let notificValue = "20 563";
-  let notificDate = "12 сентября";
+  let titleName = 'Основной долг';
+  let titleNameType = 'Подраздел';
+  let incomesValue = '-8500.00';
+  let selectArr1 = ['Проценты', 'Ипотека', 'Лотерея'];
+  let selectArr2 = ['Ипотека', 'Проценты', 'Лотерея'];
+  let sumValue = '25 159,15';
+  let availableBalance = '15000.00';
+  let lastMonthExpensesValue = '15000.00';
+  let latYearExpensesValue = '15000.00';
+  let notificValue = '20 563';
+  let notificDate = '12 сентября';
   const onSubmit = (e) => {
     e.preventDefault();
   };
   const [addModalActive, SetAddModalActive] = useState(false);
   const [addNotification, SetAddNotification] = useState(false);
+
   return (
     <>
       <div className={styles.progressTitle}>{props.progressTitle}</div>
@@ -53,8 +56,8 @@ function DoubleProgressadd(props) {
         </div>
       </div>
       <Modal
-        modalTitle="Платежи по кредитам"
         active={addModalActive}
+        modalTitle="Платежи по кредитам"
         SetActive={SetAddModalActive}
       >
         <h4 className={styles.HeaderDate}>Сентябрь 2022</h4>
@@ -100,9 +103,9 @@ function DoubleProgressadd(props) {
                 />
                 <input
                   className={styles.submitBtn}
+                  form="newIncomeForm"
                   type="submit"
                   value="Сохранить"
-                  form="newIncomeForm"
                 />
               </form>
             </div>
@@ -117,8 +120,8 @@ function DoubleProgressadd(props) {
               <Mybtn btnTitle="Добавить напоминание о выплатах" />
             </div>
             <Modal
-              modalTitle="Добавление напоминания"
               active={addNotification}
+              modalTitle="Добавление напоминания"
               SetActive={SetAddNotification}
             >
               <form id="newNotificationForm" onSubmit={onSubmit}>
@@ -126,9 +129,9 @@ function DoubleProgressadd(props) {
                 <Editsum formTitle="Сумма" sumValue={sumValue} />
                 <input
                   className={styles.submitBtn}
+                  form="newNotificationForm"
                   type="submit"
                   value="Сохранить"
-                  form="newNotificationForm"
                   onClick={() => SetAddNotification(false)}
                 />
               </form>
@@ -136,7 +139,7 @@ function DoubleProgressadd(props) {
             <div className={styles.notificationBlocks}>
               <div className={styles.notificationBlock}>
                 <div className={styles.notificImg}>
-                  <img src={notification} alt="" />
+                  <img alt="" src={notification} />
                 </div>
                 <div className={styles.notificInfoBlock}>
                   <div className={styles.notificDate}>{notificDate}</div>
@@ -145,7 +148,7 @@ function DoubleProgressadd(props) {
                   </div>
                 </div>
                 <div className={styles.notificDelete}>
-                  <img src={trash} alt="" />
+                  <img alt="" src={trash} />
                 </div>
               </div>
             </div>
@@ -154,9 +157,9 @@ function DoubleProgressadd(props) {
             <CommentArea placeHolderTitle="Текст комментария" />
             <input
               className={styles.submitBtn}
+              form="newIncomeForm"
               type="submit"
               value="Сохранить"
-              form="newIncomeForm"
             />
           </TabPanel>
         </Tabs>

@@ -1,55 +1,60 @@
-import React from "react";
-import "./Quiz.scss";
-import SensorChart from "../SensorChart/SensorChart";
+import React from 'react';
+
+import SensorChart from '../SensorChart/SensorChart';
+
+import './Quiz.scss';
 const quiz = {
-  topic: "Javascript",
-  level: "Beginner",
-  totalQuestions: 10,
+  level: 'Beginner',
   perQuestionScore: 5,
-  totalTime: 60, // in seconds
+  // in seconds
   questions: [
     {
-      question:
-        "В ситуации, когда у Вас есть два или более незакрытых кредитов, как Вы выберете кредит, который выгоднее погашать досрочно в первую очередь? ",
       choices: [
-        "сравню ставки по кредитам и выберу тот, по которому ставка выше",
-        "сравню ежемесячный платеж по кредитам и выберу тот, по которому он выше",
-        "выполню пункты указанные выше",
-        "брошу монетку 😊",
-        "ни один из вариантов не поможет найти оптимальное решение",
+        'сравню ставки по кредитам и выберу тот, по которому ставка выше',
+        'сравню ежемесячный платеж по кредитам и выберу тот, по которому он выше',
+        'выполню пункты указанные выше',
+        'брошу монетку 😊',
+        'ни один из вариантов не поможет найти оптимальное решение',
       ],
-      inputType: "checkbox",
       correctAnswer: [
-        "сравню ставки по кредитам и выберу тот, по которому ставка выше",
-        "сравню ежемесячный платеж по кредитам и выберу тот, по которому он выше",
+        'сравню ставки по кредитам и выберу тот, по которому ставка выше',
+        'сравню ежемесячный платеж по кредитам и выберу тот, по которому он выше',
       ],
+      inputType: 'checkbox',
+      question:
+        'В ситуации, когда у Вас есть два или более незакрытых кредитов, как Вы выберете кредит, который выгоднее погашать досрочно в первую очередь? ',
     },
     {
+      choices: ['var', 'let', 'var and let', 'None of the above'],
+      correctAnswer: ['var and let'],
+      inputType: 'checkbox',
       question:
-        "Which of the following keywords is used to define a variable in Javascript?",
-      choices: ["var", "let", "var and let", "None of the above"],
-      inputType: "checkbox",
-      correctAnswer: ["var and let"],
+        'Which of the following keywords is used to define a variable in Javascript?',
     },
     {
-      question:
-        "Which of the following methods can be used to display data in some form using Javascript?",
       choices: [
-        "document.write()",
-        "console.log()",
-        "window.alert",
-        "All of the above",
+        'document.write()',
+        'console.log()',
+        'window.alert',
+        'All of the above',
       ],
-      inputType: "radio",
-      correctAnswer: "All of the above",
+      correctAnswer: 'All of the above',
+      inputType: 'radio',
+      question:
+        'Which of the following methods can be used to display data in some form using Javascript?',
     },
     {
-      question: "How can a datatype be declared to be a constant type?",
-      choices: ["const", "var", "let", "constant"],
-      inputType: "radio",
-      correctAnswer: "const",
+      choices: ['const', 'var', 'let', 'constant'],
+      correctAnswer: 'const',
+      inputType: 'radio',
+      question: 'How can a datatype be declared to be a constant type?',
     },
   ],
+  
+  topic: 'Javascript',
+  
+  totalQuestions: 10, 
+  totalTime: 60,
 };
 
 const Test = () => {
@@ -58,8 +63,8 @@ const Test = () => {
   const [showResult, setShowResult] = React.useState(false);
   const [selectedAnswerIndex, setSelectedAnswerIndex] = React.useState(null);
   const [result, setResult] = React.useState({
-    score: 0,
     correctAnswers: 0,
+    score: 0,
     wrongAnswers: 0,
   });
 
@@ -73,10 +78,10 @@ const Test = () => {
     setResult((prev) =>
       selectedAnswer
         ? {
-            ...prev,
-            score: prev.score + 5,
-            correctAnswers: prev.correctAnswers + 1,
-          }
+          ...prev,
+          correctAnswers: prev.correctAnswers + 1,
+          score: prev.score + 5,
+        }
         : { ...prev, wrongAnswers: prev.wrongAnswers + 1 }
     );
     if (activeQuestion !== questions.length - 1) {
@@ -115,7 +120,7 @@ const Test = () => {
 
   // const addLeadingZero = (number) => (number > 9 ? number : `0${number}`);
   let activeNum = activeQuestion + 1;
-  let dynamicWidth = "calc(100% * " + activeNum + "/" + questions.length + ")";
+  let dynamicWidth = 'calc(100% * ' + activeNum + '/' + questions.length + ')';
 
   return (
     <div className="quiz-container">
@@ -129,21 +134,21 @@ const Test = () => {
             {choices.map((answer, index) => (
               <div className="form_check">
                 <input
-                  onChange={() => onAnswerSelected(answer, index)}
                   key={answer}
+                  data-number={index}
+                  id={'inputDefault' + index}
+                  name="inputDefault"
+                  type={inputType}
                   className={
                     selectedAnswerIndex === index
-                      ? "selected-answer firstTestForm"
-                      : "firstTestForm"
+                      ? 'selected-answer firstTestForm'
+                      : 'firstTestForm'
                   }
-                  data-number={index}
-                  type={inputType}
-                  name="inputDefault"
-                  id={`inputDefault` + index}
+                  onChange={() => onAnswerSelected(answer, index)}
                 />
                 <label
-                  htmlFor={`inputDefault` + index}
                   className="form_check_label"
+                  htmlFor={'inputDefault' + index}
                 >
                   {answer}
                 </label>
@@ -151,16 +156,16 @@ const Test = () => {
             ))}
           </form>
           <div className="answers-info">
-            {inputType === "checkbox"
-              ? "* - можно выбрать несколько вариантов"
-              : ""}
+            {inputType === 'checkbox'
+              ? '* - можно выбрать несколько вариантов'
+              : ''}
           </div>
           <div className="flex-right">
             <button
-              onClick={onClickNext}
               disabled={selectedAnswerIndex === null}
+              onClick={onClickNext}
             >
-              {activeQuestion === questions.length - 1 ? "Завершить" : "Дальше"}
+              {activeQuestion === questions.length - 1 ? 'Завершить' : 'Дальше'}
             </button>
           </div>
           <div className="progress-bar" id="progress-bar">

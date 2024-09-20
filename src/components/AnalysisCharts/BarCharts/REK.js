@@ -1,19 +1,22 @@
-import React from "react";
-import "./AnalysisBarCharts.scss";
-import { Bar } from "react-chartjs-2";
-import gradient from "chartjs-plugin-gradient";
-import ChartDataLabels from "chartjs-plugin-datalabels";
+import React from 'react';
+
 import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
   BarElement,
+  CategoryScale,
+  Chart as ChartJS,
+  Legend,
+  LinearScale,
   Title,
   Tooltip,
-  Legend,
-} from "chart.js";
-import Selectblue from "../../Selectblue/Selectblue";
-import Checkcustom from "../../Checkcustom/Checkcustom";
+} from 'chart.js';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+import gradient from 'chartjs-plugin-gradient';
+import { Bar } from 'react-chartjs-2';
+
+import Checkcustom from '../../Checkcustom/Checkcustom';
+import Selectblue from '../../Selectblue/Selectblue';
+
+import './AnalysisBarCharts.scss';
 
 ChartJS.register(
   Title,
@@ -29,20 +32,21 @@ ChartJS.register(
 function Rek(props) {
   let years = [2022, 2023];
   let months = [
-    "Январь",
-    "Февраль",
-    "Март",
-    "Апрель",
-    "Май",
-    "Июнь",
-    "Июль",
-    "Август",
-    "Сентябрь",
-    "Октябрь",
-    "Ноябрь",
-    "Декабрь",
+    'Январь',
+    'Февраль',
+    'Март',
+    'Апрель',
+    'Май',
+    'Июнь',
+    'Июль',
+    'Август',
+    'Сентябрь',
+    'Октябрь',
+    'Ноябрь',
+    'Декабрь',
   ];
   let planArr = [10000, 15200, 3100, 0, 0, 1100, 9400, 0, 0];
+
   planArr = planArr.map(function (val, i) {
     return val === 0 ? null : val;
   });
@@ -58,79 +62,79 @@ function Rek(props) {
 
   let mobile = true;
   let mobileFont = 16;
-  let mobileColor = "#000";
+  let mobileColor = '#000';
+
   if (window.outerWidth < 450) {
     mobile = false;
-    mobileColor = "#000";
+    mobileColor = '#000';
     mobileFont = 12;
   }
   const options = {
-    indexAxis: "y",
-    scales: {
-      x: {
-        ticks: {
-          maxRotation: 0,
-          display: true,
-        },
-        stacked: true,
-      },
-      y: {
-        stacked: true,
-        title: {
-          display: false,
-          text: "тыс. ₽",
-          font: {
-            size: 14,
-            weight: 700,
-          },
-        },
-      },
-    },
-    responsive: true,
+    indexAxis: 'y',
     plugins: {
       datalabels: {
-        display: false,
+        anchor: 'center',
         color: mobileColor,
-        anchor: "center",
+        display: false,
         font: {
           size: mobileFont,
           weight: 700,
         },
       },
-      tooltip: {
-        callbacks: {
-          title: (context) => {
-            return context[0].label.replaceAll(",", " ");
-          },
-        },
-      },
       legend: {
         display: false,
-        position: "bottom",
+        position: 'bottom',
+      },
+      tooltip: {
+        callbacks: {
+          title: (context) => context[0].label.replaceAll(',', ' '),
+        },
+      },
+    },
+    responsive: true,
+    scales: {
+      x: {
+        stacked: true,
+        ticks: {
+          display: true,
+          maxRotation: 0,
+        },
+      },
+      y: {
+        stacked: true,
+        title: {
+          display: false,
+          font: {
+            size: 14,
+            weight: 700,
+          },
+          text: 'тыс. ₽',
+        },
       },
     },
   };
   const labels = [
-    ["Образование и развитие"],
-    ["Развлечения и досуг"],
-    ["Внешний вид, уход и гигиена"],
-    ["Праздники и подарки"],
-    ["Путешествия и поездки"],
-    ["Здоровье и спорт"],
-    ["Вредные привычки"],
-    ["Прочие расходы"],
-    ["Финансовая помощь"],
+    ['Образование и развитие'],
+    ['Развлечения и досуг'],
+    ['Внешний вид, уход и гигиена'],
+    ['Праздники и подарки'],
+    ['Путешествия и поездки'],
+    ['Здоровье и спорт'],
+    ['Вредные привычки'],
+    ['Прочие расходы'],
+    ['Финансовая помощь'],
   ];
   const data = {
-    labels,
     datasets: [
       {
-        label: "Факт",
+        backgroundColor: ['#EE2B4995'],
         data: planArr,
-        backgroundColor: ["#EE2B4995"],
+        label: 'Факт',
       },
     ],
+    labels,
   };
+
   return (
     <div className="analysisBarChartBlock smallChart">
       <div className="analysisHeader">
@@ -143,10 +147,10 @@ function Rek(props) {
             <Selectblue selectArr={years} />
             <Selectblue selectArr={months} />
           </div>
-          <Checkcustom label="С начала года" checked={false} />
+          <Checkcustom checked={false} label="С начала года" />
         </div>
       </div>
-      <Bar options={options} data={data} />
+      <Bar data={data} options={options} />
     </div>
   );
 }

@@ -1,8 +1,11 @@
-import React from "react";
-import styles from "./MyResultsBody.module.scss";
-import { Tabs, Tab, TabList, TabPanel } from "react-tabs";
-import TestResultTabs from "../TestResultTabs/TestResultTabs";
-import Testing from "../Testing/Testing";
+import React from 'react';
+
+import { Tab, TabList, TabPanel,Tabs } from 'react-tabs';
+
+import Testing from '../Testing/Testing';
+import TestResultTabs from '../TestResultTabs/TestResultTabs';
+
+import styles from './MyResultsBody.module.scss';
 
 function MyResultsBody(props) {
   return (

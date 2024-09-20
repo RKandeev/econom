@@ -1,21 +1,24 @@
-import React from "react";
-import { Line } from "react-chartjs-2";
-import gradient from "chartjs-plugin-gradient";
-import "./AnalysisLineCharts.scss";
-import annotationPlugin from "chartjs-plugin-annotation";
+import React from 'react';
+
 import {
+  CategoryScale,
   Chart as ChartJS,
+  Filler,
+  Legend,
+  LinearScale,
+  LineElement,
+  PointElement,
   Title,
   Tooltip,
-  LineElement,
-  Legend,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  Filler,
-} from "chart.js";
-import Selectblue from "../../Selectblue/Selectblue";
-import Checkcustom from "../../Checkcustom/Checkcustom";
+} from 'chart.js';
+import annotationPlugin from 'chartjs-plugin-annotation';
+import gradient from 'chartjs-plugin-gradient';
+import { Line } from 'react-chartjs-2';
+
+import Checkcustom from '../../Checkcustom/Checkcustom';
+import Selectblue from '../../Selectblue/Selectblue';
+
+import './AnalysisLineCharts.scss';
 
 ChartJS.register(
   Title,
@@ -33,23 +36,24 @@ ChartJS.register(
 function Dk(props) {
   let years = [2022, 2023];
   let months = [
-    "Январь",
-    "Февраль",
-    "Март",
-    "Апрель",
-    "Май",
-    "Июнь",
-    "Июль",
-    "Август",
-    "Сентябрь",
-    "Октябрь",
-    "Ноябрь",
-    "Декабрь",
+    'Январь',
+    'Февраль',
+    'Март',
+    'Апрель',
+    'Май',
+    'Июнь',
+    'Июль',
+    'Август',
+    'Сентябрь',
+    'Октябрь',
+    'Ноябрь',
+    'Декабрь',
   ];
   // let LinesColor = localStorage.getItem("LinesColorFlat");
   // let topArr = [];
   // let bottomArr = [];
   let mobile = true;
+
   // let mobileFont = 16;
   // let mobileColor = "#fff";
   if (window.outerWidth < 450) {
@@ -79,75 +83,75 @@ function Dk(props) {
       },
       legend: {
         display: mobile,
-        position: "bottom",
+        position: 'bottom',
       },
     },
     scales: {
       x: {
         title: {
           display: false,
-          text: "Годы",
           font: {
             size: 12,
             weight: 700,
           },
+          text: 'Годы',
         },
       },
       y: {
+        display: true,
+        min: 0,
+        stacked: true,
         ticks: {
           beginAtZero: true,
         },
-        min: 0,
-        stacked: true,
-        display: true,
         title: {
           display: false,
-          text: "млн. ₽",
           font: {
             size: 12,
             weight: 700,
           },
+          text: 'млн. ₽',
         },
       },
     },
     title: {
       display: false,
-      text: "COVID-19 Cases of Last 6 Months",
       fontSize: 20,
+      text: 'COVID-19 Cases of Last 6 Months',
     },
   };
   const lineHomeData = {
-    labels: [
-      "Январь",
-      "Февраль",
-      "Март",
-      "Апрель",
-      "Май",
-      "Июнь",
-      "Июль",
-      "Август",
-      "Сентябрь",
-      "Октябрь",
-      "Ноябрь",
-      "Декабрь",
-    ],
     datasets: [
       {
-        fill: true,
+        backgroundColor: 'rgba(25, 227, 133, 0.7)',
+        borderColor: '#0DA46F',
         data: arr,
-        label: "Собственный капитал",
+        fill: true,
+        label: 'Собственный капитал',
         lineTension: 0,
-        borderColor: "#0DA46F",
-        backgroundColor: "rgba(25, 227, 133, 0.7)",
       },
       {
-        fill: true,
+        backgroundColor: '#85858590',
+        borderColor: '#858585',
         data: arr2,
-        label: "Заемный капитал",
+        fill: true,
+        label: 'Заемный капитал',
         lineTension: 0,
-        borderColor: "#858585",
-        backgroundColor: "#85858590",
       },
+    ],
+    labels: [
+      'Январь',
+      'Февраль',
+      'Март',
+      'Апрель',
+      'Май',
+      'Июнь',
+      'Июль',
+      'Август',
+      'Сентябрь',
+      'Октябрь',
+      'Ноябрь',
+      'Декабрь',
     ],
   };
 
@@ -160,10 +164,10 @@ function Dk(props) {
             <Selectblue selectArr={years} />
             <Selectblue selectArr={months} />
           </div>
-          <Checkcustom label="С начала года" checked={true} />
+          <Checkcustom checked label="С начала года" />
         </div>
       </div>
-      <Line options={lineHomeOptions} data={lineHomeData} />
+      <Line data={lineHomeData} options={lineHomeOptions} />
     </div>
   );
 }

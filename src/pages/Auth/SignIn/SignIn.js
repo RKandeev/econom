@@ -1,10 +1,13 @@
-import React from "react";
-import OpenHeader from "../../../components/OpenPart/Header/OpenHeader";
-import styles from "../Auth.module.scss";
-import { Link } from "react-router-dom";
-import {useForm} from "react-hook-form";
-import {apiRequest} from "../../../api";
-import toast from "react-hot-toast";
+import React from 'react';
+
+import {useForm} from 'react-hook-form';
+import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
+
+import {apiRequest} from '../../../api';
+import OpenHeader from '../../../components/OpenPart/Header/OpenHeader';
+
+import styles from '../Auth.module.scss';
 
 function SignIn(props) {
   const {
@@ -20,28 +23,28 @@ function SignIn(props) {
     mode: 'all',
   });
 
-
   const onSubmit = async (data) => {
     const response = await apiRequest({
-      url: '/login',
-      method: 'POST',
       data: data,
-    })
-    console.log(response)
+      method: 'POST',
+      url: '/login',
+    });
+
+    console.log(response);
 
     if (response.code === 0 && response.http_status === 200) {
       toast.success(response.mes);
     } else {
       if (response.data.email) {
-        setError('email', { type: 'server', message: response.data.email[0] });
+        setError('email', { message: response.data.email[0], type: 'server' });
       }
       if (response.data.password) {
-        setError('password', { type: 'server', message: response.data.password[0] });
+        setError('password', { message: response.data.password[0], type: 'server' });
       }
-      toast.error(response.mes)
+      toast.error(response.mes);
     }
 
-  }
+  };
 
   return (
     <>
@@ -53,34 +56,34 @@ function SignIn(props) {
             Нет аккаунта? <Link to="/SignUp">Зарегистрироваться</Link>
           </h3>
           <div className={styles.user_data_block}>
-            <form  className={styles.login_form} onSubmit={handleSubmit(onSubmit)}>
+            <form className={styles.login_form} onSubmit={handleSubmit(onSubmit)}>
               <input
-                  type="email"
-                  placeholder="Email"
-                  {...register("email",{
-                    required: 'Поле email обязательно',
-                    pattern: {
-                      value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                      message: 'Ведите корректный email'
-                    }
-                  })
-                  }
+                placeholder="Email"
+                type="email"
+                {...register('email',{
+                  pattern: {
+                    message: 'Ведите корректный email',
+                    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+                  },
+                  required: 'Поле email обязательно'
+                })
+                }
               />
               {errors.email && <span className={styles.error_message}>{errors.email.message}</span>}
 
               <input
-                  type="password"
-                  placeholder="Пароль"
-                  {...register("password", {
-                    required: "Введите пароль",
-                    minLength: {
-                      value: 6,
-                      message: 'Минимальная длина 6 символов'
-                    }
-                  })}
+                placeholder="Пароль"
+                type="password"
+                {...register('password', {
+                  minLength: {
+                    message: 'Минимальная длина 6 символов',
+                    value: 6
+                  },
+                  required: 'Введите пароль'
+                })}
               />
               {errors.password && <span className={styles.error_message}>{errors.password.message}</span>}
-              <Link to="/ForgotPass" className={styles.forgot_password}>
+              <Link className={styles.forgot_password} to="/ForgotPass">
                 Забыли пароль?
               </Link>
               <input type="submit" value="Войти" />

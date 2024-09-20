@@ -1,6 +1,8 @@
-import React from "react";
-import styles from "./MySolutions.module.scss";
-import MySolution from "../MySolution/MySolution";
+import React from 'react';
+
+import MySolution from '../MySolution/MySolution';
+
+import styles from './MySolutions.module.scss';
 
 function MySolutions(props) {
   return (

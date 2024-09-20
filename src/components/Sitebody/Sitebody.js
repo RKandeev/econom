@@ -1,5 +1,6 @@
-import React from "react";
-import styles from "./Sitebody.module.scss";
+import React from 'react';
+
+import styles from './Sitebody.module.scss';
 
 function Sitebody(props) {
   return (

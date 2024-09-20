@@ -1,16 +1,19 @@
-import React from "react";
-import styles from "./ActualAnalysisBody.module.scss";
-import { Link } from "react-router-dom";
-import AnalysisHeader from "../AnalysisHeader/AnalysisHeader";
-import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import "./ActualAnalysisBody.scss";
-import Srp from "../AnalysisCharts/PieCharts/SRP";
-import Srk from "../AnalysisCharts/PieCharts/SRK";
-import Rpk from "../AnalysisCharts/PieCharts/RPK";
-import Rek from "../AnalysisCharts/BarCharts/REK";
-import Res from "../AnalysisCharts/BarCharts/RES";
-import Ksk from "../AnalysisCharts/BarCharts/KSK";
-import Kss from "../AnalysisCharts/BarCharts/KSS";
+import React from 'react';
+
+import { Link } from 'react-router-dom';
+import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
+
+import Ksk from '../AnalysisCharts/BarCharts/KSK';
+import Kss from '../AnalysisCharts/BarCharts/KSS';
+import Rek from '../AnalysisCharts/BarCharts/REK';
+import Res from '../AnalysisCharts/BarCharts/RES';
+import Rpk from '../AnalysisCharts/PieCharts/RPK';
+import Srk from '../AnalysisCharts/PieCharts/SRK';
+import Srp from '../AnalysisCharts/PieCharts/SRP';
+import AnalysisHeader from '../AnalysisHeader/AnalysisHeader';
+
+import './ActualAnalysisBody.scss';
+import styles from './ActualAnalysisBody.module.scss';
 
 function StructureAnalysisBody(props) {
   return (
@@ -21,7 +24,7 @@ function StructureAnalysisBody(props) {
           <div className={styles.breadcrumb}>
             <ul>
               <li>
-                <Link to={"/FinAnalys"}>Денежные потоки</Link>
+                <Link to="/FinAnalys">Денежные потоки</Link>
               </li>
               <li>Структурный анализ расходов</li>
             </ul>
@@ -36,29 +39,29 @@ function StructureAnalysisBody(props) {
               <h4>
                 Структурный анализ расходов
                 <svg
-                  width="24"
+                  fill="none"
                   height="24"
                   viewBox="0 0 24 24"
-                  fill="none"
+                  width="24"
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
+                    clipRule="evenodd"
                     d="M10.5 6C6.358 6 3 9.358 3 13.5C3 17.642 6.358 21 10.5 21C14.642 21 18 17.642 18 13.5H10.5V6Z"
+                    fillRule="evenodd"
                     stroke="#464e5f"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.5"
                   />
                   <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
+                    clipRule="evenodd"
                     d="M21 10C21 6.134 17.866 3 14 3V10H21Z"
+                    fillRule="evenodd"
                     stroke="#464e5f"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.5"
                   />
                 </svg>
               </h4>

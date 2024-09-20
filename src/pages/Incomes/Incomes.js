@@ -1,88 +1,92 @@
-import React from "react";
-import Header from "../../components/Header/Header";
-import Finplanleftnav from "../../components/Finplanleftnav/Finplanleftnav";
-import styles from "./Incomes.module.scss";
-import IncomesBody from "../../components/IncomesBody/IncomesBody";
-import MobileNav from "../../components/MobileNav/MobileNav";
-import lockedIco from "../../img/icon/icon__lock.svg";
-import checkedIco from "../../img/icon/icon__check.svg";
-import newcheck from "../../img/Ellipse 1.svg";
+import React from 'react';
+
+import Finplanleftnav from '../../components/Finplanleftnav/Finplanleftnav';
+import Header from '../../components/Header/Header';
+import IncomesBody from '../../components/IncomesBody/IncomesBody';
+import MobileNav from '../../components/MobileNav/MobileNav';
+
+import newcheck from '../../img/Ellipse 1.svg';
+import checkedIco from '../../img/icon/icon__check.svg';
+import lockedIco from '../../img/icon/icon__lock.svg';
+
+import styles from './Incomes.module.scss';
 
 function Incomes(props) {
   const months = [
     {
+      checkStatus: lockedIco,
       id: 1,
-      title: "ЯНВ",
-      img: "../../img/Ellipse 1.svg",
-      checkStatus: lockedIco,
+      img: '../../img/Ellipse 1.svg',
+      title: 'ЯНВ',
     },
     {
+      checkStatus: lockedIco,
       id: 2,
-      title: "ФЕВ",
-      img: "../../img/Ellipse 1.svg",
-      checkStatus: lockedIco,
+      img: '../../img/Ellipse 1.svg',
+      title: 'ФЕВ',
     },
     {
+      checkStatus: checkedIco,
       id: 3,
-      title: "МАР",
-      img: "../../img/Ellipse 1.svg",
-      checkStatus: checkedIco,
+      img: '../../img/Ellipse 1.svg',
+      title: 'МАР',
     },
     {
+      checkStatus: checkedIco,
       id: 4,
-      title: "АПР",
-      img: "../../img/Ellipse 1.svg",
-      checkStatus: checkedIco,
+      img: '../../img/Ellipse 1.svg',
+      title: 'АПР',
     },
     {
+      checkStatus: newcheck,
       id: 5,
-      title: "МАЙ",
-      img: "../../img/Ellipse 1.svg",
-      checkStatus: newcheck,
+      img: '../../img/Ellipse 1.svg',
+      title: 'МАЙ',
     },
     {
+      checkStatus: newcheck,
       id: 6,
-      title: "ИЮН",
-      img: "../../img/Ellipse 1.svg",
-      checkStatus: newcheck,
+      img: '../../img/Ellipse 1.svg',
+      title: 'ИЮН',
     },
     {
+      checkStatus: newcheck,
       id: 7,
-      title: "ИЮЛ",
-      img: "../../img/Ellipse 1.svg",
-      checkStatus: newcheck,
+      img: '../../img/Ellipse 1.svg',
+      title: 'ИЮЛ',
     },
     {
+      checkStatus: newcheck,
       id: 8,
-      title: "АВГ",
-      img: "../../img/Ellipse 1.svg",
-      checkStatus: newcheck,
+      img: '../../img/Ellipse 1.svg',
+      title: 'АВГ',
     },
     {
+      checkStatus: newcheck,
       id: 9,
-      title: "СЕН",
-      img: "../../img/Ellipse 1.svg",
-      checkStatus: newcheck,
+      img: '../../img/Ellipse 1.svg',
+      title: 'СЕН',
     },
     {
+      checkStatus: newcheck,
       id: 10,
-      title: "ОКТ",
-      img: "../../img/Ellipse 1.svg",
-      checkStatus: newcheck,
+      img: '../../img/Ellipse 1.svg',
+      title: 'ОКТ',
     },
     {
+      checkStatus: newcheck,
       id: 11,
-      title: "НОЯ",
-      img: "../../img/Ellipse 1.svg",
-      checkStatus: newcheck,
+      img: '../../img/Ellipse 1.svg',
+      title: 'НОЯ',
     },
     {
-      id: 12,
-      title: "ДЕК",
-      img: "../../img/Ellipse 1.svg",
       checkStatus: newcheck,
+      id: 12,
+      img: '../../img/Ellipse 1.svg',
+      title: 'ДЕК',
     },
   ];
+
   return (
     <>
       <Header />

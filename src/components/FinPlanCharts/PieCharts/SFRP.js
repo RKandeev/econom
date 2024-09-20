@@ -1,19 +1,22 @@
-import React from "react";
-import "./FinPlanPieCharts.scss";
-import { Doughnut } from "react-chartjs-2";
-import gradient from "chartjs-plugin-gradient";
-import ChartDataLabels from "chartjs-plugin-datalabels";
+import React from 'react';
+
 import {
-  Chart as ChartJS,
-  CategoryScale,
   ArcElement,
+  CategoryScale,
+  Chart as ChartJS,
+  Legend,
   LinearScale,
   Title,
   Tooltip,
-  Legend,
-} from "chart.js";
-import Selectblue from "../../Selectblue/Selectblue";
-import Checkcustom from "../../Checkcustom/Checkcustom";
+} from 'chart.js';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+import gradient from 'chartjs-plugin-gradient';
+import { Doughnut } from 'react-chartjs-2';
+
+import Checkcustom from '../../Checkcustom/Checkcustom';
+import Selectblue from '../../Selectblue/Selectblue';
+
+import './FinPlanPieCharts.scss';
 
 ChartJS.register(
   Title,
@@ -29,101 +32,107 @@ ChartJS.register(
 function Sfrp(props) {
   let years = [2022, 2023];
   let months = [
-    "Январь",
-    "Февраль",
-    "Март",
-    "Апрель",
-    "Май",
-    "Июнь",
-    "Июль",
-    "Август",
-    "Сентябрь",
-    "Октябрь",
-    "Ноябрь",
-    "Декабрь",
+    'Январь',
+    'Февраль',
+    'Март',
+    'Апрель',
+    'Май',
+    'Июнь',
+    'Июль',
+    'Август',
+    'Сентябрь',
+    'Октябрь',
+    'Ноябрь',
+    'Декабрь',
   ];
   let planArr = [126000, 0, 3600];
   let sum = 0;
+
   sum = planArr.reduce(function (a, b) {
     return a + b;
   }, 0);
   console.log(sum);
   let mobile = true;
   let mobileFont = 16;
-  let mobileColor = "#000";
+  let mobileColor = '#000';
+
   if (window.outerWidth < 450) {
     mobile = false;
-    mobileColor = "#000";
+    mobileColor = '#000';
     mobileFont = 12;
   }
   const options = {
-    responsive: true,
     plugins: {
       datalabels: {
-        formatter: (value, ctx) => {
-          let sum = 0;
-          let dataArr = ctx.chart.data.datasets[0].data;
-          dataArr.map((data) => {
-            sum += data;
-          });
-          let percentage = ((value * 100) / sum).toFixed(0) + "%";
-          return percentage;
-        },
+        color: ['#fff', '#000'],
         display: mobile,
-        color: ["#fff", "#000"],
-        textAlign: "center",
-
         font: {
           size: mobileFont,
           weight: 700,
         },
+        formatter: (value, ctx) => {
+          let sum = 0;
+          let dataArr = ctx.chart.data.datasets[0].data;
+
+          dataArr.map((data) => {
+            sum += data;
+          });
+          let percentage = ((value * 100) / sum).toFixed(0) + '%';
+
+          return percentage;
+        },
+
+        textAlign: 'center',
       },
       legend: {
         display: mobile,
-        position: "bottom",
+        position: 'bottom',
       },
     },
+    responsive: true,
   };
   const labels = [
-    ["Финансовая помощь"],
-    ["Страхование"],
-    ["Прочие финансовые расходы"],
+    ['Финансовая помощь'],
+    ['Страхование'],
+    ['Прочие финансовые расходы'],
   ];
   const data = {
-    labels,
     datasets: [
       {
-        label: "",
-        data: planArr,
         backgroundColor: [
-          "#102E6A",
-          "#F2712D",
-          "#102E6A85",
-          "#F2712D85",
-          "#102E6A70",
-          "#F2712D70",
-          "#102E6A55",
-          "#F2712D55",
+          '#102E6A',
+          '#F2712D',
+          '#102E6A85',
+          '#F2712D85',
+          '#102E6A70',
+          '#F2712D70',
+          '#102E6A55',
+          '#F2712D55',
         ],
+        data: planArr,
+        label: '',
       },
     ],
+    labels,
   };
   const textCenter = {
-    id: "textCenter",
     beforeDatasetsDraw(chart, args, pluginOptions) {
       const { ctx, data } = chart;
+
       ctx.save();
-      ctx.font = "bold 24rem sans-serif";
-      ctx.fillStyle = "#EE2B49";
-      ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
+      ctx.font = 'bold 24rem sans-serif';
+      ctx.fillStyle = '#EE2B49';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
       ctx.fillText(
-        sum.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1 "),
+        sum.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 '),
         chart.getDatasetMeta(0).data[0].x,
         chart.getDatasetMeta(0).data[0].y
       );
     },
+    id: 'textCenter',
   };
+
   return (
     <>
       <div className="analysisBlock">
@@ -133,11 +142,11 @@ function Sfrp(props) {
               <Selectblue selectArr={years} />
               <Selectblue selectArr={months} />
             </div>
-            <Checkcustom label="С начала года" checked={false} />
+            <Checkcustom checked={false} label="С начала года" />
           </div>
         </div>
         <div className="analysisPieChartBlock FinplanPieChart">
-          <Doughnut options={options} data={data} plugins={[textCenter]} />
+          <Doughnut data={data} options={options} plugins={[textCenter]} />
         </div>
       </div>
     </>

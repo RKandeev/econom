@@ -1,19 +1,22 @@
-import React from "react";
-import "./AnalysisBarCharts.scss";
-import { Bar } from "react-chartjs-2";
-import gradient from "chartjs-plugin-gradient";
-import ChartDataLabels from "chartjs-plugin-datalabels";
+import React from 'react';
+
 import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
   BarElement,
+  CategoryScale,
+  Chart as ChartJS,
+  Legend,
+  LinearScale,
   Title,
   Tooltip,
-  Legend,
-} from "chart.js";
-import Selectblue from "../../Selectblue/Selectblue";
-import Checkcustom from "../../Checkcustom/Checkcustom";
+} from 'chart.js';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+import gradient from 'chartjs-plugin-gradient';
+import { Bar } from 'react-chartjs-2';
+
+import Checkcustom from '../../Checkcustom/Checkcustom';
+import Selectblue from '../../Selectblue/Selectblue';
+
+import './AnalysisBarCharts.scss';
 
 ChartJS.register(
   Title,
@@ -29,32 +32,33 @@ ChartJS.register(
 function Sds(props) {
   let years = [2022, 2023];
   let months = [
-    "Январь",
-    "Февраль",
-    "Март",
-    "Апрель",
-    "Май",
-    "Июнь",
-    "Июль",
-    "Август",
-    "Сентябрь",
-    "Октябрь",
-    "Ноябрь",
-    "Декабрь",
+    'Январь',
+    'Февраль',
+    'Март',
+    'Апрель',
+    'Май',
+    'Июнь',
+    'Июль',
+    'Август',
+    'Сентябрь',
+    'Октябрь',
+    'Ноябрь',
+    'Декабрь',
   ];
   let planArr = [30];
   let factArr = [40];
   let diffArr = [];
   let invisibleArr = [];
   let barColor = [];
+
   if (planArr[0] >= factArr[0]) {
     invisibleArr = [null, null, factArr[0]];
     diffArr = [planArr[0] - factArr[0]];
-    barColor.push("#EE2B49");
+    barColor.push('#EE2B49');
   } else {
     invisibleArr = [null, null, planArr[0]];
     diffArr = [factArr[0] - planArr[0]];
-    barColor.push("#0DA46F");
+    barColor.push('#0DA46F');
   }
   planArr = [planArr[0], null, null];
   factArr = [null, factArr[0], null];
@@ -69,83 +73,85 @@ function Sds(props) {
 
   // let mobile = true;
   let mobileFont = 16;
-  let mobileColor = "#fff";
+  let mobileColor = '#fff';
+
   if (window.outerWidth < 450) {
     // mobile = false;
-    mobileColor = "#fff";
+    mobileColor = '#fff';
     mobileFont = 12;
   }
   const options = {
-    scales: {
-      x: {
-        ticks: {
-          maxRotation: 0,
-          display: true,
-        },
-        stacked: true,
-      },
-      y: {
-        stacked: true,
-        title: {
-          display: true,
-          text: "%",
-          font: {
-            size: 14,
-            weight: 700,
-          },
-        },
-      },
-    },
-    responsive: true,
     plugins: {
       datalabels: {
-        display: false,
         color: mobileColor,
+        display: false,
 
         font: {
           size: mobileFont,
           weight: 700,
         },
       },
+      legend: {
+        display: false,
+        position: 'bottom',
+      },
       tooltip: {
         filter: (tooltipItem) => tooltipItem.datasetIndex !== 0,
       },
-      legend: {
-        display: false,
-        position: "bottom",
+    },
+    responsive: true,
+    scales: {
+      x: {
+        stacked: true,
+        ticks: {
+          display: true,
+          maxRotation: 0,
+        },
+      },
+      y: {
+        stacked: true,
+        title: {
+          display: true,
+          font: {
+            size: 14,
+            weight: 700,
+          },
+          text: '%',
+        },
       },
     },
   };
   const labels = [
-    ["Стоимость долгов"],
-    ["Доходность собственного капитала"],
-    ["Отклонение"],
+    ['Стоимость долгов'],
+    ['Доходность собственного капитала'],
+    ['Отклонение'],
   ];
   const data = {
-    labels,
     datasets: [
       {
-        label: "",
+        backgroundColor: 'transparent',
         data: invisibleArr,
-        backgroundColor: "transparent",
+        label: '',
       },
       {
-        label: "Отклонение",
-        data: diffArr,
         backgroundColor: barColor,
+        data: diffArr,
+        label: 'Отклонение',
       },
       {
-        label: "Стоимость долгов",
+        backgroundColor: '#EE2B4995',
         data: planArr,
-        backgroundColor: "#EE2B4995",
+        label: 'Стоимость долгов',
       },
       {
-        label: "Доходность собственного капитала",
+        backgroundColor: '#13efa3',
         data: factArr,
-        backgroundColor: "#13efa3",
+        label: 'Доходность собственного капитала',
       },
     ],
+    labels,
   };
+
   return (
     <div className="analysisBarChartBlock smallChart">
       <div className="analysisHeader">
@@ -157,10 +163,10 @@ function Sds(props) {
             <Selectblue selectArr={years} />
             <Selectblue selectArr={months} />
           </div>
-          <Checkcustom label="С начала года" checked={false} />
+          <Checkcustom checked={false} label="С начала года" />
         </div>
       </div>
-      <Bar options={options} data={data} />
+      <Bar data={data} options={options} />
     </div>
   );
 }

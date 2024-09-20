@@ -1,9 +1,11 @@
-import React from "react";
-import Header from "../../components/Header/Header";
-import MobileNav from "../../components/MobileNav/MobileNav";
-import styles from "./NoMatterAnalysis.module.scss";
-import FinAnalysisLeftNav from "../../components/FinAnalysisLeftNav/FinAnalysisLeftNav";
-import NoMatterAnalysisBody from "../../components/NoMatterAnalysisBody/NoMatterAnalysisBody";
+import React from 'react';
+
+import FinAnalysisLeftNav from '../../components/FinAnalysisLeftNav/FinAnalysisLeftNav';
+import Header from '../../components/Header/Header';
+import MobileNav from '../../components/MobileNav/MobileNav';
+import NoMatterAnalysisBody from '../../components/NoMatterAnalysisBody/NoMatterAnalysisBody';
+
+import styles from './NoMatterAnalysis.module.scss';
 
 function NoMatterAnalysis(props) {
   return (

@@ -1,9 +1,11 @@
-import React from "react";
+import React from 'react';
 
-import "./TestResultTabs.scss";
-import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import SensorChart from "../SensorChart/SensorChart";
-import Matrix from "../Matrix/Matrix";
+import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
+
+import Matrix from '../Matrix/Matrix';
+import SensorChart from '../SensorChart/SensorChart';
+
+import './TestResultTabs.scss';
 
 function TestResultTabs(props) {
   return (
@@ -14,10 +16,10 @@ function TestResultTabs(props) {
           <Tab>
             <span>Оценка навыков управления финансами</span>
             <svg
-              width="17"
+              fill="none"
               height="17"
               viewBox="0 0 17 10"
-              fill="none"
+              width="17"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
@@ -29,10 +31,10 @@ function TestResultTabs(props) {
           <Tab>
             <span>Диагностика Финансовой эффективности</span>
             <svg
-              width="17"
+              fill="none"
               height="17"
               viewBox="0 0 17 10"
-              fill="none"
+              width="17"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path

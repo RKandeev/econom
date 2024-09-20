@@ -1,22 +1,26 @@
-import React from "react";
-import styles from "./IncomesBody.module.scss";
-import { Link } from "react-router-dom";
-import Progressadd from "../Progressadd/Progressadd";
-import Selectblue from "../Selectblue/Selectblue";
+import React from 'react';
+
+import { Link } from 'react-router-dom';
+
+import Progressadd from '../Progressadd/Progressadd';
+import Selectblue from '../Selectblue/Selectblue';
+
+import styles from './IncomesBody.module.scss';
 
 function IncomesBody(props) {
-  let statusTitle = "Планирование завершено";
-  let statusDate = "32 марта 2023 года, в 16:21";
-  let progressValue = "77 276,12";
-  const years = ["2022", "2023"];
+  let statusTitle = 'Планирование завершено';
+  let statusDate = '32 марта 2023 года, в 16:21';
+  let progressValue = '77 276,12';
+  const years = ['2022', '2023'];
   let selectedMonth = 4;
+
   return (
     <>
       <div className={styles.IncomesBody}>
         <div className={styles.breadcrumb}>
           <ul>
             <li>
-              <Link to={"/finplan"}>Финансовое планирование</Link>
+              <Link to="/finplan">Финансовое планирование</Link>
             </li>
             <li>Доходы</li>
           </ul>
@@ -32,13 +36,13 @@ function IncomesBody(props) {
                 console.log(index),
                 (
                   <div
-                    className={
-                      index === selectedMonth ? "month select" : "month"
-                    }
                     key={elem.id}
+                    className={
+                      index === selectedMonth ? 'month select' : 'month'
+                    }
                   >
                     <div className="monthimg">
-                      <img src={elem.checkStatus} alt="" />
+                      <img alt="" src={elem.checkStatus} />
                     </div>
                     <div className="monthtitle">{elem.title}</div>
                   </div>
@@ -53,10 +57,10 @@ function IncomesBody(props) {
         </div>
         <Progressadd
           barcolor="#0DA46F"
+          barwidth="931rem"
+          btnTitle="Добавить"
           progressTitle="Запланировано"
           progressValue={progressValue}
-          btnTitle="Добавить"
-          barwidth="931rem"
         />
         <div className={styles.planDone}>
           <input

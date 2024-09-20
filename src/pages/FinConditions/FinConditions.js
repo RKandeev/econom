@@ -1,9 +1,11 @@
-import React from "react";
-import Header from "../../components/Header/Header";
-import MobileNav from "../../components/MobileNav/MobileNav";
-import styles from "./FinConditionsBody.module.scss";
-import FinAnalysisLeftNav from "../../components/FinAnalysisLeftNav/FinAnalysisLeftNav";
-import FinConditionsBody from "../../components/FinConditionsBody/FinConditionsBody";
+import React from 'react';
+
+import FinAnalysisLeftNav from '../../components/FinAnalysisLeftNav/FinAnalysisLeftNav';
+import FinConditionsBody from '../../components/FinConditionsBody/FinConditionsBody';
+import Header from '../../components/Header/Header';
+import MobileNav from '../../components/MobileNav/MobileNav';
+
+import styles from './FinConditionsBody.module.scss';
 
 function FinConditions(props) {
   return (

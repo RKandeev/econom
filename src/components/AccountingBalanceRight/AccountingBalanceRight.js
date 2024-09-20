@@ -1,7 +1,10 @@
-import React from "react";
-import styles from "./AccountingBalanceRight.module.scss";
-import Diagrambtn from "../Diagrambtn/Diagrambtn";
-import copyico from "../../img/icon/icon__copy.svg";
+import React from 'react';
+
+import Diagrambtn from '../Diagrambtn/Diagrambtn';
+
+import copyico from '../../img/icon/icon__copy.svg';
+
+import styles from './AccountingBalanceRight.module.scss';
 
 function AccountingBalanceRight(props) {
   return (

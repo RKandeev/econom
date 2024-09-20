@@ -1,11 +1,14 @@
-import React from "react";
-import Header from "../../components/Header/Header";
-import styles from "./CreateSolutionAim.module.scss";
-import Modelingleftnav from "../../components/Modelingleftnav/Modelingleftnav";
-import { Link } from "react-router-dom";
-import FinModelingRight from "../../components/FinModelingRight/FinModelingRight";
-import MobileNav from "../../components/MobileNav/MobileNav";
-import CreditBlockAim from "../../components/CreditBlockAim/CreditBlockAim";
+import React from 'react';
+
+import { Link } from 'react-router-dom';
+
+import CreditBlockAim from '../../components/CreditBlockAim/CreditBlockAim';
+import FinModelingRight from '../../components/FinModelingRight/FinModelingRight';
+import Header from '../../components/Header/Header';
+import MobileNav from '../../components/MobileNav/MobileNav';
+import Modelingleftnav from '../../components/Modelingleftnav/Modelingleftnav';
+
+import styles from './CreateSolutionAim.module.scss';
 
 function CreateSolutionAim(props) {
   return (
@@ -20,7 +23,7 @@ function CreateSolutionAim(props) {
           <div className={styles.breadcrumb}>
             <ul>
               <li>
-                <Link to={"/finmodeling"}>Финансовое моделирование</Link>
+                <Link to="/finmodeling">Финансовое моделирование</Link>
               </li>
               <li>Досрочное погашение кредитов: целесообразность</li>
             </ul>

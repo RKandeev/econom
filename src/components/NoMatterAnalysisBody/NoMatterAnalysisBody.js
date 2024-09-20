@@ -1,12 +1,16 @@
-import React from "react";
-import styles from "./NoMatterAnalysisBody.module.scss";
-import { Link } from "react-router-dom";
-import AnalysisHeader from "../AnalysisHeader/AnalysisHeader";
-import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import "./NoMatterAnalysisBody.scss";
-import Knr1 from "../AnalysisCharts/BarCharts/KNR1";
-import hrcontrol from "../../img/analysisicons/HRcontrol.png";
-import Knr2 from "../AnalysisCharts/SensorCharts/KNR2";
+import React from 'react';
+
+import { Link } from 'react-router-dom';
+import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
+
+import Knr1 from '../AnalysisCharts/BarCharts/KNR1';
+import Knr2 from '../AnalysisCharts/SensorCharts/KNR2';
+import AnalysisHeader from '../AnalysisHeader/AnalysisHeader';
+
+import hrcontrol from '../../img/analysisicons/HRcontrol.png';
+
+import './NoMatterAnalysisBody.scss';
+import styles from './NoMatterAnalysisBody.module.scss';
 
 function NoMatterAnalysisBody(props) {
   return (
@@ -17,7 +21,7 @@ function NoMatterAnalysisBody(props) {
           <div className={styles.breadcrumb}>
             <ul>
               <li>
-                <Link to={"/FinAnalys"}>Денежные потоки</Link>
+                <Link to="/FinAnalys">Денежные потоки</Link>
               </li>
               <li>Контроль необязательных расходов</li>
             </ul>
@@ -31,7 +35,7 @@ function NoMatterAnalysisBody(props) {
             <TabList className="react-tabs__tab-list firstTestsTabList CashFlowTabList">
               <h4>
                 Контроль необязательных расходов
-                <img src={hrcontrol} alt="" />
+                <img alt="" src={hrcontrol} />
               </h4>
               <Tab>
                 <span>Абсолютная величина</span>

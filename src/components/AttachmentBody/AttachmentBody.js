@@ -1,24 +1,28 @@
-import React from "react";
-import styles from "./CreditBody.module.scss";
-import { Link } from "react-router-dom";
-import DoubleProgressadd from "../DoubleProgressadd/DoubleProgressadd";
-import Selectblue from "../Selectblue/Selectblue";
+import React from 'react';
+
+import { Link } from 'react-router-dom';
+
+import DoubleProgressadd from '../DoubleProgressadd/DoubleProgressadd';
+import Selectblue from '../Selectblue/Selectblue';
+
+import styles from './CreditBody.module.scss';
 
 function AttachmentBody(props) {
-  let CurrentDate = "Сентябрь 2022";
-  let statusTitle = "Планирование не завершено";
-  let statusDate = "";
-  let progressValue = "77 276,12";
-  let availableValue = "112 385,20";
-  const years = ["2022", "2023"];
+  let CurrentDate = 'Сентябрь 2022';
+  let statusTitle = 'Планирование не завершено';
+  let statusDate = '';
+  let progressValue = '77 276,12';
+  let availableValue = '112 385,20';
+  const years = ['2022', '2023'];
   let selectedMonth = 4;
+
   return (
     <>
       <div className={styles.IncomesBody}>
         <div className={styles.breadcrumb}>
           <ul>
             <li>
-              <Link to={"/finplan"}>Финансовое планирование</Link>
+              <Link to="/finplan">Финансовое планирование</Link>
             </li>
             <li>Вложения</li>
           </ul>
@@ -34,13 +38,13 @@ function AttachmentBody(props) {
                 console.log(index),
                 (
                   <div
-                    className={
-                      index == selectedMonth ? "month select" : "month"
-                    }
                     key={elem.id}
+                    className={
+                      index == selectedMonth ? 'month select' : 'month'
+                    }
                   >
                     <div className="monthimg">
-                      <img src={elem.checkStatus} alt="" />
+                      <img alt="" src={elem.checkStatus} />
                     </div>
                     <div className="monthtitle">{elem.title}</div>
                   </div>
@@ -54,13 +58,13 @@ function AttachmentBody(props) {
           <div className={styles.statusDate}>{statusDate}</div>
         </div>
         <DoubleProgressadd
+          availableValue={availableValue}
           barcolor="#EE2B49"
+          barwidth="807rem"
+          btnTitle="Добавить"
+          expensesBlock="none"
           progressTitle="Запланировано"
           progressValue={progressValue}
-          availableValue={availableValue}
-          btnTitle="Добавить"
-          barwidth="807rem"
-          expensesBlock="none"
         />
         <div className={styles.planDone}>
           <input

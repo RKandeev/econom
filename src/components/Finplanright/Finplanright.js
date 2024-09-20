@@ -1,23 +1,27 @@
-import React from "react";
-import styles from "./Finplanright.module.scss";
-import Diagrambtn from "../Diagrambtn/Diagrambtn";
-import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import Sdpp from "../FinPlanCharts/BarCharts/SDPP";
-import Chdpp from "../FinPlanCharts/BarCharts/CHDPP";
-import Naop from "../FinPlanCharts/SensorCharts/NAOP";
-import point from "../../img/analysisicons/point.png";
-import chdppico from "../../img/chdppico.svg";
-import naonadico from "../../img/NAONADico.svg";
-import mddico from "../../img/mdpico.svg";
-import rdpico from "../../img/rdpico.svg";
-import sctructureico from "../../img/sctructureico.svg";
-import dynamic from "../../img/analysisicons/dynamic.png";
-import Nadp from "../FinPlanCharts/LineCharts/NADP";
-import Mdop from "../FinPlanCharts/SensorCharts/MDOP";
-import Mddp from "../FinPlanCharts/LineCharts/MDDP";
-import Rnpp from "../FinPlanCharts/PieCharts/RNPP";
-import dollar from "../../img/studyIcons/10.svg";
-import SRPL from "../FinPlanCharts/PieCharts/SRPL";
+import React from 'react';
+
+import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
+
+import Diagrambtn from '../Diagrambtn/Diagrambtn';
+import Chdpp from '../FinPlanCharts/BarCharts/CHDPP';
+import Sdpp from '../FinPlanCharts/BarCharts/SDPP';
+import Mddp from '../FinPlanCharts/LineCharts/MDDP';
+import Nadp from '../FinPlanCharts/LineCharts/NADP';
+import Rnpp from '../FinPlanCharts/PieCharts/RNPP';
+import SRPL from '../FinPlanCharts/PieCharts/SRPL';
+import Mdop from '../FinPlanCharts/SensorCharts/MDOP';
+import Naop from '../FinPlanCharts/SensorCharts/NAOP';
+
+import dynamic from '../../img/analysisicons/dynamic.png';
+import point from '../../img/analysisicons/point.png';
+import chdppico from '../../img/chdppico.svg';
+import mddico from '../../img/mdpico.svg';
+import naonadico from '../../img/NAONADico.svg';
+import rdpico from '../../img/rdpico.svg';
+import sctructureico from '../../img/sctructureico.svg';
+import dollar from '../../img/studyIcons/10.svg';
+
+import styles from './Finplanright.module.scss';
 function Finplanright(props) {
   return (
     <div className={styles.finplanright}>
@@ -34,13 +38,13 @@ function Finplanright(props) {
           <TabList>
             <Tab>
               <div className="img_tab">
-                <img src={point} alt="" />
+                <img alt="" src={point} />
                 <div className="tabTitle">Оценка</div>
               </div>
             </Tab>
             <Tab className=" react-tabs__tab analysisDynamicTab">
               <div className="img_tab">
-                <img src={dynamic} alt="" />
+                <img alt="" src={dynamic} />
                 <div className="tabTitle">Динамика</div>
               </div>
             </Tab>
@@ -62,13 +66,13 @@ function Finplanright(props) {
           <TabList>
             <Tab>
               <div className="img_tab">
-                <img src={point} alt="" />
+                <img alt="" src={point} />
                 <div className="tabTitle">Оценка</div>
               </div>
             </Tab>
             <Tab className=" react-tabs__tab analysisDynamicTab">
               <div className="img_tab">
-                <img src={dynamic} alt="" />
+                <img alt="" src={dynamic} />
                 <div className="tabTitle">Динамика</div>
               </div>
             </Tab>

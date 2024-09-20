@@ -1,19 +1,22 @@
-import React from "react";
-import "./AnalysisBarCharts.scss";
-import { Bar } from "react-chartjs-2";
-import gradient from "chartjs-plugin-gradient";
-import ChartDataLabels from "chartjs-plugin-datalabels";
+import React from 'react';
+
 import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
   BarElement,
+  CategoryScale,
+  Chart as ChartJS,
+  Legend,
+  LinearScale,
   Title,
   Tooltip,
-  Legend,
-} from "chart.js";
-import Selectblue from "../../Selectblue/Selectblue";
-import Checkcustom from "../../Checkcustom/Checkcustom";
+} from 'chart.js';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+import gradient from 'chartjs-plugin-gradient';
+import { Bar } from 'react-chartjs-2';
+
+import Checkcustom from '../../Checkcustom/Checkcustom';
+import Selectblue from '../../Selectblue/Selectblue';
+
+import './AnalysisBarCharts.scss';
 
 ChartJS.register(
   Title,
@@ -29,20 +32,20 @@ ChartJS.register(
 function Pkr(props) {
   let years = [2022, 2023];
   let months = [
-    "Январь",
-    "Февраль",
-    "Март",
-    "Апрель",
-    "Май",
-    "Июнь",
-    "Июль",
-    "Август",
-    "Сентябрь",
-    "Октябрь",
-    "Ноябрь",
-    "Декабрь",
+    'Январь',
+    'Февраль',
+    'Март',
+    'Апрель',
+    'Май',
+    'Июнь',
+    'Июль',
+    'Август',
+    'Сентябрь',
+    'Октябрь',
+    'Ноябрь',
+    'Декабрь',
   ];
-  let category = ["Категория1", "Категория2", "Категория3"];
+  let category = ['Категория1', 'Категория2', 'Категория3'];
   let planArr = [10900, 35000, 0, 0, 700, 10300];
   let factArr = [11450, 36759, 0, 1970, 700, 13550];
   let diffArr = [
@@ -53,6 +56,7 @@ function Pkr(props) {
     planArr[4] - factArr[4],
     planArr[5] - factArr[5],
   ];
+
   diffArr = diffArr.map(function (val, i) {
     return val === 0 ? null : val;
   });
@@ -62,105 +66,106 @@ function Pkr(props) {
 
   console.log(diffArr);
   let barColor = [];
+
   diffArr.forEach((e) => {
     if (e >= 0) {
-      barColor.push("#13efa3");
+      barColor.push('#13efa3');
     } else {
-      barColor.push("#EE2B49");
+      barColor.push('#EE2B49');
     }
   });
 
   let mobile = true;
   let mobileFont = 16;
-  let mobileColor = "#000";
+  let mobileColor = '#000';
+
   if (window.outerWidth < 450) {
     mobile = false;
-    mobileColor = "#000";
+    mobileColor = '#000';
     mobileFont = 12;
   }
   const options = {
-    indexAxis: "y",
-    scales: {
-      x: {
-        ticks: {
-          maxRotation: 0,
-          display: true,
-        },
-        stacked: false,
-      },
-      y: {
-        stacked: true,
-        title: {
-          display: false,
-          text: "тыс. ₽",
-          font: {
-            size: 14,
-            weight: 700,
-          },
-        },
-      },
-    },
-    responsive: true,
+    indexAxis: 'y',
     plugins: {
       annotation: {
         annotations: {
           line1: {
-            drawTime: "afterDraw",
-            type: "line",
-            xMin: 0,
-            xMax: 0,
-            borderColor: "#858585",
+            borderColor: '#858585',
             borderWidth: 2,
+            drawTime: 'afterDraw',
+            type: 'line',
+            xMax: 0,
+            xMin: 0,
           },
         },
       },
       datalabels: {
-        display: false,
+        align: 'left',
+        anchor: 'center',
         color: mobileColor,
-        anchor: "center",
-        align: "left",
+        display: false,
         font: {
           size: mobileFont,
           weight: 700,
         },
       },
-      tooltip: {
-        callbacks: {
-          title: (context) => {
-            return context[0].label.replaceAll(",", " ");
-          },
-        },
-      },
       legend: {
         display: false,
-        position: "bottom",
+        position: 'bottom',
+      },
+      tooltip: {
+        callbacks: {
+          title: (context) => context[0].label.replaceAll(',', ' '),
+        },
+      },
+    },
+    responsive: true,
+    scales: {
+      x: {
+        stacked: false,
+        ticks: {
+          display: true,
+          maxRotation: 0,
+        },
+      },
+      y: {
+        stacked: true,
+        title: {
+          display: false,
+          font: {
+            size: 14,
+            weight: 700,
+          },
+          text: 'тыс. ₽',
+        },
       },
     },
   };
   const labels = [
-    ["Жилье"],
-    ["Питание"],
-    ["Одежда и обувь"],
-    ["Техника, мебель"],
-    ["Транспорт и связь"],
-    ["Содержание автомобиля"],
+    ['Жилье'],
+    ['Питание'],
+    ['Одежда и обувь'],
+    ['Техника, мебель'],
+    ['Транспорт и связь'],
+    ['Содержание автомобиля'],
   ];
   const data = {
-    labels,
     datasets: [
       {
-        label: "Экономия (+), перерасход (-)",
-        data: diffArr,
-        barPercentage: 0.7,
         backgroundColor: barColor,
+        barPercentage: 0.7,
+        data: diffArr,
+        label: 'Экономия (+), перерасход (-)',
       },
       {
-        label: "План",
+        backgroundColor: '#85858590',
         data: planArr,
-        backgroundColor: "#85858590",
+        label: 'План',
       },
     ],
+    labels,
   };
+
   return (
     <div className="analysisBarChartBlock smallChart">
       <div className="analysisHeader">
@@ -172,13 +177,13 @@ function Pkr(props) {
             <Selectblue selectArr={years} />
             <Selectblue selectArr={months} />
           </div>
-          <Checkcustom label="С начала года" checked={false} />
+          <Checkcustom checked={false} label="С начала года" />
         </div>
       </div>
       <div className="categorySelect">
         <Selectblue selectArr={category} />
       </div>
-      <Bar options={options} data={data} />
+      <Bar data={data} options={options} />
     </div>
   );
 }

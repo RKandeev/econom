@@ -1,34 +1,33 @@
-import React, { useState } from "react";
-import styles from "./DoubleProgressadd.module.scss";
-import Mybtn from "../Mybtn/Mybtn";
-import IncomesLine from "../IncomesLine/IncomesLine";
-import credit from "../../img/crediticon.svg";
-import notification from "../../img/icon/icon__notification.svg";
-import trash from "../../img/icon/icon__trash.svg";
-import Modal from "../Modal/Modal";
-import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import SelectModal from "../SelectModal/SelectModal";
-import Editsum from "../Editsum/Editsum";
-import CommentArea from "../CommentArea/CommentArea";
-import Calendars from "../Calendars/Calendars";
+import React, { useState } from 'react';
+
+import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
+
+import CommentArea from '../CommentArea/CommentArea';
+import Editsum from '../Editsum/Editsum';
+import Modal from '../Modal/Modal';
+import Mybtn from '../Mybtn/Mybtn';
+import SelectModal from '../SelectModal/SelectModal';
+
+import styles from './DoubleProgressadd.module.scss';
 
 function AccountingDoubleProgress(props) {
-  let titleName = "Основной долг";
-  let titleNameType = "Подраздел";
-  let incomesValue = "-8500.00";
-  let selectArr1 = ["Проценты", "Ипотека", "Лотерея"];
-  let selectArr2 = ["Ипотека", "Проценты", "Лотерея"];
-  let sumValue = "25 159,15";
-  let availableBalance = "15000.00";
-  let lastMonthExpensesValue = "15000.00";
-  let latYearExpensesValue = "15000.00";
-  let notificValue = "20 563";
-  let notificDate = "12 сентября";
+  let titleName = 'Основной долг';
+  let titleNameType = 'Подраздел';
+  let incomesValue = '-8500.00';
+  let selectArr1 = ['Проценты', 'Ипотека', 'Лотерея'];
+  let selectArr2 = ['Ипотека', 'Проценты', 'Лотерея'];
+  let sumValue = '25 159,15';
+  let availableBalance = '15000.00';
+  let lastMonthExpensesValue = '15000.00';
+  let latYearExpensesValue = '15000.00';
+  let notificValue = '20 563';
+  let notificDate = '12 сентября';
   const onSubmit = (e) => {
     e.preventDefault();
   };
   const [addModalActive, SetAddModalActive] = useState(false);
   const [addNotification, SetAddNotification] = useState(false);
+
   return (
     <>
       <div className={styles.progressTitle}>{props.progressTitle}</div>
@@ -53,8 +52,8 @@ function AccountingDoubleProgress(props) {
         </div>
       </div>
       <Modal
-        modalTitle="Расходы"
         active={addModalActive}
+        modalTitle="Расходы"
         SetActive={SetAddModalActive}
       >
         <Tabs>
@@ -83,9 +82,9 @@ function AccountingDoubleProgress(props) {
                 />
                 <input
                   className={styles.submitBtn}
+                  form="newIncomeForm"
                   type="submit"
                   value="Сохранить"
-                  form="newIncomeForm"
                 />
               </form>
             </div>
@@ -94,9 +93,9 @@ function AccountingDoubleProgress(props) {
             <CommentArea placeHolderTitle="Текст комментария" />
             <input
               className={styles.submitBtn}
+              form="newIncomeForm"
               type="submit"
               value="Сохранить"
-              form="newIncomeForm"
             />
           </TabPanel>
         </Tabs>

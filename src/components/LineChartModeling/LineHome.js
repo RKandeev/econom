@@ -1,18 +1,20 @@
-import React from "react";
-import { Line } from "react-chartjs-2";
-import gradient from "chartjs-plugin-gradient";
-import "./LineChartModeling.scss";
+import React from 'react';
+
 import {
+  CategoryScale,
   Chart as ChartJS,
+  Filler,
+  Legend,
+  LinearScale,
+  LineElement,
+  PointElement,
   Title,
   Tooltip,
-  LineElement,
-  Legend,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  Filler,
-} from "chart.js";
+} from 'chart.js';
+import gradient from 'chartjs-plugin-gradient';
+import { Line } from 'react-chartjs-2';
+
+import './LineChartModeling.scss';
 
 ChartJS.register(
   Title,
@@ -40,84 +42,84 @@ function LineHome(props) {
   ];
 
   const lineHomeOptions = {
-    scales: {
-      x: {
-        title: {
-          display: true,
-          text: "Годы",
-          font: {
-            size: 12,
-            weight: 700,
-          },
-        },
-      },
-      y: {
-        title: {
-          display: true,
-          text: "млн. ₽",
-          font: {
-            size: 12,
-            weight: 700,
-          },
-        },
-      },
-    },
     plugins: {
       datalabels: {
         display: false,
       },
       legend: {
         display: mobile,
-        position: "bottom",
+        position: 'bottom',
+      },
+    },
+    scales: {
+      x: {
+        title: {
+          display: true,
+          font: {
+            size: 12,
+            weight: 700,
+          },
+          text: 'Годы',
+        },
+      },
+      y: {
+        title: {
+          display: true,
+          font: {
+            size: 12,
+            weight: 700,
+          },
+          text: 'млн. ₽',
+        },
       },
     },
     title: {
       display: false,
-      text: "COVID-19 Cases of Last 6 Months",
       fontSize: 20,
+      text: 'COVID-19 Cases of Last 6 Months',
     },
   };
   const lineHomeData = {
-    labels: [
-      "0",
-      "1",
-      "2",
-      "3",
-      "4",
-      "5",
-      "6",
-      "7",
-      "8",
-      "9",
-      "10",
-      "11",
-      "12",
-      "13",
-      "14",
-      "15",
-    ],
     datasets: [
       {
+        backgroundColor: '#EE2B49',
+        borderColor: '#EE2B49',
         data: arr,
-        label: "Аренда жилья",
+        label: 'Аренда жилья',
         lineTension: 1,
-        borderColor: "#EE2B49",
-        backgroundColor: "#EE2B49",
       },
       {
+        backgroundColor: '#0DA46F',
+        borderColor: '#0DA46F',
         data: arr2,
-        label: "Покупка жилья",
+        label: 'Покупка жилья',
         lineTension: 1,
-        borderColor: "#0DA46F",
-        backgroundColor: "#0DA46F",
       },
+    ],
+    labels: [
+      '0',
+      '1',
+      '2',
+      '3',
+      '4',
+      '5',
+      '6',
+      '7',
+      '8',
+      '9',
+      '10',
+      '11',
+      '12',
+      '13',
+      '14',
+      '15',
     ],
   };
 
   return (
     <div className="chart lineChartModeling">
       <h3 className="chartTitle">Собственный капитал</h3>
-      <Line options={lineHomeOptions} data={lineHomeData} />
+      <Line data={lineHomeData} options={lineHomeOptions} />
     </div>
   );
 }

@@ -1,14 +1,18 @@
-import React from "react";
-import styles from "./AccountingBalanceBody.module.scss";
-import AnalysisHeader from "../AnalysisHeader/AnalysisHeader";
-import AccountingLine from "../AccountingLine/AccountingLine";
-import pocket from "../../img/pocket.svg";
-import fincashout from "../../img/fincashout.svg";
-import Selectblue from "../Selectblue/Selectblue";
+import React from 'react';
+
+import AccountingLine from '../AccountingLine/AccountingLine';
+import AnalysisHeader from '../AnalysisHeader/AnalysisHeader';
+import Selectblue from '../Selectblue/Selectblue';
+
+import fincashout from '../../img/fincashout.svg';
+import pocket from '../../img/pocket.svg';
+
+import styles from './AccountingBalanceBody.module.scss';
 
 function AccountingBalanceBody(props) {
-  const years = ["2022", "2023"];
+  const years = ['2022', '2023'];
   let selectedMonth = 4;
+
   return (
     <>
       <div className={styles.accountingBody}>
@@ -26,19 +30,19 @@ function AccountingBalanceBody(props) {
         <AnalysisHeader
           activeLink=""
           firstlink="/accounting"
-          secondlink="/AccountingBalance"
           firsttitle="Денежные потоки"
+          secondlink="/AccountingBalance"
           secondtitle="Финансовый баланс"
         />
         <div className={styles.monthslist}>
           <div className={styles.monthblock}>
             {props.months.map((elem, index) => (
               <div
-                className={index == selectedMonth ? "month select" : "month"}
                 key={elem.id}
+                className={index == selectedMonth ? 'month select' : 'month'}
               >
                 <div className="monthimg">
-                  <img src={elem.checkStatus} alt="" />
+                  <img alt="" src={elem.checkStatus} />
                 </div>
                 <div className="monthtitle">{elem.title}</div>
               </div>
@@ -47,20 +51,20 @@ function AccountingBalanceBody(props) {
         </div>
         <AccountingLine
           checkDisplay="none"
-          linkway={"/AccountingBalanceIncomes"}
+          entriesNum="13 записей"
+          linkway="/AccountingBalanceIncomes"
           titleimg={pocket}
           titlename="Активы"
-          value={"+55000.00"}
-          entriesNum="13 записей"
+          value="+55000.00"
         />
 
         <AccountingLine
           checkDisplay="none"
-          linkway={"/AccountingBalanceDebts"}
+          entriesNum="1 запись"
+          linkway="/AccountingBalanceDebts"
           titleimg={fincashout}
           titlename="Долги"
-          value={"-12446.20"}
-          entriesNum="1 запись"
+          value="-12446.20"
         />
       </div>
     </>

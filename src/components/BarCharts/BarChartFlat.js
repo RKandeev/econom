@@ -1,17 +1,19 @@
-import React from "react";
-import "./BarCharts.scss";
-import { Bar } from "react-chartjs-2";
-import gradient from "chartjs-plugin-gradient";
-import ChartDataLabels from "chartjs-plugin-datalabels";
+import React from 'react';
+
 import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
   BarElement,
+  CategoryScale,
+  Chart as ChartJS,
+  Legend,
+  LinearScale,
   Title,
   Tooltip,
-  Legend,
-} from "chart.js";
+} from 'chart.js';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+import gradient from 'chartjs-plugin-gradient';
+import { Bar } from 'react-chartjs-2';
+
+import './BarCharts.scss';
 
 ChartJS.register(
   Title,
@@ -30,81 +32,81 @@ function BarChartFlat(props) {
   let negativeArr = [3637];
   let mobile = true;
   let mobileFont = 16;
-  let mobileColor = "#fff";
+  let mobileColor = '#fff';
+
   if (window.outerWidth < 450) {
     mobile = false;
-    mobileColor = "#000";
+    mobileColor = '#000';
     mobileFont = 12;
   }
   const options = {
-    scales: {
-      x: {
-        ticks: {
-          maxRotation: 0,
-          display: true,
-        },
-        stacked: true,
-      },
-      y: {
-        stacked: true,
-        title: {
-          display: true,
-          text: "тыс. ₽",
-          font: {
-            size: 14,
-            weight: 700,
-          },
-        },
-      },
-    },
-    responsive: true,
     plugins: {
       datalabels: {
-        display: mobile,
         color: mobileColor,
+        display: mobile,
         font: {
           size: mobileFont,
           weight: 700,
         },
       },
-      tooltip: {
-        callbacks: {
-          title: (context) => {
-            return context[0].label.replaceAll(",", " ");
-          },
-        },
-      },
       legend: {
         display: mobile,
-        position: "bottom",
+        position: 'bottom',
+      },
+      tooltip: {
+        callbacks: {
+          title: (context) => context[0].label.replaceAll(',', ' '),
+        },
+      },
+    },
+    responsive: true,
+    scales: {
+      x: {
+        stacked: true,
+        ticks: {
+          display: true,
+          maxRotation: 0,
+        },
+      },
+      y: {
+        stacked: true,
+        title: {
+          display: true,
+          font: {
+            size: 14,
+            weight: 700,
+          },
+          text: 'тыс. ₽',
+        },
       },
     },
   };
-  const labels = [["Квартира"], ["Иные активы"]];
+  const labels = [['Квартира'], ['Иные активы']];
   const data = {
-    labels,
     datasets: [
       {
-        label: "Инвестирование в иные активы",
+        backgroundColor: '#0DA46F',
         data: positiveArr,
-        backgroundColor: "#0DA46F",
+        label: 'Инвестирование в иные активы',
       },
       {
-        label: "Чистый доход от квартиры",
+        backgroundColor: '#13efa3',
         data: arr,
-        backgroundColor: "#13efa3",
+        label: 'Чистый доход от квартиры',
       },
       {
-        label: "Прирост стоимости квартиры ",
+        backgroundColor: '#85858590',
         data: negativeArr,
-        backgroundColor: "#85858590",
+        label: 'Прирост стоимости квартиры ',
       },
     ],
+    labels,
   };
+
   return (
     <div className="barChartBlock barFlat">
       <h3 className="chartTitle">Выгода (финансовый результат)</h3>
-      <Bar options={options} data={data} />
+      <Bar data={data} options={options} />
     </div>
   );
 }

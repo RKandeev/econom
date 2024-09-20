@@ -1,14 +1,16 @@
-import React, { useState } from "react";
-import { Container } from "react-bootstrap";
-import DatePicker, { registerLocale } from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import "react-datepicker/dist/react-datepicker-cssmodules.css";
-import "./InlineCalendar.scss";
-import ru from "date-fns/locale/ru";
-registerLocale("ru", ru);
+import React, { useState } from 'react';
+
+import ru from 'date-fns/locale/ru';
+import { Container } from 'react-bootstrap';
+import DatePicker, { registerLocale } from 'react-datepicker';
+
+import 'react-datepicker/dist/react-datepicker.css';
+import 'react-datepicker/dist/react-datepicker-cssmodules.css';
+import './InlineCalendar.scss';
+registerLocale('ru', ru);
 
 function Reactdatepicker(props) {
-  const [selectesDate, setSelectedDate] = useState("");
+  const [selectesDate, setSelectedDate] = useState('');
 
   return (
     <React.Fragment>
@@ -22,11 +24,11 @@ function Reactdatepicker(props) {
                 <label className="col-sm-2 col-form-label"> </label>
                 <div className="col-sm-5">
                   <DatePicker
-                    selected={selectesDate}
-                    onChange={(date) => setSelectedDate(date)}
                     dateFormat="dd.MM.yyyy"
                     locale="ru"
                     placeholderText="Выберите дату"
+                    selected={selectesDate}
+                    onChange={(date) => setSelectedDate(date)}
                     inline
                     //minDate={ new Date()}
                     //maxDate={ new Date()}

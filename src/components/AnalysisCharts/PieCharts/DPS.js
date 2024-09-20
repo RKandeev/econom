@@ -1,19 +1,22 @@
-import React from "react";
-import "./AnalysisPieCharts.scss";
-import { Pie } from "react-chartjs-2";
-import gradient from "chartjs-plugin-gradient";
-import ChartDataLabels from "chartjs-plugin-datalabels";
+import React from 'react';
+
 import {
-  Chart as ChartJS,
-  CategoryScale,
   ArcElement,
+  CategoryScale,
+  Chart as ChartJS,
+  Legend,
   LinearScale,
   Title,
   Tooltip,
-  Legend,
-} from "chart.js";
-import Selectblue from "../../Selectblue/Selectblue";
-import Checkcustom from "../../Checkcustom/Checkcustom";
+} from 'chart.js';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+import gradient from 'chartjs-plugin-gradient';
+import { Pie } from 'react-chartjs-2';
+
+import Checkcustom from '../../Checkcustom/Checkcustom';
+import Selectblue from '../../Selectblue/Selectblue';
+
+import './AnalysisPieCharts.scss';
 
 ChartJS.register(
   Title,
@@ -29,67 +32,71 @@ ChartJS.register(
 function Dps(props) {
   let years = [2022, 2023];
   let months = [
-    "Январь",
-    "Февраль",
-    "Март",
-    "Апрель",
-    "Май",
-    "Июнь",
-    "Июль",
-    "Август",
-    "Сентябрь",
-    "Октябрь",
-    "Ноябрь",
-    "Декабрь",
+    'Январь',
+    'Февраль',
+    'Март',
+    'Апрель',
+    'Май',
+    'Июнь',
+    'Июль',
+    'Август',
+    'Сентябрь',
+    'Октябрь',
+    'Ноябрь',
+    'Декабрь',
   ];
   let planArr = [413038, 1852892];
   let mobile = true;
   let mobileFont = 16;
-  let mobileColor = "#fff";
+  let mobileColor = '#fff';
+
   if (window.outerWidth < 450) {
     mobile = false;
-    mobileColor = "#fff";
+    mobileColor = '#fff';
     mobileFont = 12;
   }
   const options = {
-    responsive: true,
     plugins: {
       datalabels: {
-        formatter: (value, ctx) => {
-          let sum = 0;
-          let dataArr = ctx.chart.data.datasets[0].data;
-          dataArr.map((data) => {
-            sum += data;
-          });
-          let percentage = ((value * 100) / sum).toFixed(0) + "%";
-          return percentage;
-        },
-        display: [mobile, false],
         color: mobileColor,
-        textAlign: "center",
-
+        display: [mobile, false],
         font: {
           size: mobileFont,
           weight: 700,
         },
+        formatter: (value, ctx) => {
+          let sum = 0;
+          let dataArr = ctx.chart.data.datasets[0].data;
+
+          dataArr.map((data) => {
+            sum += data;
+          });
+          let percentage = ((value * 100) / sum).toFixed(0) + '%';
+
+          return percentage;
+        },
+
+        textAlign: 'center',
       },
       legend: {
         display: false,
-        position: "bottom",
+        position: 'bottom',
       },
     },
+    responsive: true,
   };
-  const labels = [["Проценты по кредитам"], ["Прочее"]];
+  const labels = [['Проценты по кредитам'], ['Прочее']];
   const data = {
-    labels,
     datasets: [
       {
-        label: "",
+        backgroundColor: ['#EE2B4995', '#85858590'],
         data: planArr,
-        backgroundColor: ["#EE2B4995", "#85858590"],
+        label: '',
       },
     ],
+    labels,
   };
+
   return (
     <>
       <div className="analysisBlock">
@@ -102,11 +109,11 @@ function Dps(props) {
               <Selectblue selectArr={years} />
               <Selectblue selectArr={months} />
             </div>
-            <Checkcustom label="С начала года" checked={false} />
+            <Checkcustom checked={false} label="С начала года" />
           </div>
         </div>
         <div className="analysisPieChartBlock ">
-          <Pie options={options} data={data} />
+          <Pie data={data} options={options} />
         </div>
       </div>
     </>

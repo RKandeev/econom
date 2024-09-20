@@ -1,20 +1,22 @@
-import React from "react";
-import "./BarCharts.scss";
-import { Bar } from "react-chartjs-2";
-import gradient from "chartjs-plugin-gradient";
-import ChartDataLabels from "chartjs-plugin-datalabels";
-import annotationPlugin from "chartjs-plugin-annotation";
+import React from 'react';
+
 import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
+  BarController,
   BarElement,
+  CategoryScale,
+  Chart as ChartJS,
+  Legend,
+  LinearScale,
+  LineController,
   Title,
   Tooltip,
-  Legend,
-  LineController,
-  BarController,
-} from "chart.js";
+} from 'chart.js';
+import annotationPlugin from 'chartjs-plugin-annotation';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+import gradient from 'chartjs-plugin-gradient';
+import { Bar } from 'react-chartjs-2';
+
+import './BarCharts.scss';
 
 ChartJS.register(
   Title,
@@ -33,6 +35,7 @@ ChartJS.register(
 function BarChartCar(props) {
   const barArr = [196, -413, -475, 240, -451];
   let myArr = [null, null, null, null];
+
   myArr.push(barArr.splice(-1, 1, null).join());
   console.log(myArr);
   let myArrPos = [];
@@ -41,11 +44,12 @@ function BarChartCar(props) {
   let negativeArr = [];
   let mobile = true;
   let mobileFont = 16;
-  let mobileColor = "#fff";
+  let mobileColor = '#fff';
   let labelFont = 12;
+
   if (window.outerWidth < 450) {
     mobile = false;
-    mobileColor = "#000";
+    mobileColor = '#000';
     mobileFont = 12;
     labelFont = 3;
   }
@@ -68,109 +72,108 @@ function BarChartCar(props) {
     }
   });
   const options = {
-    scales: {
-      x: {
-        ticks: {
-          maxRotation: 0,
-          display: true,
-          font: {
-            size: labelFont,
-          },
-        },
-        stacked: true,
-      },
-      y: {
-        stacked: true,
-        title: {
-          display: true,
-          text: "тыс. ₽",
-          font: {
-            size: 14,
-            weight: 700,
-          },
-        },
-      },
-    },
-    responsive: true,
     plugins: {
       annotation: {
         annotations: {
           line1: {
-            type: "line",
-            yMin: 0,
-            yMax: 0,
-            borderColor: "#858585",
+            borderColor: '#858585',
             borderWidth: 2,
+            type: 'line',
+            yMax: 0,
+            yMin: 0,
           },
         },
       },
       datalabels: {
-        display: mobile,
         color: mobileColor,
+        display: mobile,
         font: {
           size: mobileFont,
           weight: 700,
         },
       },
-      tooltip: {
-        callbacks: {
-          title: (context) => {
-            return context[0].label.replaceAll(",", " ");
-          },
-        },
-      },
       legend: {
         display: false,
+      },
+      tooltip: {
+        callbacks: {
+          title: (context) => context[0].label.replaceAll(',', ' '),
+        },
+      },
+    },
+    responsive: true,
+    scales: {
+      x: {
+        stacked: true,
+        ticks: {
+          display: true,
+          font: {
+            size: labelFont,
+          },
+          maxRotation: 0,
+        },
+      },
+      y: {
+        stacked: true,
+        title: {
+          display: true,
+          font: {
+            size: 14,
+            weight: 700,
+          },
+          text: 'тыс. ₽',
+        },
       },
     },
   };
   const labels = [
-    ["Выгода (+)", "или Потери (-)", "на транспортных", "расходах"],
-    ["Потери (-)", "на расходах", "по кредиту"],
+    ['Выгода (+)', 'или Потери (-)', 'на транспортных', 'расходах'],
+    ['Потери (-)', 'на расходах', 'по кредиту'],
     [
-      "Упущенная",
-      "выгода (-)",
-      "в виде",
-      "неполученного",
-      "инвестиционного",
-      " дохода",
+      'Упущенная',
+      'выгода (-)',
+      'в виде',
+      'неполученного',
+      'инвестиционного',
+      ' дохода',
     ],
-    ["Прирост (+)", "или Снижение (-)", "стоимости активов"],
-    ["Чистая Выгода (+)", "или Чистые Потери (-)", "от покупки автомобиля"],
+    ['Прирост (+)', 'или Снижение (-)', 'стоимости активов'],
+    ['Чистая Выгода (+)', 'или Чистые Потери (-)', 'от покупки автомобиля'],
   ];
   const data = {
-    labels,
     datasets: [
       {
-        label: "",
+        backgroundColor: '#13efa3',
         data: positiveArr,
-        backgroundColor: "#13efa3",
+        label: '',
       },
       {
-        label: "",
+        backgroundColor: '#EE2B4995',
         data: negativeArr,
-        backgroundColor: "#EE2B4995",
+        label: '',
       },
       {
-        label: "",
+        backgroundColor: '#0DA46F',
+        borderColor: '#000000',
+        borderWidth: 2,
         data: myArrPos,
-        backgroundColor: "#0DA46F",
-        borderColor: "#000000",
-        borderWidth: 2,
+        label: '',
       },
       {
-        label: "",
-        data: myArrNeg,
-        backgroundColor: "#EE2B49",
-        borderColor: "#000000",
+        backgroundColor: '#EE2B49',
+        borderColor: '#000000',
         borderWidth: 2,
+        data: myArrNeg,
+        label: '',
       },
     ],
+    labels,
   };
+
   return (
     <div className="barChartBlock">
       <h3 className="chartTitle">Факторы экономического эффекта</h3>
-      <Bar options={options} data={data} />
+      <Bar data={data} options={options} />
     </div>
   );
 }

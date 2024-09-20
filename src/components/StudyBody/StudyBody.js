@@ -1,24 +1,27 @@
-import React from "react";
-import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import "./StudyBody.scss";
-import { Link } from "react-router-dom";
-import StudyFirst from "../StudyFirst/StudyFirst";
-import StudySecond from "../StudySecond/StudySecond";
+import React from 'react';
+
+import { Link } from 'react-router-dom';
+import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
+
+import StudyFirst from '../StudyFirst/StudyFirst';
+import StudySecond from '../StudySecond/StudySecond';
+
+import './StudyBody.scss';
 function StudyBody(props) {
   return (
     <div className="study_body">
       <h2 className="study_head">Обучение</h2>
-      <Tabs defaultIndex={0} className="react-tabs firstTestsTabs">
+      <Tabs className="react-tabs firstTestsTabs" defaultIndex={0}>
         <div className="left_tabs">
           <TabList className="react-tabs__tab-list firstTestsTabList">
             <h4>Курсы:</h4>
             <Tab>
               <span>Технология финансовой эффективности</span>
               <svg
-                width="17"
+                fill="none"
                 height="10"
                 viewBox="0 0 17 10"
-                fill="none"
+                width="17"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -32,10 +35,10 @@ function StudyBody(props) {
                 Технология выработки эффективных финансовых решений и стратегий
               </span>
               <svg
-                width="17"
+                fill="none"
                 height="10"
                 viewBox="0 0 17 10"
-                fill="none"
+                width="17"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -45,7 +48,7 @@ function StudyBody(props) {
               </svg>
             </Tab>
           </TabList>
-          <Link to="/Study" className="full_course">
+          <Link className="full_course" to="/Study">
             <span>Пройти полное обучение</span>
           </Link>
         </div>

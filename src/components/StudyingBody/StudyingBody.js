@@ -1,21 +1,27 @@
-import React from "react";
-import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import StudySecond from "../StudySecond/StudySecond";
-import "../StudyBody/StudyBody.scss";
-import "../TestResultTabs/TestResultTabs.scss";
-import "./StudyingBody.scss";
-import mycourse from "../../img/icon__course.svg";
-import { Link } from "react-router-dom";
+import React from 'react';
+
+import { Link } from 'react-router-dom';
+import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
+
+import StudySecond from '../StudySecond/StudySecond';
+
+import mycourse from '../../img/icon__course.svg';
+
+import '../StudyBody/StudyBody.scss';
+import '../TestResultTabs/TestResultTabs.scss';
+import './StudyingBody.scss';
 
 function StudyingBody(props) {
-  let num = localStorage.getItem("lessonNum");
+  let num = localStorage.getItem('lessonNum');
+
   console.log();
+
   return (
     <div className="study_body">
       <h2 className="study_head">Обучение</h2>
       <Tabs
-        defaultIndex={num}
         className="react-tabs firstTestsTabs studyingTabs"
+        defaultIndex={num}
       >
         <div className="left_tabs myResultLeftTabs">
           <h4 className="mobileHeader4">ТЕХНОЛОГИЯ ФИНАНСОВОЙ ЭФФЕКТИВНОСТИ</h4>
@@ -24,10 +30,10 @@ function StudyingBody(props) {
             <Tab>
               <span>1. Введение в управление финансами</span>
               <svg
-                width="17"
+                fill="none"
                 height="10"
                 viewBox="0 0 17 10"
-                fill="none"
+                width="17"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -39,10 +45,10 @@ function StudyingBody(props) {
             <Tab>
               <span>2. Финансовая эффективность</span>
               <svg
-                width="17"
+                fill="none"
                 height="10"
                 viewBox="0 0 17 10"
-                fill="none"
+                width="17"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -54,10 +60,10 @@ function StudyingBody(props) {
             <Tab>
               <span>3. Денежные потоки и финансовый баланс</span>
               <svg
-                width="17"
+                fill="none"
                 height="10"
                 viewBox="0 0 17 10"
-                fill="none"
+                width="17"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -69,10 +75,10 @@ function StudyingBody(props) {
             <Tab>
               <span>4. Финансовое планирование</span>
               <svg
-                width="17"
+                fill="none"
                 height="10"
                 viewBox="0 0 17 10"
-                fill="none"
+                width="17"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -84,10 +90,10 @@ function StudyingBody(props) {
             <Tab>
               <span>5. Финансовый учёт</span>
               <svg
-                width="17"
+                fill="none"
                 height="10"
                 viewBox="0 0 17 10"
-                fill="none"
+                width="17"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -99,10 +105,10 @@ function StudyingBody(props) {
             <Tab>
               <span>6. Финансовый анализ</span>
               <svg
-                width="17"
+                fill="none"
                 height="10"
                 viewBox="0 0 17 10"
-                fill="none"
+                width="17"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -114,10 +120,10 @@ function StudyingBody(props) {
             <Tab>
               <span>7. Финансовые решения</span>
               <svg
-                width="17"
+                fill="none"
                 height="10"
                 viewBox="0 0 17 10"
-                fill="none"
+                width="17"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -129,7 +135,7 @@ function StudyingBody(props) {
           </TabList>
           <Link to="/Study">
             <div className="returnLink">
-              <img src={mycourse} alt="" />
+              <img alt="" src={mycourse} />
               Вернуться к списку курсов
             </div>
           </Link>
@@ -167,10 +173,10 @@ function StudyingBody(props) {
         </TabPanel>
         <TabPanel>
           <StudySecond
+            courseTitle="Финансовый анализ"
             courseText="В рамках данной темы рассматривается технология проведения анализа денежных
 потоков и показателей финансовой эффективности с помощью модуля «Финансовый
 анализ» в ПАНЕЛИ УПРАВЛЕНИЯ"
-            courseTitle="Финансовый анализ"
           />
         </TabPanel>
         <TabPanel>

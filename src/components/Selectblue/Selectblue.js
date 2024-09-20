@@ -1,5 +1,6 @@
-import React from "react";
-import styles from "./Selectblue.module.scss";
+import React from 'react';
+
+import styles from './Selectblue.module.scss';
 
 function Selectblue(props) {
   return (

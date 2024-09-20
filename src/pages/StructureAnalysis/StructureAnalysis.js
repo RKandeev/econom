@@ -1,9 +1,11 @@
-import React from "react";
-import Header from "../../components/Header/Header";
-import MobileNav from "../../components/MobileNav/MobileNav";
-import styles from "./ActualAnalysis.module.scss";
-import FinAnalysisLeftNav from "../../components/FinAnalysisLeftNav/FinAnalysisLeftNav";
-import StructureAnalysisBody from "../../components/StructureAnalysisBody/StructureAnalysisBody";
+import React from 'react';
+
+import FinAnalysisLeftNav from '../../components/FinAnalysisLeftNav/FinAnalysisLeftNav';
+import Header from '../../components/Header/Header';
+import MobileNav from '../../components/MobileNav/MobileNav';
+import StructureAnalysisBody from '../../components/StructureAnalysisBody/StructureAnalysisBody';
+
+import styles from './ActualAnalysis.module.scss';
 
 function StructureAnalysis(props) {
   return (

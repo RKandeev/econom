@@ -1,6 +1,8 @@
-import React, { useState, lazy } from "react";
-import styles from "./Diagrambtn.module.scss";
-import Modal from "../Modal/Modal";
+import React, {useState } from 'react';
+
+import Modal from '../Modal/Modal';
+
+import styles from './Diagrambtn.module.scss';
 
 function Diagrambtn(props) {
   const [chartModalActive, SetChartModalActive] = useState(false);
@@ -8,6 +10,7 @@ function Diagrambtn(props) {
   const reset = () => {
     setSeed(Math.random());
   };
+
   return (
     <>
       <div
@@ -19,9 +22,9 @@ function Diagrambtn(props) {
       >
         <div className={styles.diagramImg}>
           <img
-            src={props.diagramImg}
-            className={styles.diagramImgActive}
             alt=""
+            className={styles.diagramImgActive}
+            src={props.diagramImg}
           />
         </div>
         <div className={styles.diagramTitle}>{props.diagramTitle}</div>
@@ -29,8 +32,8 @@ function Diagrambtn(props) {
       <Modal
         key={seed}
         active={chartModalActive}
-        SetActive={SetChartModalActive}
         modalTitle={props.modalTitle}
+        SetActive={SetChartModalActive}
       >
         {props.children}
       </Modal>

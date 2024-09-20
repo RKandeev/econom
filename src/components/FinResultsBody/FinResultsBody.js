@@ -1,39 +1,42 @@
-import React from "react";
-import styles from "./FinResultsBody.module.scss";
-import "./FinResultsBody.scss";
-import { Link } from "react-router-dom";
-import finresult from "../../img/analysisicons/finresult.png";
-import AnalysisHeader from "../AnalysisHeader/AnalysisHeader";
-import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import NumberTolt from "../NumberTolt/NumberTolt";
-import Fro from "../AnalysisCharts/PieCharts/FRO";
-import Frd from "../AnalysisCharts/LineCharts/FRD";
-import Frf from "../AnalysisCharts/PieCharts/FRF";
-import Fdo from "../AnalysisCharts/SensorCharts/FDO";
-import Fdd from "../AnalysisCharts/BarCharts/FDD";
-import Mdo from "../AnalysisCharts/SensorCharts/MDO";
-import Mdd from "../AnalysisCharts/LineCharts/MDD";
-import Chsd from "../AnalysisCharts/BarCharts/CHSD";
-import Prr from "../AnalysisCharts/BarCharts/PRR";
-import Dps from "../AnalysisCharts/PieCharts/DPS";
-import Ssd from "../AnalysisCharts/PieCharts/SSD";
-import Dko from "../AnalysisCharts/SensorCharts/DKO";
-import Dkd from "../AnalysisCharts/LineCharts/DKD";
-import Sfr from "../AnalysisCharts/PieCharts/SFR";
-import Efr from "../AnalysisCharts/SensorCharts/EFR";
-import Pda from "../AnalysisCharts/BarCharts/PDA";
-import Sds from "../AnalysisCharts/BarCharts/SDS";
-import Nao from "../AnalysisCharts/SensorCharts/NAO";
-import Nad from "../AnalysisCharts/LineCharts/NAD";
-import Rnp from "../AnalysisCharts/PieCharts/RNP";
-import Szhn from "../AnalysisCharts/PieCharts/SZHN";
-import Ino from "../AnalysisCharts/SensorCharts/INO";
-import Ind from "../AnalysisCharts/LineCharts/IND";
-import Rna from "../AnalysisCharts/PieCharts/RNA";
-import Dkr from "../AnalysisCharts/SensorCharts/DKR";
-import point from "../../img/analysisicons/point.png";
-import dynamic from "../../img/analysisicons/dynamic.png";
-import analysis from "../../img/analysisicons/analysis.png";
+import React from 'react';
+
+import { Link } from 'react-router-dom';
+import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
+
+import Chsd from '../AnalysisCharts/BarCharts/CHSD';
+import Fdd from '../AnalysisCharts/BarCharts/FDD';
+import Prr from '../AnalysisCharts/BarCharts/PRR';
+import Sds from '../AnalysisCharts/BarCharts/SDS';
+import Dkd from '../AnalysisCharts/LineCharts/DKD';
+import Frd from '../AnalysisCharts/LineCharts/FRD';
+import Ind from '../AnalysisCharts/LineCharts/IND';
+import Mdd from '../AnalysisCharts/LineCharts/MDD';
+import Nad from '../AnalysisCharts/LineCharts/NAD';
+import Dps from '../AnalysisCharts/PieCharts/DPS';
+import Frf from '../AnalysisCharts/PieCharts/FRF';
+import Fro from '../AnalysisCharts/PieCharts/FRO';
+import Rna from '../AnalysisCharts/PieCharts/RNA';
+import Rnp from '../AnalysisCharts/PieCharts/RNP';
+import Sfr from '../AnalysisCharts/PieCharts/SFR';
+import Ssd from '../AnalysisCharts/PieCharts/SSD';
+import Szhn from '../AnalysisCharts/PieCharts/SZHN';
+import Dko from '../AnalysisCharts/SensorCharts/DKO';
+import Dkr from '../AnalysisCharts/SensorCharts/DKR';
+import Efr from '../AnalysisCharts/SensorCharts/EFR';
+import Fdo from '../AnalysisCharts/SensorCharts/FDO';
+import Ino from '../AnalysisCharts/SensorCharts/INO';
+import Mdo from '../AnalysisCharts/SensorCharts/MDO';
+import Nao from '../AnalysisCharts/SensorCharts/NAO';
+import AnalysisHeader from '../AnalysisHeader/AnalysisHeader';
+import NumberTolt from '../NumberTolt/NumberTolt';
+
+import analysis from '../../img/analysisicons/analysis.png';
+import dynamic from '../../img/analysisicons/dynamic.png';
+import finresult from '../../img/analysisicons/finresult.png';
+import point from '../../img/analysisicons/point.png';
+
+import './FinResultsBody.scss';
+import styles from './FinResultsBody.module.scss';
 
 function FinResultsBody(props) {
   return (
@@ -43,7 +46,7 @@ function FinResultsBody(props) {
         <div className={styles.breadcrumb}>
           <ul>
             <li>
-              <Link to={"/AnalysisEfficiency"}>Финансовая эффективность</Link>
+              <Link to="/AnalysisEfficiency">Финансовая эффективность</Link>
             </li>
             <li>Финансовые результаты</li>
           </ul>
@@ -56,7 +59,7 @@ function FinResultsBody(props) {
           <TabList className="react-tabs__tab-list firstTestsTabList CashFlowTabList">
             <h4>
               Финансовые результаты
-              <img src={finresult} alt="" />
+              <img alt="" src={finresult} />
             </h4>
 
             <Tab>
@@ -85,19 +88,19 @@ function FinResultsBody(props) {
             <TabList>
               <Tab>
                 <div className="img_tab">
-                  <img src={point} alt="" />
+                  <img alt="" src={point} />
                   <div className="tabTitle">Оценка</div>
                 </div>
               </Tab>
               <Tab className=" react-tabs__tab analysisDynamicTab">
                 <div className="img_tab">
-                  <img src={dynamic} alt="" />
+                  <img alt="" src={dynamic} />
                   <div className="tabTitle">Динамика</div>
                 </div>
               </Tab>
               <Tab>
                 <div className="img_tab">
-                  <img src={analysis} alt="" />
+                  <img alt="" src={analysis} />
                   <div className="tabTitle">Аналитика</div>
                 </div>
               </Tab>
@@ -118,13 +121,13 @@ function FinResultsBody(props) {
             <TabList>
               <Tab>
                 <div className="img_tab">
-                  <img src={point} alt="" />
+                  <img alt="" src={point} />
                   <div className="tabTitle">Оценка</div>
                 </div>
               </Tab>
               <Tab className=" react-tabs__tab analysisDynamicTab">
                 <div className="img_tab">
-                  <img src={dynamic} alt="" />
+                  <img alt="" src={dynamic} />
                   <div className="tabTitle">Динамика</div>
                 </div>
               </Tab>
@@ -142,19 +145,19 @@ function FinResultsBody(props) {
             <TabList>
               <Tab>
                 <div className="img_tab">
-                  <img src={point} alt="" />
+                  <img alt="" src={point} />
                   <div className="tabTitle">Оценка</div>
                 </div>
               </Tab>
               <Tab className=" react-tabs__tab analysisDynamicTab">
                 <div className="img_tab">
-                  <img src={dynamic} alt="" />
+                  <img alt="" src={dynamic} />
                   <div className="tabTitle">Динамика</div>
                 </div>
               </Tab>
               <Tab>
                 <div className="img_tab">
-                  <img src={analysis} alt="" />
+                  <img alt="" src={analysis} />
                   <div className="tabTitle">Аналитика</div>
                 </div>
               </Tab>
@@ -230,19 +233,19 @@ function FinResultsBody(props) {
             <TabList>
               <Tab>
                 <div className="img_tab">
-                  <img src={point} alt="" />
+                  <img alt="" src={point} />
                   <div className="tabTitle">Оценка</div>
                 </div>
               </Tab>
               <Tab className=" react-tabs__tab analysisDynamicTab">
                 <div className="img_tab">
-                  <img src={dynamic} alt="" />
+                  <img alt="" src={dynamic} />
                   <div className="tabTitle">Динамика</div>
                 </div>
               </Tab>
               <Tab>
                 <div className="img_tab">
-                  <img src={analysis} alt="" />
+                  <img alt="" src={analysis} />
                   <div className="tabTitle">Аналитика</div>
                 </div>
               </Tab>
@@ -296,19 +299,19 @@ function FinResultsBody(props) {
             <TabList>
               <Tab>
                 <div className="img_tab">
-                  <img src={point} alt="" />
+                  <img alt="" src={point} />
                   <div className="tabTitle">Оценка</div>
                 </div>
               </Tab>
               <Tab className=" react-tabs__tab analysisDynamicTab">
                 <div className="img_tab">
-                  <img src={dynamic} alt="" />
+                  <img alt="" src={dynamic} />
                   <div className="tabTitle">Динамика</div>
                 </div>
               </Tab>
               <Tab>
                 <div className="img_tab">
-                  <img src={analysis} alt="" />
+                  <img alt="" src={analysis} />
                   <div className="tabTitle">Аналитика</div>
                 </div>
               </Tab>
@@ -352,19 +355,19 @@ function FinResultsBody(props) {
             <TabList>
               <Tab>
                 <div className="img_tab">
-                  <img src={point} alt="" />
+                  <img alt="" src={point} />
                   <div className="tabTitle">Оценка</div>
                 </div>
               </Tab>
               <Tab className=" react-tabs__tab analysisDynamicTab">
                 <div className="img_tab">
-                  <img src={dynamic} alt="" />
+                  <img alt="" src={dynamic} />
                   <div className="tabTitle">Динамика</div>
                 </div>
               </Tab>
               <Tab>
                 <div className="img_tab">
-                  <img src={analysis} alt="" />
+                  <img alt="" src={analysis} />
                   <div className="tabTitle">Аналитика</div>
                 </div>
               </Tab>

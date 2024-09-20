@@ -1,20 +1,24 @@
-import React, { useState } from "react";
-import styles from "./Progressadd.module.scss";
-import Mybtn from "../Mybtn/Mybtn";
-import Modal from "../Modal/Modal";
-import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import SelectModal from "../SelectModal/SelectModal";
-import Editsum from "../Editsum/Editsum";
-import CommentArea from "../CommentArea/CommentArea";
+import React, { useState } from 'react';
+
+import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
+
+import CommentArea from '../CommentArea/CommentArea';
+import Editsum from '../Editsum/Editsum';
+import Modal from '../Modal/Modal';
+import Mybtn from '../Mybtn/Mybtn';
+import SelectModal from '../SelectModal/SelectModal';
+
+import styles from './Progressadd.module.scss';
 
 function Progressadd(props) {
   // let titleName = "Заработная плата";
   // let titleNameType = "Фиксированная";
   // let incomesValue = "+55000.00";
-  let selectArr1 = ["Заработная плата", "Шабашка", "Лотерея"];
-  let selectArr2 = ["Заработная плата", "Шабашка", "Лотерея"];
-  let sumValue = "25 159,15";
+  let selectArr1 = ['Заработная плата', 'Шабашка', 'Лотерея'];
+  let selectArr2 = ['Заработная плата', 'Шабашка', 'Лотерея'];
+  let sumValue = '25 159,15';
   const [addModalActive, SetAddModalActive] = useState(false);
+
   return (
     <>
       <div className={styles.progressTitle}>{props.progressTitle}</div>
@@ -37,8 +41,8 @@ function Progressadd(props) {
         </div>
       </div>
       <Modal
-        modalTitle="Доходы"
         active={addModalActive}
+        modalTitle="Доходы"
         SetActive={SetAddModalActive}
       >
         <Tabs>
@@ -54,9 +58,9 @@ function Progressadd(props) {
                 <Editsum formTitle="Сумма" sumValue={sumValue} />
                 <input
                   className={styles.submitBtn}
+                  form="newIncomeForm"
                   type="submit"
                   value="Сохранить"
-                  form="newIncomeForm"
                 />
               </form>
             </div>
@@ -65,9 +69,9 @@ function Progressadd(props) {
             <CommentArea placeHolderTitle="Текст комментария" />
             <input
               className={styles.submitBtn}
+              form="newIncomeForm"
               type="submit"
               value="Сохранить"
-              form="newIncomeForm"
             />
           </TabPanel>
         </Tabs>

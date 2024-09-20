@@ -1,18 +1,22 @@
-import React from "react";
-import Header from "../../components/Header/Header";
-import styles from "./CreateSolutionIndividual.module.scss";
-import Modelingleftnav from "../../components/Modelingleftnav/Modelingleftnav";
-import { Link } from "react-router-dom";
-import MobileNav from "../../components/MobileNav/MobileNav";
-import Lottie from "react-lottie";
-import animationData from "../../img/json/screw.json";
+import React from 'react';
+
+import Lottie from 'react-lottie';
+import { Link } from 'react-router-dom';
+
+import Header from '../../components/Header/Header';
+import MobileNav from '../../components/MobileNav/MobileNav';
+import Modelingleftnav from '../../components/Modelingleftnav/Modelingleftnav';
+import animationData from '../../img/json/screw.json';
+
+import styles from './CreateSolutionIndividual.module.scss';
 function CreateSolutionIndividual(props) {
   const defaultOptions = {
-    loop: true,
-    autoplay: true,
     animationData: animationData,
-    renderer: "svg",
+    autoplay: true,
+    loop: true,
+    renderer: 'svg',
   };
+
   return (
     <>
       <Header />
@@ -25,7 +29,7 @@ function CreateSolutionIndividual(props) {
           <div className={styles.breadcrumb}>
             <ul>
               <li>
-                <Link to={"/finmodeling"}>Финансовое моделирование</Link>
+                <Link to="/finmodeling">Финансовое моделирование</Link>
               </li>
               <li>Конструктор индивидуальных ситуаций</li>
             </ul>
