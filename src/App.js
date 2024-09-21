@@ -63,11 +63,11 @@ function App() {
     return children;
   };
 
-
   useEffect (() => {
     const token = localStorage.getItem('token');
+
     if (!token){
-      navigate('/SignUp')
+      navigate('/SignUp');
     }
   },[]);
 

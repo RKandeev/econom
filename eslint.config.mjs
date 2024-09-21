@@ -1,11 +1,10 @@
-import globals from "globals";
 import pluginJs from "@eslint/js";
-import pluginReact from "eslint-plugin-react";
-import unusedImports from "eslint-plugin-unused-imports";
+import globals from "globals";
 import dirs from "eslint-plugin-dirs";
 import sortKeysFix from "eslint-plugin-sort-keys-fix";
+import pluginReact from "eslint-plugin-react";
 import simpleImportSort from "eslint-plugin-simple-import-sort"
-
+import unusedImports from "eslint-plugin-unused-imports";
 
 export default [
   {files: ["**/*.{js,mjs,cjs,jsx}"]},
@@ -13,57 +12,41 @@ export default [
   pluginJs.configs.recommended,
   pluginReact.configs.flat.recommended,
   {
+    ignores: [
+      'node_modules/**',
+      'dist/**',
+      'build/**',
+      'public/**',
+      '*.min.js',
+    ],
+
     plugins: {
-      "react": pluginReact,
-      "unused-imports": unusedImports,
       "dirs": dirs,
+      "react": pluginReact,
+      "simple-import-sort":simpleImportSort,
       "sort-keys-fix": sortKeysFix,
-      "simple-import-sort":simpleImportSort
+      "unused-imports": unusedImports,
     },
 
     rules: {
-      // react
-      "react/react-in-jsx-scope": "off",
-      "react/jsx-sort-props": [
-        "error",
-        {
-          "callbacksLast": true,
-          "ignoreCase": true,
-          "shorthandFirst": true,
-          "reservedFirst": true,
-          "multiline": "last"
-        }
-      ],
-      "react/jsx-curly-brace-presence": ["error", "never"],
-      "react/display-name": "off",
-      "react/jsx-boolean-value": ["error", "never"],
-      "react/jsx-filename-extension": [
-        1,
-        {
-          "extensions": [".tsx", ".jsx"]
-        }
-      ],
+      
       // eslint
-      "padding-line-between-statements": [
-        "error",
+      "arrow-body-style": ["error", "as-needed"],
+      
+      "dirs/dirnames": [
+        2,
         {
-          "blankLine": "always",
-          "prev": "*",
-          "next": "return"
-        },
-        {
-          "blankLine": "always",
-          "prev": ["const", "let"],
-          "next": "*"
-        },
-        {
-          "blankLine": "any",
-          "prev": ["const", "let"],
-          "next": ["const", "let"]
+          "pattern": '^[a-zA-Z0-9_-]+$'
         }
       ],
-      "arrow-body-style": ["error", "as-needed"],
-      "no-unused-vars": "off",
+      "import/no-unresolved": "off",
+      "indent": [
+        "error",
+        2,
+        {
+          "SwitchCase": 1
+        }
+      ],
       "no-console": "warn",
       "no-multi-spaces": "error",
       "no-multiple-empty-lines": [
@@ -72,30 +55,51 @@ export default [
           "max": 1
         }
       ],
-      "indent": [
+      "no-unused-vars": "off",
+      "padding-line-between-statements": [
         "error",
-        2,
         {
-          "SwitchCase": 1
+          "blankLine": "always",
+          "next": "return",
+          "prev": "*",
+        },
+        {
+          "blankLine": "always",
+          "next": "*",
+          "prev": ["const", "let"],
+        },
+        {
+          "blankLine": "any",
+          "next": ["const", "let"],
+          "prev": ["const", "let"],
         }
       ],
-      "quotes": ["error", "single"],
+      
+      // react
+      "react/display-name": "off",
+      "react/jsx-boolean-value": ["error", "never"],
+      "react/jsx-curly-brace-presence": ["error", "never"],
+      // "react/jsx-filename-extension": [
+      //   1,
+      //   {
+      //     "extensions": [".js", ".jsx"]
+      //   }
+      // ],
+      "react/jsx-sort-props": [
+        "error",
+        {
+          "callbacksLast": true,
+          "ignoreCase": true,
+          "multiline": "last",
+          "reservedFirst": true,
+          "shorthandFirst": true,
+        }
+      ],
+      "react/react-in-jsx-scope": "off",
+      // "quotes": ["error", "single"],
       "semi": ["error", "always"],
-      // import
-      "import/no-unresolved": "off",
-      // sort-keys-fix
-      "sort-keys-fix/sort-keys-fix": "error",
-      // unused-imports
-      "unused-imports/no-unused-imports": "error",
-      // dirs
-      "dirs/dirnames": [
-        2,
-        {
-          "pattern": "^[a-z-]+$"
-        }
-      ],
-
       // simple-import-sort
+      "simple-import-sort/exports": "error",
       "simple-import-sort/imports": [
         "error",
         {
@@ -123,15 +127,10 @@ export default [
           ]
         }
       ],
-      "simple-import-sort/exports": "error"
-    },
-
-    ignores: [
-      'node_modules/**',
-      'dist/**',
-      'build/**',
-      'public/**',
-      '*.min.js',
-    ],
+      // sort-keys-fix
+      "sort-keys-fix/sort-keys-fix": "error",
+      // unused-imports
+      "unused-imports/no-unused-imports": "error",
+    }
   }
 ];

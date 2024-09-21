@@ -9,7 +9,7 @@ import OpenHeader from '../../../components/OpenPart/Header/OpenHeader';
 
 import styles from '../Auth.module.scss';
 
-function SignUp(props) {
+function SignUp() {
 
   const navigate = useNavigate();
   const {
@@ -36,7 +36,6 @@ function SignUp(props) {
       method: 'POST',
       url: '/user-register',
     });
-
 
     if (response.code === 0 && response.http_status === 200) {
       toast.success(response.mes);
@@ -89,8 +88,8 @@ function SignUp(props) {
                 type="password"
                 {...register('password', {
                   minLength: {
-                    message: 'Минимальная длина 6 символов',
-                    value: 6
+                    message: 'Минимальная длина 8 символов',
+                    value: 8
                   },
                   required: 'Введите пароль'
                 })}

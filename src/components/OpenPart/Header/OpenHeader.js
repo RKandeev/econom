@@ -1,22 +1,24 @@
 import React from 'react';
 
-import logo1 from '../../../img/logo1.svg';
-
-import '../OpenPart.scss';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
-function OpenHeader(props) {
+import logo1 from '../../../img/logo1.svg';
+
+import '../OpenPart.scss';
+
+function OpenHeader() {
   const navigate = useNavigate();
 
   const authHandler = () => {
     const token = localStorage.getItem('token');
+
     if (token){
-      navigate('/')
+      navigate('/');
     } else {
       toast('Для начала необходимо авторизоваться');
     }
-  }
+  };
 
   return (
     <>

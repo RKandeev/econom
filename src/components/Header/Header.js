@@ -14,7 +14,7 @@ function Header() {
   const logoutHandler = () => {
     localStorage.removeItem('token');
     navigate('/SignIn');
-  }
+  };
 
   return (
     <>
