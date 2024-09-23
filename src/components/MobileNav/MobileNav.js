@@ -9,6 +9,7 @@ import finchoice from "../../img/icon__fin-reshenia.svg";
 import profile from "../../img/icon_user.svg";
 import compass from "../../img/studyIcons/8.svg";
 import Mobilelink from "../Mobilelink/Mobilelink";
+import help from "../../img/icon/icon__help_black.svg";
 
 function MobileNav(props) {
   const [menuActive, setMenuActive] = useState(false);
@@ -63,6 +64,12 @@ function MobileNav(props) {
             />
           </div>
           <Mobilelink img={profile} txt="Мой профиль" linksAdress="/#" />
+          <Mobilelink
+            img={help}
+            txt="Задать вопрос"
+            linksAdress="https://t.me/R_Kandeev"
+            target="_blank"
+          />
         </div>
       </nav>
     </>

@@ -40,7 +40,7 @@ function AccountingCredit(props) {
             availableValue={availableValue}
             btnTitle="Добавить"
             barwidth="627rem"
-            SelectHeader1="Основной долг / Проценты"
+            // SelectHeader1="Основной долг / Проценты"
             SelectHeader2="Вид кредита"
             // SelectHeader3="Тип дохода"
             modalTitle="Платежи по кредитам"

@@ -4,7 +4,11 @@ import { Link } from "react-router-dom";
 
 function Menulink(props) {
   return (
-    <Link to={props.linksAdress} className={styles.blockImg}>
+    <Link
+      to={props.linksAdress}
+      className={styles.blockImg}
+      target={props.target}
+    >
       <div className={styles.image}>
         <img src={props.img} alt="" />
       </div>

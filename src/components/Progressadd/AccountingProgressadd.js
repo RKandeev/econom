@@ -51,12 +51,18 @@ function AccountingProgressadd(props) {
             <div className={styles.tabHeaderBlock}>
               <form id="newIncomeForm">
                 <div className={styles.editSum}>
-                  <Editsum formTitle="Сумма" sumValue={sumValue} />
+                  <Editsum formTitle="Сумма (Проценты)" sumValue={sumValue} />
                 </div>
-                <SelectModal
-                  selectArr={selectArr1}
-                  SelectHeader={props.SelectHeader1}
-                />
+                <div className={styles.editSum}>
+                  <Editsum
+                    formTitle="Сумма (Основной долг)"
+                    sumValue={sumValue}
+                  />
+                </div>
+                {/*<SelectModal*/}
+                {/*  selectArr={selectArr1}*/}
+                {/*  SelectHeader={props.SelectHeader1}*/}
+                {/*/>*/}
                 <SelectModal
                   selectArr={selectArr2}
                   SelectHeader={props.SelectHeader2}

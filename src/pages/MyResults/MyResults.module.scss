@@ -11,3 +11,42 @@
     flex-grow: 1;
   }
 }
+.resultText{
+  font-size: 20rem;
+  max-width: 50vw;
+  margin-top: -30rem;
+  @media (max-width: 480px) {
+    font-size: 12rem;
+    max-width: 100%;
+  }
+}
+.resultModalLink{
+  color: #3156A6;
+  font-weight: 500;
+  cursor: pointer;
+  &:hover{
+    text-decoration: underline;
+  }
+}
+.logoAnim{
+  max-width: 30vw;
+  margin: 20rem auto 0;
+}
+.sign{
+  margin: 30rem 0;
+  @media (max-width: 480px) {
+    font-size: 12rem;
+  }
+}
+.openAgain{
+  display: flex;
+  justify-content: flex-end;
+  @media (max-width: 480px){
+    justify-content: center;
+  }
+  label{
+    @media (max-width: 480px){
+      font-size: 12rem;
+    }
+  }
+}

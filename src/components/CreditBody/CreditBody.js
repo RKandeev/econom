@@ -3,6 +3,7 @@ import styles from "./CreditBody.module.scss";
 import { Link } from "react-router-dom";
 import DoubleProgressadd from "../DoubleProgressadd/DoubleProgressadd";
 import Selectblue from "../Selectblue/Selectblue";
+import DoubleProgressaddCredit from "../DoubleProgressadd/DoubleProgressaddCredit";
 
 function CreditBody(props) {
   let CurrentDate = "Сентябрь 2022";
@@ -53,7 +54,7 @@ function CreditBody(props) {
           <div className={styles.statusTitle}>{statusTitle}</div>
           <div className={styles.statusDate}>{statusDate}</div>
         </div>
-        <DoubleProgressadd
+        <DoubleProgressaddCredit
           barcolor="#EE2B49"
           progressTitle="Запланировано"
           progressValue={progressValue}
