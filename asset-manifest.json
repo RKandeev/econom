@@ -1,8 +1,7 @@
 {
   "files": {
-    "main.css": "/econom/static/css/main.8daab9b8.css",
-    "main.js": "/econom/static/js/main.5d11c511.js",
-    "static/js/787.5992ffec.chunk.js": "/econom/static/js/787.5992ffec.chunk.js",
+    "main.css": "/econom/static/css/main.1d6a3dc2.css",
+    "main.js": "/econom/static/js/main.8789fb49.js",
     "static/media/PTRootUI-Bold.woff": "/econom/static/media/PTRootUI-Bold.5de5b33d93c673ead6d3.woff",
     "static/media/PTRootUI-Medium.woff": "/econom/static/media/PTRootUI-Medium.ff04fc75393756798466.woff",
     "static/media/PTRootUI-Regular.woff": "/econom/static/media/PTRootUI-Regular.59e82dfa9c1603d499e3.woff",
@@ -47,7 +46,6 @@
     "static/media/icon__menu.svg": "/econom/static/media/icon__menu.1371ee7317db7b8d61aa7f10cd3cd6e0.svg",
     "static/media/icon__trash.svg": "/econom/static/media/icon__trash.777fbc5bc1012899189164cd41109dc3.svg",
     "static/media/icon__help.svg": "/econom/static/media/icon__help.c88700aa9f0df324a241231c1adf8003.svg",
-    "static/media/icon__help_black.svg": "/econom/static/media/icon__help_black.15d92e591f967d601cdfa404e16ba3a0.svg",
     "index.html": "/econom/index.html",
     "static/media/icon__bars.svg": "/econom/static/media/icon__bars.d57b1122c5f77c9c406440054284db55.svg",
     "static/media/sctructureico.svg": "/econom/static/media/sctructureico.b90f6066858d94f9d3463110bd02ae49.svg",
@@ -58,12 +56,11 @@
     "static/media/check.svg": "/econom/static/media/check.f783dc01f0061928deaa18a9377d0dc7.svg",
     "static/media/icon__arrow_down.svg": "/econom/static/media/icon__arrow_down.3d9d9be4598553807077.svg",
     "static/media/Ellipse 1.svg": "/econom/static/media/Ellipse 1.3bbdb9ecf7b11404e194397559e21554.svg",
-    "main.8daab9b8.css.map": "/econom/static/css/main.8daab9b8.css.map",
-    "main.5d11c511.js.map": "/econom/static/js/main.5d11c511.js.map",
-    "787.5992ffec.chunk.js.map": "/econom/static/js/787.5992ffec.chunk.js.map"
+    "main.1d6a3dc2.css.map": "/econom/static/css/main.1d6a3dc2.css.map",
+    "main.8789fb49.js.map": "/econom/static/js/main.8789fb49.js.map"
   },
   "entrypoints": [
-    "static/css/main.8daab9b8.css",
-    "static/js/main.5d11c511.js"
+    "static/css/main.1d6a3dc2.css",
+    "static/js/main.8789fb49.js"
   ]
 }
