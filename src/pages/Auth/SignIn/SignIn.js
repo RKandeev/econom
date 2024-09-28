@@ -2,7 +2,7 @@ import React from 'react';
 
 import {useForm} from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import {apiRequest} from '../../../api';
 import OpenHeader from '../../../components/OpenPart/Header/OpenHeader';
@@ -10,6 +10,8 @@ import OpenHeader from '../../../components/OpenPart/Header/OpenHeader';
 import styles from '../Auth.module.scss';
 
 function SignIn() {
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -31,6 +33,7 @@ function SignIn() {
     });
 
     if (response.code === 0 && response.http_status === 200) {
+      navigate('/');
       toast.success(response.mes);
       localStorage.setItem('token', response.data.token);
     } else {
@@ -42,7 +45,6 @@ function SignIn() {
       }
       toast.error(response.mes);
     }
-
   };
 
   return (
