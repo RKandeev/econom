@@ -1,9 +1,11 @@
 import React from "react";
-import "./Testing.scss";
+
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import Chart from "../Chart/Chart";
-import Test from "../Quiz/Test";
+
 import TestHistory from "../FinPlanCharts/BarCharts/TestHistory";
+import Test from "../Quiz/Test";
+
+import "./Testing.scss";
 function Testing(props) {
   return (
     <div>

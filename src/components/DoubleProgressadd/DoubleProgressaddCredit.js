@@ -1,16 +1,18 @@
 import React, { useState } from "react";
-import styles from "./DoubleProgressadd.module.scss";
+
+import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+
+import Calendars from "../Calendars/Calendars";
+import CommentArea from "../CommentArea/CommentArea";
+import Editsum from "../Editsum/Editsum";
+import Modal from "../Modal/Modal";
 import Mybtn from "../Mybtn/Mybtn";
-import IncomesLine from "../IncomesLine/IncomesLine";
-import credit from "../../img/crediticon.svg";
+import SelectModal from "../SelectModal/SelectModal";
+
 import notification from "../../img/icon/icon__notification.svg";
 import trash from "../../img/icon/icon__trash.svg";
-import Modal from "../Modal/Modal";
-import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import SelectModal from "../SelectModal/SelectModal";
-import Editsum from "../Editsum/Editsum";
-import CommentArea from "../CommentArea/CommentArea";
-import Calendars from "../Calendars/Calendars";
+
+import styles from "./DoubleProgressadd.module.scss";
 
 function DoubleProgressaddCredit(props) {
   let titleName = "Основной долг";
@@ -29,6 +31,7 @@ function DoubleProgressaddCredit(props) {
   };
   const [addModalActive, SetAddModalActive] = useState(false);
   const [addNotification, SetAddNotification] = useState(false);
+
   return (
     <>
       <div className={styles.progressTitle}>{props.progressTitle}</div>
@@ -53,8 +56,8 @@ function DoubleProgressaddCredit(props) {
         </div>
       </div>
       <Modal
-        modalTitle="Платежи по кредитам"
         active={addModalActive}
+        modalTitle="Платежи по кредитам"
         SetActive={SetAddModalActive}
       >
         <h4 className={styles.HeaderDate}>Сентябрь 2022</h4>
@@ -103,9 +106,9 @@ function DoubleProgressaddCredit(props) {
                 />
                 <input
                   className={styles.submitBtn}
+                  form="newIncomeForm"
                   type="submit"
                   value="Сохранить"
-                  form="newIncomeForm"
                 />
               </form>
             </div>
@@ -120,8 +123,8 @@ function DoubleProgressaddCredit(props) {
               <Mybtn btnTitle="Добавить напоминание о выплатах" />
             </div>
             <Modal
-              modalTitle="Добавление напоминания"
               active={addNotification}
+              modalTitle="Добавление напоминания"
               SetActive={SetAddNotification}
             >
               <form id="newNotificationForm" onSubmit={onSubmit}>
@@ -129,9 +132,9 @@ function DoubleProgressaddCredit(props) {
                 <Editsum formTitle="Сумма" sumValue={sumValue} />
                 <input
                   className={styles.submitBtn}
+                  form="newNotificationForm"
                   type="submit"
                   value="Сохранить"
-                  form="newNotificationForm"
                   onClick={() => SetAddNotification(false)}
                 />
               </form>
@@ -139,7 +142,7 @@ function DoubleProgressaddCredit(props) {
             <div className={styles.notificationBlocks}>
               <div className={styles.notificationBlock}>
                 <div className={styles.notificImg}>
-                  <img src={notification} alt="" />
+                  <img alt="" src={notification} />
                 </div>
                 <div className={styles.notificInfoBlock}>
                   <div className={styles.notificDate}>{notificDate}</div>
@@ -148,7 +151,7 @@ function DoubleProgressaddCredit(props) {
                   </div>
                 </div>
                 <div className={styles.notificDelete}>
-                  <img src={trash} alt="" />
+                  <img alt="" src={trash} />
                 </div>
               </div>
             </div>
@@ -157,9 +160,9 @@ function DoubleProgressaddCredit(props) {
             <CommentArea placeHolderTitle="Текст комментария" />
             <input
               className={styles.submitBtn}
+              form="newIncomeForm"
               type="submit"
               value="Сохранить"
-              form="newIncomeForm"
             />
           </TabPanel>
         </Tabs>

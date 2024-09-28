@@ -1,15 +1,18 @@
 import React, { useState } from "react";
-import styles from "./MobileNav.module.scss";
-import myresults from "../../img/icon__test.svg";
+
+import Mobilelink from "../Mobilelink/Mobilelink";
+
+import help from "../../img/icon/icon__help_black.svg";
 import mycourse from "../../img/icon__course.svg";
-import finplan from "../../img/icon__fin-plan.svg";
-import finuchet from "../../img/icon__fin-uchet.svg";
 import finanalys from "../../img/icon__fin-analiz.svg";
+import finplan from "../../img/icon__fin-plan.svg";
 import finchoice from "../../img/icon__fin-reshenia.svg";
+import finuchet from "../../img/icon__fin-uchet.svg";
+import myresults from "../../img/icon__test.svg";
 import profile from "../../img/icon_user.svg";
 import compass from "../../img/studyIcons/8.svg";
-import Mobilelink from "../Mobilelink/Mobilelink";
-import help from "../../img/icon/icon__help_black.svg";
+
+import styles from "./MobileNav.module.scss";
 
 function MobileNav(props) {
   const [menuActive, setMenuActive] = useState(false);
@@ -63,12 +66,12 @@ function MobileNav(props) {
               txt="Навигатор возможностей"
             />
           </div>
-          <Mobilelink img={profile} txt="Мой профиль" linksAdress="/#" />
+          <Mobilelink img={profile} linksAdress="/#" txt="Мой профиль" />
           <Mobilelink
             img={help}
-            txt="Задать вопрос"
             linksAdress="https://t.me/R_Kandeev"
             target="_blank"
+            txt="Задать вопрос"
           />
         </div>
       </nav>
