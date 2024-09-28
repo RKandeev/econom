@@ -4,11 +4,11 @@ import MobileNav from "../../components/MobileNav/MobileNav";
 import styles from "./MyResults.module.scss";
 import MyResultsBody from "../../components/MyResultsBody/MyResultsBody";
 import MyResultsLeftNav from "../../components/MyResultsleftnav/MyResultsLeftNav";
-import Modal from "../../components/Modal/Modal";
 import { Link } from "react-router-dom";
 import Lottie from "react-lottie";
 import animationData from "../../img/json/logo.json";
 import Checkcustom from "../../components/Checkcustom/Checkcustom";
+import ModalStart from "../../components/Modal/ModalStart";
 
 function MyResults(props) {
   const [helloModalActive, SetHelloModalActive] = useState(true);
@@ -26,11 +26,16 @@ function MyResults(props) {
         <MyResultsLeftNav />
         <MyResultsBody />
       </div>
-      <Modal
+      <ModalStart
         active={helloModalActive}
         SetActive={SetHelloModalActive}
-        modalTitle="Благодарим Вас за интерес к нашей Платформе!"
+        modalTitle=""
+        modalVis="hidden"
+        justify="center"
       >
+        <h4 className={styles.resultModalHeader}>
+          Благодарим Вас за интерес к нашей Платформе!
+        </h4>
         <div className={styles.logoAnim}>
           <p>
             <Lottie options={defaultOptions}></Lottie>
@@ -60,11 +65,17 @@ function MyResults(props) {
             кандидат экономических наук <br />
             Исмагилов Шамиль
           </p>
+          <button
+            className={styles.closeBtn}
+            onClick={() => SetHelloModalActive(false)}
+          >
+            Закрыть
+          </button>
           <div className={styles.openAgain}>
             <Checkcustom label="Больше не показывать" />
           </div>
         </p>
-      </Modal>
+      </ModalStart>
     </>
   );
 }

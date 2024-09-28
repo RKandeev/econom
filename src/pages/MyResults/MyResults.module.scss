@@ -29,7 +29,7 @@
   }
 }
 .logoAnim{
-  max-width: 30vw;
+  max-width: 20vw;
   margin: 20rem auto 0;
 }
 .sign{
@@ -40,7 +40,8 @@
 }
 .openAgain{
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
+  margin-top: 20rem;
   @media (max-width: 480px){
     justify-content: center;
   }
@@ -48,5 +49,25 @@
     @media (max-width: 480px){
       font-size: 12rem;
     }
+  }
+}
+.resultModalHeader{
+  font-size: 20rem;
+  text-align: center;
+}
+.closeBtn{
+  display: block;
+  margin: 0 auto;
+  border-radius: 6rem;
+  width: 228rem;
+  background: #3156a6;
+  border: none;
+  padding: 15rem;
+  text-align: center;
+  color: #fff;
+  text-transform: uppercase;
+  cursor: pointer;
+  &:hover{
+    background: rgba(49, 86, 166, 0.76);
   }
 }

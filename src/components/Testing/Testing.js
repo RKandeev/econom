@@ -3,6 +3,7 @@ import "./Testing.scss";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import Chart from "../Chart/Chart";
 import Test from "../Quiz/Test";
+import TestHistory from "../FinPlanCharts/BarCharts/TestHistory";
 function Testing(props) {
   return (
     <div>
@@ -122,7 +123,7 @@ function Testing(props) {
           <Test />
         </TabPanel>
         <TabPanel className="testResultChart">
-          <Chart />
+          <TestHistory />
         </TabPanel>
       </Tabs>
     </div>
