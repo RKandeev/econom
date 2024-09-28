@@ -1,17 +1,15 @@
-import React from 'react';
-
-import Menulink from '../Menulink/Menulink';
-
-import mycourse from '../../img/icon__course.svg';
-import finanalys from '../../img/icon__fin-analiz.svg';
-import finplan from '../../img/icon__fin-plan.svg';
-import finchoice from '../../img/icon__fin-reshenia.svg';
-import finuchet from '../../img/icon__fin-uchet.svg';
-import myresults from '../../img/icon__test.svg';
-import profile from '../../img/icon_user.svg';
-import compass from '../../img/studyIcons/8.svg';
-
-import styles from './FinAnalysisLeftNav.module.scss';
+import React from "react";
+import styles from "./FinAnalysisLeftNav.module.scss";
+import Menulink from "../Menulink/Menulink";
+import myresults from "../../img/icon__test.svg";
+import mycourse from "../../img/icon__course.svg";
+import finplan from "../../img/icon__fin-plan.svg";
+import finuchet from "../../img/icon__fin-uchet.svg";
+import finanalys from "../../img/icon__fin-analiz.svg";
+import finchoice from "../../img/icon__fin-reshenia.svg";
+import profile from "../../img/icon_user.svg";
+import compass from "../../img/studyIcons/8.svg";
+import help from "../../img/icon/icon__help_black.svg";
 
 function FinAnalysisLeftNav(props) {
   return (
@@ -70,7 +68,17 @@ function FinAnalysisLeftNav(props) {
           </div>
           <div className={styles.bar}>
             <div className={styles.barblock}>
-              <Menulink img={profile} linksAdress="/#" txt="Мой профиль" />
+              <Menulink img={profile} txt="Мой профиль" linksAdress="/#" />
+            </div>
+          </div>
+          <div className={styles.bar}>
+            <div className={styles.barblock}>
+              <Menulink
+                img={help}
+                txt="Задать вопрос"
+                linksAdress="https://t.me/R_Kandeev"
+                target="_blank"
+              />
             </div>
           </div>
         </div>

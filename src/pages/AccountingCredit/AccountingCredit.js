@@ -46,8 +46,10 @@ function AccountingCredit(props) {
             commentHeight="346rem"
             progressTitle="Учтено"
             progressValue={progressValue}
-            SelectHeader1="Основной долг / Проценты"
-            selectModalVis="hidden"
+            availableValue={availableValue}
+            btnTitle="Добавить"
+            barwidth="627rem"
+            // SelectHeader1="Основной долг / Проценты"
             SelectHeader2="Вид кредита"
             // SelectHeader3="Тип дохода"
             modalTitle="Платежи по кредитам"

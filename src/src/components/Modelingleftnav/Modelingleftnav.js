@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Possibilitiesleftnav.module.scss";
+import styles from "./Accountingleftnav.module.scss";
 import Menulink from "../Menulink/Menulink";
 import myresults from "../../img/icon__test.svg";
 import mycourse from "../../img/icon__course.svg";
@@ -8,61 +8,49 @@ import finuchet from "../../img/icon__fin-uchet.svg";
 import finanalys from "../../img/icon__fin-analiz.svg";
 import finchoice from "../../img/icon__fin-reshenia.svg";
 import profile from "../../img/icon_user.svg";
-import compass from "../../img/studyIcons/8.svg";
-import help from "../../img/icon/icon__help_black.svg";
+import help from "../../../img/icon/icon__help_black.svg";
 
-function Possibilitiesleftnav(props) {
+function Modelingleftnav(props) {
   return (
     <>
       <div className={styles.sitebody}>
         <div className={styles.leftbody}>
           <div className={styles.bar}>
             <div className={styles.barblock}>
-              <Menulink img={myresults} linksAdress="/#" txt="Мои результаты" />
+              <Menulink img={myresults} txt="Мои результаты" linksAdress="/#" />
             </div>
-            <div className={`${styles.barblock}`}>
-              <Menulink img={mycourse} linksAdress="/Study" txt="Обучение" />
+            <div className={`${styles.barblock} ${styles.lastblock}`}>
+              <Menulink img={mycourse} txt="Обучение" linksAdress="/#" />
             </div>
-            <div className={styles.lineblock2}></div>
           </div>
           <div className={styles.bar}>
-            <h3>Панель управления</h3>
+            <h3>Мой финансист</h3>
             <div className={styles.barblock}>
               <Menulink
                 img={finplan}
-                linksAdress="/finplan"
                 txt="Финансовое планирование"
+                linksAdress="/#"
               />
             </div>
             <div className={styles.barblock}>
               <Menulink
                 img={finuchet}
-                linksAdress="/accounting"
                 txt="Финансовый учёт"
+                linksAdress="/accounting"
               />
             </div>
             <div className={styles.barblock}>
               <Menulink
                 img={finanalys}
-                linksAdress="/FinAnalys"
                 txt="Финансовый анализ"
+                linksAdress="/FinAnalys"
               />
             </div>
-            <div className={`${styles.barblock}`}>
+            <div className={`${styles.activeblock} ${styles.lastblock}`}>
               <Menulink
                 img={finchoice}
-                linksAdress="/finmodeling"
-                txt="Финансовое моделирование"
-              />
-            </div>
-            <div className={styles.lineblock}></div>
-          </div>
-          <div className={styles.bar}>
-            <div className={styles.activeblock}>
-              <Menulink
-                img={compass}
-                linksAdress="/Possibilities"
-                txt="Навигатор возможностей"
+                txt="Финансовые решения"
+                linksAdress="/#"
               />
             </div>
           </div>
@@ -87,4 +75,4 @@ function Possibilitiesleftnav(props) {
   );
 }
 
-export default Possibilitiesleftnav;
+export default Modelingleftnav;

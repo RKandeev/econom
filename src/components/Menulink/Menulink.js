@@ -6,7 +6,11 @@ import styles from './Menulink.module.scss';
 
 function Menulink(props) {
   return (
-    <Link className={styles.blockImg} to={props.linksAdress}>
+    <Link
+      to={props.linksAdress}
+      className={styles.blockImg}
+      target={props.target}
+    >
       <div className={styles.image}>
         <img alt="" src={props.img} />
       </div>

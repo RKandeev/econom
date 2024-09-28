@@ -1,11 +1,12 @@
-import React from 'react';
-
-import { NavLink } from 'react-router-dom';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import "./Mobilelink.scss";
 
 function Mobilelink(props) {
   return (
     <NavLink
       to={props.linksAdress}
+      target={props.target}
       className={(navData) =>
         navData.isActive ? 'blockImg activeLink' : 'blockImg'
       }
