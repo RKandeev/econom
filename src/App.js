@@ -1,54 +1,58 @@
-import React, { useLayoutEffect, useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
+
 import {Toaster} from 'react-hot-toast';
-import Finplan from './pages/Finplan/Finplan';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import Incomes from './pages/Incomes/Incomes';
-import Credit from './pages/Credit/Credit';
+
+import {Context} from './Context';
 import Accounting from './pages/Accounting/Accounting';
-import AccountingIncomes from './pages/AccountingIncomes/AccountingIncomes';
+import AccountingBalance from './pages/AccountingBalance/AccountingBalance';
+import AccountingAttachment from './pages/AccountingCredit/AccountingAttachment';
+import AccountingBalanceDebts from './pages/AccountingCredit/AccountingBalanceDebts';
+import AccountingBasicNeeds from './pages/AccountingCredit/AccountingBasicNeeds';
+import AccountingCachout from './pages/AccountingCredit/AccountingCachout';
 import AccountingCredit from './pages/AccountingCredit/AccountingCredit';
-import Finmodel from './pages/Finmodel/Finmodel';
+import AccountingDebts from './pages/AccountingCredit/AccountingDebts';
+import AccountingLifestyle from './pages/AccountingCredit/AccountingLifestyle';
+import AccountingBalanceIncomes from './pages/AccountingIncomes/AccountingBalanceIncomes';
+import AccountingBorrowings from './pages/AccountingIncomes/AccountingBorrowings';
+import AccountingCashReturn from './pages/AccountingIncomes/AccountingCashReturn';
+import AccountingIncomes from './pages/AccountingIncomes/AccountingIncomes';
+import ActualAnalysis from './pages/ActualAnalysis/ActualAnalysis';
+import AnalysisCashFlow from './pages/AnalysisCashFlow/AnalysisCashFlow';
+import AnalysisEfficiency from './pages/AnalysisEfficiency/AnalysisEfficiency';
+import Attachment from './pages/Attachment/Attachment';
+import ForgotPass from './pages/Auth/ForgotPass/ForgotPass';
+import SignIn from './pages/Auth/SignIn/SignIn';
+import SignUp from './pages/Auth/SignUp/SignUp';
+import BasicNeeds from './pages/BasicNeeds/BasicNeeds';
+import Borrow from './pages/Borrow/Borrow';
 import CreateSolution from './pages/CreateSolution/CreateSolution';
 import CreateSolutionAim from './pages/CreateSolutionAim/CreateSolutionAim';
-import CreateSolutionPriority from './pages/CreateSolutionPriority/CreateSolutionPriority';
-import CreateSolutionHome from './pages/CreateSolutionHome/CreateSolutionHome';
 import CreateSolutionCar from './pages/CreateSolutionCar/CreateSolutionCar';
 import CreateSolutionFlat from './pages/CreateSolutionFlat/CreateSolutionFlat';
+import CreateSolutionHome from './pages/CreateSolutionHome/CreateSolutionHome';
 import CreateSolutionIndividual from './pages/CreateSolutionIndividual/CreateSolutionIndividual';
-import MyResults from './pages/MyResults/MyResults';
-import Study from './pages/Study/Study';
-import MyProfile from './pages/MyProfile/MyProfile';
-import Studying from './pages/Studying/Studying';
-import Possibilities from './pages/Possibilities/Possibilities';
-import AnalysisCashFlow from './pages/AnalysisCashFlow/AnalysisCashFlow';
-import StructureAnalysis from './pages/StructureAnalysis/StructureAnalysis';
-import AnalysisEfficiency from './pages/AnalysisEfficiency/AnalysisEfficiency';
-import ActualAnalysis from './pages/ActualAnalysis/ActualAnalysis';
-import FinResults from './pages/FinResults/FinResults';
-import FinConditions from './pages/FinConditions/FinConditions';
-import NoMatterAnalysis from './pages/NoMatterAnalysis/NoMatterAnalysis';
-import Refund from './pages/Refund/Refund';
-import Borrow from './pages/Borrow/Borrow';
-import BasicNeeds from './pages/BasicNeeds/BasicNeeds';
-import Lifestyle from './pages/Lifestyle/Lifestyle';
-import Fincashout from './pages/Fincashout/Fincashout';
-import Attachment from './pages/Attachment/Attachment';
+import CreateSolutionPriority from './pages/CreateSolutionPriority/CreateSolutionPriority';
+import Credit from './pages/Credit/Credit';
 import Debts from './pages/Debts/Debts';
-import AccountingBalance from './pages/AccountingBalance/AccountingBalance';
-import AccountingCashReturn from './pages/AccountingIncomes/AccountingCashReturn';
-import AccountingBorrowings from './pages/AccountingIncomes/AccountingBorrowings';
-import AccountingAttachment from './pages/AccountingCredit/AccountingAttachment';
-import AccountingDebts from './pages/AccountingCredit/AccountingDebts';
-import AccountingBalanceIncomes from './pages/AccountingIncomes/AccountingBalanceIncomes';
-import AccountingBasicNeeds from './pages/AccountingCredit/AccountingBasicNeeds';
-import AccountingLifestyle from './pages/AccountingCredit/AccountingLifestyle';
-import AccountingCachout from './pages/AccountingCredit/AccountingCachout';
-import AccountingBalanceDebts from './pages/AccountingCredit/AccountingBalanceDebts';
-import SignUp from './pages/Auth/SignUp/SignUp';
-import SignIn from './pages/Auth/SignIn/SignIn';
-import ForgotPass from './pages/Auth/ForgotPass/ForgotPass';
+import Fincashout from './pages/Fincashout/Fincashout';
+import FinConditions from './pages/FinConditions/FinConditions';
+import Finmodel from './pages/Finmodel/Finmodel';
+import Finplan from './pages/Finplan/Finplan';
+import FinResults from './pages/FinResults/FinResults';
+import Incomes from './pages/Incomes/Incomes';
+import Lifestyle from './pages/Lifestyle/Lifestyle';
+import MyProfile from './pages/MyProfile/MyProfile';
+import MyResults from './pages/MyResults/MyResults';
+import NoMatterAnalysis from './pages/NoMatterAnalysis/NoMatterAnalysis';
+import Possibilities from './pages/Possibilities/Possibilities';
+import Refund from './pages/Refund/Refund';
+import StructureAnalysis from './pages/StructureAnalysis/StructureAnalysis';
+import Study from './pages/Study/Study';
+import Studying from './pages/Studying/Studying';
 
 function App() {
+
   const navigate = useNavigate();
 
   const Wrapper = ({ children }) => {
@@ -60,6 +64,7 @@ function App() {
 
     return children;
   };
+  
   useEffect (() => {
     const token = localStorage.getItem('token');
 
@@ -70,138 +75,122 @@ function App() {
 
   return (
     <>
-      <Wrapper>
-        <Routes>
-          <Route path='*' element={<MyResults />}></Route>
-          <Route path='SignUp' element={<SignUp />}></Route>
-          <Route path='SignIn' element={<SignIn />}></Route>
-          <Route path='ForgotPass' element={<ForgotPass />}></Route>
-          <Route path='finplan' element={<Finplan />}></Route>
-          <Route path='incomes' element={<Incomes />}></Route>
-          <Route path='credit' element={<Credit />}></Route>
-          <Route path='FinAnalys' element={<AnalysisCashFlow />}></Route>
-          <Route path='FinResults' element={<FinResults />}></Route>
-          <Route path='NoMatterAnalysis' element={<NoMatterAnalysis />}></Route>
-          <Route path='FinConditions' element={<FinConditions />}></Route>
-          <Route
-            path='AnalysisEfficiency'
-            element={<AnalysisEfficiency />}
-            path="AnalysisEfficiency"
-          ></Route>
-          <Route path='ActualAnalysis' element={<ActualAnalysis />}></Route>
-          <Route
-            path='StructureAnalysis'
-            element={<StructureAnalysis />}
-            path="StructureAnalysis"
-          ></Route>
-          <Route path='accounting' element={<Accounting />}></Route>
-          <Route
-            path='AccountingIncomes'
-            element={<AccountingIncomes />}
-            path="AccountingIncomes"
-          ></Route>
-          <Route path='AccountingCredit' element={<AccountingCredit />}></Route>
-          <Route path='finmodeling' element={<Finmodel />}></Route>
-          <Route path='CreateSolution' element={<CreateSolution />}></Route>
-          <Route
-            path='CreateSolutionAim'
-            element={<CreateSolutionAim />}
-            path="CreateSolutionAim"
-          ></Route>
-          <Route
-            path='CreateSolutionPriority'
-            element={<CreateSolutionPriority />}
-            path="CreateSolutionPriority"
-          ></Route>
-          <Route
-            path='CreateSolutionHome'
-            element={<CreateSolutionHome />}
-            path="CreateSolutionHome"
-          ></Route>
-          <Route
-            path='CreateSolutionCar'
-            element={<CreateSolutionCar />}
-            path="CreateSolutionCar"
-          ></Route>
-          <Route
-            path='CreateSolutionFlat'
-            element={<CreateSolutionFlat />}
-            path="CreateSolutionFlat"
-          ></Route>
-          <Route
-            path='CreateSolutionIndividual'
-            element={<CreateSolutionIndividual />}
-            path="CreateSolutionIndividual"
-          ></Route>
-          <Route path='MyResults' element={<MyResults />}></Route>
-          <Route path='Refund' element={<Refund />}></Route>
-          <Route path='Borrow' element={<Borrow />}></Route>
-          <Route path='BasicNeeds' element={<BasicNeeds />}></Route>
-          <Route path='Lifestyle' element={<Lifestyle />}></Route>
-          <Route path='Fincashout' element={<Fincashout />}></Route>
-          <Route path='Attachment' element={<Attachment />}></Route>
-          <Route path='Debts' element={<Debts />}></Route>
-          <Route path='Study' element={<Study />}></Route>
-          <Route path='Studying' element={<Studying />}></Route>
-          <Route path='MyProfile' element={<MyProfile />}></Route>
-          <Route path='Possibilities' element={<Possibilities />}></Route>
-          <Route path='AccountingDebts' element={<AccountingDebts />}></Route>
-          <Route
-            path='AccountingBalanceDebts'
-            element={<AccountingBalanceDebts />}
-            path="AccountingBalanceDebts"
-          ></Route>
-          <Route
-            path='AccountingCachout'
-            element={<AccountingCachout />}
-            path="AccountingCachout"
-          ></Route>
-          <Route
-            path='AccountingLifestyle'
-            element={<AccountingLifestyle />}
-            path="AccountingLifestyle"
-          ></Route>
-          <Route
-            path='AccountingBasicNeeds'
-            element={<AccountingBasicNeeds />}
-            path="AccountingBasicNeeds"
-          ></Route>
-          <Route
-            path='AccountingBalanceIncomes'
-            element={<AccountingBalanceIncomes />}
-            path="AccountingBalanceIncomes"
-          ></Route>
-          <Route
-            path='AccountingAttachment'
-            element={<AccountingAttachment />}
-            path="AccountingAttachment"
-          ></Route>
-          <Route
-            path='AccountingBorrowings'
-            element={<AccountingBorrowings />}
-            path="AccountingBorrowings"
-          ></Route>
-          <Route
-            path='AccountingCashReturn'
-            element={<AccountingCashReturn />}
-            path="AccountingCashReturn"
-          ></Route>
-          <Route
-            path='AccountingBalance'
-            element={<AccountingBalance />}
-            path="AccountingBalance"
-          ></Route>
-        </Routes>
-        <Toaster
-          position="top-right"
-          reverseOrder={false}
-          toastOptions={{
-            style: {
-              fontSize: '14px',
-            },
-          }}
-        />
-      </Wrapper>
+  `   <Context.Provider value={{}}>
+        <Wrapper>
+          <Routes>
+            <Route element={<MyResults />} path='*'></Route>
+            <Route element={<SignUp />} path='SignUp'></Route>
+            <Route element={<SignIn />} path='SignIn'></Route>
+            <Route element={<ForgotPass />} path='ForgotPass'></Route>
+            <Route element={<Finplan />} path='finplan'></Route>
+            <Route element={<Incomes />} path='incomes'></Route>
+            <Route element={<Credit />} path='credit'></Route>
+            <Route element={<AnalysisCashFlow />} path='FinAnalys'></Route>
+            <Route element={<FinResults />} path='FinResults'></Route>
+            <Route element={<NoMatterAnalysis />} path='NoMatterAnalysis'></Route>
+            <Route element={<FinConditions />} path='FinConditions'></Route>
+            <Route
+              element={<AnalysisEfficiency />}
+              path='AnalysisEfficiency'
+            ></Route>
+            <Route element={<ActualAnalysis />} path='ActualAnalysis'></Route>
+            <Route
+              element={<StructureAnalysis />}
+              path='StructureAnalysis'
+            ></Route>
+            <Route element={<Accounting />} path='accounting'></Route>
+            <Route
+              element={<AccountingIncomes />}
+              path='AccountingIncomes'
+            ></Route>
+            <Route element={<AccountingCredit />} path='AccountingCredit'></Route>
+            <Route element={<Finmodel />} path='finmodeling'></Route>
+            <Route element={<CreateSolution />} path='CreateSolution'></Route>
+            <Route
+              element={<CreateSolutionAim />}
+              path='CreateSolutionAim'
+            ></Route>
+            <Route
+              element={<CreateSolutionPriority />}
+              path='CreateSolutionPriority'
+            ></Route>
+            <Route
+              element={<CreateSolutionHome />}
+              path='CreateSolutionHome'
+            ></Route>
+            <Route
+              element={<CreateSolutionCar />}
+              path='CreateSolutionCar'
+            ></Route>
+            <Route
+              element={<CreateSolutionFlat />}
+              path='CreateSolutionFlat'
+            ></Route>
+            <Route
+              element={<CreateSolutionIndividual />}
+              path='CreateSolutionIndividual'
+            ></Route>
+            <Route element={<MyResults />} path='MyResults'></Route>
+            <Route element={<Refund />} path='Refund'></Route>
+            <Route element={<Borrow />} path='Borrow'></Route>
+            <Route element={<BasicNeeds />} path='BasicNeeds'></Route>
+            <Route element={<Lifestyle />} path='Lifestyle'></Route>
+            <Route element={<Fincashout />} path='Fincashout'></Route>
+            <Route element={<Attachment />} path='Attachment'></Route>
+            <Route element={<Debts />} path='Debts'></Route>
+            <Route element={<Study />} path='Study'></Route>
+            <Route element={<Studying />} path='Studying'></Route>
+            <Route element={<MyProfile />} path='MyProfile'></Route>
+            <Route element={<Possibilities />} path='Possibilities'></Route>
+            <Route element={<AccountingDebts />} path='AccountingDebts'></Route>
+            <Route
+              element={<AccountingBalanceDebts />}
+              path='AccountingBalanceDebts'
+            ></Route>
+            <Route
+              element={<AccountingCachout />}
+              path='AccountingCachout'
+            ></Route>
+            <Route
+              element={<AccountingLifestyle />}
+              path='AccountingLifestyle'
+            ></Route>
+            <Route
+              element={<AccountingBasicNeeds />}
+              path='AccountingBasicNeeds'
+            ></Route>
+            <Route
+              element={<AccountingBalanceIncomes />}
+              path='AccountingBalanceIncomes'
+            ></Route>
+            <Route
+              element={<AccountingAttachment />}
+              path='AccountingAttachment'
+            ></Route>
+            <Route
+              element={<AccountingBorrowings />}
+              path='AccountingBorrowings'
+            ></Route>
+            <Route
+              element={<AccountingCashReturn />}
+              path='AccountingCashReturn'
+            ></Route>
+            <Route
+              element={<AccountingBalance />}
+              path='AccountingBalance'
+            ></Route>
+          </Routes>
+          <Toaster
+            position="top-right"
+            reverseOrder={false}
+            toastOptions={{
+              style: {
+                fontSize: '14px',
+              },
+            }}
+          />
+        </Wrapper>`
+      </Context.Provider>
     </>
   );
 }

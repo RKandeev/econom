@@ -1,9 +1,11 @@
 import React from "react";
-import styles from "./CreditBody.module.scss";
+
 import { Link } from "react-router-dom";
-import DoubleProgressadd from "../DoubleProgressadd/DoubleProgressadd";
-import Selectblue from "../Selectblue/Selectblue";
+
 import DoubleProgressaddCredit from "../DoubleProgressadd/DoubleProgressaddCredit";
+import Selectblue from "../Selectblue/Selectblue";
+
+import styles from "./CreditBody.module.scss";
 
 function CreditBody(props) {
   let CurrentDate = 'Сентябрь 2022';

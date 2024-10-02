@@ -40,19 +40,19 @@ function AccountingCredit(props) {
           </h2>
           <AccountingProgressadd
             availableValue={availableValue}
+            availableValue={availableValue}
             barcolor="#EE2B49"
             barwidth="627rem"
+            barwidth="627rem"
+            btnTitle="Добавить"
             btnTitle="Добавить"
             commentHeight="346rem"
+            modalTitle="Платежи по кредитам"
             progressTitle="Учтено"
-            progressValue={progressValue}
-            availableValue={availableValue}
-            btnTitle="Добавить"
-            barwidth="627rem"
             // SelectHeader1="Основной долг / Проценты"
             SelectHeader2="Вид кредита"
             // SelectHeader3="Тип дохода"
-            modalTitle="Платежи по кредитам"
+            progressValue={progressValue}
           />
           <IncomesLine
             commentToltTitle="Это комментарий - бла бла"

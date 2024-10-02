@@ -1,23 +1,27 @@
 import React, { useState } from "react";
+
+import Lottie from "react-lottie";
+import { Link } from "react-router-dom";
+
+import Checkcustom from "../../components/Checkcustom/Checkcustom";
 import Header from "../../components/Header/Header";
 import MobileNav from "../../components/MobileNav/MobileNav";
-import styles from "./MyResults.module.scss";
+import ModalStart from "../../components/Modal/ModalStart";
 import MyResultsBody from "../../components/MyResultsBody/MyResultsBody";
 import MyResultsLeftNav from "../../components/MyResultsleftnav/MyResultsLeftNav";
-import { Link } from "react-router-dom";
-import Lottie from "react-lottie";
 import animationData from "../../img/json/logo.json";
-import Checkcustom from "../../components/Checkcustom/Checkcustom";
-import ModalStart from "../../components/Modal/ModalStart";
+
+import styles from "./MyResults.module.scss";
 
 function MyResults(props) {
   const [helloModalActive, SetHelloModalActive] = useState(true);
   const defaultOptions = {
-    loop: false,
-    autoplay: true,
     animationData: animationData,
+    autoplay: true,
+    loop: false,
     renderer: "svg",
   };
+
   return (
     <>
       <Header />
@@ -28,10 +32,10 @@ function MyResults(props) {
       </div>
       <ModalStart
         active={helloModalActive}
-        SetActive={SetHelloModalActive}
+        justify="center"
         modalTitle=""
         modalVis="hidden"
-        justify="center"
+        SetActive={SetHelloModalActive}
       >
         <h4 className={styles.resultModalHeader}>
           Благодарим Вас за интерес к нашей Платформе!

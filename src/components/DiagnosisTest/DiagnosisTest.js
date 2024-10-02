@@ -1,9 +1,9 @@
 import React from 'react';
 
-function DiagnosisTest(props) {
+function DiagnosisTest() {
   return (
     <div>
-			
+			DiagnosisTest
     </div>
   );
 }
