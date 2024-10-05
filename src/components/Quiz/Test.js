@@ -50,9 +50,7 @@ const quiz = {
       question: 'How can a datatype be declared to be a constant type?',
     },
   ],
-  
   topic: 'Javascript',
-  
   totalQuestions: 10, 
   totalTime: 60,
 };
@@ -132,7 +130,7 @@ const Test = () => {
           </h3>
           <form className="answers_block">
             {choices.map((answer, index) => (
-              <div className="form_check">
+              <div key={index} className="form_check">
                 <input
                   key={answer}
                   data-number={index}

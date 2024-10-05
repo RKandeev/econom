@@ -32,7 +32,7 @@ function TestResultTabs(props) {
   useEffect(() => {
     getTestingResults();
   }, []);
-
+  
   return (
     <>
       <Tabs className="react-tabs firstTestsTabs tabsInIndex">
