@@ -1,6 +1,6 @@
-import React, { useEffect, useLayoutEffect } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 
-import {Toaster} from 'react-hot-toast';
+import toast, {Toaster} from 'react-hot-toast';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 
 import {Context} from './Context';
@@ -50,8 +50,27 @@ import Refund from './pages/Refund/Refund';
 import StructureAnalysis from './pages/StructureAnalysis/StructureAnalysis';
 import Study from './pages/Study/Study';
 import Studying from './pages/Studying/Studying';
+import { apiRequest } from './api';
 
 function App() {
+  const [startTestResults, setStartTestResults] = useState({num1: null, num2: null, num3: null});
+
+  const getTestingResults = async () => {
+    let data = {
+      token: localStorage.getItem('token'),
+    };
+
+    const response = await apiRequest({
+      headers: data,
+      url: '/get-start-test',
+    });
+
+    if (response.code === 0 && response.http_status === 200) {
+      setStartTestResults(response.data);
+    } else {
+      toast.error(response.mes);
+    }
+  };
 
   const navigate = useNavigate();
 
@@ -64,10 +83,11 @@ function App() {
 
     return children;
   };
-  
-  useEffect (() => {
-    const token = localStorage.getItem('token');
 
+  useEffect (() => {
+    // getTestingResults()
+
+    const token = localStorage.getItem('token');
     if (!token){
       navigate('/SignUp');
     }
@@ -75,7 +95,10 @@ function App() {
 
   return (
     <>
-  `   <Context.Provider value={{}}>
+  `   <Context.Provider value={{
+        startTestResults,
+        setStartTestResults
+      }}>
         <Wrapper>
           <Routes>
             <Route element={<MyResults />} path='*'></Route>

@@ -30,10 +30,13 @@ ChartJS.register(
   annotationPlugin
 );
 
-function Matrix(props) {
+function Matrix({result}) {
   let radius = 25;
   let labelText = 30;
   let radiusHigh = 15;
+
+  const firstResultNumber = result.num2 / 6;
+  const secondResultNumber = result.num3 / 6;
 
   if (window.outerWidth < 450) {
     radius = 10;
@@ -44,6 +47,7 @@ function Matrix(props) {
     radius = 12;
     labelText = 20;
   }
+
   const options = {
     maintainAspectRatio: false,
     plugins: {
@@ -188,20 +192,16 @@ function Matrix(props) {
   const data = {
     datasets: [
       {
-        
         animation: {
           delay: 800,
         },
-        
         // data: [yourResult],
         backgroundColor: '#3156A6',
-        
         data: Array.from({ length: 1 }, () => ({
           r: radius,
-          x: 40,
-          y: 35,
+          x: firstResultNumber,
+          y: secondResultNumber,
         })),
-        
         label: 'Ваш результат',
         type: 'bubble',
       },
@@ -226,14 +226,14 @@ function Matrix(props) {
         backgroundColor: '#ffffff',
         borderColor: '#3156A6',
         borderDash: [10, 3],
-        data: [35, 100],
+        data: [secondResultNumber, 100],
         label: 'Потенциал',
         showInLegend: false,
         tension: 0.1,
         type: 'line',
       },
     ],
-    labels: [40, 100],
+    labels: [firstResultNumber, 100],
   };
 
   return (

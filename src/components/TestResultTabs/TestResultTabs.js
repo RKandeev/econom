@@ -1,38 +1,18 @@
-import React, {useEffect, useState} from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 
-import {apiRequest} from '../../api';
 import DiagnosisTest from '../DiagnosisTest/DiagnosisTest';
 import EstimateTest from '../EstimateTest/EstimateTest';
 import Matrix from '../Matrix/Matrix';
 import SensorChart from '../SensorChart/SensorChart';
 
 import './TestResultTabs.scss';
+import { Context } from '../../Context';
 
 function TestResultTabs(props) {
-  const [startTestResults, setStartTestResults] = useState({});
+  const {startTestResults} = useContext(Context)
 
-  const getTestingResults = async () => {
-    let data = {
-      token: localStorage.getItem('token'),
-    };
-    
-    const response = await apiRequest({
-      headers: data,
-      method: 'GET',
-      url: '/get-start-test',
-    });
-    
-    if (response.code === 0 && response.http_status === 200) {
-      setStartTestResults(response.data);
-    }
-  };
-
-  useEffect(() => {
-    getTestingResults();
-  }, []);
-  
   return (
     <>
       <Tabs className="react-tabs firstTestsTabs tabsInIndex">
@@ -72,16 +52,16 @@ function TestResultTabs(props) {
 
         <TabPanel className="myResultsChartBlock">
           {
-            startTestResults.num1 ? 
-              <SensorChart />
+            startTestResults.num1 ?
+              <SensorChart result={startTestResults.num1} />
               :
               <EstimateTest/>
           }
         </TabPanel>
         <TabPanel className="myResultsChartBlock">
           {
-            (startTestResults.num2 && startTestResults.num3) ? 
-              <Matrix />
+            (startTestResults.num2 && startTestResults.num3) ?
+              <Matrix result = {{num2: startTestResults.num2, num3: startTestResults.num3}}/>
               :
               <DiagnosisTest/>
           }

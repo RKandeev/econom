@@ -1,8 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 
 import { apiRequest } from '../../api';
 
 import '../Quiz/Quiz.scss';
+import { Context } from '../../Context';
+import toast from 'react-hot-toast';
 
 const questions = [
   {
@@ -106,16 +108,16 @@ const questions = [
   },
   {
     answers: [
-      { 
-        answer: "автокредит", 
-        id: 1 
+      {
+        answer: "автокредит",
+        id: 1
       },
-      { 
-        answer: "ипотека", 
-        id: 2 
+      {
+        answer: "ипотека",
+        id: 2
       },
-      { 
-        answer: "примерно одинаково", 
+      {
+        answer: "примерно одинаково",
         id: 3
       },
     ],
@@ -128,49 +130,49 @@ const questions = [
   },
   {
     answers: [
-      { 
-        answer: "отказаться от рефинансирования", 
-        id: 1 
+      {
+        answer: "отказаться от рефинансирования",
+        id: 1
       },
-      { 
-        answer: "провести рефинансирование", 
-        id: 2 
+      {
+        answer: "провести рефинансирование",
+        id: 2
       },
-      { 
-        answer: "разницы нет (очень несущественна)", 
+      {
+        answer: "разницы нет (очень несущественна)",
         id: 3
       },
     ],
     correct_answer: [1],
     input_type: "radio",
-    question: "У Вас есть кредит на сумму 500 тыс. руб. по ставке 19% годовых, взятый 2 года назад на срок 3,5 года, платежи по кредиту вносились строго по графику. Сегодня Вам предложили "+    
+    question: "У Вас есть кредит на сумму 500 тыс. руб. по ставке 19% годовых, взятый 2 года назад на срок 3,5 года, платежи по кредиту вносились строго по графику. Сегодня Вам предложили "+
       "рефинансирование этого кредита с новыми условиями – ставкой 9% годовых и сроком 3 года, с разовой уплатой страховки в 7 тыс. руб.<br>" +
         "Что для Вас было бы выгоднее?",
   },
   {
     answers: [
-      { 
-        answer: "получу выгоду более 200 тыс. руб", 
-        id: 1 
+      {
+        answer: "получу выгоду более 200 тыс. руб",
+        id: 1
       },
-      { 
-        answer: "получу выгоду более 100 тыс. руб.", 
-        id: 2 
+      {
+        answer: "получу выгоду более 100 тыс. руб.",
+        id: 2
       },
-      { 
-        answer: "не будет ни выгод, ни потерь ", 
+      {
+        answer: "не будет ни выгод, ни потерь ",
         id: 3
       },
-      { 
-        answer: "понесу потери менее 100 тыс. руб.", 
+      {
+        answer: "понесу потери менее 100 тыс. руб.",
         id: 4
       },
-      { 
-        answer: "понесу потери от 100 до 200 тыс. руб.", 
-        id: 5 
+      {
+        answer: "понесу потери от 100 до 200 тыс. руб.",
+        id: 5
       },
-      { 
-        answer: "понесу потери более 200 тыс. руб.", 
+      {
+        answer: "понесу потери более 200 тыс. руб.",
         id: 6
       },
     ],
@@ -186,21 +188,24 @@ const questions = [
 ];
 
 function EstimateTest() {
+  const {setStartTestResults } = useContext(Context);
+  const inputRefs = useRef([]);
 
   const [activeQuestion, setActiveQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState([]);
-  const [showResult, setShowResult] = useState(false);
-  const [selectedAnswerIndex, setSelectedAnswerIndex] = useState(null);
   const [result, setResult] = useState(0);
 
-  const { question, answers, correct_answer, input_type } = questions[activeQuestion];
-  
+  const {
+    question,
+    answers,
+    correct_answer,
+    input_type
+  } = questions[activeQuestion];
+
   const onClickNext = async (e) => {
-    if (e.target.innerText === "Завершить") {
+    if (e.target.innerText === "ЗАВЕРШИТЬ") {
       let data = {
-        num1: localStorage.getItem('firstTestResult'),
-        num2: localStorage.getItem('secondTestResult1'),
-        num3: localStorage.getItem('secondTestResult2'),
+        num1: result,
         token: localStorage.getItem('token'),
       };
 
@@ -209,41 +214,40 @@ function EstimateTest() {
         method: 'POST',
         url: '/set-start-test',
       });
-  
-      // if (response.code === 0 && response.http_status === 200) {
-      // } else {
-      // }
+
+      if (response.code === 0 && response.http_status === 200) {
+        setStartTestResults((prev) => ({...prev, num1: result}));
+      } else {
+        toast.error(response.mes);
+      }
 
     } else {
-      setSelectedAnswer([]);
-      setSelectedAnswerIndex(null);
-      if (correct_answer === selectedAnswer) {
-        setResult(prev => prev++);
+
+      const allNumbersExist = correct_answer.every(num => selectedAnswer.includes(num));
+      if (allNumbersExist) {
+        setResult((prev) => prev + 1);
       }
-  
-      if (activeQuestion !== questions.length - 1) {
-        setActiveQuestion((prev) => prev + 1);
-      } else {
-        setActiveQuestion(0);
-        setShowResult(true);
-      }  
+
+      setSelectedAnswer([]);
+      setActiveQuestion((prev) => prev + 1);
     }
   };
 
+
   useEffect(() => {
-    console.log(selectedAnswer);
-  }, [selectedAnswer]); 
+    inputRefs.current.map((el) => {
+      if (el) el.checked = false;
+    });
+  }, [question]);
 
   const onAnswerSelected = (answer, e) => {
     if (e.target.checked) {
-      input_type === 'checkbox'? setSelectedAnswer((prev) => [...prev, answer]): setSelectedAnswer([answer]);
+      input_type === 'checkbox'? setSelectedAnswer((prev) => [...prev, answer.id]): setSelectedAnswer([answer.id]);
     } else {
       const filteredAnswers = selectedAnswer.filter(item => item.id !== answer.id);
 
-      input_type === 'checkbox'? setSelectedAnswer(filteredAnswers): setSelectedAnswer([answer]);
+      input_type === 'checkbox'? setSelectedAnswer(filteredAnswers): setSelectedAnswer([answer.id]);
     }
-    console.log(e.target.checked);
-    
   };
 
   let activeNum = activeQuestion + 1;
@@ -261,6 +265,7 @@ function EstimateTest() {
             <div key={index} className="form_check">
               <input
                 key={answer.id}
+                ref={el => inputRefs.current[index] = el}
                 className= "firstTestForm"
                 id={'inputDefault' + index}
                 name='inputDefault'

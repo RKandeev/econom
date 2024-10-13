@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
+import { apiRequest } from '../../api';
 import SensorChart from '../SensorChart/SensorChart';
 
 import './Quiz.scss';
@@ -51,7 +52,7 @@ const quiz = {
     },
   ],
   topic: 'Javascript',
-  totalQuestions: 10, 
+  totalQuestions: 10,
   totalTime: 60,
 };
 
@@ -90,31 +91,26 @@ const Test = () => {
     }
   };
 
-  // let checking = [];
   const onAnswerSelected = (answer, index) => {
     setSelectedAnswerIndex(selectedAnswer.push(answer));
     console.log(selectedAnswer);
 
-    // if (selectedAnswer.length === correctAnswer.length) {
-    //   for (let k = 0; k < selectedAnswer.length; k--) {
-    //     for (let i = 0; i < selectedAnswer.length; i++) {
-    //       for (let j = 0; j < correctAnswer.length; j++) {
-    //         if (selectedAnswer[i] === correctAnswer[j]) {
-    //           checking = checking.push(selectedAnswer[i]);
-    //         } else {
-    //           console.log("хуйня какая то");
-    //         }
-    //       }
-    //     }
-    //     if (correctAnswer.toString() === checking.toString()) {
-    //       console.log("заебись");
-    //     }
-    //   }
-    //   console.log("Проверяю");
-    // } else {
-    //   console.log("херня");
-    // }
   };
+
+  const getTestQuestions= async () => {
+
+    const response = await apiRequest({
+      url: '/quiz/get-q',
+    });
+
+    if (response.code === 0 && response.http_status === 200) {
+
+    }
+  };
+
+  useEffect( () => {
+    // getTestQuestions()
+  }, []);
 
   // const addLeadingZero = (number) => (number > 9 ? number : `0${number}`);
   let activeNum = activeQuestion + 1;

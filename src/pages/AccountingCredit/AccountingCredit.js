@@ -48,11 +48,11 @@ function AccountingCredit(props) {
             btnTitle="Добавить"
             commentHeight="346rem"
             modalTitle="Платежи по кредитам"
-            progressTitle="Учтено"
-            // SelectHeader1="Основной долг / Проценты"
             SelectHeader2="Вид кредита"
-            // SelectHeader3="Тип дохода"
+            // SelectHeader1="Основной долг / Проценты"
             progressValue={progressValue}
+            // SelectHeader3="Тип дохода"
+            progressTitle="Учтено"
           />
           <IncomesLine
             commentToltTitle="Это комментарий - бла бла"

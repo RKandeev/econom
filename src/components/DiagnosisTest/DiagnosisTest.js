@@ -1,8 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 
 import { apiRequest } from '../../api';
 
 import '../Quiz/Quiz.scss';
+import toast from 'react-hot-toast';
+import { Context } from '../../Context';
 
 const questions = [
   {
@@ -25,7 +27,7 @@ const questions = [
       },
     ],
     axis: true,
-    correct_answer: [2],
+    correct_answer1: [2],
     input_type: 'radio',
     question: 'Как правило, Ваши расходы по итогам месяца',
   },
@@ -53,7 +55,7 @@ const questions = [
       },
     ],
     axis: true,
-    correct_answer: [1],
+    correct_answer1: [1],
     half: [2],
     input_type: 'radio',
     question: 'Ваши ежемесячные доходы (заработная плата, бизнес, фриланс) превышают ежемесячные расходы:',
@@ -82,7 +84,7 @@ const questions = [
       },
     ],
     axis: true,
-    correct_answer: [3],
+    correct_answer1: [3],
     input_type: 'radio',
     over1: [4],
     over2: [5],
@@ -108,8 +110,8 @@ const questions = [
       },
     ],
     axis: true,
-    correct_answer: ['4'],
-    half: ['3'],
+    correct_answer1: [4],
+    half: [3],
     input_type: 'radio',
     question: 'Какую часть сделанных за месяц накоплений Вы, как правило, вкладываете в доходные активы (валюта, вклады, ценные бумаги и т.д.):',
   },
@@ -137,8 +139,9 @@ const questions = [
       },
     ],
     axis: false,
-    correct_answer: [4, 5],
-    half: ['3'],
+    correct_answer1: [4],
+    correct_answer2: [5],
+    half: [3],
     input_type: 'checkbox',
     question: 'Если взять за 100% общую сумму принадлежащих Вам активов (недвижимость, автомобили, деньги, вклады, ценные бумаги и пр.), какая доля приходится на финансовые активы (деньги, вклады, ценные бумаги):',
   },
@@ -166,7 +169,7 @@ const questions = [
       },
     ],
     axis: false,
-    correct_answer: [5],
+    correct_answer1: [5],
     half: [4],
     input_type: 'radio',
     question: 'Какая часть Ваших активов приходится на имущество, которое может приносить Вам доход (сдаваемая в аренду недвижимость, ценные бумаги, вклады и т.д.):',
@@ -195,7 +198,7 @@ const questions = [
       },
     ],
     axis: true,
-    correct_answer: [5],
+    correct_answer1: [5],
     half: [4],
     input_type: 'radio',
     question: 'Какой доход (в среднем) приносят Ваши активы:',
@@ -224,7 +227,7 @@ const questions = [
       },
     ],
     axis: false,
-    correct_answer: [5],
+    correct_answer1: [5],
     input_type: 'radio',
     question: 'Как соотносятся между собой сумма Ваших активов (недвижимость, автомобили, деньги, вклады, ценные бумаги и пр.) и суммарные долги по кредитам и займам:',
   },
@@ -252,8 +255,9 @@ const questions = [
       },
     ],
     axis: false,
-    correct_answer: [2, 3],
-    half: ['4'],
+    correct_answer1: [2],
+    correct_answer2: [3],
+    half: [4],
     input_type: 'checkbox',
     question: 'Какая часть Ваших ежемесячных доходов уходит на платежи по кредитам:',
   },
@@ -277,7 +281,7 @@ const questions = [
       },
     ],
     axis: false,
-    correct_answer: [2],
+    correct_answer1: [2],
     input_type: 'radio',
     middle: [3],
     over1: [4],
@@ -286,20 +290,30 @@ const questions = [
 ];
 
 function DiagnosisTest() {
+  const {setStartTestResults } = useContext(Context);
+
+  const inputRefs = useRef([]);
   const [activeQuestion, setActiveQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState([]);
-  const [showResult, setShowResult] = useState(false);
-  const [selectedAnswerIndex, setSelectedAnswerIndex] = useState(null);
-  const [result, setResult] = useState(0);
+  const [firstResult, setFirstResult] = useState(0);
+  const [secondResult, setSecondResult] = useState(0);
 
-  const { question, answers, correct_answer, input_type } = questions[activeQuestion];
-  
+  const {
+    question,
+    answers,
+    correct_answer1, correct_answer2,
+    half,
+    input_type,
+    axis,
+    over1,
+    over2
+  } = questions[activeQuestion];
+
   const onClickNext = async (e) => {
-    if (e.target.innerText === "Завершить") {
+    if (e.target.innerText === "ЗАВЕРШИТЬ") {
       let data = {
-        num1: localStorage.getItem('firstTestResult'),
-        num2: localStorage.getItem('secondTestResult1'),
-        num3: localStorage.getItem('secondTestResult2'),
+        num2: firstResult * 100,
+        num3: secondResult * 100,
         token: localStorage.getItem('token'),
       };
 
@@ -308,41 +322,51 @@ function DiagnosisTest() {
         method: 'POST',
         url: '/set-start-test',
       });
-  
-      // if (response.code === 0 && response.http_status === 200) {
-      // } else {
-      // }
+
+      if (response.code === 0 && response.http_status === 200) {
+        setStartTestResults((prev) => ({...prev, num2: firstResult, num3: secondResult}));
+      } else {
+        toast.error(response.mes);
+      }
 
     } else {
-      setSelectedAnswer([]);
-      setSelectedAnswerIndex(null);
-      if (correct_answer === selectedAnswer) {
-        setResult(prev => prev++);
+      const isCorrectAnswer1= correct_answer1.every(num => selectedAnswer.includes(num));
+      const isCorrectAnswer2 = correct_answer2?.every(num => selectedAnswer.includes(num));
+      const isHalf = half?.every(num => selectedAnswer.includes(num));
+      const isOver1 = over1?.every(num => selectedAnswer.includes(num));
+      const isOver2 = over2?.every(num => selectedAnswer.includes(num));
+
+      if (isCorrectAnswer1) {
+        axis? setFirstResult((prev) => prev + 1): setSecondResult((prev) => prev + 1);
+      } else if (isCorrectAnswer2) {
+        axis? setFirstResult((prev) => prev + 1): setSecondResult((prev) => prev + 1);
+      } else if (isHalf) {
+        axis? setFirstResult((prev) => prev + 0.5): setSecondResult((prev) => prev + 0.5);
+      } else if (isOver1) {
+        axis? setFirstResult((prev) => prev + 2): setSecondResult((prev) => prev + 2);
+      } else if (isOver2) {
+        axis? setFirstResult((prev) => prev + 2): setSecondResult((prev) => prev + 2);
       }
-  
-      if (activeQuestion !== questions.length - 1) {
-        setActiveQuestion((prev) => prev + 1);
-      } else {
-        setActiveQuestion(0);
-        setShowResult(true);
-      }  
+
+      setSelectedAnswer([]);
+      setActiveQuestion((prev) => prev + 1);
     }
   };
 
   useEffect(() => {
-    console.log(selectedAnswer);
-  }, [selectedAnswer]); 
+    inputRefs.current.map((el) => {
+      if (el) el.checked = false;
+    });
+  }, [question]);
 
   const onAnswerSelected = (answer, e) => {
     if (e.target.checked) {
-      input_type === 'checkbox'? setSelectedAnswer((prev) => [...prev, answer]): setSelectedAnswer([answer]);
+      input_type === 'checkbox'? setSelectedAnswer((prev) => [...prev, answer.id]): setSelectedAnswer([answer.id]);
     } else {
       const filteredAnswers = selectedAnswer.filter(item => item.id !== answer.id);
 
-      input_type === 'checkbox'? setSelectedAnswer(filteredAnswers): setSelectedAnswer([answer]);
+      input_type === 'checkbox'? setSelectedAnswer(filteredAnswers): setSelectedAnswer([answer.id]);
     }
-    console.log(e.target.checked);
-    
   };
 
   let activeNum = activeQuestion + 1;
@@ -360,6 +384,7 @@ function DiagnosisTest() {
             <div key={index} className="form_check">
               <input
                 key={answer.id}
+                ref={el => inputRefs.current[index] = el}
                 className= "firstTestForm"
                 id={'inputDefault' + index}
                 name='inputDefault'
