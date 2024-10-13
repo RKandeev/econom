@@ -10,7 +10,6 @@ import OpenHeader from '../../../components/OpenPart/Header/OpenHeader';
 import styles from '../Auth.module.scss';
 
 function SignUp() {
-
   const navigate = useNavigate();
   const {
     register,
@@ -40,6 +39,7 @@ function SignUp() {
     if (response.code === 0 && response.http_status === 200) {
       toast.success(response.mes);
       navigate('/SignIn');
+
     } else {
       if (response.data.email) {
         setError('email', { message: response.data.email[0], type: 'server' });
@@ -52,7 +52,6 @@ function SignUp() {
       }
       toast.error(response.mes);
     }
-
   };
 
   return (

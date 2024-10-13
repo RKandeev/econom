@@ -10,7 +10,23 @@ import OpenHeader from '../../../components/OpenPart/Header/OpenHeader';
 import styles from '../Auth.module.scss';
 
 function SignIn() {
+
   const navigate = useNavigate();
+
+  const saveTestingResults = async () => {
+    let data = {
+      num1: localStorage.getItem('firstTestResult'),
+      num2: localStorage.getItem('secondTestResult1'),
+      num3: localStorage.getItem('secondTestResult2'),
+      token: localStorage.getItem('token'),
+    };
+
+    const response = await apiRequest({
+      data,
+      method: 'POST',
+      url: '/set-start-test',
+    });
+  };
 
   const {
     register,
@@ -36,6 +52,7 @@ function SignIn() {
       navigate('/');
       toast.success(response.mes);
       localStorage.setItem('token', response.data.token);
+      saveTestingResults();
     } else {
       if (response.data.email) {
         setError('email', { message: response.data.email[0], type: 'server' });

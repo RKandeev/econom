@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 
+import { Context } from '../../Context';
+import DiagnosisTest from '../DiagnosisTest/DiagnosisTest';
+import EstimateTest from '../EstimateTest/EstimateTest';
 import Matrix from '../Matrix/Matrix';
 import SensorChart from '../SensorChart/SensorChart';
 
 import './TestResultTabs.scss';
 
-function TestResultTabs(props) {
+function TestResultTabs() {
+  const {startTestResults} = useContext(Context);
+
   return (
     <>
       <Tabs className="react-tabs firstTestsTabs tabsInIndex">
@@ -46,10 +51,20 @@ function TestResultTabs(props) {
         </TabList>
 
         <TabPanel className="myResultsChartBlock">
-          <SensorChart />
+          {
+            startTestResults.num1 ?
+              <SensorChart result={startTestResults.num1} />
+              :
+              <EstimateTest/>
+          }
         </TabPanel>
         <TabPanel className="myResultsChartBlock">
-          <Matrix />
+          {
+            (startTestResults.num2 && startTestResults.num3) ?
+              <Matrix result = {{num2: startTestResults.num2, num3: startTestResults.num3}}/>
+              :
+              <DiagnosisTest/>
+          }
         </TabPanel>
       </Tabs>
     </>

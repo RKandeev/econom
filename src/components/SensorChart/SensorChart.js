@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import Highcharts from 'highcharts';
 import HighchartsMore from 'highcharts/highcharts-more';
@@ -8,8 +8,8 @@ import { Link } from 'react-router-dom';
 import './SensorChart.scss';
 HighchartsMore(Highcharts);
 
-function SensorChart(props) {
-  const [ser3, setSer3] = useState(10);
+function SensorChart({result}) {
+
   let thick = 40;
   let yFont = '18rem';
   let tickPixelInter = 72;
@@ -41,7 +41,7 @@ function SensorChart(props) {
 
     series: [
       {
-        data: [Math.min(30, Math.max(parseInt(ser3), -30))],
+        data: [Math.min(30, Math.max(parseInt(result), -30))],
         dataLabels: {
           borderWidth: 0,
           color:
@@ -49,7 +49,7 @@ function SensorChart(props) {
               Highcharts.defaultOptions.title.style &&
               Highcharts.defaultOptions.title.style.color) ||
             '#333333',
-          format: parseInt(ser3) + ' %',
+          format: parseInt(result) + ' %',
           style: {
             fontSize: '20rem',
           },
@@ -71,7 +71,7 @@ function SensorChart(props) {
         },
       },
     ],
-    
+
     title: {
       margin: -10,
       style: {
@@ -101,14 +101,14 @@ function SensorChart(props) {
           color: '#EE2B49',
           from: 0,
           // green
-          thickness: thick, 
+          thickness: thick,
           to: 50,
         },
         {
           color: '#0DA46F',
           from: 50,
           // red
-          thickness: thick, 
+          thickness: thick,
           to: 100,
         },
       ],

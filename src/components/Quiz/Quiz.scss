@@ -69,6 +69,11 @@
   width: 0;
 }
 .quiz-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
   padding: 38rem 118rem;
   border-radius: 21rem;
   background: #f9f9f9;
@@ -149,3 +154,4 @@
     }
   }
 }
+
