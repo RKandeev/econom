@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 
+import toast from 'react-hot-toast';
+
 import { apiRequest } from '../../api';
+import { Context } from '../../Context';
 
 import '../Quiz/Quiz.scss';
-import { Context } from '../../Context';
-import toast from 'react-hot-toast';
 
 const questions = [
   {
@@ -224,6 +225,7 @@ function EstimateTest() {
     } else {
 
       const allNumbersExist = correct_answer.every(num => selectedAnswer.includes(num));
+
       if (allNumbersExist) {
         setResult((prev) => prev + 1);
       }
@@ -233,10 +235,9 @@ function EstimateTest() {
     }
   };
 
-
   useEffect(() => {
     inputRefs.current.map((el) => {
-      if (el) el.checked = false;
+      if (el)  el.checked = false;
     });
   }, [question]);
 

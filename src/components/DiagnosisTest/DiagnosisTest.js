@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 
+import toast from 'react-hot-toast';
+
 import { apiRequest } from '../../api';
+import { Context } from '../../Context';
 
 import '../Quiz/Quiz.scss';
-import toast from 'react-hot-toast';
-import { Context } from '../../Context';
 
 const questions = [
   {

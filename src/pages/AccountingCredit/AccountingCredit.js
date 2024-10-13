@@ -13,7 +13,7 @@ import credit from '../../img/crediticon.svg';
 
 import styles from '../AccountingIncomes/AccountingIncomes.module.scss';
 
-function AccountingCredit(props) {
+function AccountingCredit() {
   let progressValue = '77 276,12';
   let availableValue = '112 385,20';
   let titleName = 'Основной долг';
@@ -40,19 +40,16 @@ function AccountingCredit(props) {
           </h2>
           <AccountingProgressadd
             availableValue={availableValue}
-            availableValue={availableValue}
             barcolor="#EE2B49"
             barwidth="627rem"
-            barwidth="627rem"
-            btnTitle="Добавить"
             btnTitle="Добавить"
             commentHeight="346rem"
             modalTitle="Платежи по кредитам"
-            SelectHeader2="Вид кредита"
-            // SelectHeader1="Основной долг / Проценты"
-            progressValue={progressValue}
-            // SelectHeader3="Тип дохода"
             progressTitle="Учтено"
+            // SelectHeader1="Основной долг / Проценты"
+            SelectHeader2="Вид кредита"
+            // SelectHeader3="Тип дохода"
+            progressValue={progressValue}
           />
           <IncomesLine
             commentToltTitle="Это комментарий - бла бла"

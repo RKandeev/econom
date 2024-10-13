@@ -1,17 +1,17 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 
+import { Context } from '../../Context';
 import DiagnosisTest from '../DiagnosisTest/DiagnosisTest';
 import EstimateTest from '../EstimateTest/EstimateTest';
 import Matrix from '../Matrix/Matrix';
 import SensorChart from '../SensorChart/SensorChart';
 
 import './TestResultTabs.scss';
-import { Context } from '../../Context';
 
-function TestResultTabs(props) {
-  const {startTestResults} = useContext(Context)
+function TestResultTabs() {
+  const {startTestResults} = useContext(Context);
 
   return (
     <>

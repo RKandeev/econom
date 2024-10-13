@@ -3,6 +3,7 @@ import React, { useEffect, useLayoutEffect, useState } from 'react';
 import toast, {Toaster} from 'react-hot-toast';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 
+import { apiRequest } from './api';
 import {Context} from './Context';
 import Accounting from './pages/Accounting/Accounting';
 import AccountingBalance from './pages/AccountingBalance/AccountingBalance';
@@ -50,7 +51,6 @@ import Refund from './pages/Refund/Refund';
 import StructureAnalysis from './pages/StructureAnalysis/StructureAnalysis';
 import Study from './pages/Study/Study';
 import Studying from './pages/Studying/Studying';
-import { apiRequest } from './api';
 
 function App() {
   const [startTestResults, setStartTestResults] = useState({num1: null, num2: null, num3: null});
@@ -85,9 +85,10 @@ function App() {
   };
 
   useEffect (() => {
-    // getTestingResults()
+    getTestingResults()
 
     const token = localStorage.getItem('token');
+
     if (!token){
       navigate('/SignUp');
     }
@@ -96,8 +97,8 @@ function App() {
   return (
     <>
   `   <Context.Provider value={{
-        startTestResults,
-        setStartTestResults
+        setStartTestResults,
+        startTestResults
       }}>
         <Wrapper>
           <Routes>
