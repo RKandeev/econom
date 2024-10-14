@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import {useForm} from 'react-hook-form';
 import toast from 'react-hot-toast';
@@ -8,8 +8,10 @@ import {apiRequest} from '../../../api';
 import OpenHeader from '../../../components/OpenPart/Header/OpenHeader';
 
 import styles from '../Auth.module.scss';
+import { Context } from '../../../Context';
 
 function SignIn() {
+  const {setStartTestResults} = useContext(Context)
 
   const navigate = useNavigate();
 
@@ -26,6 +28,18 @@ function SignIn() {
       method: 'POST',
       url: '/set-start-test',
     });
+
+    if (response.code === 0 && response.http_status === 200) {
+      setStartTestResults({
+        num1: localStorage.getItem('firstTestResult'),
+        num2: localStorage.getItem('secondTestResult1'),
+        num3: localStorage.getItem('secondTestResult2')
+      })
+      navigate('/');
+      localStorage.setItem('token', response.data.token);
+    } else {
+      toast.error(response.mes);
+    }
   };
 
   const {
@@ -49,9 +63,6 @@ function SignIn() {
     });
 
     if (response.code === 0 && response.http_status === 200) {
-      navigate('/');
-      toast.success(response.mes);
-      localStorage.setItem('token', response.data.token);
       saveTestingResults();
     } else {
       if (response.data.email) {
