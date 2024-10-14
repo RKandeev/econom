@@ -41,7 +41,7 @@ function SensorChart({result}) {
 
     series: [
       {
-        data: [Math.min(30, Math.max(parseInt(result), -30))],
+        data: [Math.min(30, Math.max(parseInt(result * 10), -30))],
         dataLabels: {
           borderWidth: 0,
           color:
@@ -49,7 +49,7 @@ function SensorChart({result}) {
               Highcharts.defaultOptions.title.style &&
               Highcharts.defaultOptions.title.style.color) ||
             '#333333',
-          format: parseInt(result) + ' %',
+          format: parseInt(result * 10) + ' %',
           style: {
             fontSize: '20rem',
           },

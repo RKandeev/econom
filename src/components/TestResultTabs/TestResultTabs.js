@@ -17,7 +17,7 @@ function TestResultTabs() {
     <>
       <Tabs className="react-tabs firstTestsTabs tabsInIndex">
         <TabList className="react-tabs__tab-list firstTestsTabList">
-          <h4>Результаты тестирования:</h4>
+          <h4>Тесты:</h4>
           <Tab>
             <span>Оценка навыков управления финансами</span>
             <svg
