@@ -36,13 +36,16 @@ function Checkbox(props) {
     [0, 0.1]
   );
 
+  const onInputChange = () => {
+    setIsChecked(!isChecked);
+    props.onChange()
+  }
+
   return (
     <label className="customCheckbox">
       <input
         type="checkbox"
-        onChange={() => {
-          setIsChecked(!isChecked);
-        }}
+        onChange={onInputChange}
       />
       <animated.svg
         aria-hidden="true"

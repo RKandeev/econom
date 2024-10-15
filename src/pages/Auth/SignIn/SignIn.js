@@ -36,7 +36,6 @@ function SignIn() {
         num3: localStorage.getItem('secondTestResult2')
       })
       navigate('/');
-      localStorage.setItem('token', response.data.token);
     } else {
       toast.error(response.mes);
     }
@@ -63,6 +62,7 @@ function SignIn() {
     });
 
     if (response.code === 0 && response.http_status === 200) {
+      localStorage.setItem('token', response.data.token);
       saveTestingResults();
     } else {
       if (response.data.email) {
