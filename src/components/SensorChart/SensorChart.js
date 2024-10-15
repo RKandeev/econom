@@ -8,8 +8,7 @@ import { Link } from 'react-router-dom';
 import './SensorChart.scss';
 HighchartsMore(Highcharts);
 
-function SensorChart({result}) {
-
+function SensorChart({ result }) {
   let thick = 40;
   let yFont = '18rem';
   let tickPixelInter = 72;
@@ -100,14 +99,28 @@ function SensorChart({result}) {
         {
           color: '#EE2B49',
           from: 0,
-          // green
+          // red
+          thickness: thick,
+          to: 25,
+        },
+        {
+          color: 'rgba(225, 83, 23, 0.8)',
+          from: 25,
+          // orange
           thickness: thick,
           to: 50,
         },
         {
-          color: '#0DA46F',
+          color: 'rgba(231, 183, 63, 0.8)',
           from: 50,
-          // red
+          // yellow
+          thickness: thick,
+          to: 75,
+        },
+        {
+          color: '#0DA46F',
+          from: 75,
+          // green
           thickness: thick,
           to: 100,
         },
@@ -121,14 +134,14 @@ function SensorChart({result}) {
   };
 
   return (
-    <div className="sensorChartBlock">
-      <h3 className="chartTitle">Оценка навыков управления финансами</h3>
-      <div className="sensorChart">
+    <div className='sensorChartBlock'>
+      <h3 className='chartTitle'>Оценка навыков управления финансами</h3>
+      <div className='sensorChart'>
         <HighchartsReact highcharts={Highcharts} options={options} />
       </div>
-      <div className="full_study">
+      <div className='full_study'>
         Для улучшения своего уровня Вы можете пройти
-        <Link className="fullStudyLink" to="/Study">
+        <Link className='fullStudyLink' to='/Study'>
           {'  '}Обучение
         </Link>
       </div>

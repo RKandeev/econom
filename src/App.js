@@ -110,7 +110,7 @@ function App() {
     } else {
       navigate('/SignUp');
     }
-  },[]);
+  }, []);
 
   return (
     <>

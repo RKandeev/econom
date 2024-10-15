@@ -86,8 +86,8 @@ function CreditBlockCar(props) {
             <h5 className={styles.formTitle}>Название расчёта</h5>
             <div className={styles.creditName}>
               <input
-                placeholder="Введите название"
-                type="text"
+                placeholder='Введите название'
+                type='text'
                 value={calcName}
                 onChange={(e) => setCalcName(e.target.value)}
               />
@@ -100,39 +100,39 @@ function CreditBlockCar(props) {
             <div className={styles.creditBlock}>
               <h5 className={styles.formTitle}>
                 Стоимость автомобиля (&#x20bd;)
-                <Tolt tooltipTitle1="В стоимость автомобиля рекомендуется включать не только цену его покупки, но и все затраты на его дополнительное оборудование, тюнинг и пр.">
-                  <img alt="" src={help} />
+                <Tolt tooltipTitle1='В стоимость автомобиля рекомендуется включать не только цену его покупки, но и все затраты на его дополнительное оборудование, тюнинг и пр.'>
+                  <img alt='' src={help} />
                 </Tolt>
               </h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="number"
+                  type='number'
                   value={newCredits.period}
                   onChange={(e) => setNewCredit('period', e.target.value)}
                 />
               </div>
               <h5 className={styles.formTitle}>
                 Ежемесячные расходы на содержание автомобиля (&#x20bd;){' '}
-                <Tolt tooltipTitle1="Сюда включаются расходы на топливо, парковку, стоянку, мойку, автомобильные штрафы и другие регулярные расходы, связанные с эксплуатацией автомобиля">
-                  <img alt="" src={help} />
+                <Tolt tooltipTitle1='Сюда включаются расходы на топливо, парковку, стоянку, мойку, автомобильные штрафы и другие регулярные расходы, связанные с эксплуатацией автомобиля'>
+                  <img alt='' src={help} />
                 </Tolt>
               </h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="number"
+                  type='number'
                   value={newCredits.period}
                   onChange={(e) => setNewCredit('period', e.target.value)}
                 />
               </div>
               <h5 className={styles.formTitle}>
                 Ежегодные расходы на содержание автомобиля (&#x20bd;){' '}
-                <Tolt tooltipTitle1="Сюда включаются расходы на техническое обслуживание, ремонт, шиномонтаж, дополнительное оборудование и другие расходы нерегулярного характера, связанные с эксплуатацией автомобиля">
-                  <img alt="" src={help} />
+                <Tolt tooltipTitle1='Сюда включаются расходы на техническое обслуживание, ремонт, шиномонтаж, дополнительное оборудование и другие расходы нерегулярного характера, связанные с эксплуатацией автомобиля'>
+                  <img alt='' src={help} />
                 </Tolt>
               </h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="number"
+                  type='number'
                   value={newCredits.period}
                   onChange={(e) => setNewCredit('period', e.target.value)}
                 />
@@ -142,41 +142,41 @@ function CreditBlockCar(props) {
               </h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="number"
+                  type='number'
                   value={newCredits.period}
                   onChange={(e) => setNewCredit('period', e.target.value)}
                 />
               </div>
               <h5 className={styles.formTitle}>
                 Транспортный налог (&#x20bd;)
-                <Tolt tooltipTitle1="Для определения суммы транспортного налога, который вы будете платить, став владельцем автомобиля, можно воспользоваться налоговым калькулятором">
-                  <img alt="" src={help} />
+                <Tolt tooltipTitle1='Для определения суммы транспортного налога, который вы будете платить, став владельцем автомобиля, можно воспользоваться налоговым калькулятором'>
+                  <img alt='' src={help} />
                 </Tolt>
               </h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="number"
+                  type='number'
                   value={newCredits.period}
                   onChange={(e) => setNewCredit('period', e.target.value)}
                 />
               </div>
               <h5 className={styles.formTitle}>
                 Ожидаемый среднегодовой прирост стоимости автомобиля (%){' '}
-                <Tolt tooltipTitle1="Здесь указывается % ожидаемого ежегодного роста стоимости автомобиля этой марки и комплектации. Для определения этого параметра можно использовать информацию с сайтов автодилеров">
-                  <img alt="" src={help} />
+                <Tolt tooltipTitle1='Здесь указывается % ожидаемого ежегодного роста стоимости автомобиля этой марки и комплектации. Для определения этого параметра можно использовать информацию с сайтов автодилеров'>
+                  <img alt='' src={help} />
                 </Tolt>
               </h5>
               <div className={styles.editValueForm}>
-                <input type="number" />
+                <input type='number' />
               </div>
               <h5 className={styles.formTitle}>
                 Износ автомобиля (%){' '}
-                <Tolt tooltipTitle1="Здесь указывается % ожидаемого ежегодного снижения стоимости покупаемого автомобиля вследствие его старения, износа, роста пробега, «возраста». Для определения этого параметра можно использовать информацию из агрегаторов объявлений о продаже автомобилей">
-                  <img alt="" src={help} />
+                <Tolt tooltipTitle1='Здесь указывается % ожидаемого ежегодного снижения стоимости покупаемого автомобиля вследствие его старения, износа, роста пробега, «возраста». Для определения этого параметра можно использовать информацию из агрегаторов объявлений о продаже автомобилей'>
+                  <img alt='' src={help} />
                 </Tolt>
               </h5>
               <div className={styles.editValueForm}>
-                <input type="number" />
+                <input type='number' />
               </div>
             </div>
           </div>
@@ -185,36 +185,36 @@ function CreditBlockCar(props) {
             <div className={styles.creditBlock}>
               <h5 className={styles.formTitle}>
                 Первоначальный взнос (&#x20bd;)
-                <Tolt tooltipTitle1="Здесь указывается сумма собственных средств, которую Вы готовы внести в качестве первоначального взноса за приобретаемый автомобиль. Если Вы планируете покупку автомобиля полностью за собственные средства (без привлечения кредита), то указывается сумма полной стоимости автомобиля">
-                  <img alt="" src={help} />
+                <Tolt tooltipTitle1='Здесь указывается сумма собственных средств, которую Вы готовы внести в качестве первоначального взноса за приобретаемый автомобиль. Если Вы планируете покупку автомобиля полностью за собственные средства (без привлечения кредита), то указывается сумма полной стоимости автомобиля'>
+                  <img alt='' src={help} />
                 </Tolt>
               </h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="number"
+                  type='number'
                   value={newCredits.period}
                   onChange={(e) => setNewCredit('period', e.target.value)}
                 />
               </div>
               <h5 className={styles.formTitle}>Ставка по кредиту (%) </h5>
               <div className={styles.editValueForm}>
-                <input type="number" />
+                <input type='number' />
               </div>
               <h5 className={styles.formTitle}>Срок кредита (месяцы)</h5>
               <div className={styles.editValueForm}>
-                <input type="number" />
+                <input type='number' />
               </div>
 
               <h5 className={styles.formTitle}>
                 Стоимость ежегодного страхования авто (% от остатка долга по
                 кредиту)
-                <Tolt tooltipTitle1="Здесь указывается ставка (в %) страховой премии, которую Вы будете ежегодно уплачивать в рамках обязательств страхования автомобиля, предусмотренных договором кредитования">
-                  <img alt="" src={help} />
+                <Tolt tooltipTitle1='Здесь указывается ставка (в %) страховой премии, которую Вы будете ежегодно уплачивать в рамках обязательств страхования автомобиля, предусмотренных договором кредитования'>
+                  <img alt='' src={help} />
                 </Tolt>
               </h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="number"
+                  type='number'
                   value={newCredits.period}
                   onChange={(e) => setNewCredit('period', e.target.value)}
                 />
@@ -227,25 +227,25 @@ function CreditBlockCar(props) {
               <h5 className={styles.formTitle}>
                 Ежемесячные транспортные расходы при отказе от покупки
                 автомобиля (&#x20bd;)
-                <Tolt tooltipTitle1="Здесь указывается общая сумма расходов на транспорт, которые мы будем нести в том случае, если откажемся от покупки автомобиля, и от которых нас автомобиль может «избавить». Она включает расходы на общественный транспорт, такси, каршеринг и др.">
-                  <img alt="" src={help} />
+                <Tolt tooltipTitle1='Здесь указывается общая сумма расходов на транспорт, которые мы будем нести в том случае, если откажемся от покупки автомобиля, и от которых нас автомобиль может «избавить». Она включает расходы на общественный транспорт, такси, каршеринг и др.'>
+                  <img alt='' src={help} />
                 </Tolt>
               </h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="number"
+                  type='number'
                   value={newCredits.period}
                   onChange={(e) => setNewCredit('period', e.target.value)}
                 />
               </div>
               <h5 className={styles.formTitle}>
                 Ожидаемая доходность вложений (годовая) (%){' '}
-                <Tolt tooltipTitle1="Здесь указывается годовой процент дохода, который Вы можете получать, инвестировав собственные средства вместо того, чтобы направлять их на покупку автомобиля. Рекомендуется указывать доходность вложений с низким или умеренным, приемлемым для Вас риском">
-                  <img alt="" src={help} />
+                <Tolt tooltipTitle1='Здесь указывается годовой процент дохода, который Вы можете получать, инвестировав собственные средства вместо того, чтобы направлять их на покупку автомобиля. Рекомендуется указывать доходность вложений с низким или умеренным, приемлемым для Вас риском'>
+                  <img alt='' src={help} />
                 </Tolt>
               </h5>
               <div className={styles.editValueForm}>
-                <input type="number" />
+                <input type='number' />
               </div>
             </div>
           </div>
@@ -254,27 +254,14 @@ function CreditBlockCar(props) {
             <div className={styles.creditBlock}>
               <h5 className={styles.formTitle}>
                 Ожидаемая годовая инфляция (%)
-                <Tolt tooltipTitle1="Здесь указывается среднегодовое значение инфляции, которую Вы ожидаете в течение заданного Вами периода расчёта. Для более корректной оценки рекомендуется учитывать статистику инфляции за последние 10 лет: в среднем она составляла 7% в год (приводим таблицу инфляции по годам)">
-                  <img alt="" src={help} />
+                <Tolt tooltipTitle1='Рекомендуется указывать среднее значение инфляции за последние 5 (6,5%) или 10 лет (7,0%). Если в рамках расчёта Вы не хотите учитывать инфляцию, укажите значение 0'>
+                  <img alt='' src={help} />
                 </Tolt>
               </h5>
 
               <div className={styles.editValueForm}>
                 <input
-                  type="number"
-                  value={newCredits.discont}
-                  onChange={(e) => setNewCredit('discont', e.target.value)}
-                />
-              </div>
-              <h5 className={styles.formTitle}>
-                Период расчёта (месяцы)
-                <Tolt tooltipTitle1="Здесь указывается период, за который Вы хотите рассчитать экономический эффект от покупки автомобиля. Рекомендуется устанавливать его равным сроку кредита">
-                  <img alt="" src={help} />
-                </Tolt>
-              </h5>
-              <div className={styles.editValueForm}>
-                <input
-                  type="number"
+                  type='number'
                   value={newCredits.discont}
                   onChange={(e) => setNewCredit('discont', e.target.value)}
                 />
@@ -282,21 +269,28 @@ function CreditBlockCar(props) {
             </div>
           </div>
         </div>
-        <div className={styles.submitBtnBlock}>
-          <button
-            className={styles.submitBtn}
-            type="button"
-            onClick={() => {
-              SetAddModalActive(true);
-            }}
-          >
-            Рассчитать
-          </button>
+        <div className={styles.bottomBtns}>
+          <div className={styles.submitBtnBlock}>
+            <button
+              className={styles.submitBtn}
+              type='button'
+              onClick={() => {
+                SetAddModalActive(true);
+              }}
+            >
+              Рассчитать
+            </button>
+          </div>
+          <div className={styles.submitBtnBlock}>
+            <button className={styles.submitBtn} type='button'>
+              Сохранить
+            </button>
+          </div>
         </div>
       </form>
       <Modal
         active={addModalActive}
-        modalTitle="Покупка автомобиля: оценка финансовых последствий"
+        modalTitle='Покупка автомобиля: оценка финансовых последствий'
         SetActive={SetAddModalActive}
       >
         <Tabs className={styles.result_tabs}>

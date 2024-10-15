@@ -92,8 +92,8 @@ function CreditBlockAim(props) {
             <h5 className={styles.formTitle}>Название расчёта</h5>
             <div className={styles.creditName}>
               <input
-                placeholder="Введите название"
-                type="text"
+                placeholder='Введите название'
+                type='text'
                 value={calcName}
                 onChange={(e) => setCalcName(e.target.value)}
               />
@@ -113,8 +113,8 @@ function CreditBlockAim(props) {
               <h5 className={styles.formTitle}>Название кредита</h5>
               <div className={styles.editValueForm}>
                 <input
-                  placeholder="Введите название"
-                  type="text"
+                  placeholder='Введите название'
+                  type='text'
                   value={el.name}
                   onChange={(e) => setOldCredit(k, 'name', e.target.value)}
                 />
@@ -122,7 +122,7 @@ function CreditBlockAim(props) {
               <h5 className={styles.formTitle}>Дата получения кредита</h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="date"
+                  type='date'
                   value={el.date}
                   onChange={(e) => setOldCredit(k, 'date', e.target.value)}
                 />
@@ -130,7 +130,7 @@ function CreditBlockAim(props) {
               <h5 className={styles.formTitle}>Срок кредита (в месяцах)</h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="number"
+                  type='number'
                   value={el.period}
                   onChange={(e) => setOldCredit(k, 'period', e.target.value)}
                 />
@@ -138,7 +138,7 @@ function CreditBlockAim(props) {
               <h5 className={styles.formTitle}>Ставка (%)</h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="number"
+                  type='number'
                   value={el.rate}
                   onChange={(e) => setOldCredit(k, 'rate', e.target.value)}
                 />
@@ -146,7 +146,7 @@ function CreditBlockAim(props) {
               <h5 className={styles.formTitle}>Сумма (₽)</h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="number"
+                  type='number'
                   value={el.sum}
                   onChange={(e) => setOldCredit(k, 'sum', e.target.value)}
                 />
@@ -160,8 +160,8 @@ function CreditBlockAim(props) {
                   value={el.ins_type}
                   onChange={(e) => setOldCredit(k, 'ins_type', e.target.value)}
                 >
-                  <option value="0">Eжегодно</option>
-                  <option value="1">Не предусмотрены</option>
+                  <option value='0'>Eжегодно</option>
+                  <option value='1'>Не предусмотрены</option>
                 </select>
               </div>
               {el.ins_type === '0' && (
@@ -169,7 +169,7 @@ function CreditBlockAim(props) {
                   <h5 className={styles.formTitle}>Страховая премия (%)</h5>
                   <div className={styles.editValueForm}>
                     <input
-                      type="number"
+                      type='number'
                       value={el.insurance}
                       onChange={(e) =>
                         setOldCredit(k, 'insurance', e.target.value)
@@ -191,7 +191,7 @@ function CreditBlockAim(props) {
               <h5 className={styles.formTitle}>Дата погашения</h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="date"
+                  type='date'
                   value={newCredits.date}
                   onChange={(e) => setNewCredit('date', e.target.value)}
                 />
@@ -199,7 +199,7 @@ function CreditBlockAim(props) {
               <h5 className={styles.formTitle}>Сумма погашения (₽)</h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="number"
+                  type='number'
                   value={newCredits.period}
                   onChange={(e) => setNewCredit('period', e.target.value)}
                 />
@@ -211,27 +211,27 @@ function CreditBlockAim(props) {
             <div className={styles.creditBlock}>
               <h5 className={styles.formTitle}>
                 Доходность возможных вложений (годовая) (%)
-                <Tolt tooltipTitle1="Рекомендуется указывать актуальную на момент расчёта ставку вложений с низким или умеренным риском потерь – банковский депозит, облигации и др.">
-                  <img alt="" src={help} />
+                <Tolt tooltipTitle1='Рекомендуется указывать актуальную на момент расчёта ставку вложений с низким или умеренным риском потерь – банковский депозит, облигации и др.'>
+                  <img alt='' src={help} />
                 </Tolt>
               </h5>
 
               <div className={styles.editValueForm}>
                 <input
-                  type="number"
+                  type='number'
                   value={newCredits.discont}
                   onChange={(e) => setNewCredit('discont', e.target.value)}
                 />
               </div>
               <h5 className={styles.formTitle}>
                 Инфляция (%)
-                <Tolt tooltipTitle1="Рекомендуется указывать среднее значение инфляции за последние 5 (6,5%) или 10 лет (7,0%). Если в рамках расчёта Вы не хотите учитывать инфляцию, укажите значение 0">
-                  <img alt="" src={help} />
+                <Tolt tooltipTitle1='Рекомендуется указывать среднее значение инфляции за последние 5 (6,5%) или 10 лет (7,0%). Если в рамках расчёта Вы не хотите учитывать инфляцию, укажите значение 0'>
+                  <img alt='' src={help} />
                 </Tolt>
               </h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="number"
+                  type='number'
                   value={newCredits.discont}
                   onChange={(e) => setNewCredit('discont', e.target.value)}
                 />
@@ -239,21 +239,28 @@ function CreditBlockAim(props) {
             </div>
           </div>
         </div>
-        <div className={styles.submitBtnBlock}>
-          <button
-            className={styles.submitBtn}
-            type="button"
-            onClick={() => {
-              SetAddModalActive(true);
-            }}
-          >
-            Рассчитать
-          </button>
+        <div className={styles.bottomBtns}>
+          <div className={styles.submitBtnBlock}>
+            <button
+              className={styles.submitBtn}
+              type='button'
+              onClick={() => {
+                SetAddModalActive(true);
+              }}
+            >
+              Рассчитать
+            </button>
+          </div>
+          <div className={styles.submitBtnBlock}>
+            <button className={styles.submitBtn} type='button'>
+              Сохранить
+            </button>
+          </div>
         </div>
       </form>
       <Modal
         active={addModalActive}
-        modalTitle="Досрочное погашение кредитов: целесообразность"
+        modalTitle='Досрочное погашение кредитов: целесообразность'
         SetActive={SetAddModalActive}
       >
         <Tabs className={styles.result_tabs}>
