@@ -1,20 +1,20 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 
+import toast from 'react-hot-toast';
 import Lottie from "react-lottie";
 import { Link } from "react-router-dom";
 
+import { apiRequest } from '../../api';
 import Checkcustom from "../../components/Checkcustom/Checkcustom";
 import Header from "../../components/Header/Header";
 import MobileNav from "../../components/MobileNav/MobileNav";
 import ModalStart from "../../components/Modal/ModalStart";
 import MyResultsBody from "../../components/MyResultsBody/MyResultsBody";
 import MyResultsLeftNav from "../../components/MyResultsleftnav/MyResultsLeftNav";
+import { Context } from '../../Context';
 import animationData from "../../img/json/logo.json";
 
 import styles from "./MyResults.module.scss";
-import { Context } from '../../Context';
-import { apiRequest } from '../../api';
-import toast from 'react-hot-toast';
 
 function MyResults(props) {
   const defaultOptions = {
@@ -29,7 +29,7 @@ function MyResults(props) {
 
   const helloModalActiveHandle = () => {
     setStartModalChangeVisible(!startModalChangeVisible);
-  }
+  };
 
   const closeStartModalHandler = async () => {
     if(startModalChangeVisible) {
@@ -45,15 +45,15 @@ function MyResults(props) {
       });
 
       if (response.code === 0 && response.http_status === 200) {
-        setShowStartModal(false)
+        setShowStartModal(false);
         localStorage.setItem('showStartModal', 'false');
       } else {
         toast.error(response.mes);
       }
     } else {
-      setShowStartModal(false)
+      setShowStartModal(false);
     }
-  }
+  };
 
   return (
     <>
@@ -109,7 +109,7 @@ function MyResults(props) {
             Закрыть
           </button>
           <div className={styles.openAgain}>
-            <Checkcustom onChange={helloModalActiveHandle} label="Больше не показывать" />
+            <Checkcustom label="Больше не показывать" onChange={helloModalActiveHandle} />
           </div>
         </p>
       </ModalStart>

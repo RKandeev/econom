@@ -58,7 +58,6 @@ function App() {
   const [controlTestQuestions, setControlTestQuestions] = useState([]);
   const [showStartModal, setShowStartModal] = useState(localStorage.getItem('showStartModal') !== 'false');
 
-
   const getTestingResults = async () => {
     let data = {
       token: localStorage.getItem('token'),
@@ -83,8 +82,8 @@ function App() {
     });
 
     if (response.length > 0) {
-      setControlTestQuestions(response)
-      setIsStartTestingHave(true)
+      setControlTestQuestions(response);
+      setIsStartTestingHave(true);
     } else {
       toast.error("Ошибка получения тестовых вопросов");
     }
@@ -106,8 +105,8 @@ function App() {
     const token = localStorage.getItem('token');
 
     if (token){
-      getTestingResults()
-      getTestQuestions()
+      getTestingResults();
+      getTestQuestions();
     } else {
       navigate('/SignUp');
     }
@@ -116,12 +115,12 @@ function App() {
   return (
     <>
   `   <Context.Provider value={{
-        isStartTestingHave,
-        setStartTestResults,
-        startTestResults,
         controlTestQuestions,
+        isStartTestingHave,
+        setShowStartModal,
+        setStartTestResults,
         showStartModal,
-        setShowStartModal
+        startTestResults
       }}>
         <Wrapper>
           <Routes>

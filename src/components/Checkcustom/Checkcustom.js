@@ -38,8 +38,8 @@ function Checkbox(props) {
 
   const onInputChange = () => {
     setIsChecked(!isChecked);
-    props.onChange()
-  }
+    props.onChange();
+  };
 
   return (
     <label className="customCheckbox">

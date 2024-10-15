@@ -6,12 +6,12 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import {apiRequest} from '../../../api';
 import OpenHeader from '../../../components/OpenPart/Header/OpenHeader';
-
-import styles from '../Auth.module.scss';
 import { Context } from '../../../Context';
 
+import styles from '../Auth.module.scss';
+
 function SignIn() {
-  const {setStartTestResults, setShowStartModal} = useContext(Context)
+  const {setStartTestResults, setShowStartModal} = useContext(Context);
 
   const navigate = useNavigate();
 
@@ -34,7 +34,7 @@ function SignIn() {
         num1: localStorage.getItem('firstTestResult'),
         num2: localStorage.getItem('secondTestResult1'),
         num3: localStorage.getItem('secondTestResult2')
-      })
+      });
       navigate('/');
     } else {
       toast.error(response.mes);

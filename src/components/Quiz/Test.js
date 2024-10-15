@@ -1,12 +1,12 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 
+import toast from 'react-hot-toast';
+
+import { apiRequest } from '../../api';
+import { Context } from '../../Context';
 import SensorChart from '../SensorChart/SensorChart';
 
 import './Quiz.scss';
-import { Context } from '../../Context';
-import { apiRequest } from '../../api';
-import toast from 'react-hot-toast';
-
 
 const Test = () => {
   const {controlTestQuestions} = useContext(Context);
@@ -17,48 +17,48 @@ const Test = () => {
   const [showResult, setShowResult] = useState(true);
   const [result, setResult] = useState([]);
 
-
-
   const { q, variant_list, multi_answer, id } =
     controlTestQuestions[activeQuestion];
 
   const onClickNext = async (event) => {
-   if (event.target.innerText === 'ЗАВЕРШИТЬ') {
-     let data = {
-       token: localStorage.getItem('token'),
-       result_list: result,
-     };
+    if (event.target.innerText === 'ЗАВЕРШИТЬ') {
+      let data = {
+        result_list: result,
+        token: localStorage.getItem('token'),
+      };
 
-     const response = await apiRequest({
-       data: data,
-       method: 'POST',
-       url: '/quiz/set-a',
-     });
+      const response = await apiRequest({
+        data: data,
+        method: 'POST',
+        url: '/quiz/set-a',
+      });
 
-     if (response.code === 0 && response.http_status === 200) {
-       setShowResult(true)
-     } else {
-       toast.error(response.mes);
-     }
-   } else {
-     setResult(prev => [...prev, {q_id: id, a: selectedAnswer}]);
-     setActiveQuestion(prev => prev + 1);
-     setSelectedAnswer([])
-   }
+      if (response.code === 0 && response.http_status === 200) {
+        setShowResult(true);
+      } else {
+        toast.error(response.mes);
+      }
+    } else {
+      setResult(prev => [...prev, {a: selectedAnswer, q_id: id}]);
+      setActiveQuestion(prev => prev + 1);
+      setSelectedAnswer([]);
+    }
   };
 
   useEffect(() => {
     inputRefs.current.map((el) => {
-      if (el)  el.checked = false;
+      if (el) el.checked = false;
     });
   }, [activeQuestion]);
 
   const onAnswerSelected = (answer, index, event) => {
     let stringIndex = index.toString();
+
     if (event.target.checked) {
       multi_answer? setSelectedAnswer((prev) => [...prev, stringIndex]): setSelectedAnswer([stringIndex]);
     } else {
       const filteredAnswers = selectedAnswer.filter(item => item !== index);
+
       multi_answer? setSelectedAnswer(filteredAnswers): setSelectedAnswer([stringIndex]);
     }
   };
@@ -80,11 +80,11 @@ const Test = () => {
                 <input
                   key={answer}
                   ref={el => inputRefs.current[index] = el}
+                  className="firstTestForm"
                   data-number={index}
                   id={'inputDefault' + index}
                   name="inputDefault"
                   type={multi_answer? 'checkbox' : 'radio'}
-                  className={'firstTestForm'}
                   onChange={(event) => onAnswerSelected(answer, index, event)}
                 />
                 <label

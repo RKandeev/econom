@@ -56,7 +56,7 @@ function TestResultTabs() {
               <SensorChart result={startTestResults.num1} />
               :
               <EstimateTest/>
-            : null
+              : null
           }
         </TabPanel>
         <TabPanel className="myResultsChartBlock">
