@@ -12,6 +12,7 @@
   pointer-events: none;
   transition: 0.5s;
   z-index: 500;
+
 }
 .modal.active{
   opacity: 1;
@@ -23,6 +24,10 @@
   border-radius: 16rem;
   background-color: #fff;
   @media (max-width: 480px) {
+
+  }
+  @media (max-height: 750px) {
+    padding-bottom: 24rem;
 
   }
 }

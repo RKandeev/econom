@@ -1,10 +1,10 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react';
 
-import toast, {Toaster} from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 
 import { apiRequest } from './api';
-import {Context} from './Context';
+import { Context } from './Context';
 import Accounting from './pages/Accounting/Accounting';
 import AccountingBalance from './pages/AccountingBalance/AccountingBalance';
 import AccountingAttachment from './pages/AccountingCredit/AccountingAttachment';
@@ -53,7 +53,11 @@ import Study from './pages/Study/Study';
 import Studying from './pages/Studying/Studying';
 
 function App() {
-  const [startTestResults, setStartTestResults] = useState({num1: null, num2: null, num3: null});
+  const [startTestResults, setStartTestResults] = useState({
+    num1: null,
+    num2: null,
+    num3: null,
+  });
 
   const getTestingResults = async () => {
     let data = {
@@ -84,22 +88,25 @@ function App() {
     return children;
   };
 
-  useEffect (() => {
-    getTestingResults()
-
-    const token = localStorage.getItem('token');
-
-    if (!token){
-      navigate('/SignUp');
-    }
-  },[]);
+  // useEffect (() => {
+  //   getTestingResults()
+  //
+  //   const token = localStorage.getItem('token');
+  //
+  //   if (!token){
+  //     navigate('/SignUp');
+  //   }
+  // },[]);
 
   return (
     <>
-  `   <Context.Provider value={{
-        setStartTestResults,
-        startTestResults
-      }}>
+      `{' '}
+      <Context.Provider
+        value={{
+          setStartTestResults,
+          startTestResults,
+        }}
+      >
         <Wrapper>
           <Routes>
             <Route element={<MyResults />} path='*'></Route>
@@ -111,7 +118,10 @@ function App() {
             <Route element={<Credit />} path='credit'></Route>
             <Route element={<AnalysisCashFlow />} path='FinAnalys'></Route>
             <Route element={<FinResults />} path='FinResults'></Route>
-            <Route element={<NoMatterAnalysis />} path='NoMatterAnalysis'></Route>
+            <Route
+              element={<NoMatterAnalysis />}
+              path='NoMatterAnalysis'
+            ></Route>
             <Route element={<FinConditions />} path='FinConditions'></Route>
             <Route
               element={<AnalysisEfficiency />}
@@ -127,7 +137,10 @@ function App() {
               element={<AccountingIncomes />}
               path='AccountingIncomes'
             ></Route>
-            <Route element={<AccountingCredit />} path='AccountingCredit'></Route>
+            <Route
+              element={<AccountingCredit />}
+              path='AccountingCredit'
+            ></Route>
             <Route element={<Finmodel />} path='finmodeling'></Route>
             <Route element={<CreateSolution />} path='CreateSolution'></Route>
             <Route
@@ -205,7 +218,7 @@ function App() {
             ></Route>
           </Routes>
           <Toaster
-            position="top-right"
+            position='top-right'
             reverseOrder={false}
             toastOptions={{
               style: {
@@ -213,7 +226,8 @@ function App() {
               },
             }}
           />
-        </Wrapper>`
+        </Wrapper>
+        `
       </Context.Provider>
     </>
   );

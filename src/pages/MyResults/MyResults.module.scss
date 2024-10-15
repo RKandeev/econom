@@ -19,6 +19,10 @@
     font-size: 12rem;
     max-width: 100%;
   }
+  @media (max-height: 750px) {
+    font-size: 16rem;
+
+  }
 }
 .resultModalLink{
   color: #3156A6;
@@ -36,6 +40,10 @@
   margin: 30rem 0;
   @media (max-width: 480px) {
     font-size: 12rem;
+  }
+  @media (max-height: 750px) {
+    font-size: 12rem;
+    margin: 15rem 0;
   }
 }
 .openAgain{
