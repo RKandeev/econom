@@ -98,8 +98,8 @@ function CreditBlockFlat(props) {
             <h5 className={styles.formTitle}>Название расчёта</h5>
             <div className={styles.creditName}>
               <input
-                placeholder="Введите название"
-                type="text"
+                placeholder='Введите название'
+                type='text'
                 value={calcName}
                 onChange={(e) => setCalcName(e.target.value)}
               />
@@ -112,26 +112,26 @@ function CreditBlockFlat(props) {
             <div className={styles.creditBlock}>
               <h5 className={styles.formTitle}>
                 Стоимость квартиры (&#x20bd;)
-                <Tolt tooltipTitle1="В стоимость жилья рекомендуется включать не только цену его покупки, но и расходы на ремонт, обустройство и доведение жилья до состояния, пригодного для Вашего проживания">
-                  <img alt="" src={help} />
+                <Tolt tooltipTitle1='В стоимость жилья рекомендуется включать не только цену его покупки, но и расходы на ремонт, обустройство и доведение жилья до состояния, пригодного для Вашего проживания'>
+                  <img alt='' src={help} />
                 </Tolt>
               </h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="number"
+                  type='number'
                   value={newCredits.period}
                   onChange={(e) => setNewCredit('period', e.target.value)}
                 />
               </div>
               <h5 className={styles.formTitle}>
                 Первоначальный взнос (&#x20bd;){' '}
-                <Tolt tooltipTitle1="Здесь указывается сумма собственных средств, которую Вы готовы внести в качестве первоначального взноса за приобретаемое жилье. Если Вы планируете покупку жилья полностью за собственные средства (без привлечения кредита), то указывается сумма полной стоимости жилья">
-                  <img alt="" src={help} />
+                <Tolt tooltipTitle1='Здесь указывается сумма собственных средств, которую Вы готовы внести в качестве первоначального взноса за приобретаемое жилье. Если Вы планируете покупку жилья полностью за собственные средства (без привлечения кредита), то указывается сумма полной стоимости жилья'>
+                  <img alt='' src={help} />
                 </Tolt>
               </h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="number"
+                  type='number'
                   value={newCredits.period}
                   onChange={(e) => setNewCredit('period', e.target.value)}
                 />
@@ -141,7 +141,7 @@ function CreditBlockFlat(props) {
               </h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="number"
+                  type='number'
                   value={newCredits.period}
                   onChange={(e) => setNewCredit('period', e.target.value)}
                 />
@@ -151,19 +151,19 @@ function CreditBlockFlat(props) {
               </h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="number"
+                  type='number'
                   value={newCredits.period}
                   onChange={(e) => setNewCredit('period', e.target.value)}
                 />
               </div>
               <h5 className={styles.formTitle}>
                 Стоимость ежегодного страхования жилья (%){' '}
-                <Tolt tooltipTitle1="Здесь указывается ставка (в %) страховой премии, которую Вы будете ежегодно уплачивать в рамках обязательств страхования жилья, предусмотренных договором ипотечного кредитования">
-                  <img alt="" src={help} />
+                <Tolt tooltipTitle1='Здесь указывается ставка (в %) страховой премии, которую Вы будете ежегодно уплачивать в рамках обязательств страхования жилья, предусмотренных договором ипотечного кредитования'>
+                  <img alt='' src={help} />
                 </Tolt>
               </h5>
               <div className={styles.editValueForm}>
-                <input type="number" />
+                <input type='number' />
               </div>
             </div>
           </div>
@@ -172,45 +172,45 @@ function CreditBlockFlat(props) {
             <div className={styles.creditBlock}>
               <h5 className={styles.formTitle}>
                 Стоимость ежемесячной аренды квартиры (&#x20bd;)
-                <Tolt tooltipTitle1="Здесь указывается ожидаемая Вами стоимость месячной аренды квартиры на момент её приобретения. Для определения этого параметра рекомендуется использовать информацию специализированных сайтов-агрегаторов">
-                  <img alt="" src={help} />
+                <Tolt tooltipTitle1='Здесь указывается ожидаемая Вами стоимость месячной аренды квартиры на момент её приобретения. Для определения этого параметра рекомендуется использовать информацию специализированных сайтов-агрегаторов'>
+                  <img alt='' src={help} />
                 </Tolt>
               </h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="number"
+                  type='number'
                   value={newCredits.period}
                   onChange={(e) => setNewCredit('period', e.target.value)}
                 />
               </div>
               <h5 className={styles.formTitle}>
                 Ожидаемый ежегодный прирост стоимости аренды квартиры (%){' '}
-                <Tolt tooltipTitle1="Здесь указывается % ожидаемого ежегодного роста стоимости аренды квартиры, покупку которой Вы рассматриваете. Для определения этого параметра рекомендуется использовать информацию специализированных сайтов-агрегаторов">
-                  <img alt="" src={help} />
+                <Tolt tooltipTitle1='Здесь указывается % ожидаемого ежегодного роста стоимости аренды квартиры, покупку которой Вы рассматриваете. Для определения этого параметра рекомендуется использовать информацию специализированных сайтов-агрегаторов'>
+                  <img alt='' src={help} />
                 </Tolt>
               </h5>
               <div className={styles.editValueForm}>
-                <input type="number" />
+                <input type='number' />
               </div>
               <h5 className={styles.formTitle}>
                 Длительность простоя квартиры (дни)
-                <Tolt tooltipTitle1="Здесь указывается количество дней в году, когда квартира не приносит доход от сдачи в аренду в связи с ремонтом, сменой арендаторов и другими причинами">
-                  <img alt="" src={help} />
+                <Tolt tooltipTitle1='Здесь указывается количество дней в году, когда квартира не приносит доход от сдачи в аренду в связи с ремонтом, сменой арендаторов и другими причинами'>
+                  <img alt='' src={help} />
                 </Tolt>
               </h5>
               <div className={styles.editValueForm}>
-                <input type="number" />
+                <input type='number' />
               </div>
 
               <h5 className={styles.formTitle}>
                 Ожидаемый ежегодный прирост стоимости квартиры (%)
-                <Tolt tooltipTitle1="Здесь указывается % ожидаемого ежегодного роста стоимости квартиры, покупку которой Вы рассматриваете. Для определения этого параметра рекомендуется использовать информацию специализированных сайтов-агрегаторов или имеющиеся в открытом доступе статистические данные">
-                  <img alt="" src={help} />
+                <Tolt tooltipTitle1='Здесь указывается % ожидаемого ежегодного роста стоимости квартиры, покупку которой Вы рассматриваете. Для определения этого параметра рекомендуется использовать информацию специализированных сайтов-агрегаторов или имеющиеся в открытом доступе статистические данные'>
+                  <img alt='' src={help} />
                 </Tolt>
               </h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="number"
+                  type='number'
                   value={newCredits.period}
                   onChange={(e) => setNewCredit('period', e.target.value)}
                 />
@@ -222,44 +222,51 @@ function CreditBlockFlat(props) {
             <div className={styles.creditBlock}>
               <h5 className={styles.formTitle}>
                 Ожидаемая годовая доходность вложений (%)
-                <Tolt tooltipTitle1="Здесь указывается годовой процент дохода, который Вы можете получать, инвестировав собственные средства вместо того, чтобы направлять их на покупку квартиры. Рекомендуется указывать доходность вложений с низким или умеренным, приемлемым для Вас риском">
-                  <img alt="" src={help} />
+                <Tolt tooltipTitle1='Здесь указывается годовой процент дохода, который Вы можете получать, инвестировав собственные средства вместо того, чтобы направлять их на покупку квартиры. Рекомендуется указывать доходность вложений с низким или умеренным, приемлемым для Вас риском'>
+                  <img alt='' src={help} />
                 </Tolt>
               </h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="number"
+                  type='number'
                   value={newCredits.period}
                   onChange={(e) => setNewCredit('period', e.target.value)}
                 />
               </div>
               <h5 className={styles.formTitle}>
                 Ожидаемая годовая инфляция (%){' '}
-                <Tolt tooltipTitle1="Здесь указывается среднегодовое значение инфляции, которую Вы ожидаете в течение заданного Вами периода расчёта. Для более корректной оценки рекомендуется учитывать статистику инфляции за последние 10 лет: в среднем она составляла 7% в год (приводим таблицу инфляции по годам)">
-                  <img alt="" src={help} />
+                <Tolt tooltipTitle1='Рекомендуется указывать среднее значение инфляции за последние 5 (6,5%) или 10 лет (7,0%). Если в рамках расчёта Вы не хотите учитывать инфляцию, укажите значение 0'>
+                  <img alt='' src={help} />
                 </Tolt>
               </h5>
               <div className={styles.editValueForm}>
-                <input type="number" />
+                <input type='number' />
               </div>
             </div>
           </div>
         </div>
-        <div className={styles.submitBtnBlock}>
-          <button
-            className={styles.submitBtn}
-            type="button"
-            onClick={() => {
-              SetAddModalActive(true);
-            }}
-          >
-            Рассчитать
-          </button>
+        <div className={styles.bottomBtns}>
+          <div className={styles.submitBtnBlock}>
+            <button
+              className={styles.submitBtn}
+              type='button'
+              onClick={() => {
+                SetAddModalActive(true);
+              }}
+            >
+              Рассчитать
+            </button>
+          </div>
+          <div className={styles.submitBtnBlock}>
+            <button className={styles.submitBtn} type='button'>
+              Сохранить
+            </button>
+          </div>
         </div>
       </form>
       <Modal
         active={addModalActive}
-        modalTitle="Квартира для сдачи в аренду: оценка выгод"
+        modalTitle='Квартира для сдачи в аренду: оценка выгод'
         SetActive={SetAddModalActive}
       >
         <Tabs className={styles.result_tabs}>

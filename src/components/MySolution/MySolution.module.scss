@@ -6,6 +6,8 @@
   flex-grow: inherit;
   padding: 8rem 8rem 16rem 0;
   border-bottom: 1px solid #E1ECF5;
+  // Сделал курсор как для ссылки чтобы ты понимал что весь блок это ссылка на редактирование
+  cursor: pointer;
   .solutionBlock{
     display: flex;
     flex-direction: column;

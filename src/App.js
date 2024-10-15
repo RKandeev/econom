@@ -88,15 +88,15 @@ function App() {
     return children;
   };
 
-  // useEffect (() => {
-  //   getTestingResults()
-  //
-  //   const token = localStorage.getItem('token');
-  //
-  //   if (!token){
-  //     navigate('/SignUp');
-  //   }
-  // },[]);
+  useEffect(() => {
+    getTestingResults();
+
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      navigate('/SignUp');
+    }
+  }, []);
 
   return (
     <>

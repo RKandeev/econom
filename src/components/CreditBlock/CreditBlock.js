@@ -9,6 +9,8 @@ import Modal from '../Modal/Modal';
 import SensorRefin from '../SensorModeling/SensorRefin';
 
 import styles from './CreditBlock.module.scss';
+import help from '../../img/icon/icon__help.svg';
+import Tolt from '../Tolt/Tolt';
 
 function CreditBlock(props) {
   const [addModalActive, SetAddModalActive] = useState(false);
@@ -105,8 +107,8 @@ function CreditBlock(props) {
             <h5 className={styles.formTitle}>Название расчёта</h5>
             <div className={styles.creditName}>
               <input
-                placeholder="Введите название"
-                type="text"
+                placeholder='Введите название'
+                type='text'
                 value={calcName}
                 onChange={(e) => setCalcName(e.target.value)}
               />
@@ -116,7 +118,7 @@ function CreditBlock(props) {
               <button
                 active={oldCredits.length === 1 ? '1' : ''}
                 className={styles.creditNumBtn}
-                type="button"
+                type='button'
                 onClick={() => setCreditCount(1)}
               >
                 1
@@ -124,7 +126,7 @@ function CreditBlock(props) {
               <button
                 active={oldCredits.length === 2 ? '1' : ''}
                 className={styles.creditNumBtn}
-                type="button"
+                type='button'
                 onClick={() => setCreditCount(2)}
               >
                 2
@@ -132,7 +134,7 @@ function CreditBlock(props) {
               <button
                 active={oldCredits.length === 3 ? '1' : ''}
                 className={styles.creditNumBtn}
-                type="button"
+                type='button'
                 onClick={() => setCreditCount(3)}
               >
                 3
@@ -140,7 +142,7 @@ function CreditBlock(props) {
               <button
                 active={oldCredits.length === 4 ? '1' : ''}
                 className={styles.creditNumBtn}
-                type="button"
+                type='button'
                 onClick={() => setCreditCount(4)}
               >
                 4
@@ -148,7 +150,7 @@ function CreditBlock(props) {
               <button
                 active={oldCredits.length === 5 ? '1' : ''}
                 className={styles.creditNumBtn}
-                type="button"
+                type='button'
                 onClick={() => setCreditCount(5)}
               >
                 5
@@ -163,13 +165,13 @@ function CreditBlock(props) {
             <div className={styles.creditBlock}>
               <div className={styles.creditTitleBlock}>
                 <div className={styles.creditTitle}>{'Кредит №' + (k + 1)}</div>
-                <Checkcustom label="Учитывать" />
+                <Checkcustom label='Учитывать' />
               </div>
               <h5 className={styles.formTitle}>Название кредита</h5>
               <div className={styles.editValueForm}>
                 <input
-                  placeholder="Введите название"
-                  type="text"
+                  placeholder='Введите название'
+                  type='text'
                   value={el.name}
                   onChange={(e) => setOldCredit(k, 'name', e.target.value)}
                 />
@@ -177,7 +179,7 @@ function CreditBlock(props) {
               <h5 className={styles.formTitle}>Дата получения кредита</h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="date"
+                  type='date'
                   value={el.date}
                   onChange={(e) => setOldCredit(k, 'date', e.target.value)}
                 />
@@ -185,7 +187,7 @@ function CreditBlock(props) {
               <h5 className={styles.formTitle}>Срок кредита (в месяцах)</h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="number"
+                  type='number'
                   value={el.period}
                   onChange={(e) => setOldCredit(k, 'period', e.target.value)}
                 />
@@ -193,7 +195,7 @@ function CreditBlock(props) {
               <h5 className={styles.formTitle}>Ставка</h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="number"
+                  type='number'
                   value={el.rate}
                   onChange={(e) => setOldCredit(k, 'rate', e.target.value)}
                 />
@@ -201,7 +203,7 @@ function CreditBlock(props) {
               <h5 className={styles.formTitle}>Сумма</h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="number"
+                  type='number'
                   value={el.sum}
                   onChange={(e) => setOldCredit(k, 'sum', e.target.value)}
                 />
@@ -215,8 +217,8 @@ function CreditBlock(props) {
                   value={el.ins_type}
                   onChange={(e) => setOldCredit(k, 'ins_type', e.target.value)}
                 >
-                  <option value="0">Eжегодно</option>
-                  <option value="1">Не предусмотрены</option>
+                  <option value='0'>Eжегодно</option>
+                  <option value='1'>Не предусмотрены</option>
                 </select>
               </div>
               {el.ins_type === '0' && (
@@ -224,7 +226,7 @@ function CreditBlock(props) {
                   <h5 className={styles.formTitle}>Страховая премия (%)</h5>
                   <div className={styles.editValueForm}>
                     <input
-                      type="number"
+                      type='number'
                       value={el.insurance}
                       onChange={(e) =>
                         setOldCredit(k, 'insurance', e.target.value)
@@ -246,7 +248,7 @@ function CreditBlock(props) {
                 <h5 className={styles.formTitle}>Дата рефинансирования</h5>
                 <div className={styles.editValueForm}>
                   <input
-                    type="date"
+                    type='date'
                     value={newCredits.date}
                     onChange={(e) => setNewCredit('date', e.target.value)}
                   />
@@ -254,7 +256,7 @@ function CreditBlock(props) {
                 <h5 className={styles.formTitle}>Срок кредита (в месяцах)</h5>
                 <div className={styles.editValueForm}>
                   <input
-                    type="number"
+                    type='number'
                     value={newCredits.period}
                     onChange={(e) => setNewCredit('period', e.target.value)}
                   />
@@ -262,8 +264,8 @@ function CreditBlock(props) {
                 <h5 className={styles.formTitle}>Ставка</h5>
                 <div className={styles.editValueForm}>
                   <input
-                    step="0.1"
-                    type="number"
+                    step='0.1'
+                    type='number'
                     value={newCredits.rate}
                     onChange={(e) => setNewCredit('rate', e.target.value)}
                   />
@@ -277,8 +279,8 @@ function CreditBlock(props) {
                     value={newCredits.ins_type}
                     onChange={(e) => setNewCredit('ins_type', e.target.value)}
                   >
-                    <option value="0">Eжегодно</option>
-                    <option value="1">Не предусмотрены</option>
+                    <option value='0'>Eжегодно</option>
+                    <option value='1'>Не предусмотрены</option>
                   </select>
                 </div>
                 {newCredits.ins_type === '0' && (
@@ -286,7 +288,7 @@ function CreditBlock(props) {
                     <h5 className={styles.formTitle}>Страховая премия (%)</h5>
                     <div className={styles.editValueForm}>
                       <input
-                        type="number"
+                        type='number'
                         value={newCredits.insurance}
                         onChange={(e) =>
                           setNewCredit('insurance', e.target.value)
@@ -303,10 +305,15 @@ function CreditBlock(props) {
               Дополнительные параметры
             </h4>
             <div className={styles.creditBlock}>
-              <h5 className={styles.formTitle}>Инфляция (%)</h5>
+              <h5 className={styles.formTitle}>
+                Инфляция (%)
+                <Tolt tooltipTitle1='Рекомендуется указывать среднее значение инфляции за последние 5 (6,5%) или 10 лет (7,0%). Если в рамках расчёта Вы не хотите учитывать инфляцию, укажите значение 0'>
+                  <img alt='' src={help} />
+                </Tolt>
+              </h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="number"
+                  type='number'
                   value={newCredits.discont}
                   onChange={(e) => setNewCredit('discont', e.target.value)}
                 />
@@ -314,21 +321,28 @@ function CreditBlock(props) {
             </div>
           </div>
         </div>
-        <div className={styles.submitBtnBlock}>
-          <button
-            className={styles.submitBtn}
-            type="button"
-            onClick={() => {
-              SetAddModalActive(true);
-            }}
-          >
-            Рассчитать
-          </button>
+        <div className={styles.bottomBtns}>
+          <div className={styles.submitBtnBlock}>
+            <button
+              className={styles.submitBtn}
+              type='button'
+              onClick={() => {
+                SetAddModalActive(true);
+              }}
+            >
+              Рассчитать
+            </button>
+          </div>
+          <div className={styles.submitBtnBlock}>
+            <button className={styles.submitBtn} type='button'>
+              Сохранить
+            </button>
+          </div>
         </div>
       </form>
       <Modal
         active={addModalActive}
-        modalTitle="Рефинансирование кредитов: целесообразность"
+        modalTitle='Рефинансирование кредитов: целесообразность'
         SetActive={SetAddModalActive}
       >
         <Tabs className={styles.result_tabs}>

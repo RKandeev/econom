@@ -119,25 +119,35 @@ h5.formTitle{
     margin-bottom: 24rem;
   }
 }
+.bottomBtns{
+  margin-top: 20rem;
+  margin-bottom: 12rem;
+}
 .submitBtnBlock{
   width: 422rem;
   @media (max-width: 480px) {
     width: 100%;
   }
+
   button.submitBtn{
     cursor: pointer;
     padding-top: 16rem;
     padding-bottom: 16rem;
     border-radius: 12rem;
-    background-color: #0DA46F;
+    background-color: #3156A6;
     width: 100%;
     border: none;
     font-size: 14rem;
     font-weight: 700;
     color: #fff;
+    margin-top: 12rem;
+    margin-bottom: 12rem;
     text-transform: uppercase;
-    margin-top: 40rem;
-    margin-bottom: 56rem;
+    //я навесил на hover те стили которые должны быть у кнопок при неактивном состоянии
+    &:hover{
+      background-color: #ABB0C3;
+      cursor: initial;
+    }
     @media (max-width: 480px) {
       margin: 16rem 0;
     }
