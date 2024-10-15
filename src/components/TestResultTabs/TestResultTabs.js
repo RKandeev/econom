@@ -11,7 +11,7 @@ import SensorChart from '../SensorChart/SensorChart';
 import './TestResultTabs.scss';
 
 function TestResultTabs() {
-  const {startTestResults} = useContext(Context);
+  const {startTestResults, isStartTestingHave} = useContext(Context);
 
   return (
     <>
@@ -52,10 +52,11 @@ function TestResultTabs() {
 
         <TabPanel className="myResultsChartBlock">
           {
-            startTestResults.num1 ?
+            isStartTestingHave? startTestResults.num1 ?
               <SensorChart result={startTestResults.num1} />
               :
               <EstimateTest/>
+            : null
           }
         </TabPanel>
         <TabPanel className="myResultsChartBlock">

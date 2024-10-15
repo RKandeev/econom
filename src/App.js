@@ -53,7 +53,11 @@ import Study from './pages/Study/Study';
 import Studying from './pages/Studying/Studying';
 
 function App() {
+  const [isStartTestingHave, setIsStartTestingHave] = useState(false);
   const [startTestResults, setStartTestResults] = useState({num1: null, num2: null, num3: null});
+  const [controlTestQuestions, setControlTestQuestions] = useState([]);
+  const [showStartModal, setShowStartModal] = useState(localStorage.getItem('showStartModal') !== 'false');
+
 
   const getTestingResults = async () => {
     let data = {
@@ -72,6 +76,20 @@ function App() {
     }
   };
 
+  const getTestQuestions= async () => {
+
+    const response = await apiRequest({
+      url: '/quiz/get-q',
+    });
+
+    if (response.length > 0) {
+      setControlTestQuestions(response)
+      setIsStartTestingHave(true)
+    } else {
+      toast.error("Ошибка получения тестовых вопросов");
+    }
+  };
+
   const navigate = useNavigate();
 
   const Wrapper = ({ children }) => {
@@ -85,11 +103,12 @@ function App() {
   };
 
   useEffect (() => {
-    getTestingResults()
-
     const token = localStorage.getItem('token');
 
-    if (!token){
+    if (token){
+      getTestingResults()
+      getTestQuestions()
+    } else {
       navigate('/SignUp');
     }
   },[]);
@@ -97,8 +116,12 @@ function App() {
   return (
     <>
   `   <Context.Provider value={{
+        isStartTestingHave,
         setStartTestResults,
-        startTestResults
+        startTestResults,
+        controlTestQuestions,
+        showStartModal,
+        setShowStartModal
       }}>
         <Wrapper>
           <Routes>

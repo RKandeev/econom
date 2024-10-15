@@ -1,120 +1,70 @@
-import React, { useEffect } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 
-import { apiRequest } from '../../api';
 import SensorChart from '../SensorChart/SensorChart';
 
 import './Quiz.scss';
-const quiz = {
-  level: 'Beginner',
-  perQuestionScore: 5,
-  // in seconds
-  questions: [
-    {
-      choices: [
-        'сравню ставки по кредитам и выберу тот, по которому ставка выше',
-        'сравню ежемесячный платеж по кредитам и выберу тот, по которому он выше',
-        'выполню пункты указанные выше',
-        'брошу монетку 😊',
-        'ни один из вариантов не поможет найти оптимальное решение',
-      ],
-      correctAnswer: [
-        'сравню ставки по кредитам и выберу тот, по которому ставка выше',
-        'сравню ежемесячный платеж по кредитам и выберу тот, по которому он выше',
-      ],
-      inputType: 'checkbox',
-      question:
-        'В ситуации, когда у Вас есть два или более незакрытых кредитов, как Вы выберете кредит, который выгоднее погашать досрочно в первую очередь? ',
-    },
-    {
-      choices: ['var', 'let', 'var and let', 'None of the above'],
-      correctAnswer: ['var and let'],
-      inputType: 'checkbox',
-      question:
-        'Which of the following keywords is used to define a variable in Javascript?',
-    },
-    {
-      choices: [
-        'document.write()',
-        'console.log()',
-        'window.alert',
-        'All of the above',
-      ],
-      correctAnswer: 'All of the above',
-      inputType: 'radio',
-      question:
-        'Which of the following methods can be used to display data in some form using Javascript?',
-    },
-    {
-      choices: ['const', 'var', 'let', 'constant'],
-      correctAnswer: 'const',
-      inputType: 'radio',
-      question: 'How can a datatype be declared to be a constant type?',
-    },
-  ],
-  topic: 'Javascript',
-  totalQuestions: 10,
-  totalTime: 60,
-};
+import { Context } from '../../Context';
+import { apiRequest } from '../../api';
+import toast from 'react-hot-toast';
+
 
 const Test = () => {
-  const [activeQuestion, setActiveQuestion] = React.useState(0);
-  const [selectedAnswer, setSelectedAnswer] = React.useState([]);
-  const [showResult, setShowResult] = React.useState(false);
-  const [selectedAnswerIndex, setSelectedAnswerIndex] = React.useState(null);
-  const [result, setResult] = React.useState({
-    correctAnswers: 0,
-    score: 0,
-    wrongAnswers: 0,
-  });
+  const {controlTestQuestions} = useContext(Context);
+  const inputRefs = useRef([]);
 
-  const { questions } = quiz;
-  const { question, choices, correctAnswer, inputType } =
-    questions[activeQuestion];
+  const [activeQuestion, setActiveQuestion] = useState(0);
+  const [selectedAnswer, setSelectedAnswer] = useState([]);
+  const [showResult, setShowResult] = useState(true);
+  const [result, setResult] = useState([]);
 
-  const onClickNext = () => {
-    setSelectedAnswer([]);
-    setSelectedAnswerIndex(null);
-    setResult((prev) =>
-      selectedAnswer
-        ? {
-          ...prev,
-          correctAnswers: prev.correctAnswers + 1,
-          score: prev.score + 5,
-        }
-        : { ...prev, wrongAnswers: prev.wrongAnswers + 1 }
-    );
-    if (activeQuestion !== questions.length - 1) {
-      setActiveQuestion((prev) => prev + 1);
-    } else {
-      setActiveQuestion(0);
-      setShowResult(true);
-    }
+
+
+  const { q, variant_list, multi_answer, id } =
+    controlTestQuestions[activeQuestion];
+
+  const onClickNext = async (event) => {
+   if (event.target.innerText === 'ЗАВЕРШИТЬ') {
+     let data = {
+       token: localStorage.getItem('token'),
+       result_list: result,
+     };
+
+     const response = await apiRequest({
+       data: data,
+       method: 'POST',
+       url: '/quiz/set-a',
+     });
+
+     if (response.code === 0 && response.http_status === 200) {
+       setShowResult(true)
+     } else {
+       toast.error(response.mes);
+     }
+   } else {
+     setResult(prev => [...prev, {q_id: id, a: selectedAnswer}]);
+     setActiveQuestion(prev => prev + 1);
+     setSelectedAnswer([])
+   }
   };
 
-  const onAnswerSelected = (answer, index) => {
-    setSelectedAnswerIndex(selectedAnswer.push(answer));
-    console.log(selectedAnswer);
-
-  };
-
-  const getTestQuestions= async () => {
-
-    const response = await apiRequest({
-      url: '/quiz/get-q',
+  useEffect(() => {
+    inputRefs.current.map((el) => {
+      if (el)  el.checked = false;
     });
+  }, [activeQuestion]);
 
-    if (response.code === 0 && response.http_status === 200) {
-
+  const onAnswerSelected = (answer, index, event) => {
+    let stringIndex = index.toString();
+    if (event.target.checked) {
+      multi_answer? setSelectedAnswer((prev) => [...prev, stringIndex]): setSelectedAnswer([stringIndex]);
+    } else {
+      const filteredAnswers = selectedAnswer.filter(item => item !== index);
+      multi_answer? setSelectedAnswer(filteredAnswers): setSelectedAnswer([stringIndex]);
     }
   };
 
-  useEffect( () => {
-    getTestQuestions()
-  }, []);
-
-  // const addLeadingZero = (number) => (number > 9 ? number : `0${number}`);
   let activeNum = activeQuestion + 1;
-  let dynamicWidth = 'calc(100% * ' + activeNum + '/' + questions.length + ')';
+  let dynamicWidth = 'calc(100% * ' + activeNum + '/' + controlTestQuestions.length + ')';
 
   return (
     <div className="quiz-container">
@@ -122,23 +72,20 @@ const Test = () => {
       {!showResult ? (
         <div className="testingBlock">
           <h3>
-            {activeNum}. {question}
+            {activeNum}. {q}
           </h3>
           <form className="answers_block">
-            {choices.map((answer, index) => (
+            {variant_list && variant_list.map((answer, index) => (
               <div key={index} className="form_check">
                 <input
                   key={answer}
+                  ref={el => inputRefs.current[index] = el}
                   data-number={index}
                   id={'inputDefault' + index}
                   name="inputDefault"
-                  type={inputType}
-                  className={
-                    selectedAnswerIndex === index
-                      ? 'selected-answer firstTestForm'
-                      : 'firstTestForm'
-                  }
-                  onChange={() => onAnswerSelected(answer, index)}
+                  type={multi_answer? 'checkbox' : 'radio'}
+                  className={'firstTestForm'}
+                  onChange={(event) => onAnswerSelected(answer, index, event)}
                 />
                 <label
                   className="form_check_label"
@@ -150,16 +97,16 @@ const Test = () => {
             ))}
           </form>
           <div className="answers-info">
-            {inputType === 'checkbox'
+            {multi_answer
               ? '* - можно выбрать несколько вариантов'
               : ''}
           </div>
           <div className="flex-right">
             <button
-              disabled={selectedAnswerIndex === null}
-              onClick={onClickNext}
+              disabled={selectedAnswer.length === 0}
+              onClick={ (event) => onClickNext(event)}
             >
-              {activeQuestion === questions.length - 1 ? 'Завершить' : 'Дальше'}
+              {activeQuestion === controlTestQuestions.length - 1 ? 'Завершить' : 'Дальше'}
             </button>
           </div>
           <div className="progress-bar" id="progress-bar">
@@ -173,7 +120,7 @@ const Test = () => {
           <div className="progress-counter">
             <span className="active-question-no">{activeQuestion + 1}</span>
             <span className="total-question">
-              &nbsp;из&nbsp;{questions.length}
+              &nbsp;из&nbsp;{controlTestQuestions.length}
             </span>
           </div>
         </div>

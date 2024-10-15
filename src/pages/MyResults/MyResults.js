@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 
 import Lottie from "react-lottie";
 import { Link } from "react-router-dom";
@@ -12,24 +12,48 @@ import MyResultsLeftNav from "../../components/MyResultsleftnav/MyResultsLeftNav
 import animationData from "../../img/json/logo.json";
 
 import styles from "./MyResults.module.scss";
+import { Context } from '../../Context';
+import { apiRequest } from '../../api';
+import toast from 'react-hot-toast';
 
 function MyResults(props) {
-  const [helloModalActive, SetHelloModalActive] = useState();
   const defaultOptions = {
     animationData: animationData,
     autoplay: true,
     loop: false,
     renderer: "svg",
   };
+  const [startModalChangeVisible, setStartModalChangeVisible] = useState(false);
 
+  const {showStartModal, setShowStartModal} = useContext(Context);
 
   const helloModalActiveHandle = () => {
-    localStorage.setItem('helloModalActive', 'false')
+    setStartModalChangeVisible(!startModalChangeVisible);
   }
 
-  useEffect(() => {
-    localStorage.getItem('helloModalActive') === 'false' ? SetHelloModalActive(false) : SetHelloModalActive(true)
-  }, [])
+  const closeStartModalHandler = async () => {
+    if(startModalChangeVisible) {
+      let data = {
+        token: localStorage.getItem('token'),
+        value: 0,
+      };
+
+      const response = await apiRequest({
+        data: data,
+        method: 'POST',
+        url: '/set-show-it',
+      });
+
+      if (response.code === 0 && response.http_status === 200) {
+        setShowStartModal(false)
+        localStorage.setItem('showStartModal', 'false');
+      } else {
+        toast.error(response.mes);
+      }
+    } else {
+      setShowStartModal(false)
+    }
+  }
 
   return (
     <>
@@ -40,11 +64,11 @@ function MyResults(props) {
         <MyResultsBody />
       </div>
       <ModalStart
-        active={helloModalActive}
+        active={showStartModal}
         justify="center"
         modalTitle=""
         modalVis="hidden"
-        SetActive={SetHelloModalActive}
+        setActive={closeStartModalHandler}
       >
         <h4 className={styles.resultModalHeader}>
           Благодарим Вас за интерес к нашей Платформе!
@@ -62,7 +86,7 @@ function MyResults(props) {
           Вашего стартового уровня в разделе{" "}
           <span
             className={styles.resultModalLink}
-            onClick={() => SetHelloModalActive(false)}
+            onClick={() => closeStartModalHandler()}
           >
             Мои результаты
           </span>{" "}
@@ -80,7 +104,7 @@ function MyResults(props) {
           </p>
           <button
             className={styles.closeBtn}
-            onClick={() => SetHelloModalActive(false)}
+            onClick={() => closeStartModalHandler()}
           >
             Закрыть
           </button>

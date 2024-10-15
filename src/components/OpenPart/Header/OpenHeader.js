@@ -58,7 +58,7 @@ function OpenHeader() {
           <a className="nav-link " href="./check.html">
             Проверь себя
           </a>
-          <a className="nav-link link-personal cursor-pointer" onClick={authHandler}>
+          <a className="nav-link link-personal cursor_pointer" onClick={authHandler}>
             Личный кабинет
           </a>
         </nav>

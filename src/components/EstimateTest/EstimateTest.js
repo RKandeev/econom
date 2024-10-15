@@ -246,7 +246,6 @@ function EstimateTest() {
       input_type === 'checkbox'? setSelectedAnswer((prev) => [...prev, answer.id]): setSelectedAnswer([answer.id]);
     } else {
       const filteredAnswers = selectedAnswer.filter(item => item.id !== answer.id);
-
       input_type === 'checkbox'? setSelectedAnswer(filteredAnswers): setSelectedAnswer([answer.id]);
     }
   };
