@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from 'react';
 
 import Lottie from "react-lottie";
 import { Link } from "react-router-dom";
@@ -14,13 +14,22 @@ import animationData from "../../img/json/logo.json";
 import styles from "./MyResults.module.scss";
 
 function MyResults(props) {
-  const [helloModalActive, SetHelloModalActive] = useState(true);
+  const [helloModalActive, SetHelloModalActive] = useState();
   const defaultOptions = {
     animationData: animationData,
     autoplay: true,
     loop: false,
     renderer: "svg",
   };
+
+
+  const helloModalActiveHandle = () => {
+    localStorage.setItem('helloModalActive', 'false')
+  }
+
+  useEffect(() => {
+    localStorage.getItem('helloModalActive') === 'false' ? SetHelloModalActive(false) : SetHelloModalActive(true)
+  }, [])
 
   return (
     <>
@@ -76,7 +85,7 @@ function MyResults(props) {
             Закрыть
           </button>
           <div className={styles.openAgain}>
-            <Checkcustom label="Больше не показывать" />
+            <Checkcustom onChange={helloModalActiveHandle} label="Больше не показывать" />
           </div>
         </p>
       </ModalStart>
