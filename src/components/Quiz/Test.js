@@ -23,11 +23,12 @@ const Test = () => {
 
   const onClickNext = async (event) => {
     if (event.target.innerText === 'ЗАВЕРШИТЬ') {
+      const updatedResult = [...result, {a: selectedAnswer, q_id: id}];
+
       let data = {
-        result_list: result,
+        result_list: updatedResult,
         token: localStorage.getItem('token'),
       };
-
       const response = await apiRequest({
         data: data,
         method: 'POST',
