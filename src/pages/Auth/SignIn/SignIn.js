@@ -11,7 +11,7 @@ import { Context } from '../../../Context';
 import styles from '../Auth.module.scss';
 
 function SignIn() {
-  const {setStartTestResults, setShowStartModal} = useContext(Context);
+  const {setUserInfo, setStartTestResults, setShowStartModal} = useContext(Context);
 
   const navigate = useNavigate();
 
@@ -63,6 +63,9 @@ function SignIn() {
 
     if (response.code === 0 && response.http_status === 200) {
       localStorage.setItem('token', response.data.token);
+      localStorage.setItem('userName', response.data.name);
+      localStorage.setItem('userEmail', response.data.email);
+      setUserInfo({email: response.data.email, name: response.data.name});
       saveTestingResults();
       response.data.show_it === 1? setShowStartModal(true) : setShowStartModal(false);
     } else {

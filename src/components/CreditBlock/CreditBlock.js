@@ -7,10 +7,11 @@ import BarChartRefinPay from '../BarCharts/BarChartRefinPay';
 import Checkcustom from '../Checkcustom/Checkcustom';
 import Modal from '../Modal/Modal';
 import SensorRefin from '../SensorModeling/SensorRefin';
+import Tolt from '../Tolt/Tolt';
+
+import help from '../../img/icon/icon__help.svg';
 
 import styles from './CreditBlock.module.scss';
-import help from '../../img/icon/icon__help.svg';
-import Tolt from '../Tolt/Tolt';
 
 function CreditBlock(props) {
   const [addModalActive, SetAddModalActive] = useState(false);

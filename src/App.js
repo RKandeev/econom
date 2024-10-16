@@ -53,12 +53,17 @@ import Study from './pages/Study/Study';
 import Studying from './pages/Studying/Studying';
 
 function App() {
+  const [userInfo, setUserInfo] = useState({
+    email: localStorage.getItem('userEmail')? localStorage.getItem('userEmail'): '',
+    name: localStorage.getItem('userName')? localStorage.getItem('userName'): '',
+  });
   const [isStartTestingHave, setIsStartTestingHave] = useState(false);
   const [startTestResults, setStartTestResults] = useState({num1: null, num2: null, num3: null});
   const [controlTestQuestions, setControlTestQuestions] = useState([]);
+  const [testHistory, setTestHistory] = useState([]);
   const [showStartModal, setShowStartModal] = useState(localStorage.getItem('showStartModal') !== 'false');
 
-  const getTestingResults = async () => {
+  const getFirstTestsResult = async () => {
     let data = {
       token: localStorage.getItem('token'),
     };
@@ -75,6 +80,23 @@ function App() {
     }
   };
 
+  const getTestingHistory = async () => {
+    let data = {
+      token: localStorage.getItem('token'),
+    };
+
+    const response = await apiRequest({
+      headers: data,
+      url: '/quiz/history',
+    });
+
+    if (response.code === 0 && response.http_status === 200) {
+      setTestHistory(response.data);
+    } else {
+      toast.error(response.mes);
+    }
+  };
+
   const getTestQuestions= async () => {
 
     const response = await apiRequest({
@@ -85,7 +107,7 @@ function App() {
       setControlTestQuestions(response);
       setIsStartTestingHave(true);
     } else {
-      toast.error("Ошибка получения тестовых вопросов");
+      toast.error("Ошибка при получении тестовых вопросов");
     }
   };
 
@@ -105,8 +127,9 @@ function App() {
     const token = localStorage.getItem('token');
 
     if (token){
-      getTestingResults();
+      getFirstTestsResult();
       getTestQuestions();
+      getTestingHistory();
     } else {
       navigate('/SignUp');
     }
@@ -119,8 +142,12 @@ function App() {
         isStartTestingHave,
         setShowStartModal,
         setStartTestResults,
+        setTestHistory,
+        setUserInfo,
         showStartModal,
-        startTestResults
+        startTestResults,
+        testHistory,
+        userInfo,
       }}>
         <Wrapper>
           <Routes>

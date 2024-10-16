@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 
@@ -6,7 +6,9 @@ import TestHistory from "../FinPlanCharts/BarCharts/TestHistory";
 import Test from "../Quiz/Test";
 
 import "./Testing.scss";
+
 function Testing(props) {
+
   return (
     <div>
       <Tabs className="react-tabs TestingTabs">
@@ -125,7 +127,7 @@ function Testing(props) {
           <Test />
         </TabPanel>
         <TabPanel className="testResultChart">
-          <TestHistory />
+          <TestHistory/>
         </TabPanel>
       </Tabs>
     </div>

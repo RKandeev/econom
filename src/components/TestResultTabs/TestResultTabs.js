@@ -55,7 +55,7 @@ function TestResultTabs() {
             isStartTestingHave? startTestResults.num1 ?
               <SensorChart result={startTestResults.num1} />
               :
-              <EstimateTest/>
+              <EstimateTest className="w-80"/>
               : null
           }
         </TabPanel>

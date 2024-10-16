@@ -12,9 +12,10 @@ const Test = () => {
   const {controlTestQuestions} = useContext(Context);
   const inputRefs = useRef([]);
 
+  const [correctAnswers, setCorrectAnswers] = useState({});
   const [activeQuestion, setActiveQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState([]);
-  const [showResult, setShowResult] = useState(true);
+  const [showResult, setShowResult] = useState(false);
   const [result, setResult] = useState([]);
 
   const { q, variant_list, multi_answer, id } =
@@ -34,6 +35,7 @@ const Test = () => {
       });
 
       if (response.code === 0 && response.http_status === 200) {
+        setCorrectAnswers(response.data);
         setShowResult(true);
       } else {
         toast.error(response.mes);
@@ -68,7 +70,7 @@ const Test = () => {
 
   return (
     <div className="quiz-container">
-      <h2>Тренировка навыков управления финансами</h2>
+      {!showResult ? <h2>Тренировка навыков управления финансами</h2> : null}
       {!showResult ? (
         <div className="testingBlock">
           <h3>
@@ -125,8 +127,8 @@ const Test = () => {
           </div>
         </div>
       ) : (
-        <div className="result">
-          <SensorChart />
+        <div className="w-100">
+          <SensorChart isControlTest result={correctAnswers.correct_perc}/>
         </div>
       )}
     </div>
