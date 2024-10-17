@@ -5,16 +5,18 @@ import { Bar } from "react-chartjs-2";
 import { Context } from '../../../Context';
 
 function TestHistory() {
-  const {startTestResults, history} = useContext(Context);
+  const {startTestResults, testHistory} = useContext(Context);
 
-  history && history.forEach(element => {
+  let positiveArr = [startTestResults.num1 * 10];
+  let negativeArr = [100 - startTestResults.num1 * 10];
+  const labels = [["Старт"], ];
+
+
+  testHistory && testHistory.forEach(element => {
     positiveArr.push(element.correct_percent);
     negativeArr.push(100 - element.correct_percent);
     labels.push(element.created_at);
   });
-
-  let positiveArr = [startTestResults.num1 * 10];
-  let negativeArr = [100 - startTestResults.num1 * 10];
 
   let mobile = true;
   let mobileFont = 16;
@@ -77,7 +79,6 @@ function TestHistory() {
       },
     },
   };
-  const labels = [["Старт"], ];
   const data = {
     datasets: [
       {
