@@ -29,10 +29,10 @@ export default [
     },
 
     rules: {
-      
+
       // eslint
       "arrow-body-style": ["error", "as-needed"],
-      
+
       "dirs/dirnames": [
         2,
         {
@@ -74,7 +74,7 @@ export default [
           "prev": ["const", "let"],
         }
       ],
-      
+
       // react
       "react/display-name": "off",
       "react/jsx-boolean-value": ["error", "never"],
@@ -117,7 +117,6 @@ export default [
               "^(src/api)(\\/.*|$)",
               "^(src/hooks)(\\/.*|$)",
               "^(src/store)(\\/.*|$)",
-              "^(src/helpers)(\\/.*|$)",
               "^(src/types)(\\/.*|$)",
               "^(src/constants)(\\/.*|$)"
             ],

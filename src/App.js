@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useMemo, useState } from 'react';
 
 import toast, {Toaster} from 'react-hot-toast';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
@@ -60,8 +60,8 @@ function App() {
   const [isStartTestingHave, setIsStartTestingHave] = useState(false);
   const [startTestResults, setStartTestResults] = useState({num1: null, num2: null, num3: null});
   const [controlTestQuestions, setControlTestQuestions] = useState([]);
-  const [testHistory, setTestHistory] = useState([]);
   const [showStartModal, setShowStartModal] = useState(localStorage.getItem('showStartModal') !== 'false');
+
 
   const getFirstTestsResult = async () => {
     let data = {
@@ -80,22 +80,6 @@ function App() {
     }
   };
 
-  const getTestingHistory = async () => {
-    let data = {
-      token: localStorage.getItem('token'),
-    };
-
-    const response = await apiRequest({
-      headers: data,
-      url: '/quiz/history',
-    });
-
-    if (response.code === 0 && response.http_status === 200) {
-      setTestHistory(response.data);
-    } else {
-      toast.error(response.mes);
-    }
-  };
 
   const getTestQuestions= async () => {
 
@@ -129,7 +113,6 @@ function App() {
     if (token){
       getFirstTestsResult();
       getTestQuestions();
-      getTestingHistory();
     } else {
       navigate('/SignUp');
     }
@@ -142,11 +125,9 @@ function App() {
         isStartTestingHave,
         setShowStartModal,
         setStartTestResults,
-        setTestHistory,
         setUserInfo,
         showStartModal,
         startTestResults,
-        testHistory,
         userInfo,
       }}>
         <Wrapper>

@@ -1,11 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { Bar } from "react-chartjs-2";
 
 import { Context } from '../../../Context';
+import { apiRequest } from '../../../api';
+import toast from 'react-hot-toast';
 
 function TestHistory() {
-  const {startTestResults, testHistory} = useContext(Context);
+  const {startTestResults} = useContext(Context);
+
+  const [testHistory, setTestHistory] = useState([]);
+
 
   let positiveArr = [startTestResults.num1 * 10];
   let negativeArr = [100 - startTestResults.num1 * 10];
@@ -94,6 +99,27 @@ function TestHistory() {
     ],
     labels,
   };
+
+  const getTestingHistory = async () => {
+    let data = {
+      token: localStorage.getItem('token'),
+    };
+
+    const response = await apiRequest({
+      headers: data,
+      url: '/quiz/history',
+    });
+
+    if (response.code === 0 && response.http_status === 200) {
+      setTestHistory(response.data);
+    } else {
+      toast.error(response.mes);
+    }
+  };
+
+  useEffect(() => {
+    getTestingHistory()
+  },[]);
 
   return (
     <div className="analysisBarChartBlock bigChart">
