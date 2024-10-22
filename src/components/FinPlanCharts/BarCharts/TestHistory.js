@@ -1,21 +1,19 @@
 import React, { useContext, useEffect, useState } from 'react';
 
 import { Bar } from "react-chartjs-2";
-
-import { Context } from '../../../Context';
-import { apiRequest } from '../../../api';
 import toast from 'react-hot-toast';
+
+import { apiRequest } from '../../../api';
+import { Context } from '../../../Context';
 
 function TestHistory() {
   const {startTestResults} = useContext(Context);
 
   const [testHistory, setTestHistory] = useState([]);
 
-
   let positiveArr = [startTestResults.num1 * 10];
   let negativeArr = [100 - startTestResults.num1 * 10];
   const labels = [["Старт"], ];
-
 
   testHistory && testHistory.forEach(element => {
     positiveArr.push(element.correct_percent);
@@ -118,7 +116,7 @@ function TestHistory() {
   };
 
   useEffect(() => {
-    getTestingHistory()
+    getTestingHistory();
   },[]);
 
   return (

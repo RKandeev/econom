@@ -42,7 +42,7 @@ const Test = () => {
         toast.error(response.mes);
       }
     } else {
-      setResult(prev => [...prev, {a: selectedAnswer, q_id: id}]);
+      setResult(prev => [...prev, {a: selectedAnswer.map(item => Number(item) + 1), q_id: id}]);
       setActiveQuestion(prev => prev + 1);
       setSelectedAnswer([]);
     }
@@ -74,9 +74,21 @@ const Test = () => {
       {!showResult ? <h2>Тренировка навыков управления финансами</h2> : null}
       {!showResult ? (
         <div className="testingBlock">
-          <h3>
-            {activeNum}. {q}
-          </h3>
+          <div className="progress-counter">
+            <span className="active-question-no">{activeQuestion + 1}</span>
+            <span className="total-question">
+              &nbsp;из&nbsp;{controlTestQuestions.length}
+            </span>
+          </div>
+          <div className="progress-bar" id="progress-bar">
+            <div
+              id="progressBarFull"
+              style={{
+                width: dynamicWidth,
+              }}
+            ></div>
+          </div>
+          <h3 dangerouslySetInnerHTML={{ __html: q}}></h3>
           <form className="answers_block">
             {variant_list && variant_list.map((answer, index) => (
               <div key={index} className="form_check">
@@ -111,20 +123,6 @@ const Test = () => {
             >
               {activeQuestion === controlTestQuestions.length - 1 ? 'Завершить' : 'Дальше'}
             </button>
-          </div>
-          <div className="progress-bar" id="progress-bar">
-            <div
-              id="progressBarFull"
-              style={{
-                width: dynamicWidth,
-              }}
-            ></div>
-          </div>
-          <div className="progress-counter">
-            <span className="active-question-no">{activeQuestion + 1}</span>
-            <span className="total-question">
-              &nbsp;из&nbsp;{controlTestQuestions.length}
-            </span>
           </div>
         </div>
       ) : (

@@ -32,7 +32,7 @@ function Header() {
         <div className={styles.profileLinks}>
           <Link className={styles.profileNav} href="/#"></Link>
           <Link className={styles.profileNav} to="/">
-            {userInfo && userInfo.email}
+            {userInfo && userInfo.name}
           </Link>
           <button className={`${styles.profileNav} ${styles.logout}`} onClick={logoutHandler}>
             <img alt="логотип" src={icon__logout} />

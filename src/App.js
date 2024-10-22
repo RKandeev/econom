@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useMemo, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 
 import toast, {Toaster} from 'react-hot-toast';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
@@ -58,10 +58,12 @@ function App() {
     name: localStorage.getItem('userName')? localStorage.getItem('userName'): '',
   });
   const [isStartTestingHave, setIsStartTestingHave] = useState(false);
+  const [activeStarttestTabIndex, setActiveStarttestTabIndex] = useState(0);
   const [startTestResults, setStartTestResults] = useState({num1: null, num2: null, num3: null});
   const [controlTestQuestions, setControlTestQuestions] = useState([]);
   const [showStartModal, setShowStartModal] = useState(localStorage.getItem('showStartModal') !== 'false');
-
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const getFirstTestsResult = async () => {
     let data = {
@@ -80,7 +82,6 @@ function App() {
     }
   };
 
-
   const getTestQuestions= async () => {
 
     const response = await apiRequest({
@@ -95,8 +96,6 @@ function App() {
     }
   };
 
-  const navigate = useNavigate();
-
   const Wrapper = ({ children }) => {
     const location = useLocation();
 
@@ -107,22 +106,40 @@ function App() {
     return children;
   };
 
-  useEffect (() => {
+  const pageInit = () => {
     const token = localStorage.getItem('token');
 
     if (token){
       getFirstTestsResult();
       getTestQuestions();
     } else {
-      navigate('/SignUp');
+      if (location.pathname !== '/index.html' || location.pathname !== '/check.html') {
+        navigate('/SignUp');  
+      }
     }
+  };
+
+  useEffect (() => {
+    pageInit();
   }, []);
+
+  useEffect (() => {
+    pageInit();
+  }, [userInfo]);
+
+  window.addEventListener('popstate', () => {
+    if (!localStorage.getItem('token')) {
+      navigate('/SignIn');
+    }
+  });
 
   return (
     <>
   `   <Context.Provider value={{
+        activeStarttestTabIndex,
         controlTestQuestions,
         isStartTestingHave,
+        setActiveStarttestTabIndex,
         setShowStartModal,
         setStartTestResults,
         setUserInfo,

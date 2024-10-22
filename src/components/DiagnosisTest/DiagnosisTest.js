@@ -143,7 +143,7 @@ const questions = [
     correct_answer1: [4],
     correct_answer2: [5],
     half: [3],
-    input_type: 'checkbox',
+    input_type: 'radio',
     question: 'Если взять за 100% общую сумму принадлежащих Вам активов (недвижимость, автомобили, деньги, вклады, ценные бумаги и пр.), какая доля приходится на финансовые активы (деньги, вклады, ценные бумаги):',
   },
   {
@@ -259,7 +259,7 @@ const questions = [
     correct_answer1: [2],
     correct_answer2: [3],
     half: [4],
-    input_type: 'checkbox',
+    input_type: 'radio',
     question: 'Какая часть Ваших ежемесячных доходов уходит на платежи по кредитам:',
   },
   {
@@ -290,7 +290,7 @@ const questions = [
   }
 ];
 
-function DiagnosisTest() {
+function DiagnosisTest({setActiveStarttestTabIndex}) {
   const {setStartTestResults } = useContext(Context);
 
   const inputRefs = useRef([]);
@@ -326,6 +326,7 @@ function DiagnosisTest() {
 
       if (response.code === 0 && response.http_status === 200) {
         setStartTestResults((prev) => ({...prev, num2: firstResult, num3: secondResult}));
+        setActiveStarttestTabIndex();
       } else {
         toast.error(response.mes);
       }
@@ -375,18 +376,29 @@ function DiagnosisTest() {
 
   return (
     <div className="quiz-container">
-      <h3>Диагностика финансовой эффективности</h3>
       <div className="testingBlock">
-        <h3>
-          {activeNum}. {question}
-        </h3>
+        <div className="progress-counter">
+          <span className="active-question-no">{activeQuestion + 1}</span>
+          <span className="total-question">
+            &nbsp;из&nbsp;{questions.length}
+          </span>
+        </div>
+        <div className="progress-bar" id="progress-bar">
+          <div
+            id="progressBarFull"
+            style={{
+              width: dynamicWidth,
+            }}
+          ></div>
+        </div>
+        <h3 dangerouslySetInnerHTML={{ __html: question }}></h3>
         <form className="answers_block">
           {answers.map((answer, index) => (
             <div key={index} className="form_check">
               <input
                 key={answer.id}
                 ref={el => inputRefs.current[index] = el}
-                className= "firstTestForm"
+                className="firstTestForm"
                 id={'inputDefault' + index}
                 name='inputDefault'
                 type={input_type}
@@ -413,20 +425,6 @@ function DiagnosisTest() {
           >
             {activeQuestion === questions.length - 1 ? 'Завершить' : 'Дальше'}
           </button>
-        </div>
-        <div className="progress-bar" id="progress-bar">
-          <div
-            id="progressBarFull"
-            style={{
-              width: dynamicWidth,
-            }}
-          ></div>
-        </div>
-        <div className="progress-counter">
-          <span className="active-question-no">{activeQuestion + 1}</span>
-          <span className="total-question">
-            &nbsp;из&nbsp;{questions.length}
-          </span>
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 
@@ -11,11 +11,11 @@ import SensorChart from '../SensorChart/SensorChart';
 import './TestResultTabs.scss';
 
 function TestResultTabs() {
-  const {startTestResults, isStartTestingHave} = useContext(Context);
-
+  const {startTestResults, isStartTestingHave, activeStarttestTabIndex, setActiveStarttestTabIndex} = useContext(Context);
+ 
   return (
     <>
-      <Tabs className="react-tabs firstTestsTabs tabsInIndex">
+      <Tabs className="react-tabs firstTestsTabs tabsInIndex" selectedIndex={activeStarttestTabIndex} onSelect={(index) => setActiveStarttestTabIndex(index)}>
         <TabList className="react-tabs__tab-list firstTestsTabList">
           <h4>Тесты:</h4>
           <Tab>
@@ -53,9 +53,9 @@ function TestResultTabs() {
         <TabPanel className="myResultsChartBlock">
           {
             isStartTestingHave? startTestResults.num1 ?
-              <SensorChart result={startTestResults.num1} />
+              <SensorChart result={startTestResults.num1}/>
               :
-              <EstimateTest className="w-80"/>
+              <EstimateTest className="w-80" setActiveStarttestTabIndex={()=> setActiveStarttestTabIndex(0)}/>
               : null
           }
         </TabPanel>
@@ -64,7 +64,7 @@ function TestResultTabs() {
             (startTestResults.num2 && startTestResults.num3) ?
               <Matrix result = {{num2: startTestResults.num2, num3: startTestResults.num3}}/>
               :
-              <DiagnosisTest/>
+              <DiagnosisTest setActiveStarttestTabIndex={()=> setActiveStarttestTabIndex(1)}/>
           }
         </TabPanel>
       </Tabs>

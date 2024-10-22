@@ -84,7 +84,7 @@ function SignIn() {
       <OpenHeader />
       <section className={styles.log_form_sect}>
         <div className={styles.log_form_block}>
-          <h2>Авторизация</h2>
+          <h2>Вход</h2>
           <h3>
             Нет аккаунта? <Link to="/SignUp">Зарегистрироваться</Link>
           </h3>
@@ -120,7 +120,7 @@ function SignIn() {
                 Забыли пароль?
               </Link>
               <input type="submit" value="Войти" />
-              <p>Нажимая кнопку, соглашаюсь с условиями обработки данных</p>
+              <p style={{opacity: '0', pointerEvents: 'none'}}>Нажимая кнопку, соглашаюсь с условиями обработки данных</p>
             </form>
           </div>
         </div>

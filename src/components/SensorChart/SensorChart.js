@@ -42,7 +42,7 @@ function SensorChart({ result , isControlTest}) {
 
     series: [
       {
-        data: [Math.min(30, Math.max(parseInt(result_percent), -30))],
+        data: [Math.min(100, Math.max(parseInt(result_percent), -100))],
         dataLabels: {
           borderWidth: 0,
           color:
@@ -141,12 +141,16 @@ function SensorChart({ result , isControlTest}) {
       <div className='sensorChart'>
         <HighchartsReact highcharts={Highcharts} options={options} />
       </div>
-      <div className='full_study'>
-        Для улучшения своего уровня Вы можете пройти
-        <Link className='fullStudyLink' to='/Study'>
-          {'  '}Обучение
-        </Link>
-      </div>
+      {
+        !isControlTest && (
+          <div className='full_study'>
+            Для улучшения своего уровня Вы можете пройти
+            <Link className='fullStudyLink' to='/Study'>
+              {'  '}Обучение
+            </Link>
+          </div>
+        )
+      }
     </div>
   );
 }

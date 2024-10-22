@@ -58,9 +58,9 @@
 #progress-bar, #secondTest-progress-bar {
   height: 5rem;
   background-color: #C9C9C9;
-  margin-top: 55rem;
+  margin-top: 6rem;
   @media (max-width: 480px) {
-    margin-top: 20rem;
+    margin-top: 4rem;
   }
 }
 #progressBarFull, #secondTest-progressBarFull {
@@ -96,7 +96,7 @@
     h3{
       font-size: 24rem;
       text-transform: none;
-      margin-top: 0;
+      margin-top: 30rem;
       margin-bottom: 30rem;
       font-weight: 400;
       @media (max-width: 480px) {
@@ -158,3 +158,5 @@
 .w-100 {
   width: 100%;
 }
+
+

@@ -49,7 +49,7 @@ const questions = [
   },
   {
     answers: [
-      { answer: "суммы и ставку кредита", id: 1 },
+      { answer: "сумму и ставку кредита", id: 1 },
       { answer: "величину ежемесячного платежа", id: 2 },
       { answer: "доходность инвестиций", id: 3 },
       { answer: "инфляцию", id: 4 },
@@ -93,9 +93,9 @@ const questions = [
     correct_answer: [2],
     input_type: "radio",
     question: "У Вас есть 1 млн. руб., и Вам нужно решать «жилищный вопрос». Вы можете выбрать один из двух вариантов:" +
-        "Вариант 1: Внести его как первоначальный взнос, купить квартиру за 6 млн. руб. в ипотеку на 20 лет со ставкой 10% и страховкой кредита 1% в год." +
-        "Вариант 2: Арендовать эту квартиру за 20 тыс. руб. в месяц, а имеющийся 1 млн. руб. вложить под 10% годовых." +
-        "Какой вариант является более выгодным, если ежегодный рост стоимости покупаемой квартиры равен росту арендной платы и годовой инфляции и составляет 6%?"
+        "<br/> <br/> &emsp; <i>Вариант</i> 1: Внести его как первоначальный взнос, купить квартиру за 6 млн. руб. в ипотеку на 20 лет со ставкой 10% и страховкой кредита 1% в год." +
+        "<br/> &emsp; <i>Вариант</i> 2: Арендовать эту квартиру за 20 тыс. руб. в месяц, а имеющийся 1 млн. руб. вложить под 10% годовых." +
+        "<br/> <br/> Какой вариант является более выгодным, если ежегодный рост стоимости покупаемой квартиры равен росту арендной платы и годовой инфляции и составляет 6%?"
   },
   {
     answers: [
@@ -146,7 +146,7 @@ const questions = [
     ],
     correct_answer: [1],
     input_type: "radio",
-    question: "У Вас есть кредит на сумму 500 тыс. руб. по ставке 19% годовых, взятый 2 года назад на срок 3,5 года, платежи по кредиту вносились строго по графику. Сегодня Вам предложили "+
+    question: "У Вас есть кредит на сумму 500 тыс. руб. по ставке 19% годовых, взятый 2 года назад на срок 3,5 года, платежи по кредиту вносились строго по графику. <br/>Сегодня Вам предложили "+
       "рефинансирование этого кредита с новыми условиями – ставкой 9% годовых и сроком 3 года, с разовой уплатой страховки в 7 тыс. руб.<br>" +
         "Что для Вас было бы выгоднее?",
   },
@@ -180,7 +180,7 @@ const questions = [
     correct_answer: [6],
     input_type: "radio",
     question: "Вы планируете покупку автомобиля за 1 600 тыс. руб., сделав первоначальный взнос в 500 тыс. руб. и взяв оставшуюся сумму в кредит под 14% годовых на 5 лет с" +
-    "обязательством ежегодного страхования автомобиля (за 5% от остатка долга по кредиту). Вы знаете, что владение автомобилем также потребует ежемесячных расходов на его содержание в" +
+    "обязательством ежегодного страхования автомобиля (за 5% от остатка долга по кредиту). <br/>Вы знаете, что владение автомобилем также потребует ежемесячных расходов на его содержание в" +
     "сумме 12 тыс. руб. и ежегодных расходов 45 тыс. руб. (транспортный налог, ОСАГО, тех. обслуживание). При этом сейчас Ваши ежемесячные расходы на транспорт составляют 15 тыс. руб.<br><br>" +
         "В то же время, Вы предполагаете, что даже с учетом износа, Ваш автомобиль будет расти в цене на 10% в год, поскольку это востребованная марка.<br><br>" +
         "Оцените свои финансовые последствия от покупки автомобиля, если принять во внимание, что Вы можете получать инвестиционный доход со своих средств в 10% годовых, а годовая" +
@@ -188,7 +188,7 @@ const questions = [
   },
 ];
 
-function EstimateTest() {
+function EstimateTest({setActiveStarttestTabIndex}) {
   const {setStartTestResults } = useContext(Context);
   const inputRefs = useRef([]);
 
@@ -218,6 +218,7 @@ function EstimateTest() {
 
       if (response.code === 0 && response.http_status === 200) {
         setStartTestResults((prev) => ({...prev, num1: result}));
+        setActiveStarttestTabIndex();
       } else {
         toast.error(response.mes);
       }
@@ -256,18 +257,29 @@ function EstimateTest() {
 
   return (
     <div className="quiz-container">
-      <h3>Оценка навыков управления финансами</h3>
       <div className="testingBlock">
-        <h3>
-          {activeNum}. {question}
-        </h3>
+        <div className="progress-counter">
+          <span className="active-question-no">{activeQuestion + 1}</span>
+          <span className="total-question">
+            &nbsp;из&nbsp;{questions.length}
+          </span>
+        </div>
+        <div className="progress-bar" id="progress-bar">
+          <div
+            id="progressBarFull"
+            style={{
+              width: dynamicWidth,
+            }}
+          ></div>
+        </div>
+        <h3 className="mt-4rem" dangerouslySetInnerHTML={{ __html: question }}></h3>
         <form className="answers_block">
           {answers.map((answer, index) => (
             <div key={index} className="form_check">
               <input
                 key={answer.id}
                 ref={el => inputRefs.current[index] = el}
-                className= "firstTestForm"
+                className="firstTestForm"
                 id={'inputDefault' + index}
                 name='inputDefault'
                 type={input_type}
@@ -294,20 +306,6 @@ function EstimateTest() {
           >
             {activeQuestion === questions.length - 1 ? 'Завершить' : 'Дальше'}
           </button>
-        </div>
-        <div className="progress-bar" id="progress-bar">
-          <div
-            id="progressBarFull"
-            style={{
-              width: dynamicWidth,
-            }}
-          ></div>
-        </div>
-        <div className="progress-counter">
-          <span className="active-question-no">{activeQuestion + 1}</span>
-          <span className="total-question">
-            &nbsp;из&nbsp;{questions.length}
-          </span>
         </div>
       </div>
     </div>
