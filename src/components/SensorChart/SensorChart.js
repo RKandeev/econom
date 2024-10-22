@@ -8,13 +8,13 @@ import { Link } from 'react-router-dom';
 import './SensorChart.scss';
 HighchartsMore(Highcharts);
 
-function SensorChart({ result , isControlTest}) {
+function SensorChart({ result, isControlTest }) {
   let thick = 40;
   let yFont = '18rem';
   let tickPixelInter = 72;
   let chartCenter = '50%';
 
-  let result_percent = isControlTest && isControlTest? result : result *10;
+  let result_percent = isControlTest && isControlTest ? result : result * 10;
 
   if (window.outerWidth < 450) {
     thick = 20;
@@ -42,7 +42,7 @@ function SensorChart({ result , isControlTest}) {
 
     series: [
       {
-        data: [Math.min(30, Math.max(parseInt(result_percent), -30))],
+        data: [Math.min(100, Math.max(parseInt(result_percent), -30))],
         dataLabels: {
           borderWidth: 0,
           color:

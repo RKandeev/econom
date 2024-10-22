@@ -1,4 +1,5 @@
 .MyResultsBody{
+  min-width: 80%;
   padding-right: 40rem;
   @media (max-width: 480px) {
     padding-right: 0;
@@ -17,6 +18,9 @@
   font-weight: 700;
   text-transform: uppercase;
   flex-grow: 1;
+  :nth-child(2){
+
+  }
   h2{
     font-size: 20rem;
   }
