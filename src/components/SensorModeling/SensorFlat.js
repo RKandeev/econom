@@ -58,13 +58,13 @@ function SensorFlat(props) {
       size: '100%',
       startAngle: -90,
     },
-    
+
     plotOptions: {
       series: {
         animation: false,
       },
     },
-    
+
     series: [
       {
         data: [
@@ -125,14 +125,13 @@ function SensorFlat(props) {
         },
       },
     ],
-    
+
     title: {
       text: null,
     },
     // the value axis
     yAxis: {
       labels: {
-        
         distance: 30,
         // enabled: false,
         formatter: function () {
@@ -181,11 +180,11 @@ function SensorFlat(props) {
   };
 
   return (
-    <div className="sensorChartBlockHome">
-      <h3 className="chartTitle">
+    <div className='sensorChartBlockHome'>
+      <h3 className='chartTitle'>
         Разница выгод рассматриваемых сценариев (в %)
       </h3>
-      <div className="sensorChart">
+      <div className='sensorChart'>
         <HighchartsReact highcharts={Highcharts} options={options} />
       </div>
       <div className={ser3 < 0 ? 'differenceNumber' : 'differenceNumberleft'}>
@@ -199,7 +198,7 @@ function SensorFlat(props) {
         />
         &#8381;
       </div>
-      <div className="bottomLegends flatLegends">
+      <div className='bottomLegends flatLegends'>
         <div className={ser3 >= 0 ? 'leftLegend' : 'leftLegend green'}>
           Инвестирование в квартиру
         </div>

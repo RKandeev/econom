@@ -29,6 +29,11 @@
   .fullStudyLink{
     color: #3156a6;
   }
+  @media (max-width: 480px) {
+    left: 0;
+    bottom: 0;
+    font-size: 16rem;
+  }
 }
 .chartTitle{
   font-size: 21rem;
