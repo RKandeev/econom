@@ -71,7 +71,6 @@ const Test = () => {
 
   return (
     <div className="quiz-container">
-      {!showResult ? <h2>Тренировка навыков управления финансами</h2> : null}
       {!showResult ? (
         <div className="testingBlock">
           <div className="progress-counter">
