@@ -13,12 +13,22 @@ function TestHistory() {
 
   let positiveArr = [startTestResults.num1 * 10];
   let negativeArr = [100 - startTestResults.num1 * 10];
-  const labels = [["Старт"], ];
+  let labels = [["Старт"], ];
 
   testHistory && testHistory.forEach(element => {
     positiveArr.push(element.correct_percent);
     negativeArr.push(100 - element.correct_percent);
     labels.push(element.created_at);
+
+    positiveArr = positiveArr.slice(-6);
+    negativeArr = negativeArr.slice(-6);
+    labels = labels.slice(-6);
+
+    if (window.innerWidth < 480) {
+      positiveArr = positiveArr.slice(-4);
+      negativeArr = negativeArr.slice(-4);
+      labels = labels.slice(-4);
+    }
   });
 
   let mobile = true;
