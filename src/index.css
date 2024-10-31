@@ -28,3 +28,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+.error_message {
+  font-size: 12px;
+  margin-top: -14px;
+  text-align: start;
+  color: #EE2B49;
+  padding-left: 4px;
+}

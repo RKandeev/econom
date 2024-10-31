@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 
@@ -10,8 +10,14 @@ import Tolt from '../Tolt/Tolt';
 import help from '../../img/icon/icon__help.svg';
 
 import styles from './CreditBlockAim.module.scss';
+import { useForm } from 'react-hook-form';
+
+import {Select, MenuItem} from '@mui/material'
 
 function CreditBlockAim(props) {
+  const calcBtnRef = useRef(null);
+  const saveBtnRef = useRef(null);
+
   const [addModalActive, SetAddModalActive] = useState(false);
   const [oldCredits, setOldCredits] = useState([
     {
@@ -22,71 +28,53 @@ function CreditBlockAim(props) {
       period: 60,
       rate: 16,
       sum: 300000,
+      duration: 0,
     },
   ]);
   let chartsNames = ['Экономический эффект', 'Факторный анализ'];
 
+  const {
+    register,
+    handleSubmit,
+    watch,
+    setError,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      start_dt: '2021-04-01',
+      sum_add_dt: '2021-04-01',
+      ins_type: '0',
+      duration: '0',
+      insurance_award: 1.0,
+      name: '',
+      calcName: '',
+      period: 0,
+      rate: 0,
+      invest_rate: 0,
+      inflation_rate: 0,
+      sum: 0,
+      sum_add: 0,
+    },
+    mode: 'all',
+  });
+
   if (window.outerWidth < 450) {
     chartsNames = ['1', '2'];
   }
-  function setOldCredit(k, param, value) {
-    let credits = [...oldCredits];
 
-    credits[k][param] = value;
-    setOldCredits(credits);
-  }
-  const [newCredits, setNewCredits] = useState({
-    date: '2023-06-01',
-    discont: 7,
-    ins_type: '0',
-    insurance: 1,
-    period: 24,
-    rate: 12.0,
-  });
+  const values = watch();
 
-  function setNewCredit(param, value) {
-    let credits = { ...newCredits };
+  const isFormFilled = () => {
+    return Object.values(values).every(value => value);
+  };
 
-    credits[param] = value;
-    setNewCredits(credits);
-    console.log(credits);
-  }
+  const onSubmit = () => {
 
-  const [calcName, setCalcName] = useState('');
-
-  function setCreditCount(cnt) {
-    let cr = [...oldCredits];
-
-    if (cr.length > cnt) {
-      const max = cr.length - cnt;
-
-      for (let i = 0; i < max; i++) {
-        cr.pop();
-      }
-
-      setOldCredits(cr);
-    } else if (cr.length < cnt) {
-      const max = cnt - cr.length;
-
-      for (let i = 0; i < max; i++) {
-        cr.push({
-          date: '2023-04-01',
-          ins_type: '0',
-          insurance: 0.0,
-          name: '',
-          period: 12,
-          rate: 0,
-          sum: 0,
-        });
-      }
-
-      setOldCredits(cr);
-    }
   }
 
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <div>
             <h5 className={styles.formTitle}>Название расчёта</h5>
@@ -94,9 +82,13 @@ function CreditBlockAim(props) {
               <input
                 placeholder='Введите название'
                 type='text'
-                value={calcName}
-                onChange={(e) => setCalcName(e.target.value)}
+                {
+                  ...register('calcName', {
+                    required: 'Введите название расчёта',
+                  })
+                }
               />
+              {errors.calcName && <span className='error_message'>{errors.calcName.message}</span>}
             </div>
           </div>
         </div>
@@ -106,7 +98,7 @@ function CreditBlockAim(props) {
         </h4>
         <div className={styles.creditsBlocks}>
           {oldCredits.map((el, k) => (
-            <div className={styles.creditBlock}>
+            <div className={styles.creditBlock} >
               <div className={styles.creditTitleBlock}>
                 <div className={styles.creditTitle}>Кредит</div>
               </div>
@@ -115,54 +107,72 @@ function CreditBlockAim(props) {
                 <input
                   placeholder='Введите название'
                   type='text'
-                  value={el.name}
-                  onChange={(e) => setOldCredit(k, 'name', e.target.value)}
+                  {
+                    ...register('name', {
+                      required: 'Введите название кредита'
+                    })
+                  }
                 />
               </div>
               <h5 className={styles.formTitle}>Дата получения кредита</h5>
               <div className={styles.editValueForm}>
                 <input
                   type='date'
-                  value={el.date}
-                  onChange={(e) => setOldCredit(k, 'date', e.target.value)}
+                  {
+                    ...register('start_dt', {
+                      required: 'Введите дату получения кредита'
+                    })
+                  }
                 />
               </div>
               <h5 className={styles.formTitle}>Срок кредита (в месяцах)</h5>
               <div className={styles.editValueForm}>
                 <input
                   type='number'
-                  value={el.period}
-                  onChange={(e) => setOldCredit(k, 'period', e.target.value)}
+                  {
+                    ...register('period', {
+                        required: 'Введите срок кредита'
+                    })
+                  }
                 />
               </div>
               <h5 className={styles.formTitle}>Ставка (%)</h5>
               <div className={styles.editValueForm}>
                 <input
                   type='number'
-                  value={el.rate}
-                  onChange={(e) => setOldCredit(k, 'rate', e.target.value)}
+                  {
+                    ...register('rate', {
+                      required: 'Введите ставку кредита'
+                    })
+                  }
                 />
               </div>
               <h5 className={styles.formTitle}>Сумма (₽)</h5>
               <div className={styles.editValueForm}>
                 <input
                   type='number'
-                  value={el.sum}
-                  onChange={(e) => setOldCredit(k, 'sum', e.target.value)}
+                  {
+                    ...register('sum', {
+                      required: 'Введите сумму кредита'
+                    })
+                  }
                 />
               </div>
               <h5 className={styles.formTitle}>
                 Предстоящие расходы на страхование
               </h5>
               <div className={styles.editValueForm}>
-                <select
+                <Select
                   className={styles.creditSelect}
-                  value={el.ins_type}
-                  onChange={(e) => setOldCredit(k, 'ins_type', e.target.value)}
+                  {
+                    ...register('duration', {
+                      required: 'Введите сумму кредита'
+                    })
+                  }
                 >
-                  <option value='0'>Eжегодно</option>
-                  <option value='1'>Не предусмотрены</option>
-                </select>
+                  <MenuItem  value='0'>Eжегодно</MenuItem>
+                  <MenuItem  value='1'>Не предусмотрены</MenuItem>
+                </Select>
               </div>
               {el.ins_type === '0' && (
                 <>
@@ -170,9 +180,10 @@ function CreditBlockAim(props) {
                   <div className={styles.editValueForm}>
                     <input
                       type='number'
-                      value={el.insurance}
-                      onChange={(e) =>
-                        setOldCredit(k, 'insurance', e.target.value)
+                      {
+                        ...register('insurance', {
+                          required: 'Введите страховую премию'
+                        })
                       }
                     />
                   </div>
@@ -192,16 +203,22 @@ function CreditBlockAim(props) {
               <div className={styles.editValueForm}>
                 <input
                   type='date'
-                  value={newCredits.date}
-                  onChange={(e) => setNewCredit('date', e.target.value)}
+                  {
+                    ...register('sum_add_dt', {
+                      required: 'Дата погашения кредита'
+                    })
+                  }
                 />
               </div>
               <h5 className={styles.formTitle}>Сумма погашения (₽)</h5>
               <div className={styles.editValueForm}>
                 <input
                   type='number'
-                  value={newCredits.period}
-                  onChange={(e) => setNewCredit('period', e.target.value)}
+                  {
+                    ...register('sum_add', {
+                      required: 'Сумма погашения кредита'
+                    })
+                  }
                 />
               </div>
             </div>
@@ -219,8 +236,11 @@ function CreditBlockAim(props) {
               <div className={styles.editValueForm}>
                 <input
                   type='number'
-                  value={newCredits.discont}
-                  onChange={(e) => setNewCredit('discont', e.target.value)}
+                  {
+                    ...register('invest_rate', {
+                      required: 'Введите доходность возможных вложений'
+                    })
+                  }
                 />
               </div>
               <h5 className={styles.formTitle}>
@@ -232,8 +252,11 @@ function CreditBlockAim(props) {
               <div className={styles.editValueForm}>
                 <input
                   type='number'
-                  value={newCredits.discont}
-                  onChange={(e) => setNewCredit('discont', e.target.value)}
+                  {
+                    ...register('inflation_rate', {
+                      required: 'Введите инфляцию'
+                    })
+                  }
                 />
               </div>
             </div>
@@ -242,6 +265,8 @@ function CreditBlockAim(props) {
         <div className={styles.bottomBtns}>
           <div className={styles.submitBtnBlock}>
             <button
+              ref={calcBtnRef}
+              disabled = {!isFormFilled()}
               className={styles.submitBtn}
               type='button'
               onClick={() => {
@@ -252,7 +277,11 @@ function CreditBlockAim(props) {
             </button>
           </div>
           <div className={styles.submitBtnBlock}>
-            <button className={styles.submitBtn} type='button'>
+            <button
+              ref={saveBtnRef}
+              disabled
+              className={styles.submitBtn}
+              type='button' >
               Сохранить
             </button>
           </div>

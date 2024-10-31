@@ -144,10 +144,12 @@ h5.formTitle{
     margin-bottom: 12rem;
     text-transform: uppercase;
     //я навесил на hover те стили которые должны быть у кнопок при неактивном состоянии
-    &:hover{
+
+    &:disabled {
       background-color: #ABB0C3;
       cursor: initial;
     }
+
     @media (max-width: 480px) {
       margin: 16rem 0;
     }
