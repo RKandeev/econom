@@ -35,27 +35,27 @@ function OpenHeader() {
           <label className="burger" htmlFor="burger_checkbox"></label>
           <ul className="menu_list">
             <li>
-              <a className="menu_item" href="./index.html">
+              <a className="menu_item" href="/index.html">
                 О проекте
               </a>
             </li>
             <li>
-              <a className="menu_item " href="./check.html">
+              <a className="menu_item " href="/check.html">
                 Проверь себя
               </a>
             </li>
             <li>
-              <a className="menu_item" href="./sign-up.html">
+              <a className="menu_item" href="/sign-up.html">
                 Личный кабинет
               </a>
             </li>
           </ul>
         </div>
         <nav className="desktop">
-          <a className="nav-link active" href="./index.html">
+          <a className="nav-link active" href="/index.html">
             О проекте
           </a>
-          <a className="nav-link " href="./check.html">
+          <a className="nav-link " href="/check.html">
             Проверь себя
           </a>
           <a className="nav-link link-personal cursor_pointer" onClick={authHandler}>

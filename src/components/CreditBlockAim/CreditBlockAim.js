@@ -95,7 +95,8 @@ function CreditBlockAim(props) {
     if (response.code === 0 && response.http_status === 200) {
       setCalcResult(response.data);
       SetAddModalActive(true);
-      saveBtnRef.current.disabled = true
+      saveBtnRef.current.disabled = false
+      calcBtnRef.current.disabled = true
     } else {
       Object.entries(response.data).forEach(([key, value]) => {
         setError(`${key}`, { message: value[0], type: 'server' });

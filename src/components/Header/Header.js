@@ -26,8 +26,8 @@ function Header() {
           <img alt="логотип" className={styles.mobile} src={logo} />
         </Link>
         <div className={styles.links}>
-          <Link href="/#">О проекте</Link>
-          <Link href="/#">Проверь себя</Link>
+          <Link href="/index.html">О проекте</Link>
+          <Link href="/check.html">Проверь себя</Link>
         </div>
         <div className={styles.profileLinks}>
           <Link className={styles.profileNav} href="/#"></Link>

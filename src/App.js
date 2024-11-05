@@ -113,9 +113,7 @@ function App() {
       getFirstTestsResult();
       getTestQuestions();
     } else {
-      if (location.pathname !== '/index.html' || location.pathname !== '/check.html') {
         navigate('/SignUp');
-      }
     }
   };
 
