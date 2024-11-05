@@ -5,27 +5,26 @@ import HighchartsReact from 'highcharts-react-official';
 import AnimatedNumbers from 'react-animated-numbers';
 
 import './SensorModeling.scss';
-function SensorAim(props) {
-  const [ser3, setSer3] = useState(7);
+function SensorAim({calcResult}) {
   let chartValue = 0;
 
-  if (ser3 >= 10) {
+  if (calcResult.progit_percent >= 10) {
     chartValue = 10;
-  } else if (ser3 <= -10) {
+  } else if (calcResult.progit_percent <= -10) {
     chartValue = -10;
   } else {
-    chartValue = ser3;
+    chartValue = calcResult.progit_percent;
   }
   let num1 = 0;
   let num2 = 0;
-  let diffNum = 53233;
+  let diffNum = calcResult.profit_rub;
 
-  if (ser3 >= 0) {
+  if (calcResult.progit_percent >= 0) {
     localStorage.setItem('LinesColor', '1');
-    num1 = ser3;
+    num1 = calcResult.progit_percent;
   } else {
     localStorage.setItem('LinesColor', '2');
-    num2 = ser3;
+    num2 = calcResult.progit_percent;
   }
 
   let thick = 40;
@@ -58,13 +57,13 @@ function SensorAim(props) {
       size: '100%',
       startAngle: -90,
     },
-    
+
     plotOptions: {
       series: {
         animation: false,
       },
     },
-    
+
     series: [
       {
         data: [
@@ -77,7 +76,7 @@ function SensorAim(props) {
               Highcharts.defaultOptions.title.style &&
               Highcharts.defaultOptions.title.style.color) ||
             '#333333',
-          format: Math.abs(parseInt(ser3)) + ' %',
+          format: Math.abs(parseInt(calcResult.progit_percent)) + ' %',
           style: {
             fontSize: '20rem',
           },
@@ -99,7 +98,7 @@ function SensorAim(props) {
         },
       },
       {
-        data: [Math.min(0, Math.max(parseInt(ser3), 0))],
+        data: [Math.min(0, Math.max(parseInt(calcResult.progit_percent), 0))],
         dataLabels: {
           borderWidth: 0,
           color:
@@ -107,7 +106,7 @@ function SensorAim(props) {
               Highcharts.defaultOptions.title.style &&
               Highcharts.defaultOptions.title.style.color) ||
             '#333333',
-          format: Math.abs(parseInt(ser3)) + ' %',
+          format: Math.abs(parseInt(calcResult.progit_percent)) + ' %',
           style: {
             fontSize: '20rem',
           },
@@ -125,7 +124,7 @@ function SensorAim(props) {
         },
       },
     ],
-    
+
     title: {
       text: null,
     },
@@ -170,7 +169,7 @@ function SensorAim(props) {
   };
   let sign = '';
 
-  if (ser3 < 0) {
+  if (calcResult.progit_percent < 0) {
     sign = '-';
   } else {
     sign = '+';
@@ -186,7 +185,7 @@ function SensorAim(props) {
       </div>
       <div
         className={
-          ser3 < 0 ? 'differenceNumber diffNumRed' : 'differenceNumberleft '
+          calcResult.progit_percent < 0 ? 'differenceNumber diffNumRed' : 'differenceNumberleft '
         }
       >
         {sign}

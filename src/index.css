@@ -31,6 +31,9 @@ code {
 
 
 .error_message {
+  position: absolute;
+  left: 13rem;
+  bottom: -16rem;
   font-size: 12px;
   margin-top: -14px;
   text-align: start;

@@ -32,8 +32,8 @@ ChartJS.register(
   annotationPlugin
 );
 
-function BarChartAim(props) {
-  const barArr = [98, -108, -10];
+function BarChartAim({calcResult}) {
+  const barArr = [calcResult.credit_expenses_economy, calcResult.missed_income, calcResult.result];
   let myArr = [null, null];
 
   myArr.push(barArr.splice(-1, 1, null).join());

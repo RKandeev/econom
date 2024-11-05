@@ -11,10 +11,12 @@ import help from '../../img/icon/icon__help.svg';
 
 import styles from './CreditBlockAim.module.scss';
 import { useForm } from 'react-hook-form';
+import { apiRequest } from '../../api';
+import toast from 'react-hot-toast';
 
-import {Select, MenuItem} from '@mui/material'
 
 function CreditBlockAim(props) {
+  const [calcResult, setCalcResult] = useState({});
   const calcBtnRef = useRef(null);
   const saveBtnRef = useRef(null);
 
@@ -32,23 +34,27 @@ function CreditBlockAim(props) {
     },
   ]);
   let chartsNames = ['Экономический эффект', 'Факторный анализ'];
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  const currentDate = `${year}-${month}-${day}`;
 
   const {
     register,
     handleSubmit,
     watch,
     setError,
+    reset,
     formState: { errors },
   } = useForm({
     defaultValues: {
-      start_dt: '2021-04-01',
-      sum_add_dt: '2021-04-01',
-      ins_type: '0',
+      start_dt: '',
+      sum_add_dt: '',
       duration: '0',
       insurance_award: 1.0,
-      name: '',
-      calcName: '',
-      period: 0,
+      calc_name: '',
+      credit_name: '',
       rate: 0,
       invest_rate: 0,
       inflation_rate: 0,
@@ -65,11 +71,68 @@ function CreditBlockAim(props) {
   const values = watch();
 
   const isFormFilled = () => {
-    return Object.values(values).every(value => value);
+    return Object.values(values).every(Boolean);
   };
 
-  const onSubmit = () => {
+  const calcBtnHandler = async () => {
+    const formData = new FormData();
 
+    for (const key in values) {
+      if (values.hasOwnProperty(key)) {
+        formData.append(key, values[key]);
+      }
+    }
+    const response = await apiRequest({
+      data: formData,
+      method: 'POST',
+      url: '/fin-model/rationality',
+    });
+    if (!response) {
+      toast.error('Ошибка в ответе сервера. Не удалось прочитать ответ сервера');
+      return
+    }
+
+    if (response.code === 0 && response.http_status === 200) {
+      setCalcResult(response.data);
+      SetAddModalActive(true);
+      saveBtnRef.current.disabled = true
+    } else {
+      Object.entries(response.data).forEach(([key, value]) => {
+        setError(`${key}`, { message: value[0], type: 'server' });
+      });
+      toast.error(response.mes);
+    }
+  }
+
+  const onSubmit = async () => {
+    const saveFormData = new FormData();
+    saveFormData.append('token', localStorage.getItem('token'));
+    for (const key in values) {
+      if (values.hasOwnProperty(key)) {
+        saveFormData.append(key, values[key]);
+      }
+    }
+    const response = await apiRequest({
+      data: saveFormData,
+      method: 'POST',
+      url: '/fin-model/rationality-save',
+    });
+    if (!response) {
+      toast.error('Ошибка в ответе сервера. Не удалось прочитать ответ сервера');
+      return
+    }
+
+    if (response.code === 0 && response.http_status === 200) {
+      calcBtnRef.current.disabled = true
+      saveBtnRef.current.disabled = true
+      reset()
+      toast.success(response.mes)
+    } else {
+      Object.entries(response.data).forEach(([key, value]) => {
+        setError(`${key}`, { message: value[0], type: 'server' });
+      });
+      toast.error(response.mes);
+    }
   }
 
   return (
@@ -83,12 +146,12 @@ function CreditBlockAim(props) {
                 placeholder='Введите название'
                 type='text'
                 {
-                  ...register('calcName', {
+                  ...register('calc_name', {
                     required: 'Введите название расчёта',
                   })
                 }
               />
-              {errors.calcName && <span className='error_message'>{errors.calcName.message}</span>}
+              {errors.calc_name && <span className='error_message'>{errors.calc_name.message}</span>}
             </div>
           </div>
         </div>
@@ -98,7 +161,7 @@ function CreditBlockAim(props) {
         </h4>
         <div className={styles.creditsBlocks}>
           {oldCredits.map((el, k) => (
-            <div className={styles.creditBlock} >
+            <div className={styles.creditBlock} key={k}>
               <div className={styles.creditTitleBlock}>
                 <div className={styles.creditTitle}>Кредит</div>
               </div>
@@ -108,11 +171,12 @@ function CreditBlockAim(props) {
                   placeholder='Введите название'
                   type='text'
                   {
-                    ...register('name', {
+                    ...register('credit_name', {
                       required: 'Введите название кредита'
                     })
                   }
                 />
+                {errors.credit_name && <span className='error_message'>{errors.credit_name.message}</span>}
               </div>
               <h5 className={styles.formTitle}>Дата получения кредита</h5>
               <div className={styles.editValueForm}>
@@ -124,17 +188,19 @@ function CreditBlockAim(props) {
                     })
                   }
                 />
+                {errors.start_dt && <span className='error_message'>{errors.start_dt.message}</span>}
               </div>
               <h5 className={styles.formTitle}>Срок кредита (в месяцах)</h5>
               <div className={styles.editValueForm}>
                 <input
                   type='number'
                   {
-                    ...register('period', {
+                    ...register('duration', {
                         required: 'Введите срок кредита'
                     })
                   }
                 />
+                {errors.duration && <span className='error_message'>{errors.duration.message}</span>}
               </div>
               <h5 className={styles.formTitle}>Ставка (%)</h5>
               <div className={styles.editValueForm}>
@@ -146,6 +212,7 @@ function CreditBlockAim(props) {
                     })
                   }
                 />
+                {errors.rate && <span className='error_message'>{errors.rate.message}</span>}
               </div>
               <h5 className={styles.formTitle}>Сумма (₽)</h5>
               <div className={styles.editValueForm}>
@@ -157,22 +224,7 @@ function CreditBlockAim(props) {
                     })
                   }
                 />
-              </div>
-              <h5 className={styles.formTitle}>
-                Предстоящие расходы на страхование
-              </h5>
-              <div className={styles.editValueForm}>
-                <Select
-                  className={styles.creditSelect}
-                  {
-                    ...register('duration', {
-                      required: 'Введите сумму кредита'
-                    })
-                  }
-                >
-                  <MenuItem  value='0'>Eжегодно</MenuItem>
-                  <MenuItem  value='1'>Не предусмотрены</MenuItem>
-                </Select>
+                {errors.sum && <span className='error_message'>{errors.sum.message}</span>}
               </div>
               {el.ins_type === '0' && (
                 <>
@@ -186,6 +238,7 @@ function CreditBlockAim(props) {
                         })
                       }
                     />
+                    {errors.insurance && <span className='error_message'>{errors.insurance.message}</span>}
                   </div>
                 </>
               )}
@@ -209,6 +262,7 @@ function CreditBlockAim(props) {
                     })
                   }
                 />
+                {errors.sum_add_dt && <span className='error_message'>{errors.sum_add_dt.message}</span>}
               </div>
               <h5 className={styles.formTitle}>Сумма погашения (₽)</h5>
               <div className={styles.editValueForm}>
@@ -216,10 +270,11 @@ function CreditBlockAim(props) {
                   type='number'
                   {
                     ...register('sum_add', {
-                      required: 'Сумма погашения кредита'
+                      required: 'Введите сумму погашения кредита'
                     })
                   }
                 />
+                {errors.sum_add && <span className='error_message'>{errors.sum_add.message}</span>}
               </div>
             </div>
           </div>
@@ -228,36 +283,53 @@ function CreditBlockAim(props) {
             <div className={styles.creditBlock}>
               <h5 className={styles.formTitle}>
                 Доходность возможных вложений (годовая) (%)
-                <Tolt tooltipTitle1='Рекомендуется указывать актуальную на момент расчёта ставку вложений с низким или умеренным риском потерь – банковский депозит, облигации и др.'>
-                  <img alt='' src={help} />
+                <Tolt
+                  tooltipTitle1="Рекомендуется указывать актуальную на момент расчёта ставку вложений с низким или умеренным риском потерь – банковский депозит, облигации и др.">
+                  <img alt="" src={help} />
                 </Tolt>
               </h5>
-
               <div className={styles.editValueForm}>
                 <input
-                  type='number'
+                  type="number"
                   {
                     ...register('invest_rate', {
                       required: 'Введите доходность возможных вложений'
                     })
                   }
                 />
+                {errors.invest_rate && <span className="error_message">{errors.invest_rate.message}</span>}
+              </div>
+              <h5 className={styles.formTitle}>
+                Длительность вложений, мес.
+              </h5>
+              <div className={styles.editValueForm}>
+                <input
+                  type="number"
+                  {
+                    ...register('invest_duration', {
+                      required: 'Введите длительность вложений'
+                    })
+                  }
+                />
+                {errors.invest_duration && <span className="error_message">{errors.invest_duration.message}</span>}
               </div>
               <h5 className={styles.formTitle}>
                 Инфляция (%)
-                <Tolt tooltipTitle1='Рекомендуется указывать среднее значение инфляции за последние 5 (6,5%) или 10 лет (7,0%). Если в рамках расчёта Вы не хотите учитывать инфляцию, укажите значение 0'>
-                  <img alt='' src={help} />
+                <Tolt
+                  tooltipTitle1="Рекомендуется указывать среднее значение инфляции за последние 5 (6,5%) или 10 лет (7,0%). Если в рамках расчёта Вы не хотите учитывать инфляцию, укажите значение 0">
+                  <img alt="" src={help} />
                 </Tolt>
               </h5>
               <div className={styles.editValueForm}>
                 <input
-                  type='number'
+                  type="number"
                   {
                     ...register('inflation_rate', {
                       required: 'Введите инфляцию'
                     })
                   }
                 />
+                {errors.inflation_rate && <span className="error_message">{errors.inflation_rate.message}</span>}
               </div>
             </div>
           </div>
@@ -266,27 +338,26 @@ function CreditBlockAim(props) {
           <div className={styles.submitBtnBlock}>
             <button
               ref={calcBtnRef}
-              disabled = {!isFormFilled()}
+              disabled={!isFormFilled()}
               className={styles.submitBtn}
-              type='button'
-              onClick={() => {
-                SetAddModalActive(true);
-              }}
+              type="button"
+              onClick={() => calcBtnHandler()}
             >
               Рассчитать
             </button>
           </div>
           <div className={styles.submitBtnBlock}>
-            <button
+            <input
               ref={saveBtnRef}
               disabled
               className={styles.submitBtn}
-              type='button' >
-              Сохранить
-            </button>
+              type="submit"
+              value="Сохранить"
+            />
           </div>
         </div>
       </form>
+
       <Modal
         active={addModalActive}
         modalTitle='Досрочное погашение кредитов: целесообразность'
@@ -298,10 +369,10 @@ function CreditBlockAim(props) {
             <Tab>{chartsNames[1]}</Tab>
           </TabList>
           <TabPanel className={styles.result_panel}>
-            <SensorAim />
+            <SensorAim calcResult={calcResult} />
           </TabPanel>
           <TabPanel className={styles.result_panel}>
-            <BarChartAim />
+            <BarChartAim calcResult={calcResult} />
           </TabPanel>
         </Tabs>
       </Modal>
