@@ -1,11 +1,12 @@
 import React from 'react';
 
 import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import logo1 from '../../../img/logo1.svg';
 
 import '../OpenPart.scss';
+import styles from '../../Header/Header.module.scss';
 
 function OpenHeader() {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ function OpenHeader() {
   const authHandler = () => {
     const token = localStorage.getItem('token');
 
-    if (token){
+    if (token) {
       navigate('/');
     } else {
       toast('Для начала необходимо авторизоваться');
@@ -22,43 +23,62 @@ function OpenHeader() {
 
   return (
     <>
-      <header className="wrapper">
-        <div className="header_logo">
-          <img alt="" src={logo1} />
+      <header className='wrapper'>
+        <div className='header_logo'>
+          <img alt='' src={logo1} />
         </div>
-        <div className="mobile_nav mobile">
+        <div className='mobile_nav mobile'>
           <input
-            className="burger_checkbox"
-            id="burger_checkbox"
-            type="checkbox"
+            className='burger_checkbox'
+            id='burger_checkbox'
+            type='checkbox'
           />
-          <label className="burger" htmlFor="burger_checkbox"></label>
-          <ul className="menu_list">
+          <label className='burger' htmlFor='burger_checkbox'></label>
+          <ul className='menu_list'>
             <li>
-              <a className="menu_item" href="/index.html">
+              <a
+                className=' menu_item donateBtn'
+                href='https://www.donationalerts.com/r/rustsoft16'
+                target='_blank'
+              >
+                Поддержать проект
+              </a>
+            </li>
+            <li>
+              <a className='menu_item' href='/index.html'>
                 О проекте
               </a>
             </li>
             <li>
-              <a className="menu_item " href="/check.html">
+              <a className='menu_item ' href='/check.html'>
                 Проверь себя
               </a>
             </li>
             <li>
-              <a className="menu_item" href="/sign-up.html">
+              <a className='menu_item' href='/sign-up.html'>
                 Личный кабинет
               </a>
             </li>
           </ul>
         </div>
-        <nav className="desktop">
-          <a className="nav-link active" href="/index.html">
+        <nav className='desktop'>
+          <a
+            className=' nav-link donateBtn'
+            href='https://www.donationalerts.com/r/rustsoft16'
+            target='_blank'
+          >
+            Поддержать проект
+          </a>
+          <a className='nav-link active' href='/index.html'>
             О проекте
           </a>
-          <a className="nav-link " href="/check.html">
+          <a className='nav-link ' href='/check.html'>
             Проверь себя
           </a>
-          <a className="nav-link link-personal cursor_pointer" onClick={authHandler}>
+          <a
+            className='nav-link link-personal cursor_pointer'
+            onClick={authHandler}
+          >
             Личный кабинет
           </a>
         </nav>

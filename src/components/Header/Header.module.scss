@@ -32,7 +32,17 @@
   display: flex;
   gap: 48rem;
   margin-left: auto;
-
+  align-items: center;
+  .donateBtn{
+    padding: 10rem;
+    border: 1rem solid #FBB726;
+    border-radius: 10rem;
+    &:hover{
+      background-color: #FBB726;
+      color: #3156A6;
+      font-weight: 600;
+    }
+  }
   @media (max-width: 480px) {
     display: none;
   }

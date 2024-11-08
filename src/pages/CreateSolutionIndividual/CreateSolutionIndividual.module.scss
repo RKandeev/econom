@@ -25,6 +25,7 @@
         background-color: #fff;
         padding: 16rem 0 4rem 0;
       }
+
       ul{
         margin: 0;
         padding: 0;
@@ -49,6 +50,41 @@
         margin-top: 16rem;
       }
     }
+    h4.individualModel{
+      font-size: 18rem;
+      font-weight: 400;
+      max-width: 50%;
+      @media (max-width: 480px) {
+        max-width: 100%;
+        text-align: justify;
+      }
+    }
+    .individualBtn{
+      margin: 30rem 0;
+      width: 250rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-align: center;
+      padding: 10rem;
+      border-radius: 10rem;
+      border: 1rem solid  #ABB0C3;
+      cursor: pointer;
+      @media (max-width: 480px) {
+        margin: 0 auto;
+      }
+      &:hover{
+        background-color: #ABB0C380;
+      }
+      .individualImg img{
+        height: 50rem;
+        width: 50rem;
+      }
+      .individualTitle{
+        font-size: 18rem;
+        font-weight: 500;
+      }
+    }
     form{
       height: 80vh;
       overflow-y: scroll;
@@ -69,5 +105,5 @@
   }
 }
 .develope{
-  height: 300rem;
+  height: 100rem;
 }

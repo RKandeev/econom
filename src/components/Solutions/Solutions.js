@@ -17,39 +17,39 @@ function Solutions(props) {
       <div className={styles.solutionButtons}>
         <h3>Создать расчет</h3>
         <SolutionBtn
-          linkAdress="/CreateSolutionAim"
+          linkAdress='/CreateSolutionAim'
           solutionLogo={walletico}
-          solutionTitle="Досрочное погашение кредитов: целесообразность"
+          solutionTitle='Досрочное погашение кредитов: целесообразность'
         />
         <SolutionBtn
-          linkAdress="/CreateSolutionPriority"
+          linkAdress='/CreateSolutionPriority'
           solutionLogo={walletico}
-          solutionTitle="Досрочное погашение кредитов: приоритет"
+          solutionTitle='Досрочное погашение кредитов: приоритет'
         />
         <SolutionBtn
-          linkAdress="/CreateSolution"
+          linkAdress='/CreateSolution'
           solutionLogo={paymentico}
-          solutionTitle="Рефинансирование кредитов: целесообразность"
+          solutionTitle='Рефинансирование кредитов: целесообразность'
         />
         <SolutionBtn
-          linkAdress="/CreateSolutionHome"
+          linkAdress='/CreateSolutionHome'
           solutionLogo={homeico}
-          solutionTitle="Жилищный вопрос: покупка или аренда"
+          solutionTitle='Жилищный вопрос: покупка или аренда'
         />
         <SolutionBtn
-          linkAdress="/CreateSolutionCar"
+          linkAdress='/CreateSolutionCar'
           solutionLogo={carico}
-          solutionTitle="Покупка автомобиля: оценка финансовых последствий"
+          solutionTitle='Покупка автомобиля: оценка финансовых последствий'
         />
         <SolutionBtn
-          linkAdress="/CreateSolutionFlat"
+          linkAdress='/CreateSolutionFlat'
           solutionLogo={keyico}
-          solutionTitle="Квартира для сдачи в аренду: оценка выгод"
+          solutionTitle='Квартира для сдачи в аренду: оценка выгод'
         />
         <SolutionBtn
-          linkAdress="/CreateSolutionIndividual"
+          linkAdress='/CreateSolutionIndividual'
           solutionLogo={billico}
-          solutionTitle="Конструктор индивидуальных ситуаций"
+          solutionTitle='Индивидуальные финансовые модели'
         />
       </div>
     </>

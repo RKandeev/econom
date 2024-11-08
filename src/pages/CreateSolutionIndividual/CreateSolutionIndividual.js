@@ -9,6 +9,8 @@ import Modelingleftnav from '../../components/Modelingleftnav/Modelingleftnav';
 import animationData from '../../img/json/screw.json';
 
 import styles from './CreateSolutionIndividual.module.scss';
+import Diagrambtn from '../../components/Diagrambtn/Diagrambtn';
+import diagimg from '../../img/icon/icon__chart.svg';
 function CreateSolutionIndividual(props) {
   const defaultOptions = {
     animationData: animationData,
@@ -29,15 +31,26 @@ function CreateSolutionIndividual(props) {
           <div className={styles.breadcrumb}>
             <ul>
               <li>
-                <Link to="/finmodeling">Финансовое моделирование</Link>
+                <Link to='/finmodeling'>Финансовое моделирование</Link>
               </li>
-              <li>Конструктор индивидуальных ситуаций</li>
+              <li>Индивидуальные финансовые модели</li>
             </ul>
           </div>
-          <h2>Данный раздел находится на этапе разработки</h2>
-          <div className={styles.develope}>
-            <Lottie options={defaultOptions} />
-          </div>
+          <h2>Разработка индивидуальной финансовой модели</h2>
+          <h4 className={styles.individualModel}>
+            Если ваша ситуация требует разработки индивидуальной финансовой
+            модели, мы можем помочь:
+          </h4>
+          <Link
+            className={styles.individualBtn}
+            to='https://t.me/m/9JXdCiCKZDgy'
+            target='_blank'
+          >
+            <div className={styles.develope}>
+              <Lottie options={defaultOptions} />
+            </div>
+            <div className={styles.individualTitle}>Заказать разработку</div>
+          </Link>
         </div>
       </div>
     </>

@@ -80,6 +80,7 @@
   box-shadow: 0 4rem 6rem 0 rgba(192, 192, 192, 0.25);
   z-index: 2;
   background-color: #fff;
+
 }
 input{
   width: auto;
@@ -157,4 +158,14 @@ a.nav_link{
 }
 .cursor_pointer {
   cursor: pointer;
+}
+.donateBtn{
+  padding: 10rem;
+  border: 1rem solid #FBB726;
+  border-radius: 10rem;
+  &:hover{
+    background-color: #FBB726;
+    color: #3156A6;
+    font-weight: 600;
+  }
 }

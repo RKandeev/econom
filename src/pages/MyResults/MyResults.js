@@ -58,6 +58,7 @@ function MyResults(props) {
 
   return (
     <>
+      {/*<Spinner />*/}
       <Header />
       <MobileNav />
       <div className={styles.sitebody}>
