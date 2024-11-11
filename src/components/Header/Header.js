@@ -10,7 +10,7 @@ import logo from '../../img/logo.svg';
 import styles from './Header.module.scss';
 
 function Header() {
-  const {userInfo} = useContext(Context);
+  const { userInfo } = useContext(Context);
   const navigate = useNavigate();
 
   const logoutHandler = () => {
@@ -21,21 +21,31 @@ function Header() {
   return (
     <>
       <div className={styles.Header}>
-        <Link className={styles.logo} to="/#">
-          <img alt="логотип" className={styles.desktop} src={logo} />
-          <img alt="логотип" className={styles.mobile} src={logo} />
+        <Link className={styles.logo} to='/#'>
+          <img alt='логотип' className={styles.desktop} src={logo} />
+          <img alt='логотип' className={styles.mobile} src={logo} />
         </Link>
         <div className={styles.links}>
-          <Link href="/index.html">О проекте</Link>
-          <Link href="/check.html">Проверь себя</Link>
+          <Link
+            className={styles.donateBtn}
+            to='https://www.donationalerts.com/r/rustsoft16'
+            target='_blank'
+          >
+            Поддержать проект
+          </Link>
+          <Link href='/index.html'>О проекте</Link>
+          <Link href='/check.html'>Проверь себя</Link>
         </div>
         <div className={styles.profileLinks}>
-          <Link className={styles.profileNav} href="/#"></Link>
-          <Link className={styles.profileNav} to="/">
+          <Link className={styles.profileNav} href='/#'></Link>
+          <Link className={styles.profileNav} to='/'>
             {userInfo && userInfo.name}
           </Link>
-          <button className={`${styles.profileNav} ${styles.logout}`} onClick={logoutHandler}>
-            <img alt="логотип" src={icon__logout} />
+          <button
+            className={`${styles.profileNav} ${styles.logout}`}
+            onClick={logoutHandler}
+          >
+            <img alt='логотип' src={icon__logout} />
           </button>
         </div>
       </div>
