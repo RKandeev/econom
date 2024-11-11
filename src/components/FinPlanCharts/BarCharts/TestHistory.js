@@ -8,32 +8,37 @@ import { Context } from '../../../Context';
 
 function TestHistory() {
   const {startTestResults} = useContext(Context);
-
   const [testHistory, setTestHistory] = useState([]);
 
-  let positiveArr = [startTestResults.num1 * 10];
-  let negativeArr = [100 - startTestResults.num1 * 10];
-  let labels = [["Старт"], ];
-
-  testHistory && testHistory.forEach(element => {
-    positiveArr.push(element.correct_percent);
-    negativeArr.push(100 - element.correct_percent);
-    labels.push(element.created_at);
-
-    positiveArr = positiveArr.slice(-6);
-    negativeArr = negativeArr.slice(-6);
-    labels = labels.slice(-6);
-
-    if (window.innerWidth < 480) {
-      positiveArr = positiveArr.slice(-4);
-      negativeArr = negativeArr.slice(-4);
-      labels = labels.slice(-4);
-    }
-  });
+  let positiveArr = [];
+  let negativeArr = [];
+  let labels = [];
 
   let mobile = true;
   let mobileFont = 16;
   let mobileColor = "#fff";
+
+
+  if (testHistory) {
+    testHistory.forEach((element) => {
+      positiveArr.push(element.correct_percent);
+      negativeArr.push(100 - element.correct_percent);
+      labels.push(element.created_at);
+    })
+    if (window.innerWidth < 480) {
+      positiveArr = positiveArr.slice(-3);
+      negativeArr = negativeArr.slice(-3);
+      labels = labels.slice(-3);
+    } else {
+      positiveArr = positiveArr.slice(-5);
+      negativeArr = negativeArr.slice(-5);
+      labels = labels.slice(-5);
+    }
+    positiveArr.unshift([startTestResults.num1 * 10]);
+    negativeArr.unshift([100 - startTestResults.num1 * 10]);
+    labels.unshift(["Старт"]);
+  }
+
 
   if (window.outerWidth < 450) {
     mobile = false;
