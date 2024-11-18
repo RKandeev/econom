@@ -85,8 +85,6 @@ function CreditBlockHome(props) {
           formData.append(key, values[key]);
         }
       }
-      const sumValue = getValues('sum');
-      formData.append('start_sum', sumValue);
 
       const response = await apiRequest({
         data: formData,
