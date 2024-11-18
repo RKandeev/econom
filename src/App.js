@@ -113,7 +113,7 @@ function App() {
       getFirstTestsResult();
       getTestQuestions();
     } else {
-        navigate('/SignUp');
+      navigate('/SignUp');
     }
   };
 

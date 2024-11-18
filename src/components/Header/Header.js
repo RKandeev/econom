@@ -28,8 +28,8 @@ function Header() {
         <div className={styles.links}>
           <Link
             className={styles.donateBtn}
-            to='https://www.donationalerts.com/r/rustsoft16'
             target='_blank'
+            to='https://www.donationalerts.com/r/rustsoft16'
           >
             Поддержать проект
           </Link>

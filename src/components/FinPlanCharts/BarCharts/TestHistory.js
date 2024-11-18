@@ -18,13 +18,12 @@ function TestHistory() {
   let mobileFont = 16;
   let mobileColor = "#fff";
 
-
   if (testHistory) {
     testHistory.forEach((element) => {
       positiveArr.push(element.correct_percent);
       negativeArr.push(100 - element.correct_percent);
       labels.push(element.created_at);
-    })
+    });
     if (window.innerWidth < 480) {
       positiveArr = positiveArr.slice(-3);
       negativeArr = negativeArr.slice(-3);
@@ -38,7 +37,6 @@ function TestHistory() {
     negativeArr.unshift([100 - startTestResults.num1 * 10]);
     labels.unshift(["Старт"]);
   }
-
 
   if (window.outerWidth < 450) {
     mobile = false;

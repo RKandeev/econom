@@ -15,7 +15,6 @@ import { Context } from '../../Context';
 import animationData from '../../img/json/logo.json';
 
 import styles from './MyResults.module.scss';
-import Spinner from '../../components/Spinner/Spinner';
 
 function MyResults(props) {
   const defaultOptions = {

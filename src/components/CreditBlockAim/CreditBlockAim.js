@@ -1,7 +1,10 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
+import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 
+import { apiRequest } from '../../api';
 import BarChartAim from '../BarCharts/BarChartAim';
 import Modal from '../Modal/Modal';
 import SensorAim from '../SensorModeling/SensorAim';
@@ -10,56 +13,54 @@ import Tolt from '../Tolt/Tolt';
 import help from '../../img/icon/icon__help.svg';
 
 import styles from './CreditBlockAim.module.scss';
-import { useForm } from 'react-hook-form';
-import { apiRequest } from '../../api';
-import toast from 'react-hot-toast';
-
 
 function CreditBlockAim(props) {
   const [calcResult, setCalcResult] = useState({});
   const calcBtnRef = useRef(null);
   const saveBtnRef = useRef(null);
+  const previousValues = useRef({});
 
   const [addModalActive, SetAddModalActive] = useState(false);
   const [oldCredits, setOldCredits] = useState([
     {
       date: '2021-04-01',
+      duration: 0,
       ins_type: '0',
       insurance: 1.0,
       name: '',
       period: 60,
       rate: 16,
       sum: 300000,
-      duration: 0,
     },
   ]);
   let chartsNames = ['Экономический эффект', 'Факторный анализ'];
-  const date = new Date();
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-  const currentDate = `${year}-${month}-${day}`;
+  // const date = new Date();
+  // const year = date.getFullYear();
+  // const month = date.getMonth() + 1;
+  // const day = date.getDate();
+  // const currentDate = `${year}-${month}-${day}`;
 
   const {
     register,
     handleSubmit,
+    trigger,
     watch,
     setError,
     reset,
     formState: { errors },
   } = useForm({
     defaultValues: {
-      start_dt: '',
-      sum_add_dt: '',
-      duration: '',
-      insurance_award: '',
       calc_name: '',
       credit_name: '',
-      rate: '',
-      invest_rate: '',
+      duration: '',
       inflation_rate: '',
+      insurance_award: '',
+      invest_rate: '',
+      rate: '',
+      start_dt: '',
       sum: '',
       sum_add: '',
+      sum_add_dt: '',
     },
     mode: 'all',
   });
@@ -70,43 +71,81 @@ function CreditBlockAim(props) {
 
   const values = watch();
 
-  const isFormFilled = () => {
-    return Object.values(values).every(Boolean);
-  };
+  const hasChanged = Object.keys(values).some((key) => {
+    return values[key] !== previousValues.current[key];
+  });
 
-  const calcBtnHandler = async () => {
-    const formData = new FormData();
-
-    for (const key in values) {
-      if (values.hasOwnProperty(key)) {
-        formData.append(key, values[key]);
+  useEffect(() => {
+    if (Object.entries(calcResult).length > 0) {
+      if (hasChanged) {
+        saveBtnRef.current.disabled = true;
       }
     }
-    const response = await apiRequest({
-      data: formData,
-      method: 'POST',
-      url: '/fin-model/rationality',
-    });
-    if (!response) {
-      toast.error('Ошибка в ответе сервера. Не удалось прочитать ответ сервера');
-      return
-    }
+  }, [values]);
 
-    if (response.code === 0 && response.http_status === 200) {
-      setCalcResult(response.data);
-      SetAddModalActive(true);
-      saveBtnRef.current.disabled = false
-      calcBtnRef.current.disabled = true
-    } else {
-      Object.entries(response.data).forEach(([key, value]) => {
-        setError(`${key}`, { message: value[0], type: 'server' });
+  const calcBtnHandler = async () => {
+    const isValid = await trigger();
+
+    if (isValid) {
+      previousValues.current = values;
+      const formData = new FormData();
+
+      for (const key in values) {
+        if (values.hasOwnProperty(key)) {
+          formData.append(key, values[key]);
+        }
+      }
+      const response = await apiRequest({
+        data: formData,
+        method: 'POST',
+        url: '/fin-model/rationality',
       });
-      toast.error(response.mes);
+
+      if (!response) {
+        toast.error('Ошибка в ответе сервера. Не удалось прочитать ответ сервера');
+
+        return;
+      }
+
+      if (response.code === 0 && response.http_status === 200) {
+        saveBtnRef.current.disabled = false;
+        setCalcResult(response.data);
+        SetAddModalActive(true);
+      } else {
+        Object.entries(response.data).forEach(([key, value]) => {
+          if (value[0]) {
+            setError(`${key}`, { message: value[0], type: 'server' });
+          }
+        });
+        toast.error(response.mes);
+        const firstErrorField = Object.keys(errors)[0];
+        const element = document.querySelector(`[name="${firstErrorField}"]`);
+
+        if (element) {
+          element.scrollIntoView({
+            behavior:'smooth',
+            block:'start',
+          });
+          setTimeout(()=> (element.focus()),600);
+        }
+      }
+    } else {
+      const firstErrorField = Object.keys(errors)[0];
+      const element = document.querySelector(`[name="${firstErrorField}"]`);
+
+      if (element) {
+        element.scrollIntoView({
+          behavior:'smooth',
+          block:'start',
+        });
+        setTimeout(()=> (element.focus()),600);
+      }
     }
-  }
+  };
 
   const onSubmit = async () => {
     const saveFormData = new FormData();
+
     saveFormData.append('token', localStorage.getItem('token'));
     for (const key in values) {
       if (values.hasOwnProperty(key)) {
@@ -118,23 +157,34 @@ function CreditBlockAim(props) {
       method: 'POST',
       url: '/fin-model/rationality-save',
     });
+
     if (!response) {
       toast.error('Ошибка в ответе сервера. Не удалось прочитать ответ сервера');
-      return
+
+      return;
     }
 
     if (response.code === 0 && response.http_status === 200) {
-      calcBtnRef.current.disabled = true
-      saveBtnRef.current.disabled = true
-      reset()
-      toast.success(response.mes)
+      saveBtnRef.current.disabled = true;
+      reset();
+      toast.success(response.mes);
     } else {
       Object.entries(response.data).forEach(([key, value]) => {
         setError(`${key}`, { message: value[0], type: 'server' });
       });
       toast.error(response.mes);
+      const firstErrorField = Object.keys(errors)[0];
+      const element = document.querySelector(`[name="${firstErrorField}"]`);
+
+      if (element) {
+        element.scrollIntoView({
+          behavior:'smooth',
+          block:'start',
+        });
+        setTimeout(()=> (element.focus()),600);
+      }
     }
-  }
+  };
 
   return (
     <>
@@ -161,90 +211,84 @@ function CreditBlockAim(props) {
           Кредит для досрочного погашения
         </h4>
         <div className={styles.creditsBlocks}>
-          {oldCredits.map((el, k) => (
-            <div className={styles.creditBlock} key={k}>
-              <div className={styles.creditTitleBlock}>
-                <div className={styles.creditTitle}>Кредит</div>
-              </div>
-              <h5 className={styles.formTitle}>Название кредита</h5>
-              <div className={styles.editValueForm}>
-                <input
-                  placeholder='Введите название'
-                  type='text'
-                  {
-                    ...register('credit_name', {
-                      required: 'Введите название кредита'
-                    })
-                  }
-                />
-                {errors.credit_name && <span className='error_message'>{errors.credit_name.message}</span>}
-              </div>
-              <h5 className={styles.formTitle}>Дата получения кредита</h5>
-              <div className={styles.editValueForm}>
-                <input
-                  type='date'
-                  {
-                    ...register('start_dt', {
-                      required: 'Введите дату получения кредита'
-                    })
-                  }
-                />
-                {errors.start_dt && <span className='error_message'>{errors.start_dt.message}</span>}
-              </div>
-              <h5 className={styles.formTitle}>Срок кредита (в месяцах)</h5>
-              <div className={styles.editValueForm}>
-                <input
-                  type='number'
-                  {
-                    ...register('duration', {
-                        required: 'Введите срок кредита'
-                    })
-                  }
-                />
-                {errors.duration && <span className='error_message'>{errors.duration.message}</span>}
-              </div>
-              <h5 className={styles.formTitle}>Ставка (%)</h5>
-              <div className={styles.editValueForm}>
-                <input
-                  type='number'
-                  {
-                    ...register('rate', {
-                      required: 'Введите ставку кредита'
-                    })
-                  }
-                />
-                {errors.rate && <span className='error_message'>{errors.rate.message}</span>}
-              </div>
-              <h5 className={styles.formTitle}>Сумма (₽)</h5>
-              <div className={styles.editValueForm}>
-                <input
-                  type='number'
-                  {
-                    ...register('sum', {
-                      required: 'Введите сумму кредита'
-                    })
-                  }
-                />
-                {errors.sum && <span className='error_message'>{errors.sum.message}</span>}
-              </div>
-              {el.ins_type === '0' && (
-                <>
-                  <h5 className={styles.formTitle}>Страховая премия (%)</h5>
-                  <div className={styles.editValueForm}>
-                    <input
-                      type='number'
-                      {
-                        ...register('insurance', {
-                          required: 'Введите страховую премию'
-                        })
-                      }
-                    />
-                    {errors.insurance && <span className='error_message'>{errors.insurance.message}</span>}
-                  </div>
-                </>
-              )}
+          <div className={styles.creditBlock}>
+            <div className={styles.creditTitleBlock}>
+              <div className={styles.creditTitle}>Кредит</div>
             </div>
-          ))}
+            <h5 className={styles.formTitle}>Название кредита</h5>
+            <div className={styles.editValueForm}>
+              <input
+                placeholder='Введите название'
+                type='text'
+                {
+                  ...register('credit_name', {
+                    required: 'Введите название кредита'
+                  })
+                }
+              />
+              {errors.credit_name && <span className='error_message'>{errors.credit_name.message}</span>}
+            </div>
+            <h5 className={styles.formTitle}>Дата получения кредита</h5>
+            <div className={styles.editValueForm}>
+              <input
+                type='date'
+                {
+                  ...register('start_dt', {
+                    required: 'Введите дату получения кредита'
+                  })
+                }
+              />
+              {errors.start_dt && <span className='error_message'>{errors.start_dt.message}</span>}
+            </div>
+            <h5 className={styles.formTitle}>Срок кредита (в месяцах)</h5>
+            <div className={styles.editValueForm}>
+              <input
+                type='number'
+                {
+                  ...register('duration', {
+                    required: 'Введите срок кредита'
+                  })
+                }
+              />
+              {errors.duration && <span className='error_message'>{errors.duration.message}</span>}
+            </div>
+            <h5 className={styles.formTitle}>Ставка (%)</h5>
+            <div className={styles.editValueForm}>
+              <input
+                type='number'
+                {
+                  ...register('rate', {
+                    required: 'Введите ставку кредита'
+                  })
+                }
+              />
+              {errors.rate && <span className='error_message'>{errors.rate.message}</span>}
+            </div>
+            <h5 className={styles.formTitle}>Сумма (₽)</h5>
+            <div className={styles.editValueForm}>
+              <input
+                type='number'
+                {
+                  ...register('sum', {
+                    required: 'Введите сумму кредита'
+                  })
+                }
+              />
+              {errors.sum && <span className='error_message'>{errors.sum.message}</span>}
+            </div>
+            <h5 className={styles.formTitle}>Страховая премия (%)</h5>
+            <div className={styles.editValueForm}>
+              <input
+                type='number'
+                {
+                  ...register('insurance_award', {
+                    required: 'Введите страховую премию'
+                  })
+                }
+              />
+              {errors.insurance_award && <span className='error_message'>{errors.insurance_award.message}</span>}
+            </div>
+          </div>
         </div>
         <div className={styles.creditsBlocks}></div>
         <div className={styles.secondaryblocks}>
@@ -301,20 +345,6 @@ function CreditBlockAim(props) {
                 {errors.invest_rate && <span className="error_message">{errors.invest_rate.message}</span>}
               </div>
               <h5 className={styles.formTitle}>
-                Длительность вложений, мес.
-              </h5>
-              <div className={styles.editValueForm}>
-                <input
-                  type="number"
-                  {
-                    ...register('invest_duration', {
-                      required: 'Введите длительность вложений'
-                    })
-                  }
-                />
-                {errors.invest_duration && <span className="error_message">{errors.invest_duration.message}</span>}
-              </div>
-              <h5 className={styles.formTitle}>
                 Инфляция (%)
                 <Tolt
                   tooltipTitle1="Рекомендуется указывать среднее значение инфляции за последние 5 (6,5%) или 10 лет (7,0%). Если в рамках расчёта Вы не хотите учитывать инфляцию, укажите значение 0">
@@ -339,7 +369,6 @@ function CreditBlockAim(props) {
           <div className={styles.submitBtnBlock}>
             <button
               ref={calcBtnRef}
-              disabled={!isFormFilled()}
               className={styles.submitBtn}
               type="button"
               onClick={() => calcBtnHandler()}

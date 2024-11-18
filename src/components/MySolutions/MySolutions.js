@@ -5,6 +5,8 @@ import MySolution from '../MySolution/MySolution';
 import styles from './MySolutions.module.scss';
 
 function MySolutions(props) {
+
+
   return (
     <>
       <div className={styles.solutionsBlock}>

@@ -39,6 +39,7 @@ h5.formTitle{
   justify-content: space-between;
 }
 .creditName{
+  position: relative;
   input{
     padding: 14rem 16rem;
     max-width: 372rem;
@@ -49,6 +50,9 @@ h5.formTitle{
       box-sizing: border-box;
       width: 100%;
     }
+  }
+  span {
+    bottom: 6rem;
   }
 }
 .creditsBlockTitle{
@@ -99,8 +103,8 @@ h5.formTitle{
       background: url(../../img/icon/icon__arrow_down.svg) no-repeat right;
       background-position-x: 100%;
       width: 100%;
-      &:focus{
-
+      &:focus-visible{
+        outline: none;
       }
     }
   }

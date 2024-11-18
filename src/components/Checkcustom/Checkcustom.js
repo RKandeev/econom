@@ -10,8 +10,9 @@ import {
 
 import './Checkcustom.scss';
 
-function Checkbox(props) {
-  const [isChecked, setIsChecked] = useState(props.checked);
+// eslint-disable-next-line react/prop-types
+function Checkbox({register, label, checked, onChange, groupIndex}) {
+  const [isChecked, setIsChecked] = useState(checked);
   const checkboxAnimationRef = useSpringRef();
   const checkboxAnimationStyle = useSpring({
     backgroundColor: isChecked ? '#3156A6' : '#fff',
@@ -38,14 +39,17 @@ function Checkbox(props) {
 
   const onInputChange = () => {
     setIsChecked(!isChecked);
-    props.onChange();
+    if (onChange) {
+      onChange();
+    }
   };
 
   return (
     <label className="customCheckbox">
       <input
         type="checkbox"
-        onChange={onInputChange}
+        {...(register ? register(`groups.${groupIndex}.isactive${groupIndex + 1}`) : {})}
+        onChange={() => onInputChange()}
       />
       <animated.svg
         aria-hidden="true"
@@ -67,7 +71,7 @@ function Checkbox(props) {
           strokeWidth="2"
         />
       </animated.svg>
-      {props.label}
+      {label}
     </label>
   );
 }

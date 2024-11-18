@@ -50,6 +50,7 @@
       }
     }
     form{
+      position: relative;
       height: 80vh;
       overflow-y: scroll;
       @media (max-width: 480px) {

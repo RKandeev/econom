@@ -1,7 +1,10 @@
 import React from 'react';
-import styles from './Spinner.module.scss';
+
 import Lottie from 'react-lottie';
+
 import animationData from '../../img/json/spinner.json';
+
+import styles from './Spinner.module.scss';
 
 function Spinner(props) {
   const defaultOptions = {
@@ -10,6 +13,7 @@ function Spinner(props) {
     loop: true,
     renderer: 'svg',
   };
+
   return (
     <div>
       <div className={styles.spinner}>

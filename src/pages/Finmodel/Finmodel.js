@@ -17,9 +17,14 @@ function Finmodel(props) {
         <Modelingleftnav />
         <div className={styles.modelingBody}>
           <h3 className={styles.modelingHeader}>Финансовое моделирование</h3>
-          <div className={styles.modelingBlock}>
-            <Solutions />
+          <div className={styles.modelingWrapper}>
+            <div className={styles.modelingBlock}>
+              <Solutions />
+            </div>
             <div className={styles.mySolutionComponent}>
+              <div className={styles.mySolutionComponentCalcList}>
+
+              </div>
               <MySolutions />
             </div>
           </div>

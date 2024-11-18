@@ -27,7 +27,8 @@
   }
 
   .mySolutionComponent{
-    flex-grow: 1;
+    display: flex;
+    margin-top: 24rem;
     padding: 0 0 0 40rem;
     border-left: 1rem solid #E1ECF5;
     margin-right: 40rem;
@@ -37,4 +38,14 @@
       border-color: transparent;
     }
   }
+
+  .modelingWrapper {
+    display: flex;
+  }
+
+  .mySolutionComponentCalcList {
+    display: flex;
+    flex-direction: column;
+  }
+
 }

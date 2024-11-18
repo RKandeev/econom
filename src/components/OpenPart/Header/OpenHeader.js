@@ -1,12 +1,11 @@
 import React from 'react';
 
 import toast from 'react-hot-toast';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import logo1 from '../../../img/logo1.svg';
 
 import '../OpenPart.scss';
-import styles from '../../Header/Header.module.scss';
 
 function OpenHeader() {
   const navigate = useNavigate();
@@ -39,7 +38,7 @@ function OpenHeader() {
               <a
                 className=' menu_item donateBtn'
                 href='https://www.donationalerts.com/r/rustsoft16'
-                target='_blank'
+                rel="noreferrer" target='_blank'
               >
                 Поддержать проект
               </a>
@@ -65,7 +64,7 @@ function OpenHeader() {
           <a
             className=' nav-link donateBtn'
             href='https://www.donationalerts.com/r/rustsoft16'
-            target='_blank'
+            rel="noreferrer" target='_blank'
           >
             Поддержать проект
           </a>

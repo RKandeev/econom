@@ -9,8 +9,6 @@ import Modelingleftnav from '../../components/Modelingleftnav/Modelingleftnav';
 import animationData from '../../img/json/screw.json';
 
 import styles from './CreateSolutionIndividual.module.scss';
-import Diagrambtn from '../../components/Diagrambtn/Diagrambtn';
-import diagimg from '../../img/icon/icon__chart.svg';
 function CreateSolutionIndividual(props) {
   const defaultOptions = {
     animationData: animationData,
@@ -43,8 +41,8 @@ function CreateSolutionIndividual(props) {
           </h4>
           <Link
             className={styles.individualBtn}
-            to='https://t.me/m/9JXdCiCKZDgy'
             target='_blank'
+            to='https://t.me/m/9JXdCiCKZDgy'
           >
             <div className={styles.develope}>
               <Lottie options={defaultOptions} />
