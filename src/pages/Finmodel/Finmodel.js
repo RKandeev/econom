@@ -7,6 +7,14 @@ import MySolutions from '../../components/MySolutions/MySolutions';
 import Solutions from '../../components/Solutions/Solutions';
 
 import styles from './Finmodel.module.scss';
+import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
+import factimg from '../../img/analysisicons/fact.png';
+import Sdv from '../../components/AnalysisCharts/BarCharts/SDV';
+import Dkat from '../../components/AnalysisCharts/BarCharts/DKAT';
+import Prv2 from '../../components/AnalysisCharts/BarCharts/PRV2';
+import Pnr from '../../components/AnalysisCharts/BarCharts/PNR';
+import Pkr from '../../components/AnalysisCharts/BarCharts/PKR';
+import Psr from '../../components/AnalysisCharts/BarCharts/PSR';
 
 function Finmodel(props) {
   return (
@@ -22,10 +30,63 @@ function Finmodel(props) {
               <Solutions />
             </div>
             <div className={styles.mySolutionComponent}>
-              <div className={styles.mySolutionComponentCalcList}>
-
-              </div>
-              <MySolutions />
+              <div className={styles.mySolutionComponentCalcList}></div>
+              <Tabs className='react-tabs firstTestsTabs studyingTabs CashFlowTabs '>
+                <div className='left_tabs myResultLeftTabs finModelHistory'>
+                  <h3>Мои расчеты</h3>
+                  <TabList className='react-tabs__tab-list firstTestsTabList CashFlowTabList finModelHistoryList'>
+                    <Tab>
+                      <span>
+                        Досрочное погашение кредитов: целесообразность
+                      </span>
+                    </Tab>
+                    <Tab>
+                      <span>Досрочное погашение кредитов: приоритет</span>
+                    </Tab>
+                    <Tab>
+                      <span>Рефинансирование кредитов: целесообразность</span>
+                    </Tab>
+                    <Tab>
+                      <span>Жилищный вопрос: покупка или аренда</span>
+                    </Tab>
+                    <Tab>
+                      <span>
+                        Покупка автомобиля: оценка финансовых последствий
+                      </span>
+                    </Tab>
+                    <Tab>
+                      <span>Квартира для сдачи в аренду: оценка выгод</span>
+                    </Tab>
+                    <Tab>
+                      <span>Индивидуальные финансовые модели</span>
+                    </Tab>
+                  </TabList>
+                </div>
+                <TabPanel>
+                  <MySolutions />
+                </TabPanel>
+                <TabPanel>
+                  <MySolutions />
+                </TabPanel>
+                <TabPanel>
+                  <MySolutions />
+                </TabPanel>
+                <TabPanel>
+                  <MySolutions />
+                </TabPanel>
+                <TabPanel>
+                  <MySolutions />
+                </TabPanel>
+                <TabPanel>
+                  <MySolutions />
+                </TabPanel>
+                <TabPanel>
+                  <MySolutions />
+                </TabPanel>
+                <TabPanel>
+                  <MySolutions />
+                </TabPanel>
+              </Tabs>
             </div>
           </div>
         </div>

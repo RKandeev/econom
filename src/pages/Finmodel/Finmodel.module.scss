@@ -41,6 +41,9 @@
 
   .modelingWrapper {
     display: flex;
+    @media (max-width: 480px){
+      flex-direction: column;
+    }
   }
 
   .mySolutionComponentCalcList {

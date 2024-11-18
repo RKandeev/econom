@@ -48,3 +48,26 @@
     box-shadow: none;
   }
 }
+.finModelHistory{
+
+  h3{
+    font-size: 12rem;
+    font-weight: 700;
+    color: #464E5F;
+    text-transform: uppercase;
+  }
+  .CashFlowTabList{
+    margin-top: 0;
+  }
+  .firstTestsTabList{
+    @media (max-width: 480px){display: block;
+    }
+  }
+  .firstTestsTabList .react-tabs__tab:first-child{
+    border-radius: 16rem 16rem 0 0;
+    &:hover{
+      border-radius: 16rem 16rem 0 0;
+    }
+  }
+
+}
