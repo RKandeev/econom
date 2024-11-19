@@ -12,11 +12,11 @@ function MySolutions(props) {
         <div className={styles.solutionList}>
           <MySolution
             solutionTitle='Название расчета'
-            solutionType='Досрочное погашение кредитов: целесообразность'
+            solutionDate='18 мая 2024'
           />
           <MySolution
             solutionTitle='Название расчета'
-            solutionType='Досрочное погашение кредитов: приоритет'
+            solutionDate='18 ноября 2024'
           />
         </div>
       </div>

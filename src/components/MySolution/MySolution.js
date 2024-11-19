@@ -39,7 +39,7 @@ function MySolution(props) {
       <div className={styles.mysolution}>
         <div className={styles.solutionBlock}>
           <div className={styles.solutionTitle}>{props.solutionTitle}</div>
-          <div className={styles.solutionType}>{props.solutionType}</div>
+          <div className={styles.solutionType}>{props.solutionDate}</div>
         </div>
         <ClickAwayListener onClickAway={handleTooltipClose}>
           <div>

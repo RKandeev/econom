@@ -57,14 +57,8 @@ function Finmodel(props) {
                     <Tab>
                       <span>Квартира для сдачи в аренду: оценка выгод</span>
                     </Tab>
-                    <Tab>
-                      <span>Индивидуальные финансовые модели</span>
-                    </Tab>
                   </TabList>
                 </div>
-                <TabPanel>
-                  <MySolutions />
-                </TabPanel>
                 <TabPanel>
                   <MySolutions />
                 </TabPanel>
