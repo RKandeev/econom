@@ -12,8 +12,8 @@ import dots from '../../img/icon/icon__menu.svg';
 import styles from './MySolution.module.scss';
 
 function MySolution(props) {
-  const MyTooltip = styled(({ className, ...props }) => (
-    <Tooltip {...props} classes={{ popper: className }} />
+  const MyTooltip = styled(({ className, ...props}) => (
+    <Tooltip  {...props} classes={{ popper: className }} />
   ))(({ theme }) => ({
     [`& .${tooltipClasses.tooltip}`]: {
       backgroundColor: '#464E5F',
@@ -36,9 +36,9 @@ function MySolution(props) {
 
   return (
     <>
-      <div className={styles.mysolution}>
+      <div  className={styles.mysolution}>
         <div className={styles.solutionBlock}>
-          <div className={styles.solutionTitle}>{props.solutionTitle}</div>
+          <div onClick={props.onClick} className={styles.solutionTitle}>{props.solutionTitle}</div>
           <div className={styles.solutionType}>{props.solutionDate}</div>
         </div>
         <ClickAwayListener onClickAway={handleTooltipClose}>
@@ -98,7 +98,7 @@ function MySolution(props) {
                           strokeWidth='1.5'
                         />
                       </svg>
-                      <div className={styles.manageTitle}>Удалить</div>
+                      <div onClick={props.onDelete} className={styles.manageTitle}>Удалить</div>
                     </div>
                   </div>
                 </React.Fragment>

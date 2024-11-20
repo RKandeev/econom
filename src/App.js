@@ -58,6 +58,7 @@ function App() {
     name: localStorage.getItem('userName')? localStorage.getItem('userName'): '',
   });
   const [isStartTestingHave, setIsStartTestingHave] = useState(false);
+  const [calcView, setCalcView] = useState({});
   const [activeStarttestTabIndex, setActiveStarttestTabIndex] = useState(0);
   const [startTestResults, setStartTestResults] = useState({num1: null, num2: null, num3: null});
   const [controlTestQuestions, setControlTestQuestions] = useState([]);
@@ -141,9 +142,11 @@ function App() {
         setShowStartModal,
         setStartTestResults,
         setUserInfo,
+        setCalcView,
         showStartModal,
         startTestResults,
         userInfo,
+        calcView
       }}>
         <Wrapper>
           <Routes>

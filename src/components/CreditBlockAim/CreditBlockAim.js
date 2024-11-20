@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
@@ -13,32 +13,25 @@ import Tolt from '../Tolt/Tolt';
 import help from '../../img/icon/icon__help.svg';
 
 import styles from './CreditBlockAim.module.scss';
+import { useLocation } from 'react-router-dom';
+import { Context } from '../../Context';
+import Spinner from '../Spinner/Spinner';
 
 function CreditBlockAim(props) {
+  const [addModalActive, SetAddModalActive] = useState(false);
   const [calcResult, setCalcResult] = useState({});
+  const [isView, setIsView] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
   const calcBtnRef = useRef(null);
   const saveBtnRef = useRef(null);
   const previousValues = useRef({});
 
-  const [addModalActive, SetAddModalActive] = useState(false);
-  const [oldCredits, setOldCredits] = useState([
-    {
-      date: '2021-04-01',
-      duration: 0,
-      ins_type: '0',
-      insurance: 1.0,
-      name: '',
-      period: 60,
-      rate: 16,
-      sum: 300000,
-    },
-  ]);
+  const {calcView} = useContext((Context))
+
+  const location = useLocation();
+
   let chartsNames = ['Экономический эффект', 'Факторный анализ'];
-  // const date = new Date();
-  // const year = date.getFullYear();
-  // const month = date.getMonth() + 1;
-  // const day = date.getDate();
-  // const currentDate = `${year}-${month}-${day}`;
 
   const {
     register,
@@ -46,6 +39,7 @@ function CreditBlockAim(props) {
     trigger,
     watch,
     setError,
+    setValue,
     reset,
     formState: { errors },
   } = useForm({
@@ -75,15 +69,38 @@ function CreditBlockAim(props) {
     return values[key] !== previousValues.current[key];
   });
 
+  const setViewValuesHandler = () => {
+    Object.entries(calcView).forEach(([key, value]) => {
+      if (key === 'created_at' || key === 'updated_at' || key === 'user_id' || key === 'id') return
+      setValue(key, value)
+    })
+  }
+
   useEffect(() => {
     if (Object.entries(calcResult).length > 0) {
       if (hasChanged) {
         saveBtnRef.current.disabled = true;
+        setCalcResult({})
       }
     }
   }, [values]);
 
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const name = searchParams.get('calcId');
+    if (name) {
+      setIsView(true)
+      setViewValuesHandler()
+    }
+    console.log(calcView);
+  }, []);
+
   const calcBtnHandler = async () => {
+    if (Object.entries(calcResult).length > 0) {
+      SetAddModalActive(true);
+      return;
+    }
+
     const isValid = await trigger();
 
     if (isValid) {
@@ -95,6 +112,7 @@ function CreditBlockAim(props) {
           formData.append(key, values[key]);
         }
       }
+      setIsLoading(true);
       const response = await apiRequest({
         data: formData,
         method: 'POST',
@@ -102,16 +120,19 @@ function CreditBlockAim(props) {
       });
 
       if (!response) {
+        setIsLoading(false);
         toast.error('Ошибка в ответе сервера. Не удалось прочитать ответ сервера');
 
         return;
       }
 
       if (response.code === 0 && response.http_status === 200) {
+        setIsLoading(false);
         saveBtnRef.current.disabled = false;
         setCalcResult(response.data);
         SetAddModalActive(true);
       } else {
+        setIsLoading(false);
         Object.entries(response.data).forEach(([key, value]) => {
           if (value[0]) {
             setError(`${key}`, { message: value[0], type: 'server' });
@@ -152,6 +173,7 @@ function CreditBlockAim(props) {
         saveFormData.append(key, values[key]);
       }
     }
+    setIsLoading(true);
     const response = await apiRequest({
       data: saveFormData,
       method: 'POST',
@@ -159,16 +181,19 @@ function CreditBlockAim(props) {
     });
 
     if (!response) {
+      setIsLoading(false);
       toast.error('Ошибка в ответе сервера. Не удалось прочитать ответ сервера');
 
       return;
     }
 
     if (response.code === 0 && response.http_status === 200) {
+      setIsLoading(false);
       saveBtnRef.current.disabled = true;
       reset();
       toast.success(response.mes);
     } else {
+      setIsLoading(false);
       Object.entries(response.data).forEach(([key, value]) => {
         setError(`${key}`, { message: value[0], type: 'server' });
       });
@@ -373,7 +398,7 @@ function CreditBlockAim(props) {
               type="button"
               onClick={() => calcBtnHandler()}
             >
-              Рассчитать
+              Расчет
             </button>
           </div>
           <div className={styles.submitBtnBlock}>
@@ -406,6 +431,12 @@ function CreditBlockAim(props) {
           </TabPanel>
         </Tabs>
       </Modal>
+
+      {
+        isLoading && (
+          <Spinner />
+        )
+      }
     </>
   );
 }

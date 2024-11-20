@@ -60,7 +60,7 @@ function Finmodel(props) {
                   </TabList>
                 </div>
                 <TabPanel>
-                  <MySolutions />
+                  <MySolutions historyUrl='/fin-model/rationality-history' deleteHistoryUrl='/fin-model/rationality-delete'/>
                 </TabPanel>
                 <TabPanel>
                   <MySolutions />
