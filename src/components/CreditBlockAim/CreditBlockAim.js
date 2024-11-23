@@ -27,7 +27,7 @@ function CreditBlockAim(props) {
   const saveBtnRef = useRef(null);
   const previousValues = useRef({});
 
-  const {calcView} = useContext((Context))
+  const {calcView} = useContext(Context)
 
   const location = useLocation();
 
@@ -71,7 +71,7 @@ function CreditBlockAim(props) {
 
   const setViewValuesHandler = () => {
     Object.entries(calcView).forEach(([key, value]) => {
-      if (key === 'created_at' || key === 'updated_at' || key === 'user_id' || key === 'id') return
+      if (key === 'created_at' || key === 'updated_at' || key === 'user_id' || key === 'id' || key === 'calc_result') return
       setValue(key, value)
     })
   }
@@ -85,14 +85,13 @@ function CreditBlockAim(props) {
     }
   }, [values]);
 
-  useEffect(() => {
+  useEffect (() => {
     const searchParams = new URLSearchParams(location.search);
-    const name = searchParams.get('calcId');
-    if (name) {
+    const calcId= searchParams.get('calcId');
+    if (calcId && Object.entries(calcView).length > 0) {
       setIsView(true)
       setViewValuesHandler()
     }
-    console.log(calcView);
   }, []);
 
   const calcBtnHandler = async () => {
@@ -112,11 +111,17 @@ function CreditBlockAim(props) {
           formData.append(key, values[key]);
         }
       }
+      if (isView) {
+        formData.append('id', calcView.id);
+        formData.append('token', localStorage.getItem('token'));
+      }
+
       setIsLoading(true);
+
       const response = await apiRequest({
         data: formData,
         method: 'POST',
-        url: '/fin-model/rationality',
+        url: isView? '/fin-model/rationality-update' : '/fin-model/rationality',
       });
 
       if (!response) {

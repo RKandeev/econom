@@ -33,7 +33,7 @@ function MySolutions({historyUrl, deleteHistoryUrl}) {
     }
 
     if (response.code === 0 && response.http_status === 200) {
-      setSolutionsHistory(response.data[0].reverse());
+      setSolutionsHistory(response.data.reverse());
     } else {
       toast.error(response.mes);
     }
