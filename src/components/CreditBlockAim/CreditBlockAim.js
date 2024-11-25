@@ -153,7 +153,7 @@ function CreditBlockAim(props) {
             setTimeout(()=> (element.focus()),600);
           }
         }
-      }, 2000)
+      }, 1800)
 
 
     } else {
@@ -222,7 +222,7 @@ function CreditBlockAim(props) {
           setTimeout(()=> (element.focus()),600);
         }
       }
-    }, 2000)
+    }, 1800)
   };
 
   return (
