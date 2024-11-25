@@ -91,7 +91,7 @@ function MySolutions({historyUrl, deleteHistoryUrl}) {
                 onDelete={() => deleteSolutionHistory(item.id)}
                 onClick={() => viewSolutionHistory(item.id)}
                 solutionTitle= {item.credit_name}
-                solutionDate= {item.start_dt}
+                solutionDate= {item.updated_at}
               />
             ))
           }
