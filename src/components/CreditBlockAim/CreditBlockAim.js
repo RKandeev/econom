@@ -13,7 +13,7 @@ import Tolt from '../Tolt/Tolt';
 import help from '../../img/icon/icon__help.svg';
 
 import styles from './CreditBlockAim.module.scss';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate, useRoutes } from 'react-router-dom';
 import { Context } from '../../Context';
 import Spinner from '../Spinner/Spinner';
 
@@ -30,6 +30,8 @@ function CreditBlockAim(props) {
   const {calcView} = useContext(Context)
 
   const location = useLocation();
+
+  const navigate = useNavigate();
 
   let chartsNames = ['Экономический эффект', 'Факторный анализ'];
 
@@ -111,50 +113,49 @@ function CreditBlockAim(props) {
           formData.append(key, values[key]);
         }
       }
-      if (isView) {
-        formData.append('id', calcView.id);
-        formData.append('token', localStorage.getItem('token'));
-      }
 
       setIsLoading(true);
 
       const response = await apiRequest({
         data: formData,
         method: 'POST',
-        url: isView? '/fin-model/rationality-update' : '/fin-model/rationality',
+        url: '/fin-model/rationality',
       });
 
-      if (!response) {
-        setIsLoading(false);
-        toast.error('Ошибка в ответе сервера. Не удалось прочитать ответ сервера');
-
-        return;
-      }
-
-      if (response.code === 0 && response.http_status === 200) {
-        setIsLoading(false);
-        saveBtnRef.current.disabled = false;
-        setCalcResult(response.data);
-        SetAddModalActive(true);
-      } else {
-        setIsLoading(false);
-        Object.entries(response.data).forEach(([key, value]) => {
-          if (value[0]) {
-            setError(`${key}`, { message: value[0], type: 'server' });
-          }
-        });
-        toast.error(response.mes);
-        const firstErrorField = Object.keys(errors)[0];
-        const element = document.querySelector(`[name="${firstErrorField}"]`);
-
-        if (element) {
-          element.scrollIntoView({
-            behavior:'smooth',
-            block:'start',
-          });
-          setTimeout(()=> (element.focus()),600);
+      setTimeout(() => {
+        if (!response) {
+          toast.error('Ошибка в ответе сервера. Не удалось прочитать ответ сервера');
+          setIsLoading(false);
+          return;
         }
-      }
+
+        if (response.code === 0 && response.http_status === 200) {
+          setIsLoading(false);
+          saveBtnRef.current.disabled = false;
+          setCalcResult(response.data);
+          SetAddModalActive(true);
+        } else {
+          setIsLoading(false);
+          Object.entries(response.data).forEach(([key, value]) => {
+            if (value[0]) {
+              setError(`${key}`, { message: value[0], type: 'server' });
+            }
+          });
+          toast.error(response.mes);
+          const firstErrorField = Object.keys(errors)[0];
+          const element = document.querySelector(`[name="${firstErrorField}"]`);
+
+          if (element) {
+            element.scrollIntoView({
+              behavior:'smooth',
+              block:'start',
+            });
+            setTimeout(()=> (element.focus()),600);
+          }
+        }
+      }, 2000)
+
+
     } else {
       const firstErrorField = Object.keys(errors)[0];
       const element = document.querySelector(`[name="${firstErrorField}"]`);
@@ -178,42 +179,50 @@ function CreditBlockAim(props) {
         saveFormData.append(key, values[key]);
       }
     }
+
+    if (isView) {
+      saveFormData.append('id', calcView.id);
+      saveFormData.append('token', localStorage.getItem('token'));
+    }
     setIsLoading(true);
     const response = await apiRequest({
       data: saveFormData,
       method: 'POST',
-      url: '/fin-model/rationality-save',
+      url: isView? '/fin-model/rationality-update' : '/fin-model/rationality-save',
     });
 
-    if (!response) {
-      setIsLoading(false);
-      toast.error('Ошибка в ответе сервера. Не удалось прочитать ответ сервера');
+    setTimeout(() => {
+      if (!response) {
+        setIsLoading(false);
+        toast.error('Ошибка в ответе сервера. Не удалось прочитать ответ сервера');
 
-      return;
-    }
-
-    if (response.code === 0 && response.http_status === 200) {
-      setIsLoading(false);
-      saveBtnRef.current.disabled = true;
-      reset();
-      toast.success(response.mes);
-    } else {
-      setIsLoading(false);
-      Object.entries(response.data).forEach(([key, value]) => {
-        setError(`${key}`, { message: value[0], type: 'server' });
-      });
-      toast.error(response.mes);
-      const firstErrorField = Object.keys(errors)[0];
-      const element = document.querySelector(`[name="${firstErrorField}"]`);
-
-      if (element) {
-        element.scrollIntoView({
-          behavior:'smooth',
-          block:'start',
-        });
-        setTimeout(()=> (element.focus()),600);
+        return;
       }
-    }
+
+      if (response.code === 0 && response.http_status === 200) {
+        setIsLoading(false);
+        saveBtnRef.current.disabled = true;
+        reset();
+        toast.success(response.mes);
+        navigate('/finmodeling')
+      } else {
+        setIsLoading(false);
+        Object.entries(response.data).forEach(([key, value]) => {
+          setError(`${key}`, { message: value[0], type: 'server' });
+        });
+        toast.error(response.mes);
+        const firstErrorField = Object.keys(errors)[0];
+        const element = document.querySelector(`[name="${firstErrorField}"]`);
+
+        if (element) {
+          element.scrollIntoView({
+            behavior:'smooth',
+            block:'start',
+          });
+          setTimeout(()=> (element.focus()),600);
+        }
+      }
+    }, 2000)
   };
 
   return (

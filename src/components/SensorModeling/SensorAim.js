@@ -8,8 +8,6 @@ import './SensorModeling.scss';
 function SensorAim({calcResult}) {
   let chartValue = 0;
 
-  console.log(calcResult);
-
   if (calcResult.profit_percent >= 10) {
     chartValue = 10;
   } else if (calcResult.profit_percent <= -10) {

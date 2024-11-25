@@ -66,7 +66,7 @@ function MySolutions({historyUrl, deleteHistoryUrl}) {
 
     if (response.code === 0 && response.http_status === 200) {
       toast.success(response.mes);
-      const filteredArray = [[...solutionsHistory[0].filter((item) => item.id !== id)]] ;
+      const filteredArray = [...solutionsHistory.filter((item) => item.id !== id)] ;
       setSolutionsHistory(filteredArray);
     } else {
       toast.error(response.mes);

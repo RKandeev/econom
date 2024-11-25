@@ -20,7 +20,7 @@ function Spinner(props) {
         <p className={styles.spinnerAnim}>
           <Lottie options={defaultOptions}></Lottie>
         </p>
-        <p className={styles.spinnerText}>Рассчитываем эффективность...</p>
+        <p className={styles.spinnerText}>Рассчитываем...</p>
       </div>
     </div>
   );
