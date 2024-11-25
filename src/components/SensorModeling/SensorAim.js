@@ -8,23 +8,25 @@ import './SensorModeling.scss';
 function SensorAim({calcResult}) {
   let chartValue = 0;
 
-  if (calcResult.progit_percent >= 10) {
+  console.log(calcResult);
+
+  if (calcResult.profit_percent >= 10) {
     chartValue = 10;
-  } else if (calcResult.progit_percent <= -10) {
+  } else if (calcResult.profit_percent <= -10) {
     chartValue = -10;
   } else {
-    chartValue = calcResult.progit_percent;
+    chartValue = calcResult.profit_percent;
   }
   let num1 = 0;
   let num2 = 0;
   let diffNum = calcResult.profit_rub;
 
-  if (calcResult.progit_percent >= 0) {
+  if (calcResult.profit_percent >= 0) {
     localStorage.setItem('LinesColor', '1');
-    num1 = calcResult.progit_percent;
+    num1 = calcResult.profit_percent;
   } else {
     localStorage.setItem('LinesColor', '2');
-    num2 = calcResult.progit_percent;
+    num2 = calcResult.profit_percent;
   }
 
   let thick = 40;
@@ -76,7 +78,7 @@ function SensorAim({calcResult}) {
               Highcharts.defaultOptions.title.style &&
               Highcharts.defaultOptions.title.style.color) ||
             '#333333',
-          format: Math.abs(parseInt(calcResult.progit_percent)) + ' %',
+          format: Math.abs(parseInt(calcResult.profit_percent)) + ' %',
           style: {
             fontSize: '20rem',
           },
@@ -98,7 +100,7 @@ function SensorAim({calcResult}) {
         },
       },
       {
-        data: [Math.min(0, Math.max(parseInt(calcResult.progit_percent), 0))],
+        data: [Math.min(0, Math.max(parseInt(calcResult.profit_percent), 0))],
         dataLabels: {
           borderWidth: 0,
           color:
@@ -106,7 +108,7 @@ function SensorAim({calcResult}) {
               Highcharts.defaultOptions.title.style &&
               Highcharts.defaultOptions.title.style.color) ||
             '#333333',
-          format: Math.abs(parseInt(calcResult.progit_percent)) + ' %',
+          format: Math.abs(parseInt(calcResult.profit_percent)) + ' %',
           style: {
             fontSize: '20rem',
           },
@@ -169,7 +171,7 @@ function SensorAim({calcResult}) {
   };
   let sign = '';
 
-  if (calcResult.progit_percent < 0) {
+  if (calcResult.profit_percent < 0) {
     sign = '-';
   } else {
     sign = '+';
@@ -181,11 +183,16 @@ function SensorAim({calcResult}) {
         Финансовый результат (в % от суммы погашения)
       </h3>
       <div className="sensorChart">
-        <HighchartsReact highcharts={Highcharts} options={options} />
+        {
+          calcResult && (
+            <HighchartsReact highcharts={Highcharts} options={options} />
+          )
+        }
+
       </div>
       <div
         className={
-          calcResult.progit_percent < 0 ? 'differenceNumber diffNumRed' : 'differenceNumberleft '
+          calcResult.profit_percent < 0 ? 'differenceNumber diffNumRed' : 'differenceNumberleft '
         }
       >
         {sign}
