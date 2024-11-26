@@ -22,6 +22,7 @@ function CreditBlockAim(props) {
   const [calcResult, setCalcResult] = useState({});
   const [isView, setIsView] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [insuranceAwards, setInsuranceAwards] = useState(true );
 
   const calcBtnRef = useRef(null);
   const saveBtnRef = useRef(null);
@@ -50,7 +51,7 @@ function CreditBlockAim(props) {
       credit_name: '',
       duration: '',
       inflation_rate: '',
-      insurance_award: '',
+      insurance_award: '0',
       invest_rate: '',
       rate: '',
       start_dt: '',
@@ -257,76 +258,92 @@ function CreditBlockAim(props) {
             <h5 className={styles.formTitle}>Название кредита</h5>
             <div className={styles.editValueForm}>
               <input
-                placeholder='Введите название'
-                type='text'
+                placeholder="Введите название"
+                type="text"
                 {
                   ...register('credit_name', {
                     required: 'Введите название кредита'
                   })
                 }
               />
-              {errors.credit_name && <span className='error_message'>{errors.credit_name.message}</span>}
+              {errors.credit_name && <span className="error_message">{errors.credit_name.message}</span>}
             </div>
             <h5 className={styles.formTitle}>Дата получения кредита</h5>
             <div className={styles.editValueForm}>
               <input
-                type='date'
+                type="date"
                 {
                   ...register('start_dt', {
                     required: 'Введите дату получения кредита'
                   })
                 }
               />
-              {errors.start_dt && <span className='error_message'>{errors.start_dt.message}</span>}
+              {errors.start_dt && <span className="error_message">{errors.start_dt.message}</span>}
             </div>
             <h5 className={styles.formTitle}>Срок кредита (в месяцах)</h5>
             <div className={styles.editValueForm}>
               <input
-                type='number'
+                type="number"
                 {
                   ...register('duration', {
                     required: 'Введите срок кредита'
                   })
                 }
               />
-              {errors.duration && <span className='error_message'>{errors.duration.message}</span>}
+              {errors.duration && <span className="error_message">{errors.duration.message}</span>}
             </div>
             <h5 className={styles.formTitle}>Ставка (%)</h5>
             <div className={styles.editValueForm}>
               <input
-                type='number'
+                type="number"
                 {
                   ...register('rate', {
                     required: 'Введите ставку кредита'
                   })
                 }
               />
-              {errors.rate && <span className='error_message'>{errors.rate.message}</span>}
+              {errors.rate && <span className="error_message">{errors.rate.message}</span>}
             </div>
             <h5 className={styles.formTitle}>Сумма (₽)</h5>
             <div className={styles.editValueForm}>
               <input
-                type='number'
+                type="number"
                 {
                   ...register('sum', {
                     required: 'Введите сумму кредита'
                   })
                 }
               />
-              {errors.sum && <span className='error_message'>{errors.sum.message}</span>}
+              {errors.sum && <span className="error_message">{errors.sum.message}</span>}
             </div>
-            <h5 className={styles.formTitle}>Страховая премия (%)</h5>
+            <h5 className={styles.formTitle}>Предстоящие расходы на страхование</h5>
             <div className={styles.editValueForm}>
-              <input
-                type='number'
-                {
-                  ...register('insurance_award', {
-                    required: 'Введите страховую премию'
-                  })
-                }
-              />
-              {errors.insurance_award && <span className='error_message'>{errors.insurance_award.message}</span>}
+              <select
+                className={styles.creditSelect}
+                onChange={() => setInsuranceAwards(!insuranceAwards)}
+              >
+                <option value="0">Eжегодно</option>
+                <option value="1">Не предусмотрены</option>
+              </select>
             </div>
+            {insuranceAwards === true && (
+              <>
+                <h5 className={styles.formTitle}>Страховая премия (%)</h5>
+                <div className={styles.editValueForm}>
+                  <input
+                    step="0.1"
+                    type="number"
+                    {
+                      ...register('insurance_award', {
+                        required: 'Введите страховую премию'
+                      })
+                    }
+                  />
+                  {errors.insurance_award && <span className="error_message">{errors.insurance_award.message}</span>}
+                </div>
+              </>
+            )
+            }
           </div>
         </div>
         <div className={styles.creditsBlocks}></div>
@@ -366,7 +383,7 @@ function CreditBlockAim(props) {
             <h4 className={styles.creditsBlockTitle}>Инвестиции и инфляция</h4>
             <div className={styles.creditBlock}>
               <h5 className={styles.formTitle}>
-                Доходность возможных вложений (годовая) (%)
+                Доходность возможных вложений (% год.)
                 <Tolt
                   tooltipTitle1="Рекомендуется указывать актуальную на момент расчёта ставку вложений с низким или умеренным риском потерь – банковский депозит, облигации и др.">
                   <img alt="" src={help} />

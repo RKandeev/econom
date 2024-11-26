@@ -90,10 +90,13 @@ function MySolutions({historyUrl, deleteHistoryUrl}) {
                 key={index}
                 onDelete={() => deleteSolutionHistory(item.id)}
                 onClick={() => viewSolutionHistory(item.id)}
-                solutionTitle= {item.credit_name}
+                solutionTitle= {item.calc_name}
                 solutionDate= {item.updated_at}
               />
             ))
+          }
+          {
+            !solutionsHistory.length && <p>Нет сохраненных расчетов</p>
           }
         </div>
       </div>

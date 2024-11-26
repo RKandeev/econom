@@ -349,6 +349,26 @@ function CreditBlockPriority(props) {
 
   const onSubmit = async () => {
     const values = watch();
+
+    if (values.groups) {
+      if (values.groups[0]){
+        Object.assign(values, values.groups[0]);
+      }
+      if (values.groups[1]){
+        Object.assign(values, values.groups[1]);
+      }
+      if (values.groups[2]){
+        Object.assign(values, values.groups[2]);
+      }
+      if (values.groups[3]){
+        Object.assign(values, values.groups[3]);
+      }
+      if (values.groups[4]){
+        Object.assign(values, values.groups[4]);
+      }
+      delete values.groups;
+    }
+
     const saveFormData = new FormData();
 
     saveFormData.append('token', localStorage.getItem('token'));

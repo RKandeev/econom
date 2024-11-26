@@ -8,6 +8,7 @@ import './SensorModeling.scss';
 function SensorAim({calcResult}) {
   let chartValue = 0;
 
+
   if (calcResult.profit_percent >= 10) {
     chartValue = 10;
   } else if (calcResult.profit_percent <= -10) {
@@ -19,13 +20,19 @@ function SensorAim({calcResult}) {
   let num2 = 0;
   let diffNum = calcResult.profit_rub;
 
+  let percentColor
+
+
   if (calcResult.profit_percent >= 0) {
     localStorage.setItem('LinesColor', '1');
     num1 = calcResult.profit_percent;
+    percentColor = '#0DA46F';
   } else {
     localStorage.setItem('LinesColor', '2');
     num2 = calcResult.profit_percent;
+    percentColor = '#EE2B49';
   }
+
 
   let thick = 40;
   let yFont = '18rem';
@@ -71,12 +78,8 @@ function SensorAim({calcResult}) {
         ],
         dataLabels: {
           borderWidth: 0,
-          color:
-            (Highcharts.defaultOptions.title &&
-              Highcharts.defaultOptions.title.style &&
-              Highcharts.defaultOptions.title.style.color) ||
-            '#333333',
-          format: Math.abs(parseInt(calcResult.profit_percent)) + ' %',
+          color: percentColor,
+          format: Math.abs(Number(calcResult.profit_percent.toFixed(1))) + ' %',
           style: {
             fontSize: '20rem',
           },
@@ -181,12 +184,7 @@ function SensorAim({calcResult}) {
         Финансовый результат (в % от суммы погашения)
       </h3>
       <div className="sensorChart">
-        {
-          calcResult && (
-            <HighchartsReact highcharts={Highcharts} options={options} />
-          )
-        }
-
+        <HighchartsReact highcharts={Highcharts} options={options} />
       </div>
       <div
         className={
