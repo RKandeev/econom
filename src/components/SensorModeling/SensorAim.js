@@ -79,9 +79,11 @@ function SensorAim({calcResult}) {
         dataLabels: {
           borderWidth: 0,
           color: percentColor,
-          format: Math.abs(Number(calcResult.profit_percent.toFixed(1))) + ' %',
+          format: calcResult.profit_percent? (Math.abs(Number(calcResult.profit_percent.toFixed(1))) + ' %') : '',
           style: {
             fontSize: '20rem',
+            fontWeight: '400',
+            borderWidth: 0,
           },
         },
         dial: {
