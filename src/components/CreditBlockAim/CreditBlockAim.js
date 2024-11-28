@@ -35,6 +35,9 @@ function CreditBlockAim(props) {
   const navigate = useNavigate();
 
   let chartsNames = ['Экономический эффект', 'Факторный анализ'];
+  if (window.outerWidth < 450) {
+    chartsNames = ['1', '2'];
+  }
 
   const {
     register,
@@ -62,9 +65,6 @@ function CreditBlockAim(props) {
     mode: 'all',
   });
 
-  if (window.outerWidth < 450) {
-    chartsNames = ['1', '2'];
-  }
 
   const values = watch();
 
