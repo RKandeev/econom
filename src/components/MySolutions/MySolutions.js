@@ -33,7 +33,12 @@ function MySolutions({historyUrl, deleteHistoryUrl}) {
     }
 
     if (response.code === 0 && response.http_status === 200) {
-      setSolutionsHistory(response.data.reverse());
+      let newHistories = [];
+      response.data.forEach((item) => {
+        item.updated_at = item.updated_at.split('T')[0];
+        newHistories.push(item);
+      });
+      setSolutionsHistory(newHistories.reverse());
     } else {
       toast.error(response.mes);
     }
@@ -43,7 +48,30 @@ function MySolutions({historyUrl, deleteHistoryUrl}) {
   const viewSolutionHistory = (id) => {
     const currentCalcObject = solutionsHistory.find((item) => item.id === id);
     setCalcView(currentCalcObject)
-    navigate(`/CreateSolutionAim?calcId=${id}`);
+    let navigateUrl
+
+    switch (historyUrl) {
+      case '/fin-model/rationality-history':
+        navigateUrl = 'CreateSolutionAim';
+        break;
+      case '/fin-model/priority-history':
+        navigateUrl = 'CreateSolutionPriority';
+        break;
+      case '/':
+        navigateUrl = 'CreateSolution';
+        break;
+      case '/fin-model/buy-or-rent-history':
+        navigateUrl = 'CreateSolutionHome';
+        break;
+      case '/fin-model/buy-car-or-invest-history':
+        navigateUrl = 'CreateSolutionCar';
+        break;
+      case '/fin-model/buy-flat-or-invest-history':
+        navigateUrl = 'CreateSolutionFlat';
+        break;
+    }
+
+    navigate(`/${navigateUrl}?calcId=${id}`);
   }
 
   const deleteSolutionHistory = async (id) => {
