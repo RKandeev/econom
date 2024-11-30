@@ -5,9 +5,8 @@ import HighchartsReact from 'highcharts-react-official';
 import AnimatedNumbers from 'react-animated-numbers';
 
 import './SensorModeling.scss';
-function SensorAim({calcResult}) {
+function SensorAim({ calcResult }) {
   let chartValue = 0;
-
 
   if (calcResult.profit_percent >= 10) {
     chartValue = 10;
@@ -20,8 +19,7 @@ function SensorAim({calcResult}) {
   let num2 = 0;
   let diffNum = calcResult.profit_rub;
 
-  let percentColor
-
+  let percentColor;
 
   if (calcResult.profit_percent >= 0) {
     localStorage.setItem('LinesColor', '1');
@@ -32,7 +30,6 @@ function SensorAim({calcResult}) {
     num2 = calcResult.profit_percent;
     percentColor = '#EE2B49';
   }
-
 
   let thick = 40;
   let yFont = '18rem';
@@ -79,11 +76,14 @@ function SensorAim({calcResult}) {
         dataLabels: {
           borderWidth: 0,
           color: percentColor,
-          format: calcResult.profit_percent? (Math.abs(Number(calcResult.profit_percent.toFixed(1))) + ' %') : '',
+          format: calcResult.profit_percent
+            ? Math.abs(Number(calcResult.profit_percent.toFixed(1))) + ' %'
+            : '',
           style: {
             fontSize: '20rem',
-            fontWeight: '400',
+            fontWeight: '700',
             borderWidth: 0,
+            textOutline: false,
           },
         },
         dial: {
@@ -181,16 +181,18 @@ function SensorAim({calcResult}) {
   }
 
   return (
-    <div className="sensorChartBlockHome">
-      <h3 className="chartTitle">
+    <div className='sensorChartBlockHome'>
+      <h3 className='chartTitle'>
         Финансовый результат (в % от суммы погашения)
       </h3>
-      <div className="sensorChart">
+      <div className='sensorChart'>
         <HighchartsReact highcharts={Highcharts} options={options} />
       </div>
       <div
         className={
-          calcResult.profit_percent < 0 ? 'differenceNumber diffNumRed' : 'differenceNumberleft '
+          calcResult.profit_percent < 0
+            ? 'differenceNumber diffNumRed'
+            : 'differenceNumberleft '
         }
       >
         {sign}
@@ -203,9 +205,9 @@ function SensorAim({calcResult}) {
         />
         &#8381;
       </div>
-      <div className="bottomLegends carLegends">
-        <div className="leftLegend">Потери</div>
-        <div className="rightLegend green">Выгода</div>
+      <div className='bottomLegends carLegends'>
+        <div className='leftLegend'>Потери</div>
+        <div className='rightLegend green'>Выгода</div>
       </div>
     </div>
   );

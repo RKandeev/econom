@@ -148,7 +148,9 @@ function AccountingBalanceDebts(props) {
             SelectHeader2='Статья заимствований'
             SelectHeader3='Характер задолженности'
             modalTitle='Долги'
-            selectModalVis3='hidden'
+            selectModalVis3='none'
+            secondSumVis='none'
+            firstSum='Сумма'
           />
           <IncomesLine
             commentToltTitle='Это комментарий - бла бла'

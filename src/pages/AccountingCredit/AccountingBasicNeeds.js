@@ -49,7 +49,9 @@ function AccountingBasicNeeds(props) {
             SelectHeader2='Статья расходов'
             SelectHeader3='Тип расходов'
             modalTitle='Расходы «Базовые потребности»'
-            selectModalVis3='hidden'
+            // selectModalVis3='hidden'
+            secondSumVis='none'
+            firstSum='Сумма'
           />
           <IncomesLine
             commentToltTitle='Это комментарий - бла бла'

@@ -31,7 +31,7 @@ function AccountingCashReturn(props) {
             <div className={styles.breadcrumb}>
               <ul>
                 <li>
-                  <Link to="/accounting">Денежные потоки</Link>
+                  <Link to='/accounting'>Денежные потоки</Link>
                 </li>
                 <li>Возврат вложений</li>
               </ul>
@@ -39,26 +39,28 @@ function AccountingCashReturn(props) {
           </h2>
 
           <AccountingProgressadd
-            barcolor="#0DA46F"
-            barwidth="627rem"
-            btnTitle="Добавить"
-            commentHeight="346rem"
-            modalTitle="Возврат вложений"
-            progressTitle="Учтено"
+            barcolor='#0DA46F'
+            barwidth='627rem'
+            btnTitle='Добавить'
+            commentHeight='346rem'
+            modalTitle='Возврат вложений'
+            progressTitle='Учтено'
             progressValue={progressValue}
-            SelectHeader1="Категория вложений"
-            SelectHeader2="Статья вложений"
-            selectModalVis="hidden"
+            SelectHeader1='Категория вложений'
+            SelectHeader2='Статья вложений'
+            selectModalVis3='none'
+            secondSumVis='none'
+            firstSum='Сумма'
           />
           <IncomesLine
-            commentToltTitle="Это комментарий - бла бла"
+            commentToltTitle='Это комментарий - бла бла'
             incomesValue={incomesValue}
-            notificDisplay="none"
+            notificDisplay='none'
             titleImg={pocket}
             titleName={titleName}
             titleNameType={titleNameType}
-            ttTitle="Это подсказка"
-            valueColor="#0DA46F"
+            ttTitle='Это подсказка'
+            valueColor='#0DA46F'
           />
         </div>
         <InlineCalendar />

@@ -32,7 +32,7 @@ function AccountingAttachment(props) {
             <div className={styles.breadcrumb}>
               <ul>
                 <li>
-                  <Link to="/accounting">Денежные потоки</Link>
+                  <Link to='/accounting'>Денежные потоки</Link>
                 </li>
                 <li>Вложения</li>
               </ul>
@@ -40,27 +40,29 @@ function AccountingAttachment(props) {
           </h2>
           <AccountingProgressadd
             availableValue={availableValue}
-            barcolor="#EE2B49"
-            barwidth="627rem"
-            btnTitle="Добавить"
-            commentHeight="346rem"
-            progressTitle="Учтено"
+            barcolor='#EE2B49'
+            barwidth='627rem'
+            btnTitle='Добавить'
+            commentHeight='346rem'
+            progressTitle='Учтено'
             progressValue={progressValue}
-            SelectHeader1="Категория вложений"
-            selectModalVis="hidden"
-            SelectHeader2="Статья вложений"
-            // SelectHeader3="Тип расходов"
-            modalTitle="Вложения"
+            SelectHeader1='Категория вложений'
+            selectModalVis1='none'
+            SelectHeader2='Статья вложений'
+            selectModalVis3='none'
+            modalTitle='Вложения'
+            secondSumVis='none'
+            firstSum='Сумма'
           />
           <IncomesLine
-            commentToltTitle="Это комментарий - бла бла"
+            commentToltTitle='Это комментарий - бла бла'
             incomesValue={incomesValue}
-            notificDisplay="none"
+            notificDisplay='none'
             titleImg={credit}
             titleName={titleName}
             titleNameType={titleNameType}
-            ttTitle="Это подсказка"
-            valueColor="#0DA46F"
+            ttTitle='Это подсказка'
+            valueColor='#0DA46F'
           />
         </div>
         <InlineCalendar />

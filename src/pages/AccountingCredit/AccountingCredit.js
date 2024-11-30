@@ -32,7 +32,7 @@ function AccountingCredit() {
             <div className={styles.breadcrumb}>
               <ul>
                 <li>
-                  <Link to="/accounting">Денежные потоки</Link>
+                  <Link to='/accounting'>Денежные потоки</Link>
                 </li>
                 <li>Платежи по кредитам</li>
               </ul>
@@ -40,26 +40,28 @@ function AccountingCredit() {
           </h2>
           <AccountingProgressadd
             availableValue={availableValue}
-            barcolor="#EE2B49"
-            barwidth="627rem"
-            btnTitle="Добавить"
-            commentHeight="346rem"
-            modalTitle="Платежи по кредитам"
+            barcolor='#EE2B49'
+            barwidth='627rem'
+            btnTitle='Добавить'
+            commentHeight='346rem'
+            modalTitle='Платежи по кредитам'
             progressValue={progressValue}
-            // SelectHeader1="Основной долг / Проценты"
-            progressTitle="Учтено"
-            // SelectHeader3="Тип дохода"
-            SelectHeader2="Вид кредита"
+            SelectHeader1='Вид кредита'
+            progressTitle='Учтено'
+            selectModalVis2='none'
+            selectModalVis3='none'
+            firstSum='Сумма (Основной долг)'
+            secondSum='Сумма (Проценты)'
           />
           <IncomesLine
-            commentToltTitle="Это комментарий - бла бла"
+            commentToltTitle='Это комментарий - бла бла'
             incomesValue={incomesValue}
-            notificDisplay="none"
+            notificDisplay='none'
             titleImg={credit}
             titleName={titleName}
             titleNameType={titleNameType}
-            ttTitle="Это подсказка"
-            valueColor="#0DA46F"
+            ttTitle='Это подсказка'
+            valueColor='#0DA46F'
           />
         </div>
         <InlineCalendar />

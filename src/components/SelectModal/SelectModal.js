@@ -6,7 +6,7 @@ function SelectModal(props) {
   return (
     <div
       className={styles.SelectModal}
-      style={{ visibility: `${props.selectModalVis}` }}
+      style={{ display: `${props.selectModalVis}` }}
     >
       <h5>{props.SelectHeader}</h5>
       <select>

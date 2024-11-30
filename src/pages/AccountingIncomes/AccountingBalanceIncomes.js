@@ -112,7 +112,7 @@ function AccountingBalanceIncomes(props) {
               <div className={styles.breadcrumb}>
                 <ul>
                   <li>
-                    <Link to="/AccountingBalance">Финансовый баланс</Link>
+                    <Link to='/AccountingBalance'>Финансовый баланс</Link>
                   </li>
                   <li>Активы</li>
                 </ul>
@@ -127,34 +127,36 @@ function AccountingBalanceIncomes(props) {
                   key={elem.id}
                   className={index === selectedMonth ? 'month select' : 'month'}
                 >
-                  <div className="monthimg">
-                    <img alt="" src={elem.checkStatus} />
+                  <div className='monthimg'>
+                    <img alt='' src={elem.checkStatus} />
                   </div>
-                  <div className="monthtitle">{elem.title}</div>
+                  <div className='monthtitle'>{elem.title}</div>
                 </div>
               ))}
             </div>
           </div>
           <AccountingProgressadd
-            barcolor="#0DA46F"
-            barwidth="627rem"
-            btnTitle="Добавить"
-            modalTitle="Активы"
-            progressTitle="Учтено"
+            barcolor='#0DA46F'
+            barwidth='627rem'
+            btnTitle='Добавить'
+            modalTitle='Активы'
+            progressTitle='Учтено'
             progressValue={progressValue}
-            SelectHeader1="Категория активов"
-            SelectHeader2="Статья активов"
-            SelectHeader3="Назначение"
+            SelectHeader1='Категория активов'
+            SelectHeader2='Статья активов'
+            SelectHeader3='Назначение'
+            secondSumVis='none'
+            firstSum='Сумма'
           />
           <IncomesLine
-            commentToltTitle="Это комментарий - бла бла"
+            commentToltTitle='Это комментарий - бла бла'
             incomesValue={incomesValue}
-            notificDisplay="none"
+            notificDisplay='none'
             titleImg={pocket}
             titleName={titleName}
             titleNameType={titleNameType}
-            ttTitle="Это подсказка"
-            valueColor="#0DA46F"
+            ttTitle='Это подсказка'
+            valueColor='#0DA46F'
           />
         </div>
         <AccountingBalanceRight />
