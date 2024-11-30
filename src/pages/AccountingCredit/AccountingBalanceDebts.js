@@ -114,7 +114,7 @@ function AccountingBalanceDebts(props) {
               <div className={styles.breadcrumb}>
                 <ul>
                   <li>
-                    <Link to="/AccountingBalance">Финансовый баланс</Link>
+                    <Link to='/AccountingBalance'>Финансовый баланс</Link>
                   </li>
                   <li>Долги</li>
                 </ul>
@@ -129,36 +129,36 @@ function AccountingBalanceDebts(props) {
                   key={elem.id}
                   className={index === selectedMonth ? 'month select' : 'month'}
                 >
-                  <div className="monthimg">
-                    <img alt="" src={elem.checkStatus} />
+                  <div className='monthimg'>
+                    <img alt='' src={elem.checkStatus} />
                   </div>
-                  <div className="monthtitle">{elem.title}</div>
+                  <div className='monthtitle'>{elem.title}</div>
                 </div>
               ))}
             </div>
           </div>
           <AccountingProgressadd
             availableValue={availableValue}
-            barcolor="#EE2B49"
-            barwidth="627rem"
-            btnTitle="Добавить"
-            progressTitle="Учтено"
+            barcolor='#EE2B49'
+            barwidth='627rem'
+            btnTitle='Добавить'
+            progressTitle='Учтено'
             progressValue={progressValue}
-            SelectHeader1="Категория заимствований"
-            SelectHeader2="Статья заимствований"
-            SelectHeader3="Характер задолженности"
-            modalTitle="Долги"
-            // selectModalVis="hidden"
+            SelectHeader1='Категория заимствований'
+            SelectHeader2='Статья заимствований'
+            SelectHeader3='Характер задолженности'
+            modalTitle='Долги'
+            selectModalVis3='hidden'
           />
           <IncomesLine
-            commentToltTitle="Это комментарий - бла бла"
+            commentToltTitle='Это комментарий - бла бла'
             incomesValue={incomesValue}
-            notificDisplay="none"
+            notificDisplay='none'
             titleImg={credit}
             titleName={titleName}
             titleNameType={titleNameType}
-            ttTitle="Это подсказка"
-            valueColor="#0DA46F"
+            ttTitle='Это подсказка'
+            valueColor='#0DA46F'
           />
         </div>
         <AccountingBalanceRight />

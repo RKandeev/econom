@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 
-import {
-  styled,
-  Tooltip,
-  tooltipClasses,
-} from '@mui/material';
+import { styled, Tooltip, tooltipClasses } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 import Modal from '../Modal/Modal';
@@ -53,18 +49,25 @@ function AccountingLine(props) {
 
   return (
     <>
-      <div className={styles.finline}>
+      <div
+        className={styles.finline}
+        style={{
+          width: `${props.lineWidth}`,
+        }}
+      >
         <div
           className={styles.finlinestatus}
-          style={{ display: `${props.checkDisplay}` }}
+          style={{
+            display: `${props.checkDisplay}`,
+          }}
         >
-          <Tolt tooltipTitle1="1232132">
-            <img alt="" src={props.checkImg} />
+          <Tolt tooltipTitle1='1232132'>
+            <img alt='' src={props.checkImg} />
           </Tolt>
         </div>
         <div className={styles.finlinetitle}>
           <div className={styles.titleimg}>
-            <img alt="" src={props.titleimg} />
+            <img alt='' src={props.titleimg} />
           </div>
           <div className={styles.titlename}>{props.titlename}</div>
           {/*<div className={styles.titleabout}>*/}

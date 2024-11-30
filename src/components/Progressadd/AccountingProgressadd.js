@@ -38,7 +38,7 @@ function AccountingProgressadd(props) {
             SetAccountingAddModalActive(true);
           }}
         >
-          <Mybtn btnTitle="Добавить" />
+          <Mybtn btnTitle='Добавить' />
         </div>
       </div>
       <Modal
@@ -53,34 +53,36 @@ function AccountingProgressadd(props) {
           </TabList>
           <TabPanel>
             <div className={styles.tabHeaderBlock}>
-              <form id="newIncomeForm">
+              <form id='newIncomeForm'>
                 <div className={styles.editSum}>
-                  <Editsum formTitle="Сумма (Проценты)" sumValue={sumValue} />
+                  <Editsum formTitle='Сумма (Проценты)' sumValue={sumValue} />
                 </div>
                 <div className={styles.editSum}>
                   <Editsum
-                    formTitle="Сумма (Основной долг)"
+                    formTitle='Сумма (Основной долг)'
                     sumValue={sumValue}
                   />
                 </div>
-                {/*<SelectModal*/}
-                {/*  selectArr={selectArr1}*/}
-                {/*  SelectHeader={props.SelectHeader1}*/}
-                {/*/>*/}
+                <SelectModal
+                  selectArr={selectArr1}
+                  SelectHeader={props.SelectHeader1}
+                  selectModalVis={props.selectModalVis1}
+                />
                 <SelectModal
                   selectArr={selectArr2}
                   SelectHeader={props.SelectHeader2}
+                  selectModalVis={props.selectModalVis2}
                 />
                 <SelectModal
                   selectArr={selectArr2}
                   SelectHeader={props.SelectHeader3}
-                  selectModalVis={props.selectModalVis}
+                  selectModalVis={props.selectModalVis3}
                 />
                 <input
                   className={styles.submitBtn}
-                  form="newIncomeForm"
-                  type="submit"
-                  value="Сохранить"
+                  form='newIncomeForm'
+                  type='submit'
+                  value='Сохранить'
                 />
               </form>
             </div>
@@ -88,13 +90,13 @@ function AccountingProgressadd(props) {
           <TabPanel>
             <CommentArea
               commentHeight={props.commentHeight}
-              placeHolderTitle="Текст комментария"
+              placeHolderTitle='Текст комментария'
             />
             <input
               className={styles.submitBtn}
-              form="newIncomeForm"
-              type="submit"
-              value="Сохранить"
+              form='newIncomeForm'
+              type='submit'
+              value='Сохранить'
             />
           </TabPanel>
         </Tabs>

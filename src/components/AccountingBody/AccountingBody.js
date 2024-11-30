@@ -35,85 +35,93 @@ function AccountingBody(props) {
           </h2>
         </div>
         <AnalysisHeader
-          activeLink="true"
-          firstlink="/accounting"
-          firsttitle="Денежные потоки"
-          secondlink="/AccountingBalance"
-          secondtitle="Финансовый баланс"
+          activeLink='true'
+          firstlink='/accounting'
+          firsttitle='Денежные потоки'
+          secondlink='/AccountingBalance'
+          secondtitle='Финансовый баланс'
         />
-        <Moneyline interval="дня" modalTitle="Остаток на начало дня" />
+        <Moneyline interval='дня' modalTitle='Остаток на начало дня' />
         <AccountingLine
-          checkDisplay="none"
-          entriesNum="13 записей"
-          linkway="/AccountingIncomes"
+          checkDisplay='none'
+          entriesNum='13 записей'
+          linkway='/AccountingIncomes'
           titleimg={pocket}
-          titlename="Доходы"
-          value="+55000.00"
+          titlename='Доходы'
+          value='+55000.00'
+          lineWidth='97%'
         />
         <AccountingLine
-          checkDisplay="none"
-          entriesNum="1 запись"
-          linkway="/AccountingCredit"
+          checkDisplay='none'
+          entriesNum='1 запись'
+          linkway='/AccountingCredit'
           titleimg={crediticon}
-          titlename="Платежи по кредитам"
-          value="-12446.20"
+          titlename='Платежи по кредитам'
+          value='-12446.20'
+          lineWidth='97%'
         />
         <AccountingLine
-          checkDisplay="none"
-          entriesNum="1 запись"
-          linkway="/AccountingBasicNeeds"
+          checkDisplay='none'
+          entriesNum='1 запись'
+          linkway='/AccountingBasicNeeds'
           titleimg={back}
-          titlename="Расходы «Базовые потребности»"
-          value="-12446.20"
+          titlename='Расходы «Базовые потребности»'
+          value='-12446.20'
+          lineWidth='97%'
         />
         <AccountingLine
-          checkDisplay="none"
-          entriesNum="1 запись"
-          linkway="/AccountingLifestyle"
+          checkDisplay='none'
+          entriesNum='1 запись'
+          linkway='/AccountingLifestyle'
           titleimg={lifestyle}
-          titlename="Расходы «Образ жизни»"
-          value="-12446.20"
+          titlename='Расходы «Образ жизни»'
+          value='-12446.20'
+          lineWidth='97%'
         />
         <AccountingLine
-          checkDisplay="none"
-          entriesNum="1 запись"
-          linkway="/AccountingCachout"
+          checkDisplay='none'
+          entriesNum='1 запись'
+          linkway='/AccountingCachout'
           titleimg={fincashout}
-          titlename="Финансовые расходы"
-          value="-12446.20"
+          titlename='Финансовые расходы'
+          value='-12446.20'
+          lineWidth='97%'
         />
         <AccountingLine
-          checkDisplay="none"
-          entriesNum="13 записей"
-          linkway="/AccountingCashReturn"
+          checkDisplay='none'
+          entriesNum='13 записей'
+          linkway='/AccountingCashReturn'
           titleimg={moneyback}
-          titlename="Возврат вложений"
-          value="+55000.00"
+          titlename='Возврат вложений'
+          value='+55000.00'
+          lineWidth='97%'
         />
         <AccountingLine
-          checkDisplay="none"
-          entriesNum="13 записей"
-          linkway="/AccountingBorrowings"
+          checkDisplay='none'
+          entriesNum='13 записей'
+          linkway='/AccountingBorrowings'
           titleimg={borrowings}
-          titlename="Заимствования"
-          value="+55000.00"
+          titlename='Заимствования'
+          value='+55000.00'
+          lineWidth='97%'
         />
-
         <AccountingLine
-          checkDisplay="none"
-          entriesNum="1 запись"
-          linkway="/AccountingAttachment"
+          checkDisplay='none'
+          entriesNum='1 запись'
+          linkway='/AccountingAttachment'
           titleimg={attachment}
-          titlename="Вложения"
-          value="-12446.20"
+          titlename='Вложения'
+          value='-12446.20'
+          lineWidth='97%'
         />
         <AccountingLine
-          checkDisplay="none"
-          entriesNum="1 запись"
-          linkway="/AccountingDebts"
+          checkDisplay='none'
+          entriesNum='1 запись'
+          linkway='/AccountingDebts'
           titleimg={debts}
-          titlename="Погашение долгов"
-          value="-12446.20"
+          titlename='Погашение долгов'
+          value='-12446.20'
+          lineWidth='97%'
         />
       </div>
     </>

@@ -32,7 +32,7 @@ function AccountingCachout(props) {
             <div className={styles.breadcrumb}>
               <ul>
                 <li>
-                  <Link to="/accounting">Денежные потоки</Link>
+                  <Link to='/accounting'>Денежные потоки</Link>
                 </li>
                 <li>Финансовые расходы</li>
               </ul>
@@ -40,26 +40,26 @@ function AccountingCachout(props) {
           </h2>
           <AccountingProgressadd
             availableValue={availableValue}
-            barcolor="#EE2B49"
-            barwidth="627rem"
-            btnTitle="Добавить"
-            progressTitle="Учтено"
+            barcolor='#EE2B49'
+            barwidth='627rem'
+            btnTitle='Добавить'
+            progressTitle='Учтено'
             progressValue={progressValue}
-            SelectHeader1="Категория расходов"
-            SelectHeader2="Статья расходов"
-            SelectHeader3="Тип расходов"
-            modalTitle="Финансовые расходы"
-            // selectModalVis="hidden"
+            SelectHeader1='Категория расходов'
+            SelectHeader2='Статья расходов'
+            SelectHeader3='Тип расходов'
+            modalTitle='Финансовые расходы'
+            selectModalVis3='hidden'
           />
           <IncomesLine
-            commentToltTitle="Это комментарий - бла бла"
+            commentToltTitle='Это комментарий - бла бла'
             incomesValue={incomesValue}
-            notificDisplay="none"
+            notificDisplay='none'
             titleImg={fincashout}
             titleName={titleName}
             titleNameType={titleNameType}
-            ttTitle="Это подсказка"
-            valueColor="#0DA46F"
+            ttTitle='Это подсказка'
+            valueColor='#0DA46F'
           />
         </div>
         <InlineCalendar />

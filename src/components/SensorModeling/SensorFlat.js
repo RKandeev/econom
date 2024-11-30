@@ -6,7 +6,7 @@ import AnimatedNumbers from 'react-animated-numbers';
 
 import './SensorModeling.scss';
 function SensorFlat(props) {
-  const [ser3, setSer3] = useState(-80);
+  const [ser3, setSer3] = useState(80);
   let chartValue = 0;
 
   if (ser3 >= 100) {
