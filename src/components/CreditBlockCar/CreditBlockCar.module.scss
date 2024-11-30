@@ -39,6 +39,7 @@ h5.formTitle{
   justify-content: space-between;
 }
 .creditName{
+  position: relative;
   input{
     padding: 14rem 16rem;
     max-width: 372rem;
@@ -49,6 +50,9 @@ h5.formTitle{
       box-sizing: border-box;
       width: 100%;
     }
+  }
+  span {
+    bottom: 6rem;
   }
 }
 .creditsBlockTitle{
@@ -80,6 +84,7 @@ h5.formTitle{
     border: 1px solid #E1ECF5;
 
     .editValueForm{
+      position: relative;
       padding: 12rem 16rem;
       background-color: #F0F5FA;
       border-radius: 12rem;
@@ -148,6 +153,31 @@ h5.formTitle{
       background-color: #ABB0C3;
       cursor: initial;
     }
+    @media (max-width: 480px) {
+      margin: 16rem 0;
+    }
+  }
+  input.submitBtn{
+    cursor: pointer;
+    padding-top: 16rem;
+    padding-bottom: 16rem;
+    border-radius: 12rem;
+    background-color: #3156A6;
+    width: 100%;
+    border: none;
+    font-size: 14rem;
+    font-weight: 700;
+    color: #fff;
+    margin-top: 12rem;
+    margin-bottom: 12rem;
+    text-transform: uppercase;
+    //я навесил на hover те стили которые должны быть у кнопок при неактивном состоянии
+
+    &:disabled {
+      background-color: #ABB0C3;
+      cursor: initial;
+    }
+
     @media (max-width: 480px) {
       margin: 16rem 0;
     }

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
@@ -13,32 +13,31 @@ import Tolt from '../Tolt/Tolt';
 import help from '../../img/icon/icon__help.svg';
 
 import styles from './CreditBlockAim.module.scss';
+import { useLocation, useNavigate, useRoutes } from 'react-router-dom';
+import { Context } from '../../Context';
+import Spinner from '../Spinner/Spinner';
 
 function CreditBlockAim(props) {
+  const [addModalActive, SetAddModalActive] = useState(false);
   const [calcResult, setCalcResult] = useState({});
+  const [isView, setIsView] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [insuranceAwards, setInsuranceAwards] = useState(true );
+
   const calcBtnRef = useRef(null);
   const saveBtnRef = useRef(null);
   const previousValues = useRef({});
 
-  const [addModalActive, SetAddModalActive] = useState(false);
-  const [oldCredits, setOldCredits] = useState([
-    {
-      date: '2021-04-01',
-      duration: 0,
-      ins_type: '0',
-      insurance: 1.0,
-      name: '',
-      period: 60,
-      rate: 16,
-      sum: 300000,
-    },
-  ]);
+  const {calcView} = useContext(Context)
+
+  const location = useLocation();
+
+  const navigate = useNavigate();
+
   let chartsNames = ['Экономический эффект', 'Факторный анализ'];
-  // const date = new Date();
-  // const year = date.getFullYear();
-  // const month = date.getMonth() + 1;
-  // const day = date.getDate();
-  // const currentDate = `${year}-${month}-${day}`;
+  if (window.outerWidth < 450) {
+    chartsNames = ['1', '2'];
+  }
 
   const {
     register,
@@ -46,6 +45,7 @@ function CreditBlockAim(props) {
     trigger,
     watch,
     setError,
+    setValue,
     reset,
     formState: { errors },
   } = useForm({
@@ -54,7 +54,7 @@ function CreditBlockAim(props) {
       credit_name: '',
       duration: '',
       inflation_rate: '',
-      insurance_award: '',
+      insurance_award: '0',
       invest_rate: '',
       rate: '',
       start_dt: '',
@@ -65,9 +65,6 @@ function CreditBlockAim(props) {
     mode: 'all',
   });
 
-  if (window.outerWidth < 450) {
-    chartsNames = ['1', '2'];
-  }
 
   const values = watch();
 
@@ -75,15 +72,37 @@ function CreditBlockAim(props) {
     return values[key] !== previousValues.current[key];
   });
 
+  const setViewValuesHandler = () => {
+    Object.entries(calcView).forEach(([key, value]) => {
+      if (key === 'created_at' || key === 'updated_at' || key === 'user_id' || key === 'id' || key === 'calc_result') return
+      setValue(key, value)
+    })
+  }
+
   useEffect(() => {
     if (Object.entries(calcResult).length > 0) {
       if (hasChanged) {
         saveBtnRef.current.disabled = true;
+        setCalcResult({})
       }
     }
   }, [values]);
 
+  useEffect (() => {
+    const searchParams = new URLSearchParams(location.search);
+    const calcId= searchParams.get('calcId');
+    if (calcId && Object.entries(calcView).length > 0) {
+      setIsView(true)
+      setViewValuesHandler()
+    }
+  }, []);
+
   const calcBtnHandler = async () => {
+    if (Object.entries(calcResult).length > 0) {
+      SetAddModalActive(true);
+      return;
+    }
+
     const isValid = await trigger();
 
     if (isValid) {
@@ -95,40 +114,49 @@ function CreditBlockAim(props) {
           formData.append(key, values[key]);
         }
       }
+
+      setIsLoading(true);
+
       const response = await apiRequest({
         data: formData,
         method: 'POST',
         url: '/fin-model/rationality',
       });
 
-      if (!response) {
-        toast.error('Ошибка в ответе сервера. Не удалось прочитать ответ сервера');
-
-        return;
-      }
-
-      if (response.code === 0 && response.http_status === 200) {
-        saveBtnRef.current.disabled = false;
-        setCalcResult(response.data);
-        SetAddModalActive(true);
-      } else {
-        Object.entries(response.data).forEach(([key, value]) => {
-          if (value[0]) {
-            setError(`${key}`, { message: value[0], type: 'server' });
-          }
-        });
-        toast.error(response.mes);
-        const firstErrorField = Object.keys(errors)[0];
-        const element = document.querySelector(`[name="${firstErrorField}"]`);
-
-        if (element) {
-          element.scrollIntoView({
-            behavior:'smooth',
-            block:'start',
-          });
-          setTimeout(()=> (element.focus()),600);
+      setTimeout(() => {
+        if (!response) {
+          toast.error('Ошибка в ответе сервера. Не удалось прочитать ответ сервера');
+          setIsLoading(false);
+          return;
         }
-      }
+
+        if (response.code === 0 && response.http_status === 200) {
+          setIsLoading(false);
+          saveBtnRef.current.disabled = false;
+          setCalcResult(response.data);
+          SetAddModalActive(true);
+        } else {
+          setIsLoading(false);
+          Object.entries(response.data).forEach(([key, value]) => {
+            if (value[0]) {
+              setError(`${key}`, { message: value[0], type: 'server' });
+            }
+          });
+          toast.error(response.mes);
+          const firstErrorField = Object.keys(errors)[0];
+          const element = document.querySelector(`[name="${firstErrorField}"]`);
+
+          if (element) {
+            element.scrollIntoView({
+              behavior:'smooth',
+              block:'start',
+            });
+            setTimeout(()=> (element.focus()),600);
+          }
+        }
+      }, 1800)
+
+
     } else {
       const firstErrorField = Object.keys(errors)[0];
       const element = document.querySelector(`[name="${firstErrorField}"]`);
@@ -152,38 +180,50 @@ function CreditBlockAim(props) {
         saveFormData.append(key, values[key]);
       }
     }
+
+    if (isView) {
+      saveFormData.append('id', calcView.id);
+      saveFormData.append('token', localStorage.getItem('token'));
+    }
+    setIsLoading(true);
     const response = await apiRequest({
       data: saveFormData,
       method: 'POST',
-      url: '/fin-model/rationality-save',
+      url: isView? '/fin-model/rationality-update' : '/fin-model/rationality-save',
     });
 
-    if (!response) {
-      toast.error('Ошибка в ответе сервера. Не удалось прочитать ответ сервера');
+    setTimeout(() => {
+      if (!response) {
+        setIsLoading(false);
+        toast.error('Ошибка в ответе сервера. Не удалось прочитать ответ сервера');
 
-      return;
-    }
-
-    if (response.code === 0 && response.http_status === 200) {
-      saveBtnRef.current.disabled = true;
-      reset();
-      toast.success(response.mes);
-    } else {
-      Object.entries(response.data).forEach(([key, value]) => {
-        setError(`${key}`, { message: value[0], type: 'server' });
-      });
-      toast.error(response.mes);
-      const firstErrorField = Object.keys(errors)[0];
-      const element = document.querySelector(`[name="${firstErrorField}"]`);
-
-      if (element) {
-        element.scrollIntoView({
-          behavior:'smooth',
-          block:'start',
-        });
-        setTimeout(()=> (element.focus()),600);
+        return;
       }
-    }
+
+      if (response.code === 0 && response.http_status === 200) {
+        setIsLoading(false);
+        saveBtnRef.current.disabled = true;
+        reset();
+        toast.success(response.mes);
+        navigate('/finmodeling')
+      } else {
+        setIsLoading(false);
+        Object.entries(response.data).forEach(([key, value]) => {
+          setError(`${key}`, { message: value[0], type: 'server' });
+        });
+        toast.error(response.mes);
+        const firstErrorField = Object.keys(errors)[0];
+        const element = document.querySelector(`[name="${firstErrorField}"]`);
+
+        if (element) {
+          element.scrollIntoView({
+            behavior:'smooth',
+            block:'start',
+          });
+          setTimeout(()=> (element.focus()),600);
+        }
+      }
+    }, 1800)
   };
 
   return (
@@ -218,76 +258,92 @@ function CreditBlockAim(props) {
             <h5 className={styles.formTitle}>Название кредита</h5>
             <div className={styles.editValueForm}>
               <input
-                placeholder='Введите название'
-                type='text'
+                placeholder="Введите название"
+                type="text"
                 {
                   ...register('credit_name', {
                     required: 'Введите название кредита'
                   })
                 }
               />
-              {errors.credit_name && <span className='error_message'>{errors.credit_name.message}</span>}
+              {errors.credit_name && <span className="error_message">{errors.credit_name.message}</span>}
             </div>
             <h5 className={styles.formTitle}>Дата получения кредита</h5>
             <div className={styles.editValueForm}>
               <input
-                type='date'
+                type="date"
                 {
                   ...register('start_dt', {
                     required: 'Введите дату получения кредита'
                   })
                 }
               />
-              {errors.start_dt && <span className='error_message'>{errors.start_dt.message}</span>}
+              {errors.start_dt && <span className="error_message">{errors.start_dt.message}</span>}
             </div>
             <h5 className={styles.formTitle}>Срок кредита (в месяцах)</h5>
             <div className={styles.editValueForm}>
               <input
-                type='number'
+                type="number"
                 {
                   ...register('duration', {
                     required: 'Введите срок кредита'
                   })
                 }
               />
-              {errors.duration && <span className='error_message'>{errors.duration.message}</span>}
+              {errors.duration && <span className="error_message">{errors.duration.message}</span>}
             </div>
             <h5 className={styles.formTitle}>Ставка (%)</h5>
             <div className={styles.editValueForm}>
               <input
-                type='number'
+                type="number"
                 {
                   ...register('rate', {
                     required: 'Введите ставку кредита'
                   })
                 }
               />
-              {errors.rate && <span className='error_message'>{errors.rate.message}</span>}
+              {errors.rate && <span className="error_message">{errors.rate.message}</span>}
             </div>
             <h5 className={styles.formTitle}>Сумма (₽)</h5>
             <div className={styles.editValueForm}>
               <input
-                type='number'
+                type="number"
                 {
                   ...register('sum', {
                     required: 'Введите сумму кредита'
                   })
                 }
               />
-              {errors.sum && <span className='error_message'>{errors.sum.message}</span>}
+              {errors.sum && <span className="error_message">{errors.sum.message}</span>}
             </div>
-            <h5 className={styles.formTitle}>Страховая премия (%)</h5>
+            <h5 className={styles.formTitle}>Предстоящие расходы на страхование</h5>
             <div className={styles.editValueForm}>
-              <input
-                type='number'
-                {
-                  ...register('insurance_award', {
-                    required: 'Введите страховую премию'
-                  })
-                }
-              />
-              {errors.insurance_award && <span className='error_message'>{errors.insurance_award.message}</span>}
+              <select
+                className={styles.creditSelect}
+                onChange={() => setInsuranceAwards(!insuranceAwards)}
+              >
+                <option value="0">Eжегодно</option>
+                <option value="1">Не предусмотрены</option>
+              </select>
             </div>
+            {insuranceAwards === true && (
+              <>
+                <h5 className={styles.formTitle}>Страховая премия (%)</h5>
+                <div className={styles.editValueForm}>
+                  <input
+                    step="0.1"
+                    type="number"
+                    {
+                      ...register('insurance_award', {
+                        required: 'Введите страховую премию'
+                      })
+                    }
+                  />
+                  {errors.insurance_award && <span className="error_message">{errors.insurance_award.message}</span>}
+                </div>
+              </>
+            )
+            }
           </div>
         </div>
         <div className={styles.creditsBlocks}></div>
@@ -327,7 +383,7 @@ function CreditBlockAim(props) {
             <h4 className={styles.creditsBlockTitle}>Инвестиции и инфляция</h4>
             <div className={styles.creditBlock}>
               <h5 className={styles.formTitle}>
-                Доходность возможных вложений (годовая) (%)
+                Доходность возможных вложений (% год.)
                 <Tolt
                   tooltipTitle1="Рекомендуется указывать актуальную на момент расчёта ставку вложений с низким или умеренным риском потерь – банковский депозит, облигации и др.">
                   <img alt="" src={help} />
@@ -373,7 +429,7 @@ function CreditBlockAim(props) {
               type="button"
               onClick={() => calcBtnHandler()}
             >
-              Рассчитать
+              Расчет
             </button>
           </div>
           <div className={styles.submitBtnBlock}>
@@ -406,6 +462,12 @@ function CreditBlockAim(props) {
           </TabPanel>
         </Tabs>
       </Modal>
+
+      {
+        isLoading && (
+          <Spinner />
+        )
+      }
     </>
   );
 }

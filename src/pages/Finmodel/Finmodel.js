@@ -60,25 +60,22 @@ function Finmodel(props) {
                   </TabList>
                 </div>
                 <TabPanel>
-                  <MySolutions />
+                  <MySolutions historyUrl='/fin-model/rationality-history' deleteHistoryUrl='/fin-model/rationality-delete'/>
                 </TabPanel>
                 <TabPanel>
-                  <MySolutions />
+                  <MySolutions historyUrl='/fin-model/priority-history' deleteHistoryUrl='/fin-model/priority/delete'/>
                 </TabPanel>
                 <TabPanel>
-                  <MySolutions />
+                  <MySolutions historyUrl='/fin-model/rationality-history' deleteHistoryUrl='/fin-model/rationality-delete'/>
                 </TabPanel>
                 <TabPanel>
-                  <MySolutions />
+                  <MySolutions historyUrl='/fin-model/buy-or-rent-history' deleteHistoryUrl='/fin-model/buy-or-rent-delete'/>
                 </TabPanel>
                 <TabPanel>
-                  <MySolutions />
+                  <MySolutions historyUrl='/fin-model/buy-car-or-invest-history' deleteHistoryUrl='/fin-model/buy-car-or-invest-delete'/>
                 </TabPanel>
                 <TabPanel>
-                  <MySolutions />
-                </TabPanel>
-                <TabPanel>
-                  <MySolutions />
+                  <MySolutions historyUrl='/fin-model/buy-flat-or-invest-history' deleteHistoryUrl='/fin-model/buy-flat-or-invest-delete'/>
                 </TabPanel>
               </Tabs>
             </div>

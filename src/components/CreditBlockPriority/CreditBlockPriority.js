@@ -76,11 +76,14 @@ function CreditBlockPriority(props) {
     mode: "all"
   });
 
-  // Используем useFieldArray для управления массивом групп
   const { fields, append, remove } = useFieldArray({
     control,
     name: 'groups'
   });
+
+  useEffect(()=>{
+    console.log(fields);
+  }, [fields])
 
   if (window.outerWidth < 450) {
     chartsNames = ['1', '2'];
@@ -219,9 +222,10 @@ function CreditBlockPriority(props) {
           });
         }
         break;
-
+      default: break;
     }
     setCreditCount(cnt);
+    document.activeElement.blur();
   }
 
   function insuranceAwardsHandler(number) {
@@ -246,33 +250,33 @@ function CreditBlockPriority(props) {
   const values = watch();
 
 
-  useEffect(() => {
-    if (Object.entries(calcResult).length > 0) {
-      // console.log(getValues());
-      Object.assign(values, values.groups[0], values.groups[1]);
-      delete values.groups;
-      // console.log("values", values);
-      // console.log("prevValues", previousValues.current);
-      const hasChanged = Object.keys(values).some((key) => {
-        return values[key] !== previousValues.current[key];
-      });
-
-      // console.log(hasChanged);
-
-      if (hasChanged) {
-        saveBtnRef.current.disabled = true;
-      }
-    }
-  }, [values]);
-
   const calcBtnHandler = async () => {
+    if (Object.entries(calcResult).length > 0) {
+      SetAddModalActive(true);
+      return;
+    }
     const isValid = await trigger();
 
     if (isValid) {
       previousValues.current = values;
-      console.log(values);
-      Object.assign(values, values.groups[0], values.groups[1]);
-      delete values.groups;
+      if (values.groups) {
+        if (values.groups[0]){
+          Object.assign(values, values.groups[0]);
+        }
+        if (values.groups[1]){
+          Object.assign(values, values.groups[1]);
+        }
+        if (values.groups[2]){
+          Object.assign(values, values.groups[2]);
+        }
+        if (values.groups[3]){
+          Object.assign(values, values.groups[3]);
+        }
+        if (values.groups[4]){
+          Object.assign(values, values.groups[4]);
+        }
+        delete values.groups;
+      }
 
       const formData = new FormData();
 
@@ -304,34 +308,33 @@ function CreditBlockPriority(props) {
         toast.error(response.mes);
       }
     } else {
-      console.log(errors);
 
       let firstErrorField;
 
-      if (errors.groups){
-        let groupErrorField
-        if (errors.groups[0]) {
-          groupErrorField = Object.keys(errors.groups[0])[0];
-        }
-        if (errors.groups[1]) {
-          groupErrorField = Object.keys(errors.groups[1])[0];
-        }
-        if (errors.groups[2]) {
-          groupErrorField = Object.keys(errors.groups[2])[0];
-        }
-        if (errors.groups[3]) {
-          groupErrorField = Object.keys(errors.groups[3])[0];
-        }
-        if (errors.groups[4]) {
-          groupErrorField = Object.keys(errors.groups[4])[0];
-        }
-        firstErrorField = groupErrorField
-      } else {
+      if (Object.keys(errors)[0] !== 'groups') {
         firstErrorField = Object.keys(errors)[0];
+      } else {
+        if (errors.groups){
+          let groupErrorField
+          if (errors.groups[0]) {
+            groupErrorField = `groups.0.${Object.keys(errors.groups[0])[0]}`;
+          }
+          if (errors.groups[1]) {
+            groupErrorField = `groups.1.${Object.keys(errors.groups[1])[0]}`;
+          }
+          if (errors.groups[2]) {
+            groupErrorField = `groups.2.${Object.keys(errors.groups[2])[0]}`;
+          }
+          if (errors.groups[3]) {
+            groupErrorField = `groups.3.${Object.keys(errors.groups[3])[0]}`;
+          }
+          if (errors.groups[4]) {
+            groupErrorField = `groups.4.${Object.keys(errors.groups[4])[0]}`;
+          }
+          firstErrorField = groupErrorField
+        }
       }
 
-
-      // console.log(firstErrorField);
       const element = document.querySelector(`[name="${firstErrorField}"]`);
 
       if (element) {
@@ -346,8 +349,26 @@ function CreditBlockPriority(props) {
 
   const onSubmit = async () => {
     const values = watch();
-    Object.assign(values, values.groups[0], values.groups[1]);
-    delete values.groups;
+
+    if (values.groups) {
+      if (values.groups[0]){
+        Object.assign(values, values.groups[0]);
+      }
+      if (values.groups[1]){
+        Object.assign(values, values.groups[1]);
+      }
+      if (values.groups[2]){
+        Object.assign(values, values.groups[2]);
+      }
+      if (values.groups[3]){
+        Object.assign(values, values.groups[3]);
+      }
+      if (values.groups[4]){
+        Object.assign(values, values.groups[4]);
+      }
+      delete values.groups;
+    }
+
     const saveFormData = new FormData();
 
     saveFormData.append('token', localStorage.getItem('token'));
@@ -379,6 +400,22 @@ function CreditBlockPriority(props) {
       toast.error(response.mes);
     }
   };
+
+  useEffect(() => {
+    if (Object.entries(calcResult).length > 0) {
+      Object.assign(values, values.groups[0], values.groups[1]);
+      delete values.groups;
+      const hasChanged = Object.keys(values).some((key) => {
+        return values[key] !== previousValues.current[key];
+      });
+
+      if (hasChanged) {
+        saveBtnRef.current.disabled = true;
+        setCalcResult({})
+      }
+    }
+  }, [values]);
+
 
   return (
     <>
@@ -447,7 +484,7 @@ function CreditBlockPriority(props) {
             <div key={k} className={styles.creditBlock}>
               <div className={styles.creditTitleBlock}>
                 <div className={styles.creditTitle}>{'Кредит №' + (k + 1)}</div>
-                <Checkcustom groupIndex={k} label='Учитывать' register={register} />
+                <Checkcustom groupIndex={k} label='Учитывать' register={register} checked/>
               </div>
               <h5 className={styles.formTitle}>Название кредита</h5>
               <div className={styles.editValueForm}>
@@ -660,7 +697,7 @@ function CreditBlockPriority(props) {
               type='button'
               onClick={() => calcBtnHandler()}
             >
-              Рассчитать
+              Расчет
             </button>
           </div>
           <div className={styles.submitBtnBlock}>
