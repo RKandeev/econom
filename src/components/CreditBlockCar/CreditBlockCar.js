@@ -71,7 +71,6 @@ function CreditBlockCar(props) {
     mode: 'all',
   });
 
-
   const values = watch();
 
   const hasChanged = Object.keys(values).some((key) => {

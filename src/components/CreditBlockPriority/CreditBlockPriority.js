@@ -15,6 +15,7 @@ import Tolt from '../Tolt/Tolt';
 import help from '../../img/icon/icon__help.svg';
 
 import styles from './CreditBlockPriority.module.scss';
+import { useNavigate } from 'react-router-dom';
 
 function CreditBlockPriority(props) {
   const [addModalActive, SetAddModalActive] = useState(false);
@@ -34,6 +35,8 @@ function CreditBlockPriority(props) {
   const calcNameRef = useRef(null);
   let chartsNames = ['Экономический эффект', 'Факторный анализ'];
 
+  const navigate = useNavigate();
+
   const {
     control,
     register,
@@ -47,7 +50,7 @@ function CreditBlockPriority(props) {
     getValues,
   } = useForm({
     defaultValues: {
-      calcName: '',
+      calc_name: '',
       groups: [
         {
           credit_name1: '',
@@ -81,9 +84,6 @@ function CreditBlockPriority(props) {
     name: 'groups'
   });
 
-  useEffect(()=>{
-    console.log(fields);
-  }, [fields])
 
   if (window.outerWidth < 450) {
     chartsNames = ['1', '2'];
@@ -393,6 +393,7 @@ function CreditBlockPriority(props) {
       saveBtnRef.current.disabled = true;
       reset();
       toast.success(response.mes);
+      navigate('/finmodeling')
     } else {
       Object.entries(response.data).forEach(([key, value]) => {
         setError(`${key}`, { message: value[0], type: 'server' });
@@ -429,12 +430,12 @@ function CreditBlockPriority(props) {
                 placeholder='Введите название'
                 type='text'
                 {
-                  ...register(`calcName`, {
+                  ...register(`calc_name`, {
                     required: 'Введите название рассчета',
                   })
                 }
               />
-              {errors.calcName && <span className='error_message'>{errors.calcName.message}</span>}
+              {errors.calc_name && <span className='error_message'>{errors.calc_name.message}</span>}
             </div>
             <h5 className={styles.formTitle}>Количество кредитов</h5>
             <div className={styles.editValueForm + ' ' + styles.bubtngroup}>
