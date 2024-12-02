@@ -49,7 +49,6 @@ function AccountingCachout(props) {
             SelectHeader2='Статья расходов'
             SelectHeader3='Тип расходов'
             modalTitle='Финансовые расходы'
-            selectModalVis3='none'
             secondSumVis='none'
             firstSum='Сумма'
           />
