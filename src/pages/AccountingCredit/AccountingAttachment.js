@@ -47,7 +47,6 @@ function AccountingAttachment(props) {
             progressTitle='Учтено'
             progressValue={progressValue}
             SelectHeader1='Категория вложений'
-            selectModalVis1='none'
             SelectHeader2='Статья вложений'
             selectModalVis3='none'
             modalTitle='Вложения'

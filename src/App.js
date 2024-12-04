@@ -1,10 +1,10 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react';
 
-import toast, {Toaster} from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 
 import { apiRequest } from './api';
-import {Context} from './Context';
+import { Context } from './Context';
 import Accounting from './pages/Accounting/Accounting';
 import AccountingBalance from './pages/AccountingBalance/AccountingBalance';
 import AccountingAttachment from './pages/AccountingCredit/AccountingAttachment';
@@ -51,18 +51,29 @@ import Refund from './pages/Refund/Refund';
 import StructureAnalysis from './pages/StructureAnalysis/StructureAnalysis';
 import Study from './pages/Study/Study';
 import Studying from './pages/Studying/Studying';
+import NotFound from './pages/NotFound/NotFound';
 
 function App() {
   const [userInfo, setUserInfo] = useState({
-    email: localStorage.getItem('userEmail')? localStorage.getItem('userEmail'): '',
-    name: localStorage.getItem('userName')? localStorage.getItem('userName'): '',
+    email: localStorage.getItem('userEmail')
+      ? localStorage.getItem('userEmail')
+      : '',
+    name: localStorage.getItem('userName')
+      ? localStorage.getItem('userName')
+      : '',
   });
   const [isStartTestingHave, setIsStartTestingHave] = useState(false);
   const [calcView, setCalcView] = useState({});
   const [activeStarttestTabIndex, setActiveStarttestTabIndex] = useState(0);
-  const [startTestResults, setStartTestResults] = useState({num1: null, num2: null, num3: null});
+  const [startTestResults, setStartTestResults] = useState({
+    num1: null,
+    num2: null,
+    num3: null,
+  });
   const [controlTestQuestions, setControlTestQuestions] = useState([]);
-  const [showStartModal, setShowStartModal] = useState(localStorage.getItem('showStartModal') !== 'false');
+  const [showStartModal, setShowStartModal] = useState(
+    localStorage.getItem('showStartModal') !== 'false',
+  );
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -83,8 +94,7 @@ function App() {
     }
   };
 
-  const getTestQuestions= async () => {
-
+  const getTestQuestions = async () => {
     const response = await apiRequest({
       url: '/quiz/get-q',
     });
@@ -93,7 +103,7 @@ function App() {
       setControlTestQuestions(response);
       setIsStartTestingHave(true);
     } else {
-      toast.error("Ошибка при получении тестовых вопросов");
+      toast.error('Ошибка при получении тестовых вопросов');
     }
   };
 
@@ -110,7 +120,7 @@ function App() {
   const pageInit = () => {
     const token = localStorage.getItem('token');
 
-    if (token){
+    if (token) {
       getFirstTestsResult();
       getTestQuestions();
     } else {
@@ -118,11 +128,11 @@ function App() {
     }
   };
 
-  useEffect (() => {
+  useEffect(() => {
     pageInit();
   }, []);
 
-  useEffect (() => {
+  useEffect(() => {
     pageInit();
   }, [userInfo]);
 
@@ -134,23 +144,26 @@ function App() {
 
   return (
     <>
-  `   <Context.Provider value={{
-        activeStarttestTabIndex,
-        controlTestQuestions,
-        isStartTestingHave,
-        setActiveStarttestTabIndex,
-        setShowStartModal,
-        setStartTestResults,
-        setUserInfo,
-        setCalcView,
-        showStartModal,
-        startTestResults,
-        userInfo,
-        calcView
-      }}>
+      `{' '}
+      <Context.Provider
+        value={{
+          activeStarttestTabIndex,
+          controlTestQuestions,
+          isStartTestingHave,
+          setActiveStarttestTabIndex,
+          setShowStartModal,
+          setStartTestResults,
+          setUserInfo,
+          setCalcView,
+          showStartModal,
+          startTestResults,
+          userInfo,
+          calcView,
+        }}
+      >
         <Wrapper>
           <Routes>
-            <Route element={<MyResults />} path='*'></Route>
+            <Route element={<MyResults />} path='/'></Route>
             <Route element={<SignUp />} path='SignUp'></Route>
             <Route element={<SignIn />} path='SignIn'></Route>
             <Route element={<ForgotPass />} path='ForgotPass'></Route>
@@ -159,7 +172,10 @@ function App() {
             <Route element={<Credit />} path='credit'></Route>
             <Route element={<AnalysisCashFlow />} path='FinAnalys'></Route>
             <Route element={<FinResults />} path='FinResults'></Route>
-            <Route element={<NoMatterAnalysis />} path='NoMatterAnalysis'></Route>
+            <Route
+              element={<NoMatterAnalysis />}
+              path='NoMatterAnalysis'
+            ></Route>
             <Route element={<FinConditions />} path='FinConditions'></Route>
             <Route
               element={<AnalysisEfficiency />}
@@ -175,7 +191,10 @@ function App() {
               element={<AccountingIncomes />}
               path='AccountingIncomes'
             ></Route>
-            <Route element={<AccountingCredit />} path='AccountingCredit'></Route>
+            <Route
+              element={<AccountingCredit />}
+              path='AccountingCredit'
+            ></Route>
             <Route element={<Finmodel />} path='finmodeling'></Route>
             <Route element={<CreateSolution />} path='CreateSolution'></Route>
             <Route
@@ -251,9 +270,10 @@ function App() {
               element={<AccountingBalance />}
               path='AccountingBalance'
             ></Route>
+            <Route path='*' element={<NotFound />}></Route>
           </Routes>
           <Toaster
-            position="top-right"
+            position='top-right'
             reverseOrder={false}
             toastOptions={{
               style: {
@@ -261,7 +281,8 @@ function App() {
               },
             }}
           />
-        </Wrapper>`
+        </Wrapper>
+        `
       </Context.Provider>
     </>
   );

@@ -7,11 +7,29 @@ import AnimatedNumbers from 'react-animated-numbers';
 import './SensorModeling.scss';
 function SensorAim({ calcResult }) {
   let chartValue = 0;
-
-  if (calcResult.profit_percent >= 10) {
-    chartValue = 10;
-  } else if (calcResult.profit_percent <= -10) {
-    chartValue = -10;
+  let minChartValue;
+  let maxChartValue;
+  if (calcResult.profit_percent >= -10 && calcResult.profit_percent <= 10) {
+    minChartValue = -10;
+    maxChartValue = 10;
+  } else if (
+    calcResult.profit_percent >= -50 &&
+    calcResult.profit_percent <= 50
+  ) {
+    minChartValue = -50;
+    maxChartValue = 50;
+  } else if (
+    (calcResult.profit_percent >= -100 && calcResult.profit_percent <= 100) ||
+    calcResult.profit_percent > 100 ||
+    calcResult.profit_percent < 100
+  ) {
+    minChartValue = -100;
+    maxChartValue = 100;
+  }
+  if (calcResult.profit_percent >= 100) {
+    chartValue = 100;
+  } else if (calcResult.profit_percent <= -100) {
+    chartValue = -100;
   } else {
     chartValue = calcResult.profit_percent;
   }
@@ -143,15 +161,15 @@ function SensorAim({ calcResult }) {
         },
       },
       lineWidth: 0,
-      max: 10,
-      min: -10,
+      max: maxChartValue,
+      min: minChartValue,
       minorTickInterval: null,
       plotBands: [
         {
           color: '#858585',
-          from: -10,
+          from: minChartValue,
           thickness: thick,
-          to: 10,
+          to: maxChartValue,
         },
         {
           color: '#0DA46F',
@@ -167,7 +185,7 @@ function SensorAim({ calcResult }) {
         },
       ],
       tickColor: Highcharts.defaultOptions.chart.backgroundColor || '#FFFFFF',
-      tickLength: 20,
+      tickLength: 100,
       tickPixelInterval: tickPixelInter,
       tickPosition: 'inside',
       tickWidth: 2,

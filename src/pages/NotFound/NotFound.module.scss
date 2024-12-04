@@ -1,0 +1,23 @@
+.notFoundPage{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  .anim404{
+    height: 250rem;
+    margin-top: 40rem;
+    padding: 0 30rem;
+  }
+  .text404{
+    font-size: 20rem;
+    font-weight: 700;
+    color: #3156A6;
+    a{
+      color: #fbb726;
+      text-transform: uppercase;
+      &:hover{
+        color: #3156A6;
+      }
+    }
+  }
+}
