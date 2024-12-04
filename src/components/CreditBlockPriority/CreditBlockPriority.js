@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 
 import { useFieldArray, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
@@ -15,20 +15,26 @@ import Tolt from '../Tolt/Tolt';
 import help from '../../img/icon/icon__help.svg';
 
 import styles from './CreditBlockPriority.module.scss';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Context } from '../../Context';
 
 function CreditBlockPriority(props) {
   const [addModalActive, SetAddModalActive] = useState(false);
+  const [isView, setIsView] = useState(false);
   const [calcResult, setCalcResult] = useState({});
   const [creditCount, setCreditCount] = useState(2);
   const [insuranceAwards, setInsuranceAwards] = useState({
-    1: false,
-    2: false,
-    3: false,
-    4: false,
-    5: false,
+    1: true,
+    2: true,
+    3: true,
+    4: true,
+    5: true,
   });
   const previousValues = useRef({});
+
+  const { calcView } = useContext(Context);
+
+  const location = useLocation();
 
   const calcBtnRef = useRef(null);
   const saveBtnRef = useRef(null);
@@ -74,30 +80,30 @@ function CreditBlockPriority(props) {
       inflation_rate: '',
       invest_rate: '',
       sum_add: '',
-      sum_add_dt: ''
+      sum_add_dt: '',
     },
-    mode: "all"
+    mode: 'all',
   });
 
   const { fields, append, remove } = useFieldArray({
     control,
-    name: 'groups'
+    name: 'groups',
   });
-
 
   if (window.outerWidth < 450) {
     chartsNames = ['1', '2'];
   }
 
   function setCreditCountHandler(cnt) {
+    setCalcResult({});
     switch (cnt) {
       case 2:
         if (creditCount === 3) {
           remove(2);
         } else if (creditCount === 4) {
-          remove([2,3]);
+          remove([2, 3]);
         } else if (creditCount === 5) {
-          remove([2,3,4]);
+          remove([2, 3, 4]);
         }
         break;
       case 3:
@@ -114,32 +120,29 @@ function CreditBlockPriority(props) {
         } else if (creditCount === 4) {
           remove(3);
         } else if (creditCount === 5) {
-          remove([3,4]);
+          remove([3, 4]);
         }
         break;
       case 4:
         if (creditCount === 2) {
-          append(
-            {
-              credit_name3: '',
-              duration3: '',
-              insurance_award3: 0,
-              isactive3: true,
-              rate3: '',
-              start_dt3: '',
-              sum3: '',
-            });
-          append(
-            {
-              credit_name4: '',
-              duration4: '',
-              insurance_award4: 0,
-              isactive4: true,
-              rate4: '',
-              start_dt4: '',
-              sum4: '',
-            },
-          );
+          append({
+            credit_name3: '',
+            duration3: '',
+            insurance_award3: 0,
+            isactive3: true,
+            rate3: '',
+            start_dt3: '',
+            sum3: '',
+          });
+          append({
+            credit_name4: '',
+            duration4: '',
+            insurance_award4: 0,
+            isactive4: true,
+            rate4: '',
+            start_dt4: '',
+            sum4: '',
+          });
         } else if (creditCount === 3) {
           append({
             credit_name4: '',
@@ -156,60 +159,52 @@ function CreditBlockPriority(props) {
         break;
       case 5:
         if (creditCount === 2) {
-          append(
-            {
-              credit_name3: '',
-              duration3: '',
-              insurance_award3: 0,
-              isactive3: true,
-              rate3: '',
-              start_dt3: '',
-              sum3: '',
-            });
-          append(
-            {
-              credit_name4: '',
-              duration4: '',
-              insurance_award4: 0,
-              isactive4: true,
-              rate4: '',
-              start_dt4: '',
-              sum4: '',
-            },
-          );
-          append(
-            {
-              credit_name5: '',
-              duration5: '',
-              insurance_award5: 0,
-              isactive5: true,
-              rate5: '',
-              start_dt5: '',
-              sum5: '',
-            },
-          );
-        } else if ( creditCount === 3 ) {
-          append(
-            {
-              credit_name4: '',
-              duration4: '',
-              insurance_award4: 0,
-              isactive4: true,
-              rate4: '',
-              start_dt4: '',
-              sum4: '',
-            },
-          );
-          append(
-            {
-              credit_name5: '',
-              duration5: '',
-              insurance_award5: 0,
-              isactive5: true,
-              rate5: '',
-              start_dt5: '',
-              sum5: '',
-            });
+          append({
+            credit_name3: '',
+            duration3: '',
+            insurance_award3: 0,
+            isactive3: true,
+            rate3: '',
+            start_dt3: '',
+            sum3: '',
+          });
+          append({
+            credit_name4: '',
+            duration4: '',
+            insurance_award4: 0,
+            isactive4: true,
+            rate4: '',
+            start_dt4: '',
+            sum4: '',
+          });
+          append({
+            credit_name5: '',
+            duration5: '',
+            insurance_award5: 0,
+            isactive5: true,
+            rate5: '',
+            start_dt5: '',
+            sum5: '',
+          });
+        } else if (creditCount === 3) {
+          append({
+            credit_name4: '',
+            duration4: '',
+            insurance_award4: 0,
+            isactive4: true,
+            rate4: '',
+            start_dt4: '',
+            sum4: '',
+          });
+          append({
+            credit_name5: '',
+            duration5: '',
+            insurance_award5: 0,
+            isactive5: true,
+            rate5: '',
+            start_dt5: '',
+            sum5: '',
+          });
         } else if (creditCount === 4) {
           append({
             credit_name5: '',
@@ -222,18 +217,22 @@ function CreditBlockPriority(props) {
           });
         }
         break;
-      default: break;
+      default:
+        break;
     }
     setCreditCount(cnt);
     document.activeElement.blur();
   }
 
   function insuranceAwardsHandler(number) {
-    const newAwards = Object.entries(insuranceAwards).reduce((acc, [award, value]) => {
-      acc[award] = Number(award) === number ? !value : value;
+    const newAwards = Object.entries(insuranceAwards).reduce(
+      (acc, [award, value]) => {
+        acc[award] = Number(award) === number ? !value : value;
 
-      return acc;
-    }, {});
+        return acc;
+      },
+      {},
+    );
 
     setInsuranceAwards(newAwards);
     setValue(`groups.${number - 1}.insurance_award${number}`, 0);
@@ -249,6 +248,19 @@ function CreditBlockPriority(props) {
 
   const values = watch();
 
+  const setViewValuesHandler = () => {
+    Object.entries(calcView).forEach(([key, value]) => {
+      if (
+        key === 'created_at' ||
+        key === 'updated_at' ||
+        key === 'user_id' ||
+        key === 'id' ||
+        key === 'calc_result'
+      )
+        return;
+      setValue(key, value);
+    });
+  };
 
   const calcBtnHandler = async () => {
     if (Object.entries(calcResult).length > 0) {
@@ -260,19 +272,19 @@ function CreditBlockPriority(props) {
     if (isValid) {
       previousValues.current = values;
       if (values.groups) {
-        if (values.groups[0]){
+        if (values.groups[0]) {
           Object.assign(values, values.groups[0]);
         }
-        if (values.groups[1]){
+        if (values.groups[1]) {
           Object.assign(values, values.groups[1]);
         }
-        if (values.groups[2]){
+        if (values.groups[2]) {
           Object.assign(values, values.groups[2]);
         }
-        if (values.groups[3]){
+        if (values.groups[3]) {
           Object.assign(values, values.groups[3]);
         }
-        if (values.groups[4]){
+        if (values.groups[4]) {
           Object.assign(values, values.groups[4]);
         }
         delete values.groups;
@@ -308,14 +320,13 @@ function CreditBlockPriority(props) {
         toast.error(response.mes);
       }
     } else {
-
       let firstErrorField;
 
       if (Object.keys(errors)[0] !== 'groups') {
         firstErrorField = Object.keys(errors)[0];
       } else {
-        if (errors.groups){
-          let groupErrorField
+        if (errors.groups) {
+          let groupErrorField;
           if (errors.groups[0]) {
             groupErrorField = `groups.0.${Object.keys(errors.groups[0])[0]}`;
           }
@@ -331,7 +342,7 @@ function CreditBlockPriority(props) {
           if (errors.groups[4]) {
             groupErrorField = `groups.4.${Object.keys(errors.groups[4])[0]}`;
           }
-          firstErrorField = groupErrorField
+          firstErrorField = groupErrorField;
         }
       }
 
@@ -339,8 +350,8 @@ function CreditBlockPriority(props) {
 
       if (element) {
         element.scrollIntoView({
-          behavior:'smooth',
-          block:'start',
+          behavior: 'smooth',
+          block: 'start',
         });
         element.focus();
       }
@@ -351,19 +362,19 @@ function CreditBlockPriority(props) {
     const values = watch();
 
     if (values.groups) {
-      if (values.groups[0]){
+      if (values.groups[0]) {
         Object.assign(values, values.groups[0]);
       }
-      if (values.groups[1]){
+      if (values.groups[1]) {
         Object.assign(values, values.groups[1]);
       }
-      if (values.groups[2]){
+      if (values.groups[2]) {
         Object.assign(values, values.groups[2]);
       }
-      if (values.groups[3]){
+      if (values.groups[3]) {
         Object.assign(values, values.groups[3]);
       }
-      if (values.groups[4]){
+      if (values.groups[4]) {
         Object.assign(values, values.groups[4]);
       }
       delete values.groups;
@@ -384,7 +395,9 @@ function CreditBlockPriority(props) {
     });
 
     if (!response) {
-      toast.error('Ошибка в ответе сервера. Не удалось прочитать ответ сервера');
+      toast.error(
+        'Ошибка в ответе сервера. Не удалось прочитать ответ сервера',
+      );
 
       return;
     }
@@ -393,7 +406,7 @@ function CreditBlockPriority(props) {
       saveBtnRef.current.disabled = true;
       reset();
       toast.success(response.mes);
-      navigate('/finmodeling')
+      navigate('/finmodeling');
     } else {
       Object.entries(response.data).forEach(([key, value]) => {
         setError(`${key}`, { message: value[0], type: 'server' });
@@ -412,11 +425,19 @@ function CreditBlockPriority(props) {
 
       if (hasChanged) {
         saveBtnRef.current.disabled = true;
-        setCalcResult({})
+        setCalcResult({});
       }
     }
   }, [values]);
 
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const calcId = searchParams.get('calcId');
+    if (calcId && Object.entries(calcView).length > 0) {
+      setIsView(true);
+      setViewValuesHandler();
+    }
+  }, []);
 
   return (
     <>
@@ -429,13 +450,15 @@ function CreditBlockPriority(props) {
                 ref={calcNameRef}
                 placeholder='Введите название'
                 type='text'
-                {
-                  ...register(`calc_name`, {
-                    required: 'Введите название рассчета',
-                  })
-                }
+                {...register(`calc_name`, {
+                  required: 'Введите название рассчета',
+                })}
               />
-              {errors.calc_name && <span className='error_message'>{errors.calc_name.message}</span>}
+              {errors.calc_name && (
+                <span className='error_message'>
+                  {errors.calc_name.message}
+                </span>
+              )}
             </div>
             <h5 className={styles.formTitle}>Количество кредитов</h5>
             <div className={styles.editValueForm + ' ' + styles.bubtngroup}>
@@ -485,108 +508,93 @@ function CreditBlockPriority(props) {
             <div key={k} className={styles.creditBlock}>
               <div className={styles.creditTitleBlock}>
                 <div className={styles.creditTitle}>{'Кредит №' + (k + 1)}</div>
-                <Checkcustom groupIndex={k} label='Учитывать' register={register} checked/>
+                <Checkcustom
+                  groupIndex={k}
+                  label='Учитывать'
+                  register={register}
+                  checked
+                />
               </div>
               <h5 className={styles.formTitle}>Название кредита</h5>
               <div className={styles.editValueForm}>
                 <input
                   placeholder='Введите название'
                   type='text'
-                  {
-                    ...register(`groups.${k}.credit_name${k + 1}`, {
-                      required: 'Введите название кредита',
-                    })
-                  }
+                  {...register(`groups.${k}.credit_name${k + 1}`, {
+                    required: 'Введите название кредита',
+                  })}
                 />
-                {
-                  errors.groups &&
+                {errors.groups &&
                   errors.groups[k] &&
                   errors.groups[k][`credit_name${k + 1}`] && (
-                    <span className="error_message">
+                    <span className='error_message'>
                       {errors.groups[k][`credit_name${k + 1}`].message}
                     </span>
-                  )
-                }
+                  )}
               </div>
               <h5 className={styles.formTitle}>Дата получения кредита</h5>
               <div className={styles.editValueForm}>
                 <input
                   type='date'
-                  {
-                    ...register(`groups.${k}.start_dt${k + 1}`, {
-                      required: 'Введите дату получения кредита',
-                    })
-                  }
+                  {...register(`groups.${k}.start_dt${k + 1}`, {
+                    required: 'Введите дату получения кредита',
+                  })}
                 />
-                {
-                  errors.groups &&
+                {errors.groups &&
                   errors.groups[k] &&
                   errors.groups[k][`start_dt${k + 1}`] && (
-                    <span className="error_message">
+                    <span className='error_message'>
                       {errors.groups[k][`start_dt${k + 1}`].message}
                     </span>
-                  )
-                }
+                  )}
               </div>
               <h5 className={styles.formTitle}>Срок кредита (в месяцах)</h5>
               <div className={styles.editValueForm}>
                 <input
                   type='number'
-                  {
-                    ...register(`groups.${k}.duration${k + 1}`, {
-                      required: 'Укажите срок кредита',
-                    })
-                  }
+                  {...register(`groups.${k}.duration${k + 1}`, {
+                    required: 'Укажите срок кредита',
+                  })}
                 />
-                {
-                  errors.groups &&
+                {errors.groups &&
                   errors.groups[k] &&
                   errors.groups[k][`duration${k + 1}`] && (
-                    <span className="error_message">
+                    <span className='error_message'>
                       {errors.groups[k][`duration${k + 1}`].message}
                     </span>
-                  )
-                }
+                  )}
               </div>
               <h5 className={styles.formTitle}>Ставка (%)</h5>
               <div className={styles.editValueForm}>
                 <input
                   type='number'
-                  {
-                    ...register(`groups.${k}.rate${k + 1}`, {
-                      required: 'Укажите ставку',
-                    })
-                  }
+                  {...register(`groups.${k}.rate${k + 1}`, {
+                    required: 'Укажите ставку',
+                  })}
                 />
-                {
-                  errors.groups &&
+                {errors.groups &&
                   errors.groups[k] &&
                   errors.groups[k][`rate${k + 1}`] && (
-                    <span className="error_message">
+                    <span className='error_message'>
                       {errors.groups[k][`rate${k + 1}`].message}
                     </span>
-                  )
-                }
+                  )}
               </div>
               <h5 className={styles.formTitle}>Сумма (&#8381;)</h5>
               <div className={styles.editValueForm}>
                 <input
                   type='number'
-                  {
-                    ...register(`groups.${k}.sum${k + 1}`, {
-                      required: 'Укажите сумму',
-                    })
-                  }
+                  {...register(`groups.${k}.sum${k + 1}`, {
+                    required: 'Укажите сумму',
+                  })}
                 />
-                {
-                  errors.groups &&
+                {errors.groups &&
                   errors.groups[k] &&
                   errors.groups[k][`sum${k + 1}`] && (
-                    <span className="error_message">
+                    <span className='error_message'>
                       {errors.groups[k][`sum${k + 1}`].message}
                     </span>
-                  )
-                }
+                  )}
               </div>
               <h5 className={styles.formTitle}>
                 Предстоящие расходы на страхование
@@ -600,15 +608,13 @@ function CreditBlockPriority(props) {
                   <option value='1'>Не предусмотрены</option>
                 </select>
               </div>
-              {insuranceAwards[`${k + 1}`] === false && (
+              {insuranceAwards[`${k + 1}`] === true && (
                 <>
                   <h5 className={styles.formTitle}>Страховая премия (%)</h5>
                   <div className={styles.editValueForm}>
                     <input
                       type='number'
-                      {
-                        ...register(`groups.${k}.insurance_award${k + 1}`)
-                      }
+                      {...register(`groups.${k}.insurance_award${k + 1}`)}
                     />
                   </div>
                 </>
@@ -627,25 +633,29 @@ function CreditBlockPriority(props) {
               <div className={styles.editValueForm}>
                 <input
                   type='date'
-                  {
-                    ...register(`sum_add_dt`, {
-                      required: 'Введите дату погашения',
-                    })
-                  }
+                  {...register(`sum_add_dt`, {
+                    required: 'Введите дату погашения',
+                  })}
                 />
-                {errors.sum_add_dt && <span className='error_message'>{errors.sum_add_dt.message}</span>}
+                {errors.sum_add_dt && (
+                  <span className='error_message'>
+                    {errors.sum_add_dt.message}
+                  </span>
+                )}
               </div>
               <h5 className={styles.formTitle}>Сумма погашения (&#8381;)</h5>
               <div className={styles.editValueForm}>
                 <input
                   type='number'
-                  {
-                    ...register(`sum_add`, {
-                      required: 'Введите сумму погашения',
-                    })
-                  }
+                  {...register(`sum_add`, {
+                    required: 'Введите сумму погашения',
+                  })}
                 />
-                {errors.sum_add && <span className='error_message'>{errors.sum_add.message}</span>}
+                {errors.sum_add && (
+                  <span className='error_message'>
+                    {errors.sum_add.message}
+                  </span>
+                )}
               </div>
             </div>
           </div>
@@ -662,13 +672,15 @@ function CreditBlockPriority(props) {
               <div className={styles.editValueForm}>
                 <input
                   type='number'
-                  {
-                    ...register(`invest_rate`, {
-                      required: 'Введите доходность возможных вложений',
-                    })
-                  }
+                  {...register(`invest_rate`, {
+                    required: 'Введите доходность возможных вложений',
+                  })}
                 />
-                {errors.invest_rate && <span className='error_message'>{errors.invest_rate.message}</span>}
+                {errors.invest_rate && (
+                  <span className='error_message'>
+                    {errors.invest_rate.message}
+                  </span>
+                )}
               </div>
               <h5 className={styles.formTitle}>
                 Инфляция (%)
@@ -679,13 +691,15 @@ function CreditBlockPriority(props) {
               <div className={styles.editValueForm}>
                 <input
                   type='number'
-                  {
-                    ...register(`inflation_rate`, {
-                      required: 'Укажите инфляцию',
-                    })
-                  }
+                  {...register(`inflation_rate`, {
+                    required: 'Укажите инфляцию',
+                  })}
                 />
-                {errors.inflation_rate && <span className='error_message'>{errors.inflation_rate.message}</span>}
+                {errors.inflation_rate && (
+                  <span className='error_message'>
+                    {errors.inflation_rate.message}
+                  </span>
+                )}
               </div>
             </div>
           </div>
@@ -707,9 +721,8 @@ function CreditBlockPriority(props) {
               disabled
               className={styles.submitBtn}
               type='submit'
-              value="Сохранить"
+              value='Сохранить'
             />
-
           </div>
         </div>
       </form>
@@ -725,14 +738,14 @@ function CreditBlockPriority(props) {
           </TabList>
           <TabPanel className={styles.result_panel}>
             <div style={{ display: sensor ? 'none' : 'block' }}>
-              <SensorPriority />
+              <SensorPriority calcResult={calcResult} />
             </div>
             <div style={{ display: sensor ? 'block' : 'none' }}>
-              <BarChartPriority1 />
+              <BarChartPriority1 calcResult={calcResult} />
             </div>
           </TabPanel>
           <TabPanel className={styles.result_panel}>
-            <BarChartPriority2 />
+            <BarChartPriority2 calcResult={calcResult} />
           </TabPanel>
         </Tabs>
       </Modal>

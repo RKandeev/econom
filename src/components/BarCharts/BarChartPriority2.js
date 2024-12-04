@@ -23,13 +23,20 @@ ChartJS.register(
   CategoryScale,
   LinearScale,
   gradient,
-  ChartDataLabels
+  ChartDataLabels,
 );
 
-function BarChartPriority2(props) {
-  let insuranceArr = [18, 8];
-  let percentArr = [191, 44];
-  let incomeArr = [9, 207];
+function BarChartPriority2({ calcResult }) {
+  let insuranceArr = [];
+  let percentArr = [];
+  let incomeArr = [];
+
+  Object.entries(calcResult).forEach(([key, value]) => {
+    insuranceArr.push(Math.round(value.economyOnInsurance) / 1000);
+    percentArr.push(Math.round(value.economyOnPercent) / 1000);
+    incomeArr.push(Math.round(value.possibleInvestIncome) / 1000);
+  });
+
   let mobile = true;
   let mobileFont = 16;
   let mobileColor = '#fff';
@@ -103,8 +110,8 @@ function BarChartPriority2(props) {
   };
 
   return (
-    <div className="barChartBlock barFlat">
-      <h3 className="chartTitle">Структура экономического эффекта </h3>
+    <div className='barChartBlock barFlat'>
+      <h3 className='chartTitle'>Структура экономического эффекта </h3>
       <Bar data={data} options={options} />
     </div>
   );

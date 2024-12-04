@@ -29,15 +29,21 @@ ChartJS.register(
   ChartDataLabels,
   LineController,
   BarController,
-  annotationPlugin
+  annotationPlugin,
 );
 
-function BarChartCar(props) {
-  const barArr = [196, -413, -475, 240, -451];
+function BarChartCar({ calcResult }) {
+  const barArr = [];
+  barArr.push(calcResult.transfer_expenses);
+  barArr.push(calcResult.credit_expenses);
+  barArr.push(calcResult.invest_income_discount);
+  barArr.push(calcResult.clear_income_discount);
+  barArr.push(calcResult.effect);
+
   let myArr = [null, null, null, null];
 
   myArr.push(barArr.splice(-1, 1, null).join());
-  console.log(myArr);
+
   let myArrPos = [];
   let myArrNeg = [];
   let positiveArr = [];
@@ -171,8 +177,8 @@ function BarChartCar(props) {
   };
 
   return (
-    <div className="barChartBlock">
-      <h3 className="chartTitle">Факторы экономического эффекта</h3>
+    <div className='barChartBlock'>
+      <h3 className='chartTitle'>Факторы экономического эффекта</h3>
       <Bar data={data} options={options} />
     </div>
   );

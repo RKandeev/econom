@@ -23,13 +23,13 @@ ChartJS.register(
   CategoryScale,
   LinearScale,
   gradient,
-  ChartDataLabels
+  ChartDataLabels,
 );
 
-function BarChartFlat(props) {
-  let arr = [150];
-  let positiveArr = [null, 6012];
-  let negativeArr = [3637];
+function BarChartFlat({ calcResult }) {
+  let arr = [calcResult.flat_clean_income];
+  let positiveArr = [null, calcResult.investment];
+  let negativeArr = [calcResult.flat_price_increase];
   let mobile = true;
   let mobileFont = 16;
   let mobileColor = '#fff';
@@ -104,8 +104,8 @@ function BarChartFlat(props) {
   };
 
   return (
-    <div className="barChartBlock barFlat">
-      <h3 className="chartTitle">Выгода (финансовый результат)</h3>
+    <div className='barChartBlock barFlat'>
+      <h3 className='chartTitle'>Выгода (финансовый результат)</h3>
       <Bar data={data} options={options} />
     </div>
   );

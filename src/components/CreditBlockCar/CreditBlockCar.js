@@ -28,7 +28,7 @@ function CreditBlockCar(props) {
   const saveBtnRef = useRef(null);
   const previousValues = useRef({});
 
-  const {calcView} = useContext(Context)
+  const { calcView } = useContext(Context);
 
   const location = useLocation();
 
@@ -62,8 +62,8 @@ function CreditBlockCar(props) {
       osago: '',
       amortisation_rate: '',
       rent_incr_rate: '',
-      dt:'',
-      start_sum:'',
+      dt: '',
+      start_sum: '',
       inflation_rate: '',
       transport_expenses: '',
       invest_income_rate: '',
@@ -79,30 +79,37 @@ function CreditBlockCar(props) {
 
   const setViewValuesHandler = () => {
     Object.entries(calcView).forEach(([key, value]) => {
-      if (key === 'created_at' || key === 'updated_at' || key === 'user_id' || key === 'id' || key === 'calc_result') return
-      setValue(key, value)
-    })
-  }
+      if (
+        key === 'created_at' ||
+        key === 'updated_at' ||
+        key === 'user_id' ||
+        key === 'id' ||
+        key === 'calc_result'
+      )
+        return;
+      setValue(key, value);
+    });
+  };
 
   useEffect(() => {
     setValue('start_sum', watch('sum1'));
-  },[watch('sum1')]);
+  }, [watch('sum1')]);
 
   useEffect(() => {
     if (Object.entries(calcResult).length > 0) {
       if (hasChanged) {
         saveBtnRef.current.disabled = true;
-        setCalcResult({})
+        setCalcResult({});
       }
     }
   }, [values]);
 
-  useEffect (() => {
+  useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
-    const calcId= searchParams.get('calcId');
+    const calcId = searchParams.get('calcId');
     if (calcId && Object.entries(calcView).length > 0) {
-      setIsView(true)
-      setViewValuesHandler()
+      setIsView(true);
+      setViewValuesHandler();
     }
   }, []);
 
@@ -157,25 +164,23 @@ function CreditBlockCar(props) {
 
           if (element) {
             element.scrollIntoView({
-              behavior:'smooth',
-              block:'start',
+              behavior: 'smooth',
+              block: 'start',
             });
-            setTimeout(()=> (element.focus()),600);
+            setTimeout(() => element.focus(), 600);
           }
         }
-      }, 1800)
-
-
+      }, 1800);
     } else {
       const firstErrorField = Object.keys(errors)[0];
       const element = document.querySelector(`[name="${firstErrorField}"]`);
 
       if (element) {
         element.scrollIntoView({
-          behavior:'smooth',
-          block:'start',
+          behavior: 'smooth',
+          block: 'start',
         });
-        setTimeout(()=> (element.focus()),600);
+        setTimeout(() => element.focus(), 600);
       }
     }
   };
@@ -198,7 +203,9 @@ function CreditBlockCar(props) {
     const response = await apiRequest({
       data: saveFormData,
       method: 'POST',
-      url: isView? '/fin-model/buy-car-or-invest-update' : '/fin-model/buy-car-or-invest-save',
+      url: isView
+        ? '/fin-model/buy-car-or-invest-update'
+        : '/fin-model/buy-car-or-invest-save',
     });
 
     setTimeout(() => {
@@ -213,7 +220,7 @@ function CreditBlockCar(props) {
         saveBtnRef.current.disabled = true;
         reset();
         toast.success(response.mes);
-        navigate('/finmodeling')
+        navigate('/finmodeling');
       } else {
         setIsLoading(false);
         Object.entries(response.data).forEach(([key, value]) => {
@@ -225,15 +232,14 @@ function CreditBlockCar(props) {
 
         if (element) {
           element.scrollIntoView({
-            behavior:'smooth',
-            block:'start',
+            behavior: 'smooth',
+            block: 'start',
           });
-          setTimeout(()=> (element.focus()),600);
+          setTimeout(() => element.focus(), 600);
         }
       }
-    }, 1800)
+    }, 1800);
   };
-
 
   return (
     <>
@@ -245,13 +251,15 @@ function CreditBlockCar(props) {
               <input
                 placeholder='Введите название'
                 type='text'
-                {
-                  ...register('calc_name', {
-                    required: 'Введите название расчёта',
-                  })
-                }
+                {...register('calc_name', {
+                  required: 'Введите название расчёта',
+                })}
               />
-              {errors.calc_name && <span className='error_message'>{errors.calc_name.message}</span>}
+              {errors.calc_name && (
+                <span className='error_message'>
+                  {errors.calc_name.message}
+                </span>
+              )}
             </div>
           </div>
         </div>
@@ -262,136 +270,140 @@ function CreditBlockCar(props) {
               <h5 className={styles.formTitle}>Дата принятия решения</h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="date"
-                  {
-                    ...register('dt', {
-                      required: 'Введите дату принятия решения'
-                    })
-                  }
+                  type='date'
+                  {...register('dt', {
+                    required: 'Введите дату принятия решения',
+                  })}
                 />
-                {errors.dt && <span className="error_message">{errors.dt.message}</span>}
+                {errors.dt && (
+                  <span className='error_message'>{errors.dt.message}</span>
+                )}
               </div>
               <h5 className={styles.formTitle}>
                 Стоимость автомобиля (&#x20bd;)
-                <Tolt
-                  tooltipTitle1="В стоимость автомобиля рекомендуется включать не только цену его покупки, но и все затраты на его дополнительное оборудование, тюнинг и пр.">
-                  <img alt="" src={help} />
+                <Tolt tooltipTitle1='В стоимость автомобиля рекомендуется включать не только цену его покупки, но и все затраты на его дополнительное оборудование, тюнинг и пр.'>
+                  <img alt='' src={help} />
                 </Tolt>
               </h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="number"
-                  {
-                    ...register('sum', {
-                      required: 'Введите сумму кредита'
-                    })
-                  }
+                  type='number'
+                  {...register('sum', {
+                    required: 'Введите сумму кредита',
+                  })}
                 />
-                {errors.sum && <span className="error_message">{errors.sum.message}</span>}
+                {errors.sum && (
+                  <span className='error_message'>{errors.sum.message}</span>
+                )}
               </div>
               <h5 className={styles.formTitle}>
                 Ежемесячные расходы на содержание автомобиля (&#x20bd;){' '}
-                <Tolt
-                  tooltipTitle1="Сюда включаются расходы на топливо, парковку, стоянку, мойку, автомобильные штрафы и другие регулярные расходы, связанные с эксплуатацией автомобиля">
-                  <img alt="" src={help} />
+                <Tolt tooltipTitle1='Сюда включаются расходы на топливо, парковку, стоянку, мойку, автомобильные штрафы и другие регулярные расходы, связанные с эксплуатацией автомобиля'>
+                  <img alt='' src={help} />
                 </Tolt>
               </h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="number"
-                  {
-                    ...register('expenses_monthly', {
-                      required: 'Поле не должно быть пустым'
-                    })
-                  }
+                  type='number'
+                  {...register('expenses_monthly', {
+                    required: 'Поле не должно быть пустым',
+                  })}
                 />
-                {errors.expenses_monthly && <span className="error_message">{errors.expenses_monthly.message}</span>}
+                {errors.expenses_monthly && (
+                  <span className='error_message'>
+                    {errors.expenses_monthly.message}
+                  </span>
+                )}
               </div>
               <h5 className={styles.formTitle}>
                 Ежегодные расходы на содержание автомобиля (&#x20bd;){' '}
-                <Tolt
-                  tooltipTitle1="Сюда включаются расходы на техническое обслуживание, ремонт, шиномонтаж, дополнительное оборудование и другие расходы нерегулярного характера, связанные с эксплуатацией автомобиля">
-                  <img alt="" src={help} />
+                <Tolt tooltipTitle1='Сюда включаются расходы на техническое обслуживание, ремонт, шиномонтаж, дополнительное оборудование и другие расходы нерегулярного характера, связанные с эксплуатацией автомобиля'>
+                  <img alt='' src={help} />
                 </Tolt>
               </h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="number"
-                  {
-                    ...register('expenses_yearly', {
-                      required: 'Поле не должно быть пустым'
-                    })
-                  }
+                  type='number'
+                  {...register('expenses_yearly', {
+                    required: 'Поле не должно быть пустым',
+                  })}
                 />
-                {errors.expenses_yearly && <span className="error_message">{errors.expenses_yearly.message}</span>}
+                {errors.expenses_yearly && (
+                  <span className='error_message'>
+                    {errors.expenses_yearly.message}
+                  </span>
+                )}
               </div>
               <h5 className={styles.formTitle}>
                 Обязательное страхование (ОСАГО) (&#x20bd;){' '}
               </h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="number"
-                  {
-                    ...register('osago', {
-                      required: 'Поле не должно быть пустым'
-                    })
-                  }
+                  type='number'
+                  {...register('osago', {
+                    required: 'Поле не должно быть пустым',
+                  })}
                 />
-                {errors.osago && <span className="error_message">{errors.osago.message}</span>}
+                {errors.osago && (
+                  <span className='error_message'>{errors.osago.message}</span>
+                )}
               </div>
               <h5 className={styles.formTitle}>
                 Транспортный налог (&#x20bd;)
-                <Tolt
-                  tooltipTitle1="Для определения суммы транспортного налога, который вы будете платить, став владельцем автомобиля, можно воспользоваться налоговым калькулятором">
-                  <img alt="" src={help} />
+                <Tolt tooltipTitle1='Для определения суммы транспортного налога, который вы будете платить, став владельцем автомобиля, можно воспользоваться налоговым калькулятором'>
+                  <img alt='' src={help} />
                 </Tolt>
               </h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="number"
-                  {
-                    ...register('transport_tax', {
-                      required: 'Поле не должно быть пустым'
-                    })
-                  }
+                  type='number'
+                  {...register('transport_tax', {
+                    required: 'Поле не должно быть пустым',
+                  })}
                 />
-                {errors.transport_tax && <span className="error_message">{errors.transport_tax.message}</span>}
+                {errors.transport_tax && (
+                  <span className='error_message'>
+                    {errors.transport_tax.message}
+                  </span>
+                )}
               </div>
               <h5 className={styles.formTitle}>
                 Ожидаемый среднегодовой прирост стоимости автомобиля (%){' '}
-                <Tolt
-                  tooltipTitle1="Здесь указывается % ожидаемого ежегодного роста стоимости автомобиля этой марки и комплектации. Для определения этого параметра можно использовать информацию с сайтов автодилеров">
-                  <img alt="" src={help} />
+                <Tolt tooltipTitle1='Здесь указывается % ожидаемого ежегодного роста стоимости автомобиля этой марки и комплектации. Для определения этого параметра можно использовать информацию с сайтов автодилеров'>
+                  <img alt='' src={help} />
                 </Tolt>
               </h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="number"
-                  {
-                    ...register('rent_incr_rate', {
-                      required: 'Поле не должно быть пустым'
-                    })
-                  }
+                  type='number'
+                  {...register('rent_incr_rate', {
+                    required: 'Поле не должно быть пустым',
+                  })}
                 />
-                {errors.rent_incr_rate && <span className="error_message">{errors.rent_incr_rate.message}</span>}
+                {errors.rent_incr_rate && (
+                  <span className='error_message'>
+                    {errors.rent_incr_rate.message}
+                  </span>
+                )}
               </div>
               <h5 className={styles.formTitle}>
                 Износ автомобиля (%){' '}
-                <Tolt
-                  tooltipTitle1="Здесь указывается % ожидаемого ежегодного снижения стоимости покупаемого автомобиля вследствие его старения, износа, роста пробега, «возраста». Для определения этого параметра можно использовать информацию из агрегаторов объявлений о продаже автомобилей">
-                  <img alt="" src={help} />
+                <Tolt tooltipTitle1='Здесь указывается % ожидаемого ежегодного снижения стоимости покупаемого автомобиля вследствие его старения, износа, роста пробега, «возраста». Для определения этого параметра можно использовать информацию из агрегаторов объявлений о продаже автомобилей'>
+                  <img alt='' src={help} />
                 </Tolt>
               </h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="number"
-                  {
-                    ...register('amortisation_rate', {
-                      required: 'Поле не должно быть пустым'
-                    })
-                  }
+                  type='number'
+                  {...register('amortisation_rate', {
+                    required: 'Поле не должно быть пустым',
+                  })}
                 />
-                {errors.amortisation_rate && <span className="error_message">{errors.amortisation_rate.message}</span>}
+                {errors.amortisation_rate && (
+                  <span className='error_message'>
+                    {errors.amortisation_rate.message}
+                  </span>
+                )}
               </div>
             </div>
           </div>
@@ -400,45 +412,48 @@ function CreditBlockCar(props) {
             <div className={styles.creditBlock}>
               <h5 className={styles.formTitle}>
                 Первоначальный взнос (&#x20bd;)
-                <Tolt
-                  tooltipTitle1='Здесь указывается сумма собственных средств, которую Вы готовы внести в качестве первоначального взноса за приобретаемый автомобиль. Если Вы планируете покупку автомобиля полностью за собственные средства (без привлечения кредита), то указывается сумма полной стоимости автомобиля'>
+                <Tolt tooltipTitle1='Здесь указывается сумма собственных средств, которую Вы готовы внести в качестве первоначального взноса за приобретаемый автомобиль. Если Вы планируете покупку автомобиля полностью за собственные средства (без привлечения кредита), то указывается сумма полной стоимости автомобиля'>
                   <img alt='' src={help} />
                 </Tolt>
               </h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="number"
-                  {
-                    ...register('sum1', {
-                      required: 'Поле не должно быть пустым'
-                    })
-                  }
+                  type='number'
+                  {...register('sum1', {
+                    required: 'Поле не должно быть пустым',
+                  })}
                 />
-                {errors.sum1 && <span className="error_message">{errors.sum1.message}</span>}
+                {errors.sum1 && (
+                  <span className='error_message'>{errors.sum1.message}</span>
+                )}
               </div>
               <h5 className={styles.formTitle}>Ставка по кредиту (%) </h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="number"
-                  {
-                    ...register('loan_rate', {
-                      required: 'Поле не должно быть пустым'
-                    })
-                  }
+                  type='number'
+                  {...register('loan_rate', {
+                    required: 'Поле не должно быть пустым',
+                  })}
                 />
-                {errors.loan_rate && <span className="error_message">{errors.loan_rate.message}</span>}
+                {errors.loan_rate && (
+                  <span className='error_message'>
+                    {errors.loan_rate.message}
+                  </span>
+                )}
               </div>
               <h5 className={styles.formTitle}>Срок кредита (месяцы)</h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="number"
-                  {
-                    ...register('duration', {
-                      required: 'Поле не должно быть пустым'
-                    })
-                  }
+                  type='number'
+                  {...register('duration', {
+                    required: 'Поле не должно быть пустым',
+                  })}
                 />
-                {errors.duration && <span className="error_message">{errors.duration.message}</span>}
+                {errors.duration && (
+                  <span className='error_message'>
+                    {errors.duration.message}
+                  </span>
+                )}
               </div>
 
               <h5 className={styles.formTitle}>
@@ -450,14 +465,16 @@ function CreditBlockCar(props) {
               </h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="number"
-                  {
-                    ...register('insurance_rate', {
-                      required: 'Поле не должно быть пустым'
-                    })
-                  }
+                  type='number'
+                  {...register('insurance_rate', {
+                    required: 'Поле не должно быть пустым',
+                  })}
                 />
-                {errors.insurance_rate && <span className="error_message">{errors.insurance_rate.message}</span>}
+                {errors.insurance_rate && (
+                  <span className='error_message'>
+                    {errors.insurance_rate.message}
+                  </span>
+                )}
               </div>
             </div>
           </div>
@@ -473,14 +490,16 @@ function CreditBlockCar(props) {
               </h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="number"
-                  {
-                    ...register('transport_expenses', {
-                      required: 'Поле не должно быть пустым'
-                    })
-                  }
+                  type='number'
+                  {...register('transport_expenses', {
+                    required: 'Поле не должно быть пустым',
+                  })}
                 />
-                {errors.transport_expenses && <span className="error_message">{errors.transport_expenses.message}</span>}
+                {errors.transport_expenses && (
+                  <span className='error_message'>
+                    {errors.transport_expenses.message}
+                  </span>
+                )}
               </div>
               <h5 className={styles.formTitle}>
                 Ожидаемая доходность вложений (годовая) (%){' '}
@@ -490,14 +509,16 @@ function CreditBlockCar(props) {
               </h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="number"
-                  {
-                    ...register('invest_income_rate', {
-                      required: 'Поле не должно быть пустым'
-                    })
-                  }
+                  type='number'
+                  {...register('invest_income_rate', {
+                    required: 'Поле не должно быть пустым',
+                  })}
                 />
-                {errors.invest_income_rate && <span className="error_message">{errors.invest_income_rate.message}</span>}
+                {errors.invest_income_rate && (
+                  <span className='error_message'>
+                    {errors.invest_income_rate.message}
+                  </span>
+                )}
               </div>
             </div>
           </div>
@@ -513,14 +534,16 @@ function CreditBlockCar(props) {
 
               <div className={styles.editValueForm}>
                 <input
-                  type="number"
-                  {
-                    ...register('inflation_rate', {
-                      required: 'Поле не должно быть пустым'
-                    })
-                  }
+                  type='number'
+                  {...register('inflation_rate', {
+                    required: 'Поле не должно быть пустым',
+                  })}
                 />
-                {errors.inflation_rate && <span className="error_message">{errors.inflation_rate.message}</span>}
+                {errors.inflation_rate && (
+                  <span className='error_message'>
+                    {errors.inflation_rate.message}
+                  </span>
+                )}
               </div>
             </div>
           </div>
@@ -541,15 +564,15 @@ function CreditBlockCar(props) {
               ref={saveBtnRef}
               disabled
               className={styles.submitBtn}
-              type="submit"
-              value="Сохранить"
+              type='submit'
+              value='Сохранить'
             />
           </div>
         </div>
       </form>
       <Modal
         active={addModalActive}
-        modalTitle="Покупка автомобиля: оценка финансовых последствий"
+        modalTitle='Покупка автомобиля: оценка финансовых последствий'
         SetActive={SetAddModalActive}
       >
         <Tabs className={styles.result_tabs}>
@@ -558,19 +581,15 @@ function CreditBlockCar(props) {
             <Tab>{chartsNames[1]}</Tab>
           </TabList>
           <TabPanel className={styles.result_panel}>
-            <SensorCar calcResult={calcResult}/>
+            <SensorCar calcResult={calcResult} />
           </TabPanel>
           <TabPanel className={styles.result_panel}>
-            <BarChartCar calcResult={calcResult}/>
+            <BarChartCar calcResult={calcResult} />
           </TabPanel>
         </Tabs>
       </Modal>
 
-      {
-        isLoading && (
-          <Spinner />
-        )
-      }
+      {isLoading && <Spinner />}
     </>
   );
 }

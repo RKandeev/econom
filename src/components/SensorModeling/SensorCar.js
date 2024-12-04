@@ -5,8 +5,9 @@ import HighchartsReact from 'highcharts-react-official';
 import AnimatedNumbers from 'react-animated-numbers';
 
 import './SensorModeling.scss';
-function SensorCar(props) {
-  const [ser3, setSer3] = useState(-70);
+function SensorCar({ calcResult }) {
+  const [ser3, setSer3] = useState(calcResult.effect_perc);
+
   let chartValue = 0;
 
   if (ser3 >= 100) {
@@ -18,7 +19,7 @@ function SensorCar(props) {
   }
   let num1 = 0;
   let num2 = 0;
-  let diffNum = 53233;
+  let diffNum = calcResult.effect;
 
   if (ser3 >= 0) {
     localStorage.setItem('LinesColor', '1');
@@ -58,13 +59,13 @@ function SensorCar(props) {
       size: '100%',
       startAngle: -90,
     },
-    
+
     plotOptions: {
       series: {
         animation: false,
       },
     },
-    
+
     series: [
       {
         data: [
@@ -125,7 +126,7 @@ function SensorCar(props) {
         },
       },
     ],
-    
+
     title: {
       text: null,
     },
@@ -177,11 +178,11 @@ function SensorCar(props) {
   }
 
   return (
-    <div className="sensorChartBlockHome">
-      <h3 className="chartTitle">
+    <div className='sensorChartBlockHome'>
+      <h3 className='chartTitle'>
         Экономический эффект (в % от стартового капитала)
       </h3>
-      <div className="sensorChart">
+      <div className='sensorChart'>
         <HighchartsReact highcharts={Highcharts} options={options} />
       </div>
       <div
@@ -199,9 +200,9 @@ function SensorCar(props) {
         />
         &#8381;
       </div>
-      <div className="bottomLegends carLegends">
-        <div className="leftLegend">Потери</div>
-        <div className="rightLegend green">Выгода</div>
+      <div className='bottomLegends carLegends'>
+        <div className='leftLegend'>Потери</div>
+        <div className='rightLegend green'>Выгода</div>
       </div>
     </div>
   );

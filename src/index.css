@@ -40,3 +40,23 @@ code {
   color: #EE2B49;
   padding-left: 4px;
 }
+
+* {
+  scrollbar-color: #8E9DBF #E1ECF5;
+  scrollbar-width: thin;
+}
+
+*::-webkit-scrollbar {
+  border-radius: 6px;
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: #E1ECF5;
+  border-radius: 10px;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: #8E9DBF;
+  border-radius: 6px;
+  border: 2px solid ;
+}

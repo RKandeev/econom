@@ -5,7 +5,7 @@ import HighchartsReact from 'highcharts-react-official';
 import AnimatedNumbers from 'react-animated-numbers';
 
 import './SensorModeling.scss';
-function SensorPriority(props) {
+function SensorPriority({ calcResult }) {
   const [ser3, setSer3] = useState(40);
   let chartValue = 0;
 
@@ -61,13 +61,13 @@ function SensorPriority(props) {
       size: '100%',
       startAngle: -90,
     },
-    
+
     plotOptions: {
       series: {
         animation: false,
       },
     },
-    
+
     series: [
       {
         data: [
@@ -128,14 +128,13 @@ function SensorPriority(props) {
         },
       },
     ],
-    
+
     title: {
       text: null,
     },
     // the value axis
     yAxis: {
       labels: {
-        
         distance: 30,
         // enabled: false,
         formatter: function () {
@@ -184,11 +183,11 @@ function SensorPriority(props) {
   };
 
   return (
-    <div className="sensorChartBlockHome">
-      <h3 className="chartTitle">
+    <div className='sensorChartBlockHome'>
+      <h3 className='chartTitle'>
         Сравнительная выгода от досрочного погашения (в %)
       </h3>
-      <div className="sensorChart">
+      <div className='sensorChart'>
         <HighchartsReact highcharts={Highcharts} options={options} />
       </div>
       <div className={ser3 < 0 ? 'differenceNumber' : 'differenceNumberleft'}>
@@ -202,7 +201,7 @@ function SensorPriority(props) {
         />
         &#8381;
       </div>
-      <div className="bottomLegends priorityLegends">
+      <div className='bottomLegends priorityLegends'>
         <div className={ser3 >= 0 ? 'leftLegend' : 'leftLegend green'}>
           Кредит-1
         </div>

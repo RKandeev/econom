@@ -29,15 +29,19 @@ ChartJS.register(
   ChartDataLabels,
   LineController,
   BarController,
-  annotationPlugin
+  annotationPlugin,
 );
 
-function BarChartAim({calcResult}) {
-  const barArr = [calcResult.credit_expenses_economy, calcResult.missed_income, calcResult.result];
+function BarChartAim({ calcResult }) {
+  const barArr = [
+    calcResult.credit_expenses_economy,
+    calcResult.missed_income,
+    calcResult.result,
+  ];
   let myArr = [null, null];
 
   myArr.push(barArr.splice(-1, 1, null).join());
-  console.log(myArr);
+
   let myArrPos = [];
   let myArrNeg = [];
   let positiveArr = [];
@@ -162,8 +166,8 @@ function BarChartAim({calcResult}) {
   };
 
   return (
-    <div className="barChartBlock">
-      <h3 className="chartTitle barChartTitle">
+    <div className='barChartBlock'>
+      <h3 className='chartTitle barChartTitle'>
         Факторы экономического эффекта
       </h3>
       <Bar data={data} options={options} />

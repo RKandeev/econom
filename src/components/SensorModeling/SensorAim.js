@@ -15,6 +15,7 @@ function SensorAim({ calcResult }) {
   } else {
     chartValue = calcResult.profit_percent;
   }
+
   let num1 = 0;
   let num2 = 0;
   let diffNum = calcResult.profit_rub;

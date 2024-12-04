@@ -5,8 +5,8 @@ import HighchartsReact from 'highcharts-react-official';
 import AnimatedNumbers from 'react-animated-numbers';
 
 import './SensorModeling.scss';
-function SensorFlat(props) {
-  const [ser3, setSer3] = useState(80);
+function SensorFlat({ calcResult }) {
+  const [ser3, setSer3] = useState(calcResult.perc);
   let chartValue = 0;
 
   if (ser3 >= 100) {
@@ -18,7 +18,7 @@ function SensorFlat(props) {
   }
   let num1 = 0;
   let num2 = 0;
-  let diffNum = 53233;
+  let diffNum = calcResult.diff;
 
   if (ser3 >= 0) {
     localStorage.setItem('LinesColorFlat', '1');

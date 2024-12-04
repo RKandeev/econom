@@ -23,11 +23,16 @@ ChartJS.register(
   CategoryScale,
   LinearScale,
   gradient,
-  ChartDataLabels
+  ChartDataLabels,
 );
 
-function BarChartPriority2(props) {
-  let Arr = [18, 8, 3];
+function BarChartPriority2({ calcResult }) {
+  let Arr = [];
+
+  Object.entries(calcResult).forEach(([key, value]) => {
+    Arr.push(Math.round(value.dp_effect) / 1000);
+  });
+
   let mobile = true;
   let mobileFont = 16;
   let mobileColor = '#fff';
@@ -91,8 +96,8 @@ function BarChartPriority2(props) {
   };
 
   return (
-    <div className="barChartBlock barFlat">
-      <h3 className="chartTitle">
+    <div className='barChartBlock barFlat'>
+      <h3 className='chartTitle'>
         Экономический эффект от досрочного погашения{' '}
       </h3>
       <Bar data={data} options={options} />

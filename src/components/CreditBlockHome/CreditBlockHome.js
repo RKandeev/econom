@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 
@@ -13,9 +13,12 @@ import styles from './CreditBlockHome.module.scss';
 import { useForm } from 'react-hook-form';
 import { apiRequest } from '../../api';
 import toast from 'react-hot-toast';
+import { Context } from '../../Context';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function CreditBlockHome(props) {
   const [addModalActive, SetAddModalActive] = useState(false);
+  const [isView, setIsView] = useState(false);
   const [calcResult, setCalcResult] = useState({});
   const calcBtnRef = useRef(null);
   const saveBtnRef = useRef(null);
@@ -27,6 +30,12 @@ function CreditBlockHome(props) {
   const month = date.getMonth() + 1;
   const day = date.getDate();
   const currentDate = `${year}-${month}-${day}`;
+
+  const { calcView } = useContext(Context);
+
+  const location = useLocation();
+
+  const navigate = useNavigate();
 
   if (window.outerWidth < 450) {
     chartsNames = ['1', '2'];
@@ -40,7 +49,8 @@ function CreditBlockHome(props) {
     setError,
     reset,
     formState: { errors },
-    getValues
+    getValues,
+    setValue,
   } = useForm({
     defaultValues: {
       calc_name: '',
@@ -65,6 +75,20 @@ function CreditBlockHome(props) {
     return values[key] !== previousValues.current[key];
   });
 
+  const setViewValuesHandler = () => {
+    Object.entries(calcView).forEach(([key, value]) => {
+      if (
+        key === 'created_at' ||
+        key === 'updated_at' ||
+        key === 'user_id' ||
+        key === 'id' ||
+        key === 'calc_result'
+      )
+        return;
+      setValue(key, value);
+    });
+  };
+
   useEffect(() => {
     if (Object.entries(calcResult).length > 0) {
       if (hasChanged) {
@@ -72,6 +96,15 @@ function CreditBlockHome(props) {
       }
     }
   }, [values]);
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const calcId = searchParams.get('calcId');
+    if (calcId && Object.entries(calcView).length > 0) {
+      setIsView(true);
+      setViewValuesHandler();
+    }
+  }, []);
 
   const calcBtnHandler = async () => {
     const isValid = await trigger();
@@ -93,7 +126,9 @@ function CreditBlockHome(props) {
       });
 
       if (!response) {
-        toast.error('Ошибка в ответе сервера. Не удалось прочитать ответ сервера');
+        toast.error(
+          'Ошибка в ответе сервера. Не удалось прочитать ответ сервера',
+        );
 
         return;
       }
@@ -114,10 +149,10 @@ function CreditBlockHome(props) {
 
         if (element) {
           element.scrollIntoView({
-            behavior:'smooth',
-            block:'start',
+            behavior: 'smooth',
+            block: 'start',
           });
-          setTimeout(()=> (element.focus()),600);
+          setTimeout(() => element.focus(), 600);
         }
       }
     } else {
@@ -126,10 +161,10 @@ function CreditBlockHome(props) {
 
       if (element) {
         element.scrollIntoView({
-          behavior:'smooth',
-          block:'start',
+          behavior: 'smooth',
+          block: 'start',
         });
-        setTimeout(()=> (element.focus()),600);
+        setTimeout(() => element.focus(), 600);
       }
     }
   };
@@ -145,6 +180,12 @@ function CreditBlockHome(props) {
     }
     const sumValue = getValues('sum');
     saveFormData.append('start_sum', sumValue);
+
+    if (isView) {
+      saveFormData.append('id', calcView.id);
+      saveFormData.append('token', localStorage.getItem('token'));
+    }
+
     const response = await apiRequest({
       data: saveFormData,
       method: 'POST',
@@ -152,7 +193,9 @@ function CreditBlockHome(props) {
     });
 
     if (!response) {
-      toast.error('Ошибка в ответе сервера. Не удалось прочитать ответ сервера');
+      toast.error(
+        'Ошибка в ответе сервера. Не удалось прочитать ответ сервера',
+      );
 
       return;
     }
@@ -172,14 +215,13 @@ function CreditBlockHome(props) {
 
       if (element) {
         element.scrollIntoView({
-          behavior:'smooth',
-          block:'start',
+          behavior: 'smooth',
+          block: 'start',
         });
-        setTimeout(()=> (element.focus()),600);
+        setTimeout(() => element.focus(), 600);
       }
     }
   };
-
 
   return (
     <>
@@ -191,13 +233,15 @@ function CreditBlockHome(props) {
               <input
                 placeholder='Введите название'
                 type='text'
-                {
-                  ...register('calc_name', {
-                    required: 'Введите название расчёта',
-                  })
-                }
+                {...register('calc_name', {
+                  required: 'Введите название расчёта',
+                })}
               />
-              {errors.calc_name && <span className='error_message'>{errors.calc_name.message}</span>}
+              {errors.calc_name && (
+                <span className='error_message'>
+                  {errors.calc_name.message}
+                </span>
+              )}
             </div>
           </div>
         </div>
@@ -205,116 +249,112 @@ function CreditBlockHome(props) {
         <h4 className={styles.creditsBlockTitle}>Покупка жилья</h4>
         <div className={styles.creditsBlocks}>
           <div className={styles.creditBlock}>
-            <h5 className={styles.formTitle}>
-              Дата принятия решения
-            </h5>
+            <h5 className={styles.formTitle}>Дата принятия решения</h5>
             <div className={styles.editValueForm}>
               <input
-                type="date"
-                {
-                  ...register('dt', {
-                    required: 'Введите дату принятия решения'
-                  })
-                }
+                type='date'
+                {...register('dt', {
+                  required: 'Введите дату принятия решения',
+                })}
               />
-              {errors.dt && <span className="error_message">{errors.dt.message}</span>}
+              {errors.dt && (
+                <span className='error_message'>{errors.dt.message}</span>
+              )}
             </div>
 
             <h5 className={styles.formTitle}>
               Стоимость жилья (&#8381;)
-              <Tolt
-                tooltipTitle1="В стоимость жилья рекомендуется включать не только цену его покупки, но и расходы на ремонт, обустройство и доведение жилья до состояния, пригодного для Вашего проживания">
-                <img alt="" src={help} />
+              <Tolt tooltipTitle1='В стоимость жилья рекомендуется включать не только цену его покупки, но и расходы на ремонт, обустройство и доведение жилья до состояния, пригодного для Вашего проживания'>
+                <img alt='' src={help} />
               </Tolt>
             </h5>
             <div className={styles.editValueForm}>
               <input
-                type="number"
-                {
-                  ...register('sum', {
-                    required: 'Введите стоимость жилья'
-                  })
-                }
+                type='number'
+                {...register('sum', {
+                  required: 'Введите стоимость жилья',
+                })}
               />
-              {errors.sum && <span className="error_message">{errors.sum.message}</span>}
+              {errors.sum && (
+                <span className='error_message'>{errors.sum.message}</span>
+              )}
             </div>
             <h5 className={styles.formTitle}>
               Первоначальный взнос (&#8381;)
-              <Tolt
-                tooltipTitle1="Здесь указывается сумма собственных средств, которую Вы готовы внести в качестве первоначального взноса за приобретаемое жилье. Если Вы планируете покупку жилья полностью за собственные средства (без привлечения кредита), то указывается сумма полной стоимости жилья">
-                <img alt="" src={help} />
+              <Tolt tooltipTitle1='Здесь указывается сумма собственных средств, которую Вы готовы внести в качестве первоначального взноса за приобретаемое жилье. Если Вы планируете покупку жилья полностью за собственные средства (без привлечения кредита), то указывается сумма полной стоимости жилья'>
+                <img alt='' src={help} />
               </Tolt>
             </h5>
             <div className={styles.editValueForm}>
               <input
-                type="number"
-                {
-                  ...register('sum1', {
-                    required: 'Введите первоначальный взнос'
-                  })
-                }
+                type='number'
+                {...register('sum1', {
+                  required: 'Введите первоначальный взнос',
+                })}
               />
-              {errors.sum1 && <span className="error_message">{errors.sum1.message}</span>}
+              {errors.sum1 && (
+                <span className='error_message'>{errors.sum1.message}</span>
+              )}
             </div>
             <h5 className={styles.formTitle}>
               Ставка ипотечного кредита (%){' '}
-              <Tolt
-                tooltipTitle1="Здесь указывается ставка (в %) страховой премии, которую Вы будете ежегодно уплачивать в рамках обязательств страхования жилья, предусмотренных договором ипотечного кредитования">
-                <img alt="" src={help} />
+              <Tolt tooltipTitle1='Здесь указывается ставка (в %) страховой премии, которую Вы будете ежегодно уплачивать в рамках обязательств страхования жилья, предусмотренных договором ипотечного кредитования'>
+                <img alt='' src={help} />
               </Tolt>
             </h5>
             <div className={styles.editValueForm}>
               <input
-                type="number"
-                {
-                  ...register('rate', {
-                    required: 'Введите ставку ипотечного кредита'
-                  })
-                }
+                type='number'
+                {...register('rate', {
+                  required: 'Введите ставку ипотечного кредита',
+                })}
               />
-              {errors.rate && <span className="error_message">{errors.rate.message}</span>}
+              {errors.rate && (
+                <span className='error_message'>{errors.rate.message}</span>
+              )}
             </div>
             <h5 className={styles.formTitle}>Срок кредита (в месяцах)</h5>
             <div className={styles.editValueForm}>
               <input
-                type="number"
-                {
-                  ...register('duration', {
-                    required: 'Введите срок кредита'
-                  })
-                }
+                type='number'
+                {...register('duration', {
+                  required: 'Введите срок кредита',
+                })}
               />
-              {errors.duration && <span className="error_message">{errors.duration.message}</span>}
+              {errors.duration && (
+                <span className='error_message'>{errors.duration.message}</span>
+              )}
             </div>
             <h5 className={styles.formTitle}>
               Ожидаемый ежегодный прирост стоимости покупаемого жилья (%){' '}
-              <Tolt
-                tooltipTitle1="Здесь указывается % ожидаемого ежегодного роста стоимости аналогов покупаемого Вами жилья. Для определения этого параметра рекомендуется использовать информацию специализированных сайтов-агрегаторов или имеющиеся в открытом доступе статистические данные">
-                <img alt="" src={help} />
+              <Tolt tooltipTitle1='Здесь указывается % ожидаемого ежегодного роста стоимости аналогов покупаемого Вами жилья. Для определения этого параметра рекомендуется использовать информацию специализированных сайтов-агрегаторов или имеющиеся в открытом доступе статистические данные'>
+                <img alt='' src={help} />
               </Tolt>
             </h5>
             <div className={styles.editValueForm}>
               <input
-                type="number"
-                {
-                  ...register('sum_incr', {
-                    required: 'Введите значение в это поле'
-                  })
-                }
+                type='number'
+                {...register('sum_incr', {
+                  required: 'Введите значение в это поле',
+                })}
               />
-              {errors.sum_incr && <span className="error_message">{errors.sum_incr.message}</span>}
+              {errors.sum_incr && (
+                <span className='error_message'>{errors.sum_incr.message}</span>
+              )}
             </div>
             <h5 className={styles.formTitle}>Страховая премия (%)</h5>
             <div className={styles.editValueForm}>
               <input
-                type="number"
-                {
-                  ...register('insurance_award1', {
-                    required: 'Введите страховую премию'
-                  })
-                }
+                type='number'
+                {...register('insurance_award1', {
+                  required: 'Введите страховую премию',
+                })}
               />
-              {errors.insurance_award1 && <span className="error_message">{errors.insurance_award1.message}</span>}
+              {errors.insurance_award1 && (
+                <span className='error_message'>
+                  {errors.insurance_award1.message}
+                </span>
+              )}
             </div>
           </div>
         </div>
@@ -325,39 +365,37 @@ function CreditBlockHome(props) {
             <div className={styles.creditBlock}>
               <h5 className={styles.formTitle}>
                 Стоимость ежемесячной аренды жилья (&#8381;)
-                <Tolt
-                  tooltipTitle1="Здесь указывается стоимость аренды жилья, являющегося аналогом того, покупку которого Вы рассматриваете. Для определения этого параметра рекомендуется использовать информацию специализированных сайтов-агрегаторов">
-                  <img alt="" src={help} />
+                <Tolt tooltipTitle1='Здесь указывается стоимость аренды жилья, являющегося аналогом того, покупку которого Вы рассматриваете. Для определения этого параметра рекомендуется использовать информацию специализированных сайтов-агрегаторов'>
+                  <img alt='' src={help} />
                 </Tolt>
               </h5>
               <div className={styles.editValueForm}>
                 <input
                   type='number'
-                  {
-                    ...register('sum2', {
-                      required: 'Введите стоимость ежемесячной аренды жилья',
-                    })
-                  }
+                  {...register('sum2', {
+                    required: 'Введите стоимость ежемесячной аренды жилья',
+                  })}
                 />
-                {errors.sum2 && <span className='error_message'>{errors.sum2.message}</span>}
+                {errors.sum2 && (
+                  <span className='error_message'>{errors.sum2.message}</span>
+                )}
               </div>
               <h5 className={styles.formTitle}>
                 Ожидаемый ежегодный прирост стоимости аренды жилья (%){' '}
-                <Tolt
-                  tooltipTitle1="Здесь указывается % ожидаемого ежегодного роста стоимости аренды жилья, аналогичного тому, покупку которого Вы рассматриваете. Для определения этого параметра рекомендуется использовать информацию специализированных сайтов-агрегаторов">
-                  <img alt="" src={help} />
+                <Tolt tooltipTitle1='Здесь указывается % ожидаемого ежегодного роста стоимости аренды жилья, аналогичного тому, покупку которого Вы рассматриваете. Для определения этого параметра рекомендуется использовать информацию специализированных сайтов-агрегаторов'>
+                  <img alt='' src={help} />
                 </Tolt>
               </h5>
               <div className={styles.editValueForm}>
                 <input
                   type='number'
-                  {
-                    ...register('rate2', {
-                      required: 'Введите значение в это поле',
-                    })
-                  }
+                  {...register('rate2', {
+                    required: 'Введите значение в это поле',
+                  })}
                 />
-                {errors.rate2 && <span className='error_message'>{errors.rate2.message}</span>}
+                {errors.rate2 && (
+                  <span className='error_message'>{errors.rate2.message}</span>
+                )}
               </div>
             </div>
           </div>
@@ -366,40 +404,42 @@ function CreditBlockHome(props) {
             <div className={styles.creditBlock}>
               <h5 className={styles.formTitle}>
                 Ожидаемая годовая доходность вложений (%)
-                <Tolt
-                  tooltipTitle1="Здесь указывается годовой процент дохода, который Вы можете получать, инвестировав собственные средства вместо того, чтобы направлять их на покупку жилья. Рекомендуется указывать доходность вложений с низким или умеренным, приемлемым для Вас риском">
-                  <img alt="" src={help} />
+                <Tolt tooltipTitle1='Здесь указывается годовой процент дохода, который Вы можете получать, инвестировав собственные средства вместо того, чтобы направлять их на покупку жилья. Рекомендуется указывать доходность вложений с низким или умеренным, приемлемым для Вас риском'>
+                  <img alt='' src={help} />
                 </Tolt>
               </h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="number"
-                  {
-                    ...register('invest_income', {
-                      required: 'Введите ожидаемую годовую доходность вложений'
-                    })
-                  }
+                  type='number'
+                  {...register('invest_income', {
+                    required: 'Введите ожидаемую годовую доходность вложений',
+                  })}
                 />
-                {errors.invest_income && <span className="error_message">{errors.invest_income.message}</span>}
+                {errors.invest_income && (
+                  <span className='error_message'>
+                    {errors.invest_income.message}
+                  </span>
+                )}
               </div>
 
               <h5 className={styles.formTitle}>
                 Ожидаемая годовая инфляция (%)
-                <Tolt
-                  tooltipTitle1="Рекомендуется указывать среднее значение инфляции за последние 5 (6,5%) или 10 лет (7,0%). Если в рамках расчёта Вы не хотите учитывать инфляцию, укажите значение 0">
-                  <img alt="" src={help} />
+                <Tolt tooltipTitle1='Рекомендуется указывать среднее значение инфляции за последние 5 (6,5%) или 10 лет (7,0%). Если в рамках расчёта Вы не хотите учитывать инфляцию, укажите значение 0'>
+                  <img alt='' src={help} />
                 </Tolt>
               </h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="number"
-                  {
-                    ...register('inflation_rate', {
-                      required: 'Введите ожидаемую годовую инфляцию'
-                    })
-                  }
+                  type='number'
+                  {...register('inflation_rate', {
+                    required: 'Введите ожидаемую годовую инфляцию',
+                  })}
                 />
-                {errors.inflation_rate && <span className="error_message">{errors.inflation_rate.message}</span>}
+                {errors.inflation_rate && (
+                  <span className='error_message'>
+                    {errors.inflation_rate.message}
+                  </span>
+                )}
               </div>
             </div>
           </div>
@@ -409,7 +449,7 @@ function CreditBlockHome(props) {
             <button
               ref={calcBtnRef}
               className={styles.submitBtn}
-              type="button"
+              type='button'
               onClick={() => calcBtnHandler()}
             >
               Рассчитать
@@ -420,15 +460,15 @@ function CreditBlockHome(props) {
               ref={saveBtnRef}
               disabled
               className={styles.submitBtn}
-              type="submit"
-              value="Сохранить"
+              type='submit'
+              value='Сохранить'
             />
           </div>
         </div>
       </form>
       <Modal
         active={addModalActive}
-        modalTitle="Жилищный вопрос: покупка или аренда"
+        modalTitle='Жилищный вопрос: покупка или аренда'
         SetActive={SetAddModalActive}
       >
         <Tabs className={styles.result_tabs}>

@@ -1,4 +1,6 @@
 .solutionsBlock{
+  width: 250rem;
+
   h3{
     text-transform: uppercase;
     font-size: 12rem;
@@ -9,5 +11,8 @@
     display: flex;
     flex-direction: column;
     gap: 8rem;
+    max-height: 433rem;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 }
