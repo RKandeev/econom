@@ -103,9 +103,11 @@ function CreditBlockAim(props) {
     }
   }, []);
 
-  // useEffect(() => {
-  //   if ()
-  // }, [insuranceAwards]);
+  useEffect(() => {
+    if (insuranceAwards === false) {
+      setValue('insurance_award', '0');
+    }
+  }, [insuranceAwards]);
 
   const calcBtnHandler = async () => {
     if (Object.entries(calcResult).length > 0) {
