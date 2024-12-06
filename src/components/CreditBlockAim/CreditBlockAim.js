@@ -22,13 +22,13 @@ function CreditBlockAim(props) {
   const [calcResult, setCalcResult] = useState({});
   const [isView, setIsView] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [insuranceAwards, setInsuranceAwards] = useState(true );
+  const [insuranceAwards, setInsuranceAwards] = useState(true);
 
   const calcBtnRef = useRef(null);
   const saveBtnRef = useRef(null);
   const previousValues = useRef({});
 
-  const {calcView} = useContext(Context)
+  const { calcView } = useContext(Context);
 
   const location = useLocation();
 
@@ -65,7 +65,6 @@ function CreditBlockAim(props) {
     mode: 'all',
   });
 
-
   const values = watch();
 
   const hasChanged = Object.keys(values).some((key) => {
@@ -74,26 +73,33 @@ function CreditBlockAim(props) {
 
   const setViewValuesHandler = () => {
     Object.entries(calcView).forEach(([key, value]) => {
-      if (key === 'created_at' || key === 'updated_at' || key === 'user_id' || key === 'id' || key === 'calc_result') return
-      setValue(key, value)
-    })
-  }
+      if (
+        key === 'created_at' ||
+        key === 'updated_at' ||
+        key === 'user_id' ||
+        key === 'id' ||
+        key === 'calc_result'
+      )
+        return;
+      setValue(key, value);
+    });
+  };
 
   useEffect(() => {
     if (Object.entries(calcResult).length > 0) {
       if (hasChanged) {
         saveBtnRef.current.disabled = true;
-        setCalcResult({})
+        setCalcResult({});
       }
     }
   }, [values]);
 
-  useEffect (() => {
+  useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
-    const calcId= searchParams.get('calcId');
+    const calcId = searchParams.get('calcId');
     if (calcId && Object.entries(calcView).length > 0) {
-      setIsView(true)
-      setViewValuesHandler()
+      setIsView(true);
+      setViewValuesHandler();
     }
   }, []);
 
@@ -125,7 +131,9 @@ function CreditBlockAim(props) {
 
       setTimeout(() => {
         if (!response) {
-          toast.error('Ошибка в ответе сервера. Не удалось прочитать ответ сервера');
+          toast.error(
+            'Ошибка в ответе сервера. Не удалось прочитать ответ сервера',
+          );
           setIsLoading(false);
           return;
         }
@@ -148,25 +156,23 @@ function CreditBlockAim(props) {
 
           if (element) {
             element.scrollIntoView({
-              behavior:'smooth',
-              block:'start',
+              behavior: 'smooth',
+              block: 'start',
             });
-            setTimeout(()=> (element.focus()),600);
+            setTimeout(() => element.focus(), 600);
           }
         }
-      }, 1800)
-
-
+      }, 1800);
     } else {
       const firstErrorField = Object.keys(errors)[0];
       const element = document.querySelector(`[name="${firstErrorField}"]`);
 
       if (element) {
         element.scrollIntoView({
-          behavior:'smooth',
-          block:'start',
+          behavior: 'smooth',
+          block: 'start',
         });
-        setTimeout(()=> (element.focus()),600);
+        setTimeout(() => element.focus(), 600);
       }
     }
   };
@@ -189,13 +195,17 @@ function CreditBlockAim(props) {
     const response = await apiRequest({
       data: saveFormData,
       method: 'POST',
-      url: isView? '/fin-model/rationality-update' : '/fin-model/rationality-save',
+      url: isView
+        ? '/fin-model/rationality-update'
+        : '/fin-model/rationality-save',
     });
 
     setTimeout(() => {
       if (!response) {
         setIsLoading(false);
-        toast.error('Ошибка в ответе сервера. Не удалось прочитать ответ сервера');
+        toast.error(
+          'Ошибка в ответе сервера. Не удалось прочитать ответ сервера',
+        );
 
         return;
       }
@@ -205,7 +215,7 @@ function CreditBlockAim(props) {
         saveBtnRef.current.disabled = true;
         reset();
         toast.success(response.mes);
-        navigate('/finmodeling')
+        navigate('/finmodeling');
       } else {
         setIsLoading(false);
         Object.entries(response.data).forEach(([key, value]) => {
@@ -217,13 +227,13 @@ function CreditBlockAim(props) {
 
         if (element) {
           element.scrollIntoView({
-            behavior:'smooth',
-            block:'start',
+            behavior: 'smooth',
+            block: 'start',
           });
-          setTimeout(()=> (element.focus()),600);
+          setTimeout(() => element.focus(), 600);
         }
       }
-    }, 1800)
+    }, 1800);
   };
 
   return (
@@ -236,13 +246,15 @@ function CreditBlockAim(props) {
               <input
                 placeholder='Введите название'
                 type='text'
-                {
-                  ...register('calc_name', {
-                    required: 'Введите название расчёта',
-                  })
-                }
+                {...register('calc_name', {
+                  required: 'Введите название расчёта',
+                })}
               />
-              {errors.calc_name && <span className='error_message'>{errors.calc_name.message}</span>}
+              {errors.calc_name && (
+                <span className='error_message'>
+                  {errors.calc_name.message}
+                </span>
+              )}
             </div>
           </div>
         </div>
@@ -258,72 +270,77 @@ function CreditBlockAim(props) {
             <h5 className={styles.formTitle}>Название кредита</h5>
             <div className={styles.editValueForm}>
               <input
-                placeholder="Введите название"
-                type="text"
-                {
-                  ...register('credit_name', {
-                    required: 'Введите название кредита'
-                  })
-                }
+                placeholder='Введите название'
+                type='text'
+                {...register('credit_name', {
+                  required: 'Введите название кредита',
+                })}
               />
-              {errors.credit_name && <span className="error_message">{errors.credit_name.message}</span>}
+              {errors.credit_name && (
+                <span className='error_message'>
+                  {errors.credit_name.message}
+                </span>
+              )}
             </div>
             <h5 className={styles.formTitle}>Дата получения кредита</h5>
             <div className={styles.editValueForm}>
               <input
-                type="date"
-                {
-                  ...register('start_dt', {
-                    required: 'Введите дату получения кредита'
-                  })
-                }
+                type='date'
+                {...register('start_dt', {
+                  required: 'Введите дату получения кредита',
+                })}
               />
-              {errors.start_dt && <span className="error_message">{errors.start_dt.message}</span>}
+              {errors.start_dt && (
+                <span className='error_message'>{errors.start_dt.message}</span>
+              )}
             </div>
             <h5 className={styles.formTitle}>Срок кредита (в месяцах)</h5>
             <div className={styles.editValueForm}>
               <input
-                type="number"
-                {
-                  ...register('duration', {
-                    required: 'Введите срок кредита'
-                  })
-                }
+                type='number'
+                {...register('duration', {
+                  required: 'Введите срок кредита',
+                })}
               />
-              {errors.duration && <span className="error_message">{errors.duration.message}</span>}
+              {errors.duration && (
+                <span className='error_message'>{errors.duration.message}</span>
+              )}
             </div>
             <h5 className={styles.formTitle}>Ставка (%)</h5>
             <div className={styles.editValueForm}>
               <input
-                type="number"
-                {
-                  ...register('rate', {
-                    required: 'Введите ставку кредита'
-                  })
-                }
+                step='0.1'
+                type='number'
+                {...register('rate', {
+                  required: 'Введите ставку кредита',
+                })}
               />
-              {errors.rate && <span className="error_message">{errors.rate.message}</span>}
+              {errors.rate && (
+                <span className='error_message'>{errors.rate.message}</span>
+              )}
             </div>
             <h5 className={styles.formTitle}>Сумма (₽)</h5>
             <div className={styles.editValueForm}>
               <input
-                type="number"
-                {
-                  ...register('sum', {
-                    required: 'Введите сумму кредита'
-                  })
-                }
+                type='number'
+                {...register('sum', {
+                  required: 'Введите сумму кредита',
+                })}
               />
-              {errors.sum && <span className="error_message">{errors.sum.message}</span>}
+              {errors.sum && (
+                <span className='error_message'>{errors.sum.message}</span>
+              )}
             </div>
-            <h5 className={styles.formTitle}>Предстоящие расходы на страхование</h5>
+            <h5 className={styles.formTitle}>
+              Предстоящие расходы на страхование
+            </h5>
             <div className={styles.editValueForm}>
               <select
                 className={styles.creditSelect}
                 onChange={() => setInsuranceAwards(!insuranceAwards)}
               >
-                <option value="0">Eжегодно</option>
-                <option value="1">Не предусмотрены</option>
+                <option value='0'>Eжегодно</option>
+                <option value='1'>Не предусмотрены</option>
               </select>
             </div>
             {insuranceAwards === true && (
@@ -331,19 +348,20 @@ function CreditBlockAim(props) {
                 <h5 className={styles.formTitle}>Страховая премия (%)</h5>
                 <div className={styles.editValueForm}>
                   <input
-                    step="0.1"
-                    type="number"
-                    {
-                      ...register('insurance_award', {
-                        required: 'Введите страховую премию'
-                      })
-                    }
+                    step='0.1'
+                    type='number'
+                    {...register('insurance_award', {
+                      required: 'Введите страховую премию',
+                    })}
                   />
-                  {errors.insurance_award && <span className="error_message">{errors.insurance_award.message}</span>}
+                  {errors.insurance_award && (
+                    <span className='error_message'>
+                      {errors.insurance_award.message}
+                    </span>
+                  )}
                 </div>
               </>
-            )
-            }
+            )}
           </div>
         </div>
         <div className={styles.creditsBlocks}></div>
@@ -357,25 +375,30 @@ function CreditBlockAim(props) {
               <div className={styles.editValueForm}>
                 <input
                   type='date'
-                  {
-                    ...register('sum_add_dt', {
-                      required: 'Дата погашения кредита'
-                    })
-                  }
+                  {...register('sum_add_dt', {
+                    required: 'Дата погашения кредита',
+                  })}
                 />
-                {errors.sum_add_dt && <span className='error_message'>{errors.sum_add_dt.message}</span>}
+                {errors.sum_add_dt && (
+                  <span className='error_message'>
+                    {errors.sum_add_dt.message}
+                  </span>
+                )}
               </div>
               <h5 className={styles.formTitle}>Сумма погашения (₽)</h5>
               <div className={styles.editValueForm}>
                 <input
+                  step='0.1'
                   type='number'
-                  {
-                    ...register('sum_add', {
-                      required: 'Введите сумму погашения кредита'
-                    })
-                  }
+                  {...register('sum_add', {
+                    required: 'Введите сумму погашения кредита',
+                  })}
                 />
-                {errors.sum_add && <span className='error_message'>{errors.sum_add.message}</span>}
+                {errors.sum_add && (
+                  <span className='error_message'>
+                    {errors.sum_add.message}
+                  </span>
+                )}
               </div>
             </div>
           </div>
@@ -384,39 +407,43 @@ function CreditBlockAim(props) {
             <div className={styles.creditBlock}>
               <h5 className={styles.formTitle}>
                 Доходность возможных вложений (% год.)
-                <Tolt
-                  tooltipTitle1="Рекомендуется указывать актуальную на момент расчёта ставку вложений с низким или умеренным риском потерь – банковский депозит, облигации и др.">
-                  <img alt="" src={help} />
+                <Tolt tooltipTitle1='Рекомендуется указывать актуальную на момент расчёта ставку вложений с низким или умеренным риском потерь – банковский депозит, облигации и др.'>
+                  <img alt='' src={help} />
                 </Tolt>
               </h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="number"
-                  {
-                    ...register('invest_rate', {
-                      required: 'Введите доходность возможных вложений'
-                    })
-                  }
+                  step='0.1'
+                  type='number'
+                  {...register('invest_rate', {
+                    required: 'Введите доходность возможных вложений',
+                  })}
                 />
-                {errors.invest_rate && <span className="error_message">{errors.invest_rate.message}</span>}
+                {errors.invest_rate && (
+                  <span className='error_message'>
+                    {errors.invest_rate.message}
+                  </span>
+                )}
               </div>
               <h5 className={styles.formTitle}>
                 Инфляция (%)
-                <Tolt
-                  tooltipTitle1="Рекомендуется указывать среднее значение инфляции за последние 5 (6,5%) или 10 лет (7,0%). Если в рамках расчёта Вы не хотите учитывать инфляцию, укажите значение 0">
-                  <img alt="" src={help} />
+                <Tolt tooltipTitle1='Рекомендуется указывать среднее значение инфляции за последние 5 (6,5%) или 10 лет (7,0%). Если в рамках расчёта Вы не хотите учитывать инфляцию, укажите значение 0'>
+                  <img alt='' src={help} />
                 </Tolt>
               </h5>
               <div className={styles.editValueForm}>
                 <input
-                  type="number"
-                  {
-                    ...register('inflation_rate', {
-                      required: 'Введите инфляцию'
-                    })
-                  }
+                  step='0.1'
+                  type='number'
+                  {...register('inflation_rate', {
+                    required: 'Введите инфляцию',
+                  })}
                 />
-                {errors.inflation_rate && <span className="error_message">{errors.inflation_rate.message}</span>}
+                {errors.inflation_rate && (
+                  <span className='error_message'>
+                    {errors.inflation_rate.message}
+                  </span>
+                )}
               </div>
             </div>
           </div>
@@ -426,7 +453,7 @@ function CreditBlockAim(props) {
             <button
               ref={calcBtnRef}
               className={styles.submitBtn}
-              type="button"
+              type='button'
               onClick={() => calcBtnHandler()}
             >
               Расчет
@@ -437,8 +464,8 @@ function CreditBlockAim(props) {
               ref={saveBtnRef}
               disabled
               className={styles.submitBtn}
-              type="submit"
-              value="Сохранить"
+              type='submit'
+              value='Сохранить'
             />
           </div>
         </div>
@@ -463,11 +490,7 @@ function CreditBlockAim(props) {
         </Tabs>
       </Modal>
 
-      {
-        isLoading && (
-          <Spinner />
-        )
-      }
+      {isLoading && <Spinner />}
     </>
   );
 }
