@@ -103,6 +103,10 @@ function CreditBlockAim(props) {
     }
   }, []);
 
+  // useEffect(() => {
+  //   if ()
+  // }, [insuranceAwards]);
+
   const calcBtnHandler = async () => {
     if (Object.entries(calcResult).length > 0) {
       SetAddModalActive(true);
@@ -309,7 +313,7 @@ function CreditBlockAim(props) {
             <h5 className={styles.formTitle}>Ставка (%)</h5>
             <div className={styles.editValueForm}>
               <input
-                step='0.1'
+                step='0.01'
                 type='number'
                 {...register('rate', {
                   required: 'Введите ставку кредита',
@@ -348,7 +352,7 @@ function CreditBlockAim(props) {
                 <h5 className={styles.formTitle}>Страховая премия (%)</h5>
                 <div className={styles.editValueForm}>
                   <input
-                    step='0.1'
+                    step='0.01'
                     type='number'
                     {...register('insurance_award', {
                       required: 'Введите страховую премию',
@@ -388,7 +392,7 @@ function CreditBlockAim(props) {
               <h5 className={styles.formTitle}>Сумма погашения (₽)</h5>
               <div className={styles.editValueForm}>
                 <input
-                  step='0.1'
+                  step='0.01'
                   type='number'
                   {...register('sum_add', {
                     required: 'Введите сумму погашения кредита',
@@ -413,7 +417,7 @@ function CreditBlockAim(props) {
               </h5>
               <div className={styles.editValueForm}>
                 <input
-                  step='0.1'
+                  step='0.01'
                   type='number'
                   {...register('invest_rate', {
                     required: 'Введите доходность возможных вложений',
@@ -433,7 +437,7 @@ function CreditBlockAim(props) {
               </h5>
               <div className={styles.editValueForm}>
                 <input
-                  step='0.1'
+                  step='0.01'
                   type='number'
                   {...register('inflation_rate', {
                     required: 'Введите инфляцию',
