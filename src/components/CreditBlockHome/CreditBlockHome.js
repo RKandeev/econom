@@ -304,6 +304,7 @@ function CreditBlockHome(props) {
             </h5>
             <div className={styles.editValueForm}>
               <input
+                step='0.01'
                 type='number'
                 {...register('rate', {
                   required: 'Введите ставку ипотечного кредита',
@@ -333,6 +334,7 @@ function CreditBlockHome(props) {
             </h5>
             <div className={styles.editValueForm}>
               <input
+                step='0.01'
                 type='number'
                 {...register('sum_incr', {
                   required: 'Введите значение в это поле',
@@ -345,6 +347,7 @@ function CreditBlockHome(props) {
             <h5 className={styles.formTitle}>Страховая премия (%)</h5>
             <div className={styles.editValueForm}>
               <input
+                step='0.01'
                 type='number'
                 {...register('insurance_award1', {
                   required: 'Введите страховую премию',
@@ -388,6 +391,7 @@ function CreditBlockHome(props) {
               </h5>
               <div className={styles.editValueForm}>
                 <input
+                  step='0.01'
                   type='number'
                   {...register('rate2', {
                     required: 'Введите значение в это поле',
@@ -410,6 +414,7 @@ function CreditBlockHome(props) {
               </h5>
               <div className={styles.editValueForm}>
                 <input
+                  step='0.01'
                   type='number'
                   {...register('invest_income', {
                     required: 'Введите ожидаемую годовую доходность вложений',
@@ -430,6 +435,7 @@ function CreditBlockHome(props) {
               </h5>
               <div className={styles.editValueForm}>
                 <input
+                  step='0.01'
                   type='number'
                   {...register('inflation_rate', {
                     required: 'Введите ожидаемую годовую инфляцию',
