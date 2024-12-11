@@ -25,21 +25,22 @@ ChartJS.register(
   LinearScale,
   PointElement,
   Filler,
-  gradient
+  gradient,
 );
 
-function LineHome(props) {
+function LineHome({ calcResult }) {
   let mobile = true;
 
   if (window.outerWidth < 450) {
     mobile = false;
   }
-  let arr = [
-    1, 1.4, 1.8, 2.2, 2.6, 3.1, 3.5, 3.9, 4.3, 4.8, 5.2, 5.6, 6, 6.5, 6.9, 7.3,
-  ];
-  let arr2 = [
-    1, 1.5, 2, 2.5, 3, 3.6, 4.2, 4.7, 5.3, 5.8, 6.5, 7, 7.7, 8.3, 9, 9.6,
-  ];
+  let arr = [];
+  let arr2 = [];
+
+  calcResult.own_capital_progress.forEach((value) => {
+    arr.push(Math.round(value.rent) / 1000000);
+    arr2.push(Math.round(value.buy) / 1000000);
+  });
 
   const lineHomeOptions = {
     plugins: {
@@ -117,8 +118,8 @@ function LineHome(props) {
   };
 
   return (
-    <div className="chart lineChartModeling">
-      <h3 className="chartTitle">Собственный капитал</h3>
+    <div className='chart lineChartModeling'>
+      <h3 className='chartTitle'>Собственный капитал</h3>
       <Line data={lineHomeData} options={lineHomeOptions} />
     </div>
   );

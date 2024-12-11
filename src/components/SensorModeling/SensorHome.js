@@ -5,20 +5,33 @@ import HighchartsReact from 'highcharts-react-official';
 import AnimatedNumbers from 'react-animated-numbers';
 
 import './SensorModeling.scss';
-function SensorHome(props) {
-  const [ser3, setSer3] = useState(-40);
+function SensorHome({ calcResult }) {
+  const [ser3, setSer3] = useState(calcResult.own_capital_incr_perc);
   let chartValue = 0;
 
-  if (ser3 >= 50) {
-    chartValue = 50;
-  } else if (ser3 <= -50) {
-    chartValue = -50;
+  let minChartValue;
+  let maxChartValue;
+  if (ser3 >= -10 && ser3 <= 10) {
+    minChartValue = -10;
+    maxChartValue = 10;
+  } else if (ser3 >= -50 && ser3 <= 50) {
+    minChartValue = -50;
+    maxChartValue = 50;
+  } else if ((ser3 >= -100 && ser3 <= 100) || ser3 > 100 || ser3 < 100) {
+    minChartValue = -100;
+    maxChartValue = 100;
+  }
+
+  if (ser3 >= 100) {
+    chartValue = 100;
+  } else if (ser3 <= -100) {
+    chartValue = -100;
   } else {
     chartValue = ser3;
   }
   let num1 = 0;
   let num2 = 0;
-  let diffNum = 53233;
+  let diffNum = calcResult.own_capital_incr;
 
   if (ser3 >= 0) {
     localStorage.setItem('LinesColor', '1');
@@ -58,13 +71,13 @@ function SensorHome(props) {
       size: '100%',
       startAngle: -90,
     },
-    
+
     plotOptions: {
       series: {
         animation: false,
       },
     },
-    
+
     series: [
       {
         data: [
@@ -125,14 +138,13 @@ function SensorHome(props) {
         },
       },
     ],
-    
+
     title: {
       text: null,
     },
     // the value axis
     yAxis: {
       labels: {
-        
         distance: 30,
         // enabled: false,
         formatter: function () {
@@ -149,15 +161,15 @@ function SensorHome(props) {
         },
       },
       lineWidth: 0,
-      max: 50,
-      min: -50,
+      max: maxChartValue,
+      min: minChartValue,
       minorTickInterval: null,
       plotBands: [
         {
           color: '#858585',
-          from: -50,
+          from: minChartValue,
           thickness: thick,
-          to: 50,
+          to: maxChartValue,
         },
         {
           color: '#0DA46F',
@@ -181,11 +193,11 @@ function SensorHome(props) {
   };
 
   return (
-    <div className="sensorChartBlockHome">
-      <h3 className="chartTitle">
+    <div className='sensorChartBlockHome'>
+      <h3 className='chartTitle'>
         Разница прироста собственного капитала (в %)
       </h3>
-      <div className="sensorChart">
+      <div className='sensorChart'>
         <HighchartsReact highcharts={Highcharts} options={options} />
       </div>
       <div className={ser3 < 0 ? 'differenceNumber' : 'differenceNumberleft'}>
@@ -199,13 +211,9 @@ function SensorHome(props) {
         />
         &#8381;
       </div>
-      <div className="bottomLegends sensorHomeLegends">
-        <div className={ser3 >= 0 ? 'leftLegend' : 'leftLegend green'}>
-          Покупка жилья
-        </div>
-        <div className={ser3 < 0 ? 'rightLegend' : 'rightLegend green'}>
-          Аренда жилья
-        </div>
+      <div className='bottomLegends sensorHomeLegends'>
+        <div className={'leftLegend grey'}>Покупка жилья</div>
+        <div className={'rightLegend grey'}>Аренда жилья</div>
       </div>
     </div>
   );

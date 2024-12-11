@@ -483,10 +483,10 @@ function CreditBlockHome(props) {
             <Tab>{chartsNames[1]}</Tab>
           </TabList>
           <TabPanel className={styles.result_panel}>
-            <SensorHome />
+            <SensorHome calcResult={calcResult} />
           </TabPanel>
           <TabPanel className={styles.result_panel}>
-            <LineHome />
+            <LineHome calcResult={calcResult} />
           </TabPanel>
         </Tabs>
       </Modal>
