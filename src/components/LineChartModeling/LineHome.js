@@ -36,6 +36,11 @@ function LineHome({ calcResult }) {
   }
   let arr = [];
   let arr2 = [];
+  let yearLabels = [];
+
+  for (let i = 0; i < calcResult.own_capital_progress.length; i++) {
+    yearLabels.push(i + 1);
+  }
 
   calcResult.own_capital_progress.forEach((value) => {
     arr.push(Math.round(value.rent) / 1000000);
@@ -97,24 +102,7 @@ function LineHome({ calcResult }) {
         lineTension: 1,
       },
     ],
-    labels: [
-      '0',
-      '1',
-      '2',
-      '3',
-      '4',
-      '5',
-      '6',
-      '7',
-      '8',
-      '9',
-      '10',
-      '11',
-      '12',
-      '13',
-      '14',
-      '15',
-    ],
+    labels: yearLabels,
   };
 
   return (
