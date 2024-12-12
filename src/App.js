@@ -268,7 +268,7 @@ function App() {
             ></Route>
             <Route
               element={<AccountingBalance />}
-              path='lk/AccountingBalance'
+              path='AccountingBalance'
             ></Route>
             <Route path='*' element={<NotFound />}></Route>
           </Routes>
