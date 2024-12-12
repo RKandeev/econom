@@ -216,6 +216,7 @@ function SensorAim({ calcResult }) {
       >
         {sign}
         <AnimatedNumbers
+          key={diffNum}
           animateToNumber={diffNum}
           transitions={(index) => ({
             duration: index + 0.2,

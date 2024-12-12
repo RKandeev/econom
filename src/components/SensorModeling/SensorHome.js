@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
@@ -7,6 +7,8 @@ import AnimatedNumbers from 'react-animated-numbers';
 import './SensorModeling.scss';
 function SensorHome({ calcResult }) {
   const [ser3, setSer3] = useState(calcResult.own_capital_incr_perc);
+  const [diffNum, setDiffNum] = useState(calcResult.own_capital_incr);
+
   let chartValue = 0;
 
   let minChartValue;
@@ -31,7 +33,6 @@ function SensorHome({ calcResult }) {
   }
   let num1 = 0;
   let num2 = 0;
-  let diffNum = calcResult.own_capital_incr;
 
   if (ser3 >= 0) {
     localStorage.setItem('LinesColor', '1');
@@ -46,6 +47,11 @@ function SensorHome({ calcResult }) {
   let tickPixelInter = 72;
   let chartCenter = '50%';
   let verticalChartCenter = '57%';
+
+  useEffect(() => {
+    setSer3(calcResult.own_capital_incr_perc);
+    setDiffNum(calcResult.own_capital_incr);
+  }, [calcResult]);
 
   if (window.outerWidth < 450) {
     thick = 20;
@@ -80,9 +86,7 @@ function SensorHome({ calcResult }) {
 
     series: [
       {
-        data: [
-          Math.min(chartValue, Math.max(parseInt(chartValue), chartValue)),
-        ],
+        data: [Math.min(0, Math.max(parseInt(ser3), 0))],
         dataLabels: {
           borderWidth: 0,
           color:
@@ -90,7 +94,10 @@ function SensorHome({ calcResult }) {
               Highcharts.defaultOptions.title.style &&
               Highcharts.defaultOptions.title.style.color) ||
             '#333333',
-          format: Math.abs(parseInt(ser3)) + ' %',
+          format: calcResult.own_capital_incr_perc
+            ? Math.abs(Number(calcResult.own_capital_incr_perc.toFixed(1))) +
+              ' %'
+            : '',
           style: {
             fontSize: '20rem',
           },
@@ -120,7 +127,10 @@ function SensorHome({ calcResult }) {
               Highcharts.defaultOptions.title.style &&
               Highcharts.defaultOptions.title.style.color) ||
             '#333333',
-          format: Math.abs(parseInt(ser3)) + ' %',
+          format: calcResult.own_capital_incr_perc
+            ? Math.abs(Number(calcResult.own_capital_incr_perc.toFixed(1))) +
+              ' %'
+            : '',
           style: {
             fontSize: '20rem',
           },
@@ -203,7 +213,8 @@ function SensorHome({ calcResult }) {
       <div className={ser3 < 0 ? 'differenceNumber' : 'differenceNumberleft'}>
         +
         <AnimatedNumbers
-          animateToNumber={diffNum}
+          key={diffNum}
+          animateToNumber={Math.round(diffNum)}
           transitions={(index) => ({
             duration: index + 0.2,
             type: 'spring',
