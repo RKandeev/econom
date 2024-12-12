@@ -94,7 +94,7 @@ function LineHome({ calcResult }) {
         label: 'Аренда жилья',
         lineTension: 1,
         borderWidth: 7,
-        pointBorderWidth: 0,
+        pointBorderWidth: 5,
       },
       {
         backgroundColor: '#0DA46F',
@@ -103,7 +103,7 @@ function LineHome({ calcResult }) {
         label: 'Покупка жилья',
         lineTension: 1,
         borderWidth: 7,
-        pointBorderWidth: 0,
+        pointBorderWidth: 5,
       },
     ],
     labels: yearLabels,
