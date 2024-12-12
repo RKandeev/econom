@@ -85,9 +85,14 @@ function CreditBlockHome(props) {
         key === 'user_id' ||
         key === 'id' ||
         key === 'calc_result'
-      )
+      ) {
         return;
-      setValue(key, value);
+      }
+      if (key === 'duration') {
+        setValue(key, value / 12);
+      } else {
+        setValue(key, value);
+      }
     });
   };
 
