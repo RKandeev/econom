@@ -115,7 +115,11 @@ function CreditBlockHome(props) {
 
       for (const key in values) {
         if (values.hasOwnProperty(key)) {
-          formData.append(key, values[key]);
+          if (key === 'duration') {
+            formData.append(key, values[key] * 12);
+          } else {
+            formData.append(key, values[key]);
+          }
         }
       }
 
@@ -175,7 +179,11 @@ function CreditBlockHome(props) {
     saveFormData.append('token', localStorage.getItem('token'));
     for (const key in values) {
       if (values.hasOwnProperty(key)) {
-        saveFormData.append(key, values[key]);
+        if (key === 'duration') {
+          saveFormData.append(key, values[key] * 12);
+        } else {
+          saveFormData.append(key, values[key]);
+        }
       }
     }
     const sumValue = getValues('sum');
@@ -189,7 +197,9 @@ function CreditBlockHome(props) {
     const response = await apiRequest({
       data: saveFormData,
       method: 'POST',
-      url: '/fin-model/buy-or-rent-save',
+      url: isView
+        ? '/fin-model/buy-or-rent-update'
+        : '/fin-model/buy-or-rent-save',
     });
 
     if (!response) {
@@ -204,6 +214,7 @@ function CreditBlockHome(props) {
       saveBtnRef.current.disabled = true;
       reset();
       toast.success(response.mes);
+      navigate('/finmodeling');
     } else {
       Object.entries(response.data).forEach(([key, value]) => {
         setError(`${key}`, { message: value[0], type: 'server' });
@@ -296,12 +307,7 @@ function CreditBlockHome(props) {
                 <span className='error_message'>{errors.sum1.message}</span>
               )}
             </div>
-            <h5 className={styles.formTitle}>
-              Ставка ипотечного кредита (%){' '}
-              <Tolt tooltipTitle1='Здесь указывается ставка (в %) страховой премии, которую Вы будете ежегодно уплачивать в рамках обязательств страхования жилья, предусмотренных договором ипотечного кредитования'>
-                <img alt='' src={help} />
-              </Tolt>
-            </h5>
+            <h5 className={styles.formTitle}>Ставка ипотечного кредита (%) </h5>
             <div className={styles.editValueForm}>
               <input
                 step='0.01'
@@ -314,7 +320,7 @@ function CreditBlockHome(props) {
                 <span className='error_message'>{errors.rate.message}</span>
               )}
             </div>
-            <h5 className={styles.formTitle}>Срок кредита (в месяцах)</h5>
+            <h5 className={styles.formTitle}>Срок кредита (лет)</h5>
             <div className={styles.editValueForm}>
               <input
                 type='number'
@@ -344,7 +350,12 @@ function CreditBlockHome(props) {
                 <span className='error_message'>{errors.sum_incr.message}</span>
               )}
             </div>
-            <h5 className={styles.formTitle}>Страховая премия (%)</h5>
+            <h5 className={styles.formTitle}>
+              Страховая премия (%){' '}
+              <Tolt tooltipTitle1='Здесь указывается ставка (в %) страховой премии, которую Вы будете ежегодно уплачивать в рамках обязательств страхования жилья, предусмотренных договором ипотечного кредитования'>
+                <img alt='' src={help} />
+              </Tolt>
+            </h5>
             <div className={styles.editValueForm}>
               <input
                 step='0.01'
@@ -407,7 +418,7 @@ function CreditBlockHome(props) {
             <h4 className={styles.creditsBlockTitle}>Инвестиции и инфляция</h4>
             <div className={styles.creditBlock}>
               <h5 className={styles.formTitle}>
-                Ожидаемая годовая доходность вложений (%)
+                Доходность возможных вложений (% год.)
                 <Tolt tooltipTitle1='Здесь указывается годовой процент дохода, который Вы можете получать, инвестировав собственные средства вместо того, чтобы направлять их на покупку жилья. Рекомендуется указывать доходность вложений с низким или умеренным, приемлемым для Вас риском'>
                   <img alt='' src={help} />
                 </Tolt>
