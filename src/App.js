@@ -144,7 +144,6 @@ function App() {
 
   return (
     <>
-      `{' '}
       <Context.Provider
         value={{
           activeStarttestTabIndex,
@@ -282,7 +281,6 @@ function App() {
             }}
           />
         </Wrapper>
-        `
       </Context.Provider>
     </>
   );

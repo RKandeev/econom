@@ -375,6 +375,7 @@ function CreditBlockCar(props) {
               </h5>
               <div className={styles.editValueForm}>
                 <input
+                  step='0.01'
                   type='number'
                   {...register('rent_incr_rate', {
                     required: 'Поле не должно быть пустым',
@@ -394,6 +395,7 @@ function CreditBlockCar(props) {
               </h5>
               <div className={styles.editValueForm}>
                 <input
+                  step='0.01'
                   type='number'
                   {...register('amortisation_rate', {
                     required: 'Поле не должно быть пустым',
@@ -430,6 +432,7 @@ function CreditBlockCar(props) {
               <h5 className={styles.formTitle}>Ставка по кредиту (%) </h5>
               <div className={styles.editValueForm}>
                 <input
+                  step='0.01'
                   type='number'
                   {...register('loan_rate', {
                     required: 'Поле не должно быть пустым',
@@ -465,6 +468,7 @@ function CreditBlockCar(props) {
               </h5>
               <div className={styles.editValueForm}>
                 <input
+                  step='0.01'
                   type='number'
                   {...register('insurance_rate', {
                     required: 'Поле не должно быть пустым',
@@ -509,6 +513,7 @@ function CreditBlockCar(props) {
               </h5>
               <div className={styles.editValueForm}>
                 <input
+                  step='0.01'
                   type='number'
                   {...register('invest_income_rate', {
                     required: 'Поле не должно быть пустым',
@@ -534,6 +539,7 @@ function CreditBlockCar(props) {
 
               <div className={styles.editValueForm}>
                 <input
+                  step='0.01'
                   type='number'
                   {...register('inflation_rate', {
                     required: 'Поле не должно быть пустым',
