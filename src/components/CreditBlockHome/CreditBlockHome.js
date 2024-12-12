@@ -15,9 +15,11 @@ import { apiRequest } from '../../api';
 import toast from 'react-hot-toast';
 import { Context } from '../../Context';
 import { useLocation, useNavigate } from 'react-router-dom';
+import Spinner from '../Spinner/Spinner';
 
 function CreditBlockHome(props) {
   const [addModalActive, SetAddModalActive] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [isView, setIsView] = useState(false);
   const [calcResult, setCalcResult] = useState({});
   const calcBtnRef = useRef(null);
@@ -122,6 +124,7 @@ function CreditBlockHome(props) {
           }
         }
       }
+      setIsLoading(true);
 
       const response = await apiRequest({
         data: formData,
@@ -129,36 +132,41 @@ function CreditBlockHome(props) {
         url: '/fin-model/buy-or-rent',
       });
 
-      if (!response) {
-        toast.error(
-          'Ошибка в ответе сервера. Не удалось прочитать ответ сервера',
-        );
+      setTimeout(() => {
+        if (!response) {
+          setIsLoading(false);
+          toast.error(
+            'Ошибка в ответе сервера. Не удалось прочитать ответ сервера',
+          );
 
-        return;
-      }
-
-      if (response.code === 0 && response.http_status === 200) {
-        saveBtnRef.current.disabled = false;
-        setCalcResult(response.data);
-        SetAddModalActive(true);
-      } else {
-        Object.entries(response.data).forEach(([key, value]) => {
-          if (value[0]) {
-            setError(`${key}`, { message: value[0], type: 'server' });
-          }
-        });
-        toast.error(response.mes);
-        const firstErrorField = Object.keys(errors)[0];
-        const element = document.querySelector(`[name="${firstErrorField}"]`);
-
-        if (element) {
-          element.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start',
-          });
-          setTimeout(() => element.focus(), 600);
+          return;
         }
-      }
+
+        if (response.code === 0 && response.http_status === 200) {
+          setIsLoading(false);
+          saveBtnRef.current.disabled = false;
+          setCalcResult(response.data);
+          SetAddModalActive(true);
+        } else {
+          setIsLoading(false);
+          Object.entries(response.data).forEach(([key, value]) => {
+            if (value[0]) {
+              setError(`${key}`, { message: value[0], type: 'server' });
+            }
+          });
+          toast.error(response.mes);
+          const firstErrorField = Object.keys(errors)[0];
+          const element = document.querySelector(`[name="${firstErrorField}"]`);
+
+          if (element) {
+            element.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start',
+            });
+            setTimeout(() => element.focus(), 600);
+          }
+        }
+      }, 1800);
     } else {
       const firstErrorField = Object.keys(errors)[0];
       const element = document.querySelector(`[name="${firstErrorField}"]`);
@@ -193,6 +201,7 @@ function CreditBlockHome(props) {
       saveFormData.append('id', calcView.id);
       saveFormData.append('token', localStorage.getItem('token'));
     }
+    setIsLoading(true);
 
     const response = await apiRequest({
       data: saveFormData,
@@ -202,36 +211,40 @@ function CreditBlockHome(props) {
         : '/fin-model/buy-or-rent-save',
     });
 
-    if (!response) {
-      toast.error(
-        'Ошибка в ответе сервера. Не удалось прочитать ответ сервера',
-      );
-
-      return;
-    }
-
-    if (response.code === 0 && response.http_status === 200) {
-      saveBtnRef.current.disabled = true;
-      reset();
-      toast.success(response.mes);
-      navigate('/finmodeling');
-    } else {
-      Object.entries(response.data).forEach(([key, value]) => {
-        setError(`${key}`, { message: value[0], type: 'server' });
-      });
-      toast.error(response.mes);
-
-      const firstErrorField = Object.keys(errors)[0];
-      const element = document.querySelector(`[name="${firstErrorField}"]`);
-
-      if (element) {
-        element.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start',
-        });
-        setTimeout(() => element.focus(), 600);
+    setTimeout(() => {
+      if (!response) {
+        setIsLoading(false);
+        toast.error(
+          'Ошибка в ответе сервера. Не удалось прочитать ответ сервера',
+        );
+        return;
       }
-    }
+
+      if (response.code === 0 && response.http_status === 200) {
+        setIsLoading(false);
+        saveBtnRef.current.disabled = true;
+        reset();
+        toast.success(response.mes);
+        navigate('/finmodeling');
+      } else {
+        setIsLoading(false);
+        Object.entries(response.data).forEach(([key, value]) => {
+          setError(`${key}`, { message: value[0], type: 'server' });
+        });
+        toast.error(response.mes);
+
+        const firstErrorField = Object.keys(errors)[0];
+        const element = document.querySelector(`[name="${firstErrorField}"]`);
+
+        if (element) {
+          element.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+          });
+          setTimeout(() => element.focus(), 600);
+        }
+      }
+    }, 1800);
   };
 
   return (
@@ -501,6 +514,7 @@ function CreditBlockHome(props) {
           </TabPanel>
         </Tabs>
       </Modal>
+      {isLoading && <Spinner />}
     </>
   );
 }
