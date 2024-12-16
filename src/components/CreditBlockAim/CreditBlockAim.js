@@ -462,7 +462,7 @@ function CreditBlockAim(props) {
               type='button'
               onClick={() => calcBtnHandler()}
             >
-              Расчет
+              Расчитать
             </button>
           </div>
           <div className={styles.submitBtnBlock}>
