@@ -36,13 +36,12 @@ function LineHome({ calcResult }) {
   }
   let arr = [];
   let arr2 = [];
+  let arrColor = '#ABB0C3';
+  let arr2Color = '#0DA46F';
   let yearLabels = [];
 
-  for (let i = 0; i < calcResult.own_capital_progress.length; i++) {
-    yearLabels.push(i + 1);
-  }
-
-  calcResult.own_capital_progress.forEach((value) => {
+  calcResult.own_capital_progress.forEach((value, index) => {
+    yearLabels.push(index);
     arr.push(Math.round(value.rent) / 1000000);
     arr2.push(Math.round(value.buy) / 1000000);
   });
@@ -88,8 +87,8 @@ function LineHome({ calcResult }) {
   const lineHomeData = {
     datasets: [
       {
-        backgroundColor: '#EE2B49',
-        borderColor: '#EE2B49',
+        backgroundColor: arrColor,
+        borderColor: arrColor,
         data: arr,
         label: 'Аренда жилья',
         lineTension: 1,
@@ -97,8 +96,8 @@ function LineHome({ calcResult }) {
         pointBorderWidth: 5,
       },
       {
-        backgroundColor: '#0DA46F',
-        borderColor: '#0DA46F',
+        backgroundColor: arr2Color,
+        borderColor: arr2Color,
         data: arr2,
         label: 'Покупка жилья',
         lineTension: 1,

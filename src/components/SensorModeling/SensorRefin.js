@@ -58,13 +58,13 @@ function SensorRefin(props) {
       size: '100%',
       startAngle: -90,
     },
-    
+
     plotOptions: {
       series: {
         animation: false,
       },
     },
-    
+
     series: [
       {
         data: [
@@ -99,7 +99,7 @@ function SensorRefin(props) {
         },
       },
       {
-        data: [Math.min(0, Math.max(parseInt(ser3), 0))],
+        data: [Math.min(100, Math.max(parseInt(ser3), -100))],
         dataLabels: {
           borderWidth: 0,
           color:
@@ -125,7 +125,7 @@ function SensorRefin(props) {
         },
       },
     ],
-    
+
     title: {
       text: null,
     },
@@ -177,9 +177,9 @@ function SensorRefin(props) {
   }
 
   return (
-    <div className="sensorChartBlockHome">
-      <h3 className="chartTitle">Экономический эффект от рефинансирования</h3>
-      <div className="sensorChart">
+    <div className='sensorChartBlockHome'>
+      <h3 className='chartTitle'>Экономический эффект от рефинансирования</h3>
+      <div className='sensorChart'>
         <HighchartsReact highcharts={Highcharts} options={options} />
       </div>
       <div
@@ -197,9 +197,9 @@ function SensorRefin(props) {
         />
         &#8381;
       </div>
-      <div className="bottomLegends priorityLegends">
-        <div className="leftLegend">Потери</div>
-        <div className="rightLegend green">Выгода</div>
+      <div className='bottomLegends priorityLegends'>
+        <div className='leftLegend'>Потери</div>
+        <div className='rightLegend green'>Выгода</div>
       </div>
     </div>
   );

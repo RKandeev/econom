@@ -17,10 +17,12 @@ import help from '../../img/icon/icon__help.svg';
 import styles from './CreditBlockPriority.module.scss';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Context } from '../../Context';
+import Spinner from '../Spinner/Spinner';
 
 function CreditBlockPriority(props) {
   const [addModalActive, SetAddModalActive] = useState(false);
   const [isView, setIsView] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [calcResult, setCalcResult] = useState({});
   const [creditCount, setCreditCount] = useState(2);
   const [insuranceAwards, setInsuranceAwards] = useState({
@@ -249,6 +251,7 @@ function CreditBlockPriority(props) {
   const values = watch();
 
   const setViewValuesHandler = () => {
+    console.log(calcView);
     Object.entries(calcView).forEach(([key, value]) => {
       if (
         key === 'created_at' ||
@@ -297,28 +300,35 @@ function CreditBlockPriority(props) {
           formData.append(key, values[key]);
         }
       }
+      setIsLoading(true);
+
       const response = await apiRequest({
         data: formData,
         method: 'POST',
         url: '/fin-model/priority',
       });
 
-      if (!response) {
-        toast.error('Непредвиденная ошибка');
+      setTimeout(() => {
+        if (!response) {
+          setIsLoading(false);
+          toast.error('Непредвиденная ошибка');
 
-        return;
-      }
+          return;
+        }
 
-      if (response.code === 0 && response.http_status === 200) {
-        setCalcResult(response.data);
-        SetAddModalActive(true);
-        saveBtnRef.current.disabled = false;
-      } else {
-        Object.entries(response.data).forEach(([key, value]) => {
-          setError(`${key}`, { message: value[0], type: 'server' });
-        });
-        toast.error(response.mes);
-      }
+        if (response.code === 0 && response.http_status === 200) {
+          setIsLoading(false);
+          setCalcResult(response.data);
+          SetAddModalActive(true);
+          saveBtnRef.current.disabled = false;
+        } else {
+          setIsLoading(false);
+          Object.entries(response.data).forEach(([key, value]) => {
+            setError(`${key}`, { message: value[0], type: 'server' });
+          });
+          toast.error(response.mes);
+        }
+      }, 1800);
     } else {
       let firstErrorField;
 
@@ -388,31 +398,37 @@ function CreditBlockPriority(props) {
         saveFormData.append(key, values[key]);
       }
     }
+    setIsLoading(true);
     const response = await apiRequest({
       data: saveFormData,
       method: 'POST',
       url: '/fin-model/priority-save',
     });
 
-    if (!response) {
-      toast.error(
-        'Ошибка в ответе сервера. Не удалось прочитать ответ сервера',
-      );
+    setTimeout(() => {
+      if (!response) {
+        setIsLoading(false);
+        toast.error(
+          'Ошибка в ответе сервера. Не удалось прочитать ответ сервера',
+        );
 
-      return;
-    }
+        return;
+      }
 
-    if (response.code === 0 && response.http_status === 200) {
-      saveBtnRef.current.disabled = true;
-      reset();
-      toast.success(response.mes);
-      navigate('/finmodeling');
-    } else {
-      Object.entries(response.data).forEach(([key, value]) => {
-        setError(`${key}`, { message: value[0], type: 'server' });
-      });
-      toast.error(response.mes);
-    }
+      if (response.code === 0 && response.http_status === 200) {
+        setIsLoading(false);
+        saveBtnRef.current.disabled = true;
+        reset();
+        toast.success(response.mes);
+        navigate('/finmodeling');
+      } else {
+        setIsLoading(false);
+        Object.entries(response.data).forEach(([key, value]) => {
+          setError(`${key}`, { message: value[0], type: 'server' });
+        });
+        toast.error(response.mes);
+      }
+    }, 1800);
   };
 
   useEffect(() => {
@@ -622,7 +638,6 @@ function CreditBlockPriority(props) {
             </div>
           ))}
         </div>
-        <div className={styles.creditsBlocks}></div>
         <div className={styles.secondaryblocks}>
           <div className={styles.secondaryblock}>
             <h4 className={styles.creditsBlockTitle}>
@@ -749,6 +764,7 @@ function CreditBlockPriority(props) {
           </TabPanel>
         </Tabs>
       </Modal>
+      {isLoading && <Spinner />}
     </>
   );
 }

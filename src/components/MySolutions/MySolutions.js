@@ -8,23 +8,21 @@ import toast from 'react-hot-toast';
 import { Context } from '../../Context';
 import { useNavigate } from 'react-router-dom';
 
-function MySolutions({historyUrl, deleteHistoryUrl}) {
-  const {setCalcView} = useContext(Context);
+function MySolutions({ historyUrl, deleteHistoryUrl }) {
+  const { setCalcView } = useContext(Context);
   const [solutionsHistory, setSolutionsHistory] = useState([]);
 
   const navigate = useNavigate();
 
-
-  const getSolutionsHistory =  async () => {
-
+  const getSolutionsHistory = async () => {
     let data = {
       token: localStorage.getItem('token'),
     };
 
-    const response= await apiRequest({
+    const response = await apiRequest({
       url: historyUrl,
       headers: data,
-    })
+    });
 
     if (!response) {
       toast.error('Неопознанная ошибка');
@@ -42,13 +40,12 @@ function MySolutions({historyUrl, deleteHistoryUrl}) {
     } else {
       toast.error(response.mes);
     }
-
-  }
+  };
 
   const viewSolutionHistory = (id) => {
     const currentCalcObject = solutionsHistory.find((item) => item.id === id);
-    setCalcView(currentCalcObject)
-    let navigateUrl
+    setCalcView(currentCalcObject);
+    let navigateUrl;
 
     switch (historyUrl) {
       case '/fin-model/rationality-history':
@@ -57,7 +54,7 @@ function MySolutions({historyUrl, deleteHistoryUrl}) {
       case '/fin-model/priority-history':
         navigateUrl = 'CreateSolutionPriority';
         break;
-      case '/':
+      case '/fin-model/ref-history':
         navigateUrl = 'CreateSolution';
         break;
       case '/fin-model/buy-or-rent-history':
@@ -72,7 +69,7 @@ function MySolutions({historyUrl, deleteHistoryUrl}) {
     }
 
     navigate(`/${navigateUrl}?calcId=${id}`);
-  }
+  };
 
   const deleteSolutionHistory = async (id) => {
     let data = {
@@ -80,11 +77,11 @@ function MySolutions({historyUrl, deleteHistoryUrl}) {
       token: localStorage.getItem('token'),
     };
 
-    const response= await apiRequest({
+    const response = await apiRequest({
       url: deleteHistoryUrl,
       data,
       method: 'POST',
-    })
+    });
 
     if (!response) {
       toast.error('Неопознанная ошибка');
@@ -94,38 +91,35 @@ function MySolutions({historyUrl, deleteHistoryUrl}) {
 
     if (response.code === 0 && response.http_status === 200) {
       toast.success(response.mes);
-      const filteredArray = [...solutionsHistory.filter((item) => item.id !== id)] ;
+      const filteredArray = [
+        ...solutionsHistory.filter((item) => item.id !== id),
+      ];
       setSolutionsHistory(filteredArray);
     } else {
       toast.error(response.mes);
     }
-
-  }
+  };
 
   useEffect(() => {
     getSolutionsHistory();
-  },[]);
-
+  }, []);
 
   return (
     <>
       <div className={styles.solutionsBlock}>
         <h3>история</h3>
         <div className={styles.solutionList}>
-          {
-            solutionsHistory.length && solutionsHistory.map((item, index) => (
+          {solutionsHistory.length &&
+            solutionsHistory.map((item, index) => (
               <MySolution
                 key={index}
                 onDelete={() => deleteSolutionHistory(item.id)}
                 onClick={() => viewSolutionHistory(item.id)}
-                solutionTitle= {item.calc_name}
-                solutionDate= {item.updated_at}
+                solutionTitle={item.calc_name}
+                solutionDate={item.updated_at}
               />
-            ))
-          }
-          {
-            !solutionsHistory.length && <p>Нет сохраненных расчетов</p>
-          }
+            ))}
+          {!solutionsHistory.length && <p>Нет сохраненных расчетов</p>}
         </div>
       </div>
     </>
