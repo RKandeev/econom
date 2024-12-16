@@ -94,10 +94,7 @@ function SensorHome({ calcResult }) {
               Highcharts.defaultOptions.title.style &&
               Highcharts.defaultOptions.title.style.color) ||
             '#333333',
-          format: calcResult.own_capital_incr_perc
-            ? Math.abs(Number(calcResult.own_capital_incr_perc.toFixed(1))) +
-              ' %'
-            : '',
+          format: ser3 ? Math.abs(Number(ser3.toFixed(1))) + ' %' : '',
           style: {
             fontSize: '20rem',
           },
