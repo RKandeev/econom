@@ -86,7 +86,7 @@ function SensorHome({ calcResult }) {
 
     series: [
       {
-        data: [Math.min(100, Math.max(parseInt(ser3), -100))],
+        data: [Math.min(ser3, Math.max(parseInt(ser3), ser3))],
         dataLabels: {
           borderWidth: 0,
           color:
@@ -116,7 +116,7 @@ function SensorHome({ calcResult }) {
         },
       },
       {
-        data: [Math.min(100, Math.max(parseInt(ser3), -100))],
+        data: [0],
         dataLabels: {
           borderWidth: 0,
           color:

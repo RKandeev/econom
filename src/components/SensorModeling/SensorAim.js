@@ -122,9 +122,7 @@ function SensorAim({ calcResult }) {
         },
       },
       {
-        data: [
-          Math.min(100, Math.max(parseInt(calcResult.profit_percent), -100)),
-        ],
+        data: [0],
         dataLabels: {
           borderWidth: 0,
           color:

@@ -100,7 +100,7 @@ function SensorCar({ calcResult }) {
         },
       },
       {
-        data: [Math.min(100, Math.max(parseInt(ser3), -100))],
+        data: [0],
         dataLabels: {
           borderWidth: 0,
           color:
