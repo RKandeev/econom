@@ -27,7 +27,7 @@ ChartJS.register(
 );
 
 function BarChartFlat({ calcResult }) {
-  let arr = [calcResult.flat_clean_income];
+  let arr = [Math.round(calcResult.flat_clean_income)];
   let positiveArr = [null, calcResult.investment];
   let negativeArr = [calcResult.flat_price_increase];
   let mobile = true;
@@ -87,7 +87,7 @@ function BarChartFlat({ calcResult }) {
       {
         backgroundColor: '#0DA46F',
         data: positiveArr,
-        label: 'Инвестирование в иные активы',
+        label: 'Инвестиционный доход',
       },
       {
         backgroundColor: '#13efa3',

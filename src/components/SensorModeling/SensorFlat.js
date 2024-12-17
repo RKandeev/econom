@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
@@ -7,6 +7,7 @@ import AnimatedNumbers from 'react-animated-numbers';
 import './SensorModeling.scss';
 function SensorFlat({ calcResult }) {
   const [ser3, setSer3] = useState(calcResult.perc);
+  const [diffNum, setDiffNum] = useState(calcResult.diff);
   let chartValue = 0;
 
   if (ser3 >= 100) {
@@ -18,7 +19,6 @@ function SensorFlat({ calcResult }) {
   }
   let num1 = 0;
   let num2 = 0;
-  let diffNum = calcResult.diff;
 
   if (ser3 >= 0) {
     localStorage.setItem('LinesColorFlat', '1');
@@ -27,6 +27,11 @@ function SensorFlat({ calcResult }) {
     localStorage.setItem('LinesColorFlat', '2');
     num2 = ser3;
   }
+
+  useEffect(() => {
+    setSer3(calcResult.perc);
+    setDiffNum(calcResult.diff);
+  }, [calcResult]);
 
   let thick = 40;
   let yFont = '18rem';
@@ -77,7 +82,7 @@ function SensorFlat({ calcResult }) {
               Highcharts.defaultOptions.title.style &&
               Highcharts.defaultOptions.title.style.color) ||
             '#333333',
-          format: Math.abs(parseInt(ser3)) + ' %',
+          format: ser3 ? Math.abs(Number(ser3.toFixed(1))) + ' %' : '',
           style: {
             fontSize: '20rem',
           },
@@ -190,7 +195,7 @@ function SensorFlat({ calcResult }) {
       <div className={ser3 < 0 ? 'differenceNumber' : 'differenceNumberleft'}>
         +
         <AnimatedNumbers
-          animateToNumber={diffNum}
+          animateToNumber={Math.round(diffNum)}
           transitions={(index) => ({
             duration: index + 0.2,
             type: 'spring',
@@ -199,10 +204,10 @@ function SensorFlat({ calcResult }) {
         &#8381;
       </div>
       <div className='bottomLegends flatLegends'>
-        <div className={ser3 >= 0 ? 'leftLegend' : 'leftLegend green'}>
+        <div className="leftLegend grey">
           Инвестирование в квартиру
         </div>
-        <div className={ser3 < 0 ? 'rightLegend' : 'rightLegend green'}>
+        <div className="leftLegend grey">
           Инвестирование в иные активы
         </div>
       </div>

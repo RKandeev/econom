@@ -43,10 +43,21 @@ function LineFlat({ calcResult }) {
   }
   let arr = [];
   let arr2 = [];
+  let arrColor = '#ABB0C3';
+  let arr2Color = '#0DA46F';
+
   calcResult.own_capital.forEach((item) => {
     arr.push(item.rent);
     arr2.push(item.buy);
   });
+
+  if (calcResult.own_capital[calcResult.own_capital.length - 1].rent > calcResult.own_capital[calcResult.own_capital.length - 1].buy) {
+    arrColor = '#0DA46F';
+    arr2Color = '#ABB0C3';
+  } else {
+    arrColor = '#ABB0C3';
+    arr2Color = '#0DA46F';
+  }
 
   if (LinesColor === '1') {
     topArr = arr;
@@ -96,18 +107,22 @@ function LineFlat({ calcResult }) {
   const lineHomeData = {
     datasets: [
       {
-        backgroundColor: '#EE2B49',
+        backgroundColor: arrColor,
         borderColor: '#EE2B49',
+        borderWidth: 7,
         data: arr,
         label: 'Покупка квартиры для сдачи в аренду',
         lineTension: 1,
+        pointBorderWidth: 5,
       },
       {
-        backgroundColor: '#0DA46F',
+        backgroundColor: arr2Color,
         borderColor: '#0DA46F',
+        borderWidth: 7,
         data: arr2,
         label: 'Инвестирование в иные активы',
         lineTension: 1,
+        pointBorderWidth: 5,
       },
     ],
     labels: [

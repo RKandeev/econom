@@ -1,22 +1,22 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 
+import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 
+import { apiRequest } from '../../api';
+import { Context } from '../../Context';
 import BarChartFlat from '../BarCharts/BarChartFlat';
 import LineFlat from '../LineChartModeling/LineFlat';
 import Modal from '../Modal/Modal';
 import SensorFlat from '../SensorModeling/SensorFlat';
+import Spinner from '../Spinner/Spinner';
 import Tolt from '../Tolt/Tolt';
 
 import help from '../../img/icon/icon__help.svg';
 
 import styles from './CreditBlockFlat.module.scss';
-import Spinner from '../Spinner/Spinner';
-import { Context } from '../../Context';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
-import { apiRequest } from '../../api';
-import toast from 'react-hot-toast';
 
 function CreditBlockFlat(props) {
   const [addModalActive, SetAddModalActive] = useState(false);
@@ -40,6 +40,7 @@ function CreditBlockFlat(props) {
     'структура выгоды',
     'динамика капитала',
   ];
+
   if (window.outerWidth < 450) {
     chartsNames = ['1', '2', '3'];
   }
@@ -56,28 +57,26 @@ function CreditBlockFlat(props) {
   } = useForm({
     defaultValues: {
       calc_name: '',
-      sum: '',
-      sum1: '',
-      month_inc: '',
-      rent_incr_rate: '',
-      stoppage: '',
+      dt: '',
+      inflation_rate: '',
+      insurance_rate: '',
+      invest_income_rate: '',
       loan_duration: '',
       loan_rate: '',
-      insurance_rate: '',
-      sum_incr: '',
-      dt: '',
+      month_inc: '',
+      rent_incr_rate: '',
       start_sum: '',
-      inflation_rate: '',
-      invest_income_rate: '',
+      stoppage: '',
+      sum: '',
+      sum1: '',
+      sum_incr: '',
     },
     mode: 'all',
   });
 
   const values = watch();
 
-  const hasChanged = Object.keys(values).some((key) => {
-    return values[key] !== previousValues.current[key];
-  });
+  const hasChanged = Object.keys(values).some((key) => values[key] !== previousValues.current[key]);
 
   const setViewValuesHandler = () => {
     Object.entries(calcView).forEach(([key, value]) => {
@@ -87,9 +86,14 @@ function CreditBlockFlat(props) {
         key === 'user_id' ||
         key === 'id' ||
         key === 'calc_result'
-      )
+      ){
         return;
-      setValue(key, value);
+      }
+      if (key === 'loan_duration') {
+        setValue(key, value / 12);
+      } else {
+        setValue(key, value);
+      }
     });
   };
 
@@ -105,6 +109,7 @@ function CreditBlockFlat(props) {
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const calcId = searchParams.get('calcId');
+
     if (calcId && Object.entries(calcView).length > 0) {
       setIsView(true);
       setViewValuesHandler();
@@ -118,6 +123,7 @@ function CreditBlockFlat(props) {
   const calcBtnHandler = async () => {
     if (Object.entries(calcResult).length > 0) {
       SetAddModalActive(true);
+
       return;
     }
 
@@ -129,7 +135,11 @@ function CreditBlockFlat(props) {
 
       for (const key in values) {
         if (values.hasOwnProperty(key)) {
-          formData.append(key, values[key]);
+          if (key === 'loan_duration') {
+            formData.append(key, values[key] * 12);
+          } else {
+            formData.append(key, values[key]);
+          }
         }
       }
 
@@ -147,6 +157,7 @@ function CreditBlockFlat(props) {
             'Ошибка в ответе сервера. Не удалось прочитать ответ сервера',
           );
           setIsLoading(false);
+
           return;
         }
 
@@ -195,7 +206,11 @@ function CreditBlockFlat(props) {
     saveFormData.append('token', localStorage.getItem('token'));
     for (const key in values) {
       if (values.hasOwnProperty(key)) {
-        saveFormData.append(key, values[key]);
+        if (key === 'loan_duration') {
+          saveFormData.append(key, values[key] * 12);
+        } else {
+          saveFormData.append(key, values[key]);
+        }
       }
     }
 
@@ -338,7 +353,7 @@ function CreditBlockFlat(props) {
                 )}
               </div>
               <h5 className={styles.formTitle}>
-                Срок ипотечного кредита (месяцы)
+                Срок ипотечного кредита (лет)
               </h5>
               <div className={styles.editValueForm}>
                 <input
@@ -463,7 +478,7 @@ function CreditBlockFlat(props) {
             <h4 className={styles.creditsBlockTitle}>Инвестиции и инфляция</h4>
             <div className={styles.creditBlock}>
               <h5 className={styles.formTitle}>
-                Ожидаемая годовая доходность вложений (%)
+                Доходность возможных вложений (% год.
                 <Tolt tooltipTitle1='Здесь указывается годовой процент дохода, который Вы можете получать, инвестировав собственные средства вместо того, чтобы направлять их на покупку квартиры. Рекомендуется указывать доходность вложений с низким или умеренным, приемлемым для Вас риском'>
                   <img alt='' src={help} />
                 </Tolt>

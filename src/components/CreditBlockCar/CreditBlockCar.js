@@ -1,21 +1,21 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 
+import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 
+import { apiRequest } from '../../api';
+import { Context } from '../../Context';
 import BarChartCar from '../BarCharts/BarChartCar';
 import Modal from '../Modal/Modal';
 import SensorCar from '../SensorModeling/SensorCar';
+import Spinner from '../Spinner/Spinner';
 import Tolt from '../Tolt/Tolt';
 
 import help from '../../img/icon/icon__help.svg';
 
 import styles from './CreditBlockCar.module.scss';
-import { Context } from '../../Context';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
-import { apiRequest } from '../../api';
-import toast from 'react-hot-toast';
-import Spinner from '../Spinner/Spinner';
 
 function CreditBlockCar(props) {
   const [addModalActive, SetAddModalActive] = useState(false);
@@ -51,31 +51,29 @@ function CreditBlockCar(props) {
   } = useForm({
     defaultValues: {
       calc_name: '',
-      sum: '',
-      sum1: '',
+      amortisation_rate: '',
       duration: '',
-      loan_rate: '',
-      insurance_rate: '',
+      dt: '',
       expenses_monthly: '',
       expenses_yearly: '',
-      transport_tax: '',
-      osago: '',
-      amortisation_rate: '',
-      rent_incr_rate: '',
-      dt: '',
-      start_sum: '',
       inflation_rate: '',
-      transport_expenses: '',
+      insurance_rate: '',
       invest_income_rate: '',
+      loan_rate: '',
+      sum: '',
+      osago: '',
+      sum1: '',
+      rent_incr_rate: '',
+      start_sum: '',
+      transport_expenses: '',
+      transport_tax: '',
     },
     mode: 'all',
   });
 
   const values = watch();
 
-  const hasChanged = Object.keys(values).some((key) => {
-    return values[key] !== previousValues.current[key];
-  });
+  const hasChanged = Object.keys(values).some((key) => values[key] !== previousValues.current[key]);
 
   const setViewValuesHandler = () => {
     Object.entries(calcView).forEach(([key, value]) => {
@@ -107,6 +105,7 @@ function CreditBlockCar(props) {
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const calcId = searchParams.get('calcId');
+
     if (calcId && Object.entries(calcView).length > 0) {
       setIsView(true);
       setViewValuesHandler();
@@ -116,6 +115,7 @@ function CreditBlockCar(props) {
   const calcBtnHandler = async () => {
     if (Object.entries(calcResult).length > 0) {
       SetAddModalActive(true);
+
       return;
     }
 
@@ -143,6 +143,7 @@ function CreditBlockCar(props) {
         if (!response) {
           setIsLoading(false);
           toast.error(`Непредвиденная ошибка ${response}`);
+
           return;
         }
 
@@ -212,6 +213,7 @@ function CreditBlockCar(props) {
       if (!response) {
         setIsLoading(false);
         toast.error(`Непредвиденная ошибка ${response}`);
+
         return;
       }
 
@@ -506,7 +508,7 @@ function CreditBlockCar(props) {
                 )}
               </div>
               <h5 className={styles.formTitle}>
-                Ожидаемая доходность вложений (годовая) (%){' '}
+                Доходность возможных вложений (% год.){' '}
                 <Tolt tooltipTitle1='Здесь указывается годовой процент дохода, который Вы можете получать, инвестировав собственные средства вместо того, чтобы направлять их на покупку автомобиля. Рекомендуется указывать доходность вложений с низким или умеренным, приемлемым для Вас риском'>
                   <img alt='' src={help} />
                 </Tolt>

@@ -46,6 +46,14 @@ function LineHome({ calcResult }) {
     arr2.push(Math.round(value.buy) / 1000000);
   });
 
+  if (calcResult.own_capital_progress[calcResult.own_capital_progress.length - 1].rent > calcResult.own_capital_progress[calcResult.own_capital_progress.length - 1].buy) {
+    arrColor = '#0DA46F';
+    arr2Color = '#ABB0C3';
+  } else {
+    arrColor = '#ABB0C3';
+    arr2Color = '#0DA46F';
+  }
+
   const lineHomeOptions = {
     plugins: {
       datalabels: {
@@ -89,19 +97,19 @@ function LineHome({ calcResult }) {
       {
         backgroundColor: arrColor,
         borderColor: arrColor,
+        borderWidth: 7,
         data: arr,
         label: 'Аренда жилья',
         lineTension: 1,
-        borderWidth: 7,
         pointBorderWidth: 5,
       },
       {
         backgroundColor: arr2Color,
         borderColor: arr2Color,
+        borderWidth: 7,
         data: arr2,
         label: 'Покупка жилья',
         lineTension: 1,
-        borderWidth: 7,
         pointBorderWidth: 5,
       },
     ],
