@@ -34,10 +34,11 @@ ChartJS.register(
 
 function BarChartCar({ calcResult }) {
   const barArr = [];
+
   barArr.push(calcResult.transfer_expenses);
   barArr.push(calcResult.credit_expenses);
   barArr.push(calcResult.invest_income_discount);
-  barArr.push(calcResult.clear_income_discount);
+  barArr.push(calcResult.property_price);
   barArr.push(calcResult.effect);
 
   let myArr = [null, null, null, null];
@@ -53,19 +54,13 @@ function BarChartCar({ calcResult }) {
   let mobileColor = '#fff';
   let labelFont = 12;
 
-  if (window.outerWidth < 450) {
-    mobile = false;
-    mobileColor = '#000';
-    mobileFont = 12;
-    labelFont = 3;
-  }
   barArr.forEach((e) => {
     if (e > 0) {
       positiveArr.push(e);
       negativeArr.push(null);
     } else {
       positiveArr.push(null);
-      negativeArr.push(e);
+      negativeArr.push(Math.round(e));
     }
   });
   myArr.forEach((e) => {
@@ -77,6 +72,14 @@ function BarChartCar({ calcResult }) {
       myArrNeg.push(e);
     }
   });
+
+  if (window.outerWidth < 450) {
+    mobile = false;
+    mobileColor = '#000';
+    mobileFont = 12;
+    labelFont = 3;
+  }
+
   const options = {
     plugins: {
       annotation: {

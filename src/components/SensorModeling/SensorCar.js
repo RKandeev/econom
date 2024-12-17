@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
@@ -7,19 +7,25 @@ import AnimatedNumbers from 'react-animated-numbers';
 import './SensorModeling.scss';
 function SensorCar({ calcResult }) {
   const [ser3, setSer3] = useState(calcResult.effect_perc);
+  const [diffNum, setDiffNum] = useState(calcResult.effect);
 
   let chartValue = 0;
 
-  if (ser3 >= 100) {
-    chartValue = 100;
-  } else if (ser3 <= -100) {
-    chartValue = -100;
-  } else {
-    chartValue = ser3;
+  let minChartValue;
+  let maxChartValue;
+
+  if (ser3 >= -10 && ser3 <= 10) {
+    minChartValue = -10;
+    maxChartValue = 10;
+  } else if (ser3 >= -50 && ser3 <= 50) {
+    minChartValue = -50;
+    maxChartValue = 50;
+  } else if ((ser3 >= -100 && ser3 <= 100) || ser3 > 100 || ser3 < 100) {
+    minChartValue = -100;
+    maxChartValue = 100;
   }
   let num1 = 0;
   let num2 = 0;
-  let diffNum = calcResult.effect;
 
   if (ser3 >= 0) {
     localStorage.setItem('LinesColor', '1');
@@ -28,6 +34,11 @@ function SensorCar({ calcResult }) {
     localStorage.setItem('LinesColor', '2');
     num2 = ser3;
   }
+
+  useEffect(() => {
+    setSer3(calcResult.effect_perc);
+    setDiffNum(calcResult.effect);
+  }, [calcResult]);
 
   let thick = 40;
   let yFont = '18rem';
@@ -78,7 +89,7 @@ function SensorCar({ calcResult }) {
               Highcharts.defaultOptions.title.style &&
               Highcharts.defaultOptions.title.style.color) ||
             '#333333',
-          format: Math.abs(parseInt(ser3)) + ' %',
+          format: ser3 ? Math.abs(Number(ser3.toFixed(1))) + ' %' : '',
           style: {
             fontSize: '20rem',
           },
@@ -139,8 +150,8 @@ function SensorCar({ calcResult }) {
         },
       },
       lineWidth: 0,
-      max: 100,
-      min: -100,
+      max: maxChartValue,
+      min: minChartValue,
       minorTickInterval: null,
       plotBands: [
         {
@@ -193,7 +204,7 @@ function SensorCar({ calcResult }) {
         {sign}
         <AnimatedNumbers
           key={diffNum}
-          animateToNumber={diffNum}
+          animateToNumber={Math.round(diffNum)}
           transitions={(index) => ({
             duration: index + 0.2,
             type: 'spring',

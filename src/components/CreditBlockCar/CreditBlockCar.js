@@ -50,21 +50,21 @@ function CreditBlockCar(props) {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      calc_name: '',
       amortisation_rate: '',
-      duration: '',
+      calc_name: '',
       dt: '',
+      duration: '',
       expenses_monthly: '',
       expenses_yearly: '',
       inflation_rate: '',
       insurance_rate: '',
       invest_income_rate: '',
       loan_rate: '',
-      sum: '',
       osago: '',
-      sum1: '',
       rent_incr_rate: '',
       start_sum: '',
+      sum: '',
+      sum1: '',
       transport_expenses: '',
       transport_tax: '',
     },
@@ -83,9 +83,14 @@ function CreditBlockCar(props) {
         key === 'user_id' ||
         key === 'id' ||
         key === 'calc_result'
-      )
+      ){
         return;
-      setValue(key, value);
+      }
+      if (key === 'duration') {
+        setValue(key, value / 12);
+      } else {
+        setValue(key, value);
+      }
     });
   };
 
@@ -127,7 +132,11 @@ function CreditBlockCar(props) {
 
       for (const key in values) {
         if (values.hasOwnProperty(key)) {
-          formData.append(key, values[key]);
+          if (key === 'duration') {
+            formData.append(key, values[key] * 12);
+          } else {
+            formData.append(key, values[key]);
+          }
         }
       }
 
@@ -192,7 +201,11 @@ function CreditBlockCar(props) {
     saveFormData.append('token', localStorage.getItem('token'));
     for (const key in values) {
       if (values.hasOwnProperty(key)) {
-        saveFormData.append(key, values[key]);
+        if (key === 'duration') {
+          saveFormData.append(key, values[key] * 12);
+        } else {
+          saveFormData.append(key, values[key]);
+        }
       }
     }
 
@@ -446,7 +459,7 @@ function CreditBlockCar(props) {
                   </span>
                 )}
               </div>
-              <h5 className={styles.formTitle}>Срок кредита (месяцы)</h5>
+              <h5 className={styles.formTitle}>Срок кредита (лет)</h5>
               <div className={styles.editValueForm}>
                 <input
                   type='number'

@@ -2,22 +2,22 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 
 import { useFieldArray, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 
 import { apiRequest } from '../../api';
+import { Context } from '../../Context';
 import BarChartPriority1 from '../BarCharts/BarChartPriority1';
 import BarChartPriority2 from '../BarCharts/BarChartPriority2';
 import Checkcustom from '../Checkcustom/Checkcustom';
 import Modal from '../Modal/Modal';
 import SensorPriority from '../SensorModeling/SensorPriority';
+import Spinner from '../Spinner/Spinner';
 import Tolt from '../Tolt/Tolt';
 
 import help from '../../img/icon/icon__help.svg';
 
 import styles from './CreditBlockPriority.module.scss';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { Context } from '../../Context';
-import Spinner from '../Spinner/Spinner';
 
 function CreditBlockPriority(props) {
   const [addModalActive, SetAddModalActive] = useState(false);
@@ -259,8 +259,9 @@ function CreditBlockPriority(props) {
         key === 'user_id' ||
         key === 'id' ||
         key === 'calc_result'
-      )
+      ){
         return;
+      }
       setValue(key, value);
     });
   };
@@ -268,6 +269,7 @@ function CreditBlockPriority(props) {
   const calcBtnHandler = async () => {
     if (Object.entries(calcResult).length > 0) {
       SetAddModalActive(true);
+
       return;
     }
     const isValid = await trigger();
@@ -337,6 +339,7 @@ function CreditBlockPriority(props) {
       } else {
         if (errors.groups) {
           let groupErrorField;
+
           if (errors.groups[0]) {
             groupErrorField = `groups.0.${Object.keys(errors.groups[0])[0]}`;
           }
@@ -369,6 +372,8 @@ function CreditBlockPriority(props) {
   };
 
   const onSubmit = async () => {
+    console.log('dsd');
+
     const values = watch();
 
     if (values.groups) {
@@ -435,9 +440,7 @@ function CreditBlockPriority(props) {
     if (Object.entries(calcResult).length > 0) {
       Object.assign(values, values.groups[0], values.groups[1]);
       delete values.groups;
-      const hasChanged = Object.keys(values).some((key) => {
-        return values[key] !== previousValues.current[key];
-      });
+      const hasChanged = Object.keys(values).some((key) => values[key] !== previousValues.current[key]);
 
       if (hasChanged) {
         saveBtnRef.current.disabled = true;
@@ -447,8 +450,10 @@ function CreditBlockPriority(props) {
   }, [values]);
 
   useEffect(() => {
+    console.log('dasda');
     const searchParams = new URLSearchParams(location.search);
     const calcId = searchParams.get('calcId');
+
     if (calcId && Object.entries(calcView).length > 0) {
       setIsView(true);
       setViewValuesHandler();
@@ -525,10 +530,10 @@ function CreditBlockPriority(props) {
               <div className={styles.creditTitleBlock}>
                 <div className={styles.creditTitle}>{'Кредит №' + (k + 1)}</div>
                 <Checkcustom
+                  checked
                   groupIndex={k}
                   label='Учитывать'
                   register={register}
-                  checked
                 />
               </div>
               <h5 className={styles.formTitle}>Название кредита</h5>
@@ -543,10 +548,10 @@ function CreditBlockPriority(props) {
                 {errors.groups &&
                   errors.groups[k] &&
                   errors.groups[k][`credit_name${k + 1}`] && (
-                    <span className='error_message'>
-                      {errors.groups[k][`credit_name${k + 1}`].message}
-                    </span>
-                  )}
+                  <span className='error_message'>
+                    {errors.groups[k][`credit_name${k + 1}`].message}
+                  </span>
+                )}
               </div>
               <h5 className={styles.formTitle}>Дата получения кредита</h5>
               <div className={styles.editValueForm}>
@@ -559,10 +564,10 @@ function CreditBlockPriority(props) {
                 {errors.groups &&
                   errors.groups[k] &&
                   errors.groups[k][`start_dt${k + 1}`] && (
-                    <span className='error_message'>
-                      {errors.groups[k][`start_dt${k + 1}`].message}
-                    </span>
-                  )}
+                  <span className='error_message'>
+                    {errors.groups[k][`start_dt${k + 1}`].message}
+                  </span>
+                )}
               </div>
               <h5 className={styles.formTitle}>Срок кредита (в месяцах)</h5>
               <div className={styles.editValueForm}>
@@ -575,10 +580,10 @@ function CreditBlockPriority(props) {
                 {errors.groups &&
                   errors.groups[k] &&
                   errors.groups[k][`duration${k + 1}`] && (
-                    <span className='error_message'>
-                      {errors.groups[k][`duration${k + 1}`].message}
-                    </span>
-                  )}
+                  <span className='error_message'>
+                    {errors.groups[k][`duration${k + 1}`].message}
+                  </span>
+                )}
               </div>
               <h5 className={styles.formTitle}>Ставка (%)</h5>
               <div className={styles.editValueForm}>
@@ -591,10 +596,10 @@ function CreditBlockPriority(props) {
                 {errors.groups &&
                   errors.groups[k] &&
                   errors.groups[k][`rate${k + 1}`] && (
-                    <span className='error_message'>
-                      {errors.groups[k][`rate${k + 1}`].message}
-                    </span>
-                  )}
+                  <span className='error_message'>
+                    {errors.groups[k][`rate${k + 1}`].message}
+                  </span>
+                )}
               </div>
               <h5 className={styles.formTitle}>Сумма (&#8381;)</h5>
               <div className={styles.editValueForm}>
@@ -607,10 +612,10 @@ function CreditBlockPriority(props) {
                 {errors.groups &&
                   errors.groups[k] &&
                   errors.groups[k][`sum${k + 1}`] && (
-                    <span className='error_message'>
-                      {errors.groups[k][`sum${k + 1}`].message}
-                    </span>
-                  )}
+                  <span className='error_message'>
+                    {errors.groups[k][`sum${k + 1}`].message}
+                  </span>
+                )}
               </div>
               <h5 className={styles.formTitle}>
                 Предстоящие расходы на страхование
@@ -735,15 +740,15 @@ function CreditBlockPriority(props) {
               ref={saveBtnRef}
               disabled
               className={styles.submitBtn}
-              type='submit'
-              value='Сохранить'
+              type="submit"
+              value="Сохранить"
             />
           </div>
         </div>
       </form>
       <Modal
         active={addModalActive}
-        modalTitle='Досрочное погашение кредитов: приоритет'
+        modalTitle="Досрочное погашение кредитов: приоритет"
         SetActive={SetAddModalActive}
       >
         <Tabs className={styles.result_tabs}>
