@@ -27,6 +27,14 @@ function SensorCar({ calcResult }) {
   let num1 = 0;
   let num2 = 0;
 
+  if (ser3 >= 100) {
+    chartValue = 100;
+  } else if (ser3 <= -100) {
+    chartValue = -100;
+  } else {
+    chartValue = ser3;
+  }
+
   if (ser3 >= 0) {
     localStorage.setItem('LinesColor', '1');
     num1 = ser3;

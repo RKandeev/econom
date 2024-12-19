@@ -108,7 +108,7 @@ function LineFlat({ calcResult }) {
     datasets: [
       {
         backgroundColor: arrColor,
-        borderColor: '#EE2B49',
+        borderColor: '#ABB0C3',
         borderWidth: 7,
         data: arr,
         label: 'Покупка квартиры для сдачи в аренду',

@@ -189,7 +189,7 @@ function SensorRefin(props) {
       >
         {sign}
         <AnimatedNumbers
-          animateToNumber={diffNum}
+          animateToNumber={Math.round(diffNum)}
           transitions={(index) => ({
             duration: index + 0.2,
             type: 'spring',
