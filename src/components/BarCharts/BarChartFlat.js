@@ -27,9 +27,9 @@ ChartJS.register(
 );
 
 function BarChartFlat({ calcResult }) {
-  let arr = [Math.round(calcResult.flat_clean_income)];
-  let positiveArr = [null, calcResult.investment];
-  let negativeArr = [calcResult.flat_price_increase];
+  let arr = [Math.round(calcResult.flat_clean_income / 1000)];
+  let positiveArr = [null, Math.round(calcResult.investment / 1000)];
+  let negativeArr = [Math.round(calcResult.flat_price_increase / 1000)];
   let mobile = true;
   let mobileFont = 16;
   let mobileColor = '#fff';

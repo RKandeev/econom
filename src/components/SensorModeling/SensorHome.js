@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
@@ -13,6 +13,7 @@ function SensorHome({ calcResult }) {
 
   let minChartValue;
   let maxChartValue;
+
   if (ser3 >= -10 && ser3 <= 10) {
     minChartValue = -10;
     maxChartValue = 10;
@@ -86,7 +87,7 @@ function SensorHome({ calcResult }) {
 
     series: [
       {
-        data: [Math.min(ser3, Math.max(parseInt(ser3), ser3))],
+        data: [Math.min(chartValue, Math.max(parseInt(chartValue), chartValue))],
         dataLabels: {
           borderWidth: 0,
           color:
@@ -124,8 +125,8 @@ function SensorHome({ calcResult }) {
               Highcharts.defaultOptions.title.style &&
               Highcharts.defaultOptions.title.style.color) ||
             '#333333',
-          format: calcResult.own_capital_incr_perc
-            ? Math.abs(Number(calcResult.own_capital_incr_perc.toFixed(1))) +
+          format: ser3
+            ? Math.abs(Number(ser3.toFixed(1))) +
               ' %'
             : '',
           style: {
@@ -220,8 +221,8 @@ function SensorHome({ calcResult }) {
         &#8381;
       </div>
       <div className='bottomLegends sensorHomeLegends'>
-        <div className={'leftLegend grey'}>Покупка жилья</div>
-        <div className={'rightLegend grey'}>Аренда жилья</div>
+        <div className="leftLegend grey">Покупка жилья</div>
+        <div className="rightLegend grey">Аренда жилья</div>
       </div>
     </div>
   );

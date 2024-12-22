@@ -47,8 +47,8 @@ function LineFlat({ calcResult }) {
   let arr2Color = '#0DA46F';
 
   calcResult.own_capital.forEach((item) => {
-    arr.push(item.rent);
-    arr2.push(item.buy);
+    arr.push(item.rent / 1000000);
+    arr2.push(item.buy / 1000000);
   });
 
   if (calcResult.own_capital[calcResult.own_capital.length - 1].rent > calcResult.own_capital[calcResult.own_capital.length - 1].buy) {
