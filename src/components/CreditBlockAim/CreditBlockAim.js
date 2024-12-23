@@ -2,20 +2,20 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 
 import { apiRequest } from '../../api';
+import { Context } from '../../Context';
 import BarChartAim from '../BarCharts/BarChartAim';
 import Modal from '../Modal/Modal';
 import SensorAim from '../SensorModeling/SensorAim';
+import Spinner from '../Spinner/Spinner';
 import Tolt from '../Tolt/Tolt';
 
 import help from '../../img/icon/icon__help.svg';
 
 import styles from './CreditBlockAim.module.scss';
-import { useLocation, useNavigate, useRoutes } from 'react-router-dom';
-import { Context } from '../../Context';
-import Spinner from '../Spinner/Spinner';
 
 function CreditBlockAim(props) {
   const [addModalActive, SetAddModalActive] = useState(false);
@@ -35,6 +35,7 @@ function CreditBlockAim(props) {
   const navigate = useNavigate();
 
   let chartsNames = ['Экономический эффект', 'Факторный анализ'];
+
   if (window.outerWidth < 450) {
     chartsNames = ['1', '2'];
   }
@@ -67,9 +68,7 @@ function CreditBlockAim(props) {
 
   const values = watch();
 
-  const hasChanged = Object.keys(values).some((key) => {
-    return values[key] !== previousValues.current[key];
-  });
+  const hasChanged = Object.keys(values).some((key) => values[key] !== previousValues.current[key]);
 
   const setViewValuesHandler = () => {
     Object.entries(calcView).forEach(([key, value]) => {
@@ -97,6 +96,7 @@ function CreditBlockAim(props) {
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const calcId = searchParams.get('calcId');
+
     if (calcId && Object.entries(calcView).length > 0) {
       setIsView(true);
       setViewValuesHandler();
@@ -112,6 +112,7 @@ function CreditBlockAim(props) {
   const calcBtnHandler = async () => {
     if (Object.entries(calcResult).length > 0) {
       SetAddModalActive(true);
+
       return;
     }
 
@@ -141,6 +142,7 @@ function CreditBlockAim(props) {
             'Ошибка в ответе сервера. Не удалось прочитать ответ сервера',
           );
           setIsLoading(false);
+
           return;
         }
 
@@ -351,7 +353,11 @@ function CreditBlockAim(props) {
             </div>
             {insuranceAwards === true && (
               <>
-                <h5 className={styles.formTitle}>Страховая премия (%)</h5>
+                <h5 className={styles.formTitle}>Страховая премия (%)
+                  <Tolt tooltipTitle1='Здесь указывается ставка (в %) страховой премии, которую Вы будете ежегодно уплачивать в рамках обязательств, предусмотренных кредитным договором'>
+                    <img alt='' src={help} />
+                  </Tolt>
+                </h5>
                 <div className={styles.editValueForm}>
                   <input
                     step='0.01'
@@ -462,7 +468,7 @@ function CreditBlockAim(props) {
               type='button'
               onClick={() => calcBtnHandler()}
             >
-              Расчитать
+              Рассчитать
             </button>
           </div>
           <div className={styles.submitBtnBlock}>

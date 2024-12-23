@@ -46,12 +46,12 @@ import Lifestyle from './pages/Lifestyle/Lifestyle';
 import MyProfile from './pages/MyProfile/MyProfile';
 import MyResults from './pages/MyResults/MyResults';
 import NoMatterAnalysis from './pages/NoMatterAnalysis/NoMatterAnalysis';
+import NotFound from './pages/NotFound/NotFound';
 import Possibilities from './pages/Possibilities/Possibilities';
 import Refund from './pages/Refund/Refund';
 import StructureAnalysis from './pages/StructureAnalysis/StructureAnalysis';
 import Study from './pages/Study/Study';
 import Studying from './pages/Studying/Studying';
-import NotFound from './pages/NotFound/NotFound';
 
 function App() {
   const [userInfo, setUserInfo] = useState({
@@ -74,8 +74,15 @@ function App() {
   const [showStartModal, setShowStartModal] = useState(
     localStorage.getItem('showStartModal') !== 'false',
   );
+  const [accountingData, setAccountingData] = useState({});
+
   const navigate = useNavigate();
-  const location = useLocation();
+
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  const currentDate = `${year}-${month}-${day}`;
 
   const getFirstTestsResult = async () => {
     let data = {
@@ -107,6 +114,26 @@ function App() {
     }
   };
 
+  const getAccountingData = async (date) => {
+    const responseDate = date? date : currentDate;
+
+    const response = await apiRequest({
+      url: `/fin-balance-fact/get-day-total?dt=${responseDate}&token=${localStorage.getItem('token')}`,
+    });
+
+    if (!response) {
+      toast.error(`Непредвиденная ошибка ${response}`);
+
+      return;
+    }
+
+    if (response.code === 0) {
+      setAccountingData(response.data);
+    } else {
+      toast.error(response.mes);
+    }
+  };
+
   const Wrapper = ({ children }) => {
     const location = useLocation();
 
@@ -123,6 +150,7 @@ function App() {
     if (token) {
       getFirstTestsResult();
       getTestQuestions();
+      getAccountingData();
     } else {
       navigate('/SignUp');
     }
@@ -146,18 +174,21 @@ function App() {
     <>
       <Context.Provider
         value={{
+          accountingData,
           activeStarttestTabIndex,
+          calcView,
           controlTestQuestions,
+          getAccountingData,
           isStartTestingHave,
+          setAccountingData,
           setActiveStarttestTabIndex,
+          setCalcView,
           setShowStartModal,
           setStartTestResults,
           setUserInfo,
-          setCalcView,
           showStartModal,
           startTestResults,
           userInfo,
-          calcView,
         }}
       >
         <Wrapper>
@@ -269,7 +300,7 @@ function App() {
               element={<AccountingBalance />}
               path='AccountingBalance'
             ></Route>
-            <Route path='*' element={<NotFound />}></Route>
+            <Route element={<NotFound />} path='*'></Route>
           </Routes>
           <Toaster
             position='top-right'

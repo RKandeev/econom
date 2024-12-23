@@ -14,6 +14,19 @@ function AccountingLine(props) {
   const [chartModalActive, SetChartModalActive] = useState(false);
   let color;
 
+  let currentEntr;
+
+  function declensionOfWord(count) {
+    const cases = [2, 0, 1, 1, 1, 2];
+    const titles = ['запись', 'записи', 'записей'];
+    const mod = count % 100;
+    const caseIndex = (mod > 4 && mod < 20) ? 2 : cases[Math.min(mod % 10, 5)];
+
+    currentEntr = `${count} ${titles[caseIndex]}`;
+  }
+
+  declensionOfWord(props.entriesNum);
+
   if (props.value > 0) {
     color = '#0DA46F';
   } else if (props.value < 0) {
@@ -76,7 +89,7 @@ function AccountingLine(props) {
           {/*  </Tolt>*/}
           {/*</div>*/}
         </div>
-        <div className={styles.finlineinfo}>{props.entriesNum}</div>
+        <div className={styles.finlineinfo}>{currentEntr}</div>
         <Link to={props.linkway}>
           <div className={styles.finlinevalue} style={{ color }}>
             {props.value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')}

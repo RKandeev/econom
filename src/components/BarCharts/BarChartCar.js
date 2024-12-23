@@ -35,11 +35,11 @@ ChartJS.register(
 function BarChartCar({ calcResult }) {
   const barArr = [];
 
-  barArr.push(Math.round(calcResult.transfer_expenses));
-  barArr.push(Math.round(calcResult.credit_expenses));
-  barArr.push(Math.round(calcResult.invest_income_discount));
-  barArr.push(Math.round(calcResult.property_price));
-  barArr.push(Math.round(calcResult.effect));
+  barArr.push(Math.round(calcResult.transfer_expenses / 1000));
+  barArr.push(Math.round(calcResult.credit_expenses / 1000));
+  barArr.push(Math.round(calcResult.invest_income_discount / 1000));
+  barArr.push(Math.round(calcResult.property_price / 1000));
+  barArr.push(Math.round(calcResult.effect / 1000));
 
   let myArr = [null, null, null, null];
 

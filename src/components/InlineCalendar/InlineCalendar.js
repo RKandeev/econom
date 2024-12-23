@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import ru from 'date-fns/locale/ru';
 import { Container } from 'react-bootstrap';
 import DatePicker, { registerLocale } from 'react-datepicker';
+
+import { Context } from '../../Context';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
@@ -11,6 +13,21 @@ registerLocale('ru', ru);
 
 function Reactdatepicker(props) {
   const [selectesDate, setSelectedDate] = useState('');
+  const {getAccountingData} = useContext(Context);
+
+  const changeSelectedDayHandler = (date) => {
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const currentDate = `${year}-${month}-${day}`;
+
+    getAccountingData(currentDate);
+    setSelectedDate(currentDate);
+  };
+
+  useEffect(() => {
+    console.log(selectesDate);
+  }, [selectesDate]);
 
   return (
     <React.Fragment>
@@ -24,16 +41,12 @@ function Reactdatepicker(props) {
                 <label className="col-sm-2 col-form-label"> </label>
                 <div className="col-sm-5">
                   <DatePicker
+                    inline
                     dateFormat="dd.MM.yyyy"
                     locale="ru"
                     placeholderText="Выберите дату"
                     selected={selectesDate}
-                    onChange={(date) => setSelectedDate(date)}
-                    inline
-                    //minDate={ new Date()}
-                    //maxDate={ new Date()}
-                    //filterDate={ date=>date.getDay()!=6 && date.getDay()!=0}
-                    // isClearable
+                    onChange={(date) => changeSelectedDayHandler(date)}
                   />
                 </div>
               </div>

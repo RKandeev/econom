@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
+import { Context } from '../../Context';
 import AccountingLine from '../AccountingLine/AccountingLine';
 import AnalysisHeader from '../AnalysisHeader/AnalysisHeader';
 import Moneyline from '../Moneyline/Moneyline';
@@ -21,6 +22,15 @@ function AccountingBody(props) {
   let incomes = 'Доходы';
   let credit = 'Кредиты';
 
+  const {accountingData, setAccountingData} = useContext(Context);
+
+  const moneyLineData = {
+    end: accountingData.end,
+    income: accountingData.income,
+    outcome: accountingData.outcome,
+    start: accountingData.start,
+  };
+
   return (
     <>
       <div className={styles.accountingBody}>
@@ -41,87 +51,87 @@ function AccountingBody(props) {
           secondlink='/AccountingBalance'
           secondtitle='Финансовый баланс'
         />
-        <Moneyline interval='дня' modalTitle='Остаток на начало дня' />
+        <Moneyline data={moneyLineData} interval='дня' modalTitle='Остаток на начало дня'/>
         <AccountingLine
           checkDisplay='none'
-          entriesNum='13 записей'
+          entriesNum='13'
+          lineWidth='97%'
           linkway='/AccountingIncomes'
           titleimg={pocket}
           titlename='Доходы'
-          value='+55000.00'
-          lineWidth='97%'
+          value= "123"
         />
         <AccountingLine
           checkDisplay='none'
-          entriesNum='1 запись'
+          entriesNum='1'
+          lineWidth='97%'
           linkway='/AccountingCredit'
           titleimg={crediticon}
           titlename='Платежи по кредитам'
           value='-12446.20'
-          lineWidth='97%'
         />
         <AccountingLine
           checkDisplay='none'
-          entriesNum='1 запись'
+          entriesNum='1'
+          lineWidth='97%'
           linkway='/AccountingBasicNeeds'
           titleimg={back}
           titlename='Расходы «Базовые потребности»'
           value='-12446.20'
-          lineWidth='97%'
         />
         <AccountingLine
           checkDisplay='none'
-          entriesNum='1 запись'
+          entriesNum='1'
+          lineWidth='97%'
           linkway='/AccountingLifestyle'
           titleimg={lifestyle}
           titlename='Расходы «Образ жизни»'
           value='-12446.20'
-          lineWidth='97%'
         />
         <AccountingLine
           checkDisplay='none'
-          entriesNum='1 запись'
+          entriesNum='1'
+          lineWidth='97%'
           linkway='/AccountingCachout'
           titleimg={fincashout}
           titlename='Финансовые расходы'
           value='-12446.20'
-          lineWidth='97%'
         />
         <AccountingLine
           checkDisplay='none'
-          entriesNum='13 записей'
+          entriesNum='13'
+          lineWidth='97%'
           linkway='/AccountingCashReturn'
           titleimg={moneyback}
           titlename='Возврат вложений'
           value='+55000.00'
-          lineWidth='97%'
         />
         <AccountingLine
           checkDisplay='none'
-          entriesNum='13 записей'
+          entriesNum='13'
+          lineWidth='97%'
           linkway='/AccountingBorrowings'
           titleimg={borrowings}
           titlename='Заимствования'
           value='+55000.00'
-          lineWidth='97%'
         />
         <AccountingLine
           checkDisplay='none'
-          entriesNum='1 запись'
+          entriesNum='1'
+          lineWidth='97%'
           linkway='/AccountingAttachment'
           titleimg={attachment}
           titlename='Вложения'
           value='-12446.20'
-          lineWidth='97%'
         />
         <AccountingLine
           checkDisplay='none'
-          entriesNum='1 запись'
+          entriesNum='194'
+          lineWidth='97%'
           linkway='/AccountingDebts'
           titleimg={debts}
           titlename='Погашение долгов'
           value='-12446.20'
-          lineWidth='97%'
         />
       </div>
     </>
