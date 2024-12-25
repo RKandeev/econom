@@ -17,12 +17,15 @@ import pocket from '../../img/pocket.svg';
 
 import styles from './AccountingBody.module.scss';
 
+import './Accounting.scss';
+import MobileCalendar from '../InlineCalendar/MobileCalendar';
+
 function AccountingBody(props) {
   let accountingDate = '12 сентября 2023';
   let incomes = 'Доходы';
   let credit = 'Кредиты';
 
-  const {accountingData, setAccountingData} = useContext(Context);
+  const { accountingData, setAccountingData } = useContext(Context);
 
   const moneyLineData = {
     end: accountingData.end,
@@ -51,7 +54,14 @@ function AccountingBody(props) {
           secondlink='/AccountingBalance'
           secondtitle='Финансовый баланс'
         />
-        <Moneyline data={moneyLineData} interval='дня' modalTitle='Остаток на начало дня'/>
+        <div className={styles.mobileCalendar}>
+          <MobileCalendar />
+        </div>
+        <Moneyline
+          data={moneyLineData}
+          interval='дня'
+          modalTitle='Остаток на начало дня'
+        />
         <AccountingLine
           checkDisplay='none'
           entriesNum='13'
@@ -59,7 +69,7 @@ function AccountingBody(props) {
           linkway='/AccountingIncomes'
           titleimg={pocket}
           titlename='Доходы'
-          value= "123"
+          value='123'
         />
         <AccountingLine
           checkDisplay='none'

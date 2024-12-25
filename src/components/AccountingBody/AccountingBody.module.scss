@@ -49,3 +49,9 @@
 .accountingBody{
   width: 100%;
 }
+.mobileCalendar{
+  display: none;
+  @media (max-width: 480px){
+    display: block;
+  }
+}

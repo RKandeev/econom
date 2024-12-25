@@ -15,7 +15,7 @@ function AccountingProgressadd(props) {
   // let titleNameType = "Фиксированная";
   // let incomesValue = "+55000.00";
   let selectArr1 = ['Заработная плата', 'Шабашка', 'Лотерея'];
-  let selectArr2 = ['Заработная плата', 'Шабашка', 'Лотерея'];
+  let selectArr2 = ['Необходимость', 'Желание'];
   let sumValue = '25 159,15';
   const [accountingAddModalActive, SetAccountingAddModalActive] =
     useState(false);

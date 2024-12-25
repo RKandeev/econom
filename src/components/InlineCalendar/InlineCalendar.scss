@@ -78,3 +78,31 @@
 .react-datepicker__day--outside-month{
   color: #ABB0C3;
 }
+#root > div.Accounting_sitebody__Wucyg > div.AccountingBody_accountingBody__4IUyj > div.AccountingBody_mobileCalendar__b1anD > div > div > div > form > div:nth-child(1) > div > div.react-datepicker-wrapper{
+  @media (max-width: 480px){
+    width: 100%;
+    font-size: 16rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+#root > div.Accounting_sitebody__Wucyg > div.AccountingBody_accountingBody__4IUyj > div.AccountingBody_mobileCalendar__b1anD > div > div > div > form > div:nth-child(1) > div > div.react-datepicker-wrapper > div > input{
+  @media (max-width: 480px){
+    width: 100%;
+    font-weight: 700;
+    font-size: 16rem;
+    text-align: center;
+
+  }
+}
+#root > div.Accounting_sitebody__Wucyg > div.AccountingBody_accountingBody__4IUyj > div.AccountingBody_mobileCalendar__b1anD > div > div > div > form > div:nth-child(1) > div > div > div{
+  @media (max-width: 480px){
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    padding: 8rem 16rem;
+    border-radius: 12rem;
+    background-color: #F0F5FA;
+  }
+}

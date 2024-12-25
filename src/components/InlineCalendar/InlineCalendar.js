@@ -13,7 +13,7 @@ registerLocale('ru', ru);
 
 function Reactdatepicker(props) {
   const [selectesDate, setSelectedDate] = useState('');
-  const {getAccountingData} = useContext(Context);
+  const { getAccountingData } = useContext(Context);
 
   const changeSelectedDayHandler = (date) => {
     const year = date.getFullYear();
@@ -32,28 +32,28 @@ function Reactdatepicker(props) {
   return (
     <React.Fragment>
       <Container>
-        <div className="row" style={{ visibility: `${props.calendarVis}` }}>
-          <div className="col-sm-10">
-            <h5 className="mt-3 mb-4 text-white"> React Date picker</h5>
+        <div className='row' style={{ visibility: `${props.calendarVis}` }}>
+          <div className='col-sm-10'>
+            <h5 className='mt-3 mb-4 text-white'> React Date picker</h5>
 
-            <form className="row">
-              <div className="row mb-4">
-                <label className="col-sm-2 col-form-label"> </label>
-                <div className="col-sm-5">
+            <form className='row'>
+              <div className='row mb-4'>
+                <label className='col-sm-2 col-form-label'> </label>
+                <div className='col-sm-5'>
                   <DatePicker
                     inline
-                    dateFormat="dd.MM.yyyy"
-                    locale="ru"
-                    placeholderText="Выберите дату"
+                    dateFormat='dd.MM.yyyy'
+                    locale='ru'
+                    placeholderText='Выберите дату'
                     selected={selectesDate}
                     onChange={(date) => changeSelectedDayHandler(date)}
                   />
                 </div>
               </div>
 
-              <div className="row mb-4">
-                <label className="col-sm-2 col-form-label"></label>
-                <div className="col-sm-4"></div>
+              <div className='row mb-4'>
+                <label className='col-sm-2 col-form-label'></label>
+                <div className='col-sm-4'></div>
               </div>
             </form>
           </div>
